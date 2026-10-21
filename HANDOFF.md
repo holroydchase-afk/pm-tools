@@ -32,7 +32,7 @@ The live apps hold Chase's real data in their databases; the page source holds n
 The portfolio (repo `holroydchase-afk.github.io`) still carries its own copies under `demo/build-slate` and `demo/roadmap`. Once chaseholroyd.com/pm-tools/ is live, its "How I work" page links here and those copies are removed, so pm-tools is the only source.
 
 ## Exact next step
-PMT-M1.1: merge the first PR. PMT-M1.2: turn on Pages (Blockers). PMT-M1.3: point the portfolio's two demo buttons at chaseholroyd.com/pm-tools/build-slate/ and /roadmap/, and delete its copies. Plan and IDs: `PLAN.md`.
+PMT-M1.1: merge the first PR. PMT-M1.2: turn on Pages (Blockers). PMT-M1.3: portfolio PR #3 (draft) already points the buttons here and deletes the copies; mark it ready and merge once chaseholroyd.com/pm-tools/ loads. Plan and IDs: `PLAN.md`.
 
 ## Decisions to review
 - MIT license, matching ccwatts.
