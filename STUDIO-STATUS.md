@@ -31,6 +31,17 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 ## Next without Chase
 - Portfolio: point the Energy Scanner page at chaseholroyd.com/energy-scanner/ (ES-M2.3), then WEB-M3.1.
 
+## Who owns which repo
+| Repo | Owning project |
+|---|---|
+| ccwatts | ccwatts |
+| Role-Radar | Role Radar |
+| energy-scanner | Energy Scanner |
+| Hearth | Hearth |
+| holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
+
+The project that owns the repo a change lands in does the work. Another project that needs a change there writes an INTAKE block, and Chase pastes it into the owning project. After shipping, the owner logs the change in the HANDOFF.md of every affected repo.
+
 ## How this stays current
 - Product projects record progress in their own repo's `HANDOFF.md` (its "Done" and "Portfolio / public presence" sections).
 - The Product Studio project refreshes this file from every repo's `HANDOFF.md` and GitHub, and after any portfolio change.
