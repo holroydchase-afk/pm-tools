@@ -40,7 +40,11 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 | Hearth | Hearth |
 | holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
 
-The project that owns the repo a change lands in does the work. Another project that needs a change there writes an INTAKE block, and Chase pastes it into the owning project. After shipping, the owner logs the change in the HANDOFF.md of every affected repo.
+The repo decides who does the work:
+- The change lands in a product's repo: that product's project does it.
+- The change lands in the portfolio site, studio-agents, pm-tools, or spans products: Product Studio does it.
+- Any other project writes an INTAKE block and Chase pastes it into the owner. It never edits that repo itself.
+- After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
 ## How this stays current
 - Product projects record progress in their own repo's `HANDOFF.md` (its "Done" and "Portfolio / public presence" sections).
