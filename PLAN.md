@@ -8,9 +8,9 @@ One public repo holds the source of every PM tool, the generic templates, and a 
 ## PMT-M1: Tools live in one repo, demos served from it
 | Task | Status | Done when |
 |---|---|---|
-| PMT-M1.1 App sources, templates, routines, demo build, HANDOFF.md | doing | `npm test` and `npm run check:private` pass; PR merged |
-| PMT-M1.2 Pages live at chaseholroyd.com/pm-tools/ | blocked | Both demos load there with sample data. Needs Pages turned on |
-| PMT-M1.3 Portfolio links here and drops its copies | doing (portfolio PR #3, draft; merge after M1.2) | Portfolio "How I work" buttons open /pm-tools/<app>/; `demo/build-slate` and `demo/roadmap` removed from the portfolio repo |
+| PMT-M1.1 App sources, templates, routines, demo build, HANDOFF.md | done (PR #1) | `npm test` and `npm run check:private` pass; PR merged |
+| PMT-M1.2 Pages live at chaseholroyd.com/pm-tools/ | done (deployed Oct 21) | Both demos load there with sample data |
+| PMT-M1.3 Portfolio links here and drops its copies | done (portfolio PR #3) | Portfolio "How I work" buttons open /pm-tools/<app>/; `demo/build-slate` and `demo/roadmap` removed from the portfolio repo |
 
 ## PMT-M2: Sync stays cheap
 | Task | Status | Done when |

@@ -5,9 +5,9 @@ _Read this before starting work on this repo. Update it in the same commit whene
 Updated: 2026-10-21
 
 ## Current state
-- Repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
-- `npm test`: 8 build and privacy tests, 10 persona-check tests, all passing. `npm run check:private` is clean. Demos smoke-tested in headless Chromium: both apps render their sample data with no console errors.
-- Demo site deploys from `main` through GitHub Actions to **chaseholroyd.com/pm-tools/** (needs Pages turned on once, see Blockers).
+- PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
+- Demos are live at **chaseholroyd.com/pm-tools/** (Actions deploy from `main`). The portfolio's "How I work" page links here, and its own copies were removed (portfolio PR #3), so this repo is the only source.
+- `npm test`: 8 build and privacy tests, 10 persona-check tests. `npm run check:private` is clean.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
@@ -29,10 +29,10 @@ The live apps hold Chase's real data in their databases; the page source holds n
 2. **Change made here:** test the demo, then republish the same page to the live artifact (same URL, no capability changes, never touch its db). Record the new snapshot.
 
 ## Portfolio
-The portfolio (repo `holroydchase-afk.github.io`) still carries its own copies under `demo/build-slate` and `demo/roadmap`. Once chaseholroyd.com/pm-tools/ is live, its "How I work" page links here and those copies are removed, so pm-tools is the only source.
+The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate/ and /pm-tools/roadmap/ and keeps no copies. It still uses its own `demo/fake-db.js` for the Role Radar and Energy Scanner demos.
 
 ## Exact next step
-PMT-M1.1: merge the first PR. PMT-M1.2: turn on Pages (Blockers). PMT-M1.3: portfolio PR #3 (draft) already points the buttons here and deletes the copies; mark it ready and merge once chaseholroyd.com/pm-tools/ loads. Plan and IDs: `PLAN.md`.
+PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's current version (see `PLAN.md`).
 
 ## Decisions to review
 - MIT license, matching ccwatts.
@@ -41,4 +41,4 @@ PMT-M1.1: merge the first PR. PMT-M1.2: turn on Pages (Blockers). PMT-M1.3: port
 - No build dependencies; Node only, so CI and the night shift need no install.
 
 ## Blockers
-- Pages for this repo: Settings → Pages → Source: **GitHub Actions** (https://github.com/holroydchase-afk/pm-tools/settings/pages). Until then the deploy job fails; tests still run on PRs.
+- None.
