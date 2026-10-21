@@ -18,7 +18,7 @@ Both are single-file pages that run as Claude artifacts with a small shared data
 The one I'd point a PM at first is the **persona check**, test-driven product management: before a product decision is final, every persona gets Green or Red with a one-line reason, and CI fails if a decision skips one or leaves a Red unresolved (`scripts/check-persona-checks.sh`). Adding a persona breaks every old decision on purpose, so each gets re-checked.
 
 ## Routines
-[`routines/`](routines/): the **night shift** (paste before bed; an overnight AI run works through the next milestones in stacked PRs), the **shared-doc inbox** (a merge pass for docs several AI threads edit at once), and the **privacy check** that keeps personal data out of public repos.
+[`routines/`](routines/): the **night shift** (paste before bed; an overnight AI run works through the next milestones in stacked PRs), the **shared-doc inbox** (a merge pass for docs several AI threads edit at once), **resume lint** (a 20-check linter for the exported PDF of a resume, with the sources for each rule), and the **privacy check** that keeps personal data out of public repos.
 
 ## Run it
 ```
