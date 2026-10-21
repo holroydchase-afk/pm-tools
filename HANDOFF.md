@@ -32,6 +32,7 @@ The live apps hold Chase's real data in their databases; the page source holds n
 The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate/ and /pm-tools/roadmap/ and keeps no copies. It still uses its own `demo/fake-db.js` for the Role Radar and Energy Scanner demos.
 - **Pages:** https://chaseholroyd.com/pm-tools.html ("How I work") links https://chaseholroyd.com/pm-tools/build-slate/ and https://chaseholroyd.com/pm-tools/roadmap/. Source: `tools/build.py` in `holroydchase-afk.github.io`.
 - **Demo data:** scrubbed snapshots of the real slate and roadmap (`demo/*/seed.js`), saved only in the visitor's browser.
+- **Studio-wide status:** `STUDIO-STATUS.md` in this repo (added Oct 21) is the one cross-project list of what's done (portfolio, domain, every demo) and what's waiting on Chase. Product HANDOFF.md files link to it. Refresh it from every repo's HANDOFF.md and GitHub after any portfolio change.
 - 2026-10-21: the portfolio home page lists these as "How I run product work", tagged "Live demos".
 - **Keep in sync:** when a change here alters what the portfolio page or demo shows (features, numbers, screenshots, privacy claims), tell the portfolio thread ("Portfolio research and upgrade plan") or update the page in `holroydchase-afk.github.io` (`tools/build.py`). Any portfolio change that touches this product adds a dated line here.
 
