@@ -50,7 +50,7 @@ window.DEMO = {
     "phase": "MVP",
     "size": 1,
     "tags": "build",
-    "title": "S1 · Scaffold + parse spike"
+    "title": "CCW-M1.1 · Scaffold + parse spike"
    },
    "c04": {
     "blocked": false,
@@ -62,7 +62,7 @@ window.DEMO = {
     "phase": "MVP",
     "size": 1,
     "tags": "build, method",
-    "title": "S2 · Energy model + params.json + METHODOLOGY.md draft"
+    "title": "CCW-M1.2 · Energy model + params.json + METHODOLOGY.md draft"
    },
    "c05": {
     "blocked": false,
@@ -86,7 +86,7 @@ window.DEMO = {
     "phase": "MVP",
     "size": 1,
     "tags": "build",
-    "title": "S3 · CLI summary, --by, --json, --method"
+    "title": "CCW-M1.3 · CLI summary, --by, --json, --method"
    },
    "c07": {
     "blocked": false,
@@ -98,7 +98,7 @@ window.DEMO = {
     "phase": "MVP",
     "size": 1,
     "tags": "build",
-    "title": "S4 · History rollups + ccwatts history"
+    "title": "CCW-M1.4 · History rollups + ccwatts history"
    },
    "c08": {
     "blocked": false,
@@ -110,7 +110,7 @@ window.DEMO = {
     "phase": "MVP",
     "size": 1,
     "tags": "build, share",
-    "title": "S5 · Share receipt (line + SVG)"
+    "title": "CCW-M1.5 · Share receipt (line + SVG)"
    },
    "c09": {
     "blocked": false,
@@ -122,7 +122,7 @@ window.DEMO = {
     "phase": "MVP",
     "size": 1,
     "tags": "build, web",
-    "title": "S6 · Local dashboard (ccwatts dashboard)"
+    "title": "CCW-M1.6 · Local dashboard (ccwatts dashboard)"
    },
    "c10": {
     "blocked": false,
@@ -134,7 +134,7 @@ window.DEMO = {
     "phase": "Beta",
     "size": 1,
     "tags": "build, web",
-    "title": "S7 · Browser playground + deploy"
+    "title": "CCW-M1.7 · Browser playground + deploy"
    },
    "c11": {
     "blocked": false,
@@ -146,7 +146,7 @@ window.DEMO = {
     "phase": "Beta",
     "size": 1,
     "tags": "ship",
-    "title": "S8 · npm publish + README with GIF"
+    "title": "CCW-M2.2 · npm publish + README with GIF"
    },
    "c12": {
     "blocked": false,
@@ -194,7 +194,7 @@ window.DEMO = {
     "phase": "Beta",
     "size": 1,
     "tags": "build",
-    "title": "S9 · Friend beta fixes"
+    "title": "CCW-M2.3 · Friend beta fixes"
    },
    "c16": {
     "blocked": false,
@@ -206,7 +206,7 @@ window.DEMO = {
     "phase": "Launch",
     "size": 1,
     "tags": "method",
-    "title": "S10 · Methodology hardening → v0.2"
+    "title": "CCW-M3.1 · Methodology hardening → v0.2"
    },
    "c17": {
     "blocked": false,

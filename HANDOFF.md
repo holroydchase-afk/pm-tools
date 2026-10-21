@@ -32,6 +32,8 @@ The live apps hold Chase's real data in their databases; the page source holds n
 The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate/ and /pm-tools/roadmap/ and keeps no copies. It still uses its own `demo/fake-db.js` for the Role Radar and Energy Scanner demos.
 
 ## Exact next step
+Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old S1–S10), matching the live board as of Oct 21.
+
 PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's current version (see `PLAN.md`).
 
 ## Decisions to review
