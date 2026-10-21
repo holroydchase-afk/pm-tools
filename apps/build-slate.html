@@ -1,0 +1,276 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Build Slate</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: workbench header with goal meter + stage counts, then a wrap grid of project cards, each with a 6-step stage track. Edit in a dialog. */
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --ink:#18211D; --muted:#5E6B64; --line:#D9DFDA;
+  --accent:#0E6B57; --accent-ink:#FFFFFF; --accent-soft:#DCEDE7;
+  --s-idea:#8A8F8C; --s-spec:#6B6FB8; --s-build:#C4731B; --s-beta:#2F7FB6; --s-live:#1F8A55; --s-paused:#A5544F;
+  --f-display:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121815; --surface:#1A221E; --ink:#E6ECE8; --muted:#97A49D; --line:#2C3631;
+  --accent:#4CC3A1; --accent-ink:#0B1310; --accent-soft:#1D3A31;
+  --s-idea:#9AA19D; --s-spec:#9C9FE6; --s-build:#E9A04F; --s-beta:#6BB3E6; --s-live:#55C78A; --s-paused:#DB8A84;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121815; --surface:#1A221E; --ink:#E6ECE8; --muted:#97A49D; --line:#2C3631;
+  --accent:#4CC3A1; --accent-ink:#0B1310; --accent-soft:#1D3A31;
+  --s-idea:#9AA19D; --s-spec:#9C9FE6; --s-build:#E9A04F; --s-beta:#6BB3E6; --s-live:#55C78A; --s-paused:#DB8A84;
+  color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:flex;flex-direction:column;gap:28px}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;border-bottom:2px solid var(--ink);padding-bottom:18px}
+.brand h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,6vw,54px);line-height:.95;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.brand p{margin:8px 0 0;color:var(--muted);max-width:52ch}
+.goal{display:flex;flex-direction:column;gap:8px;min-width:0}
+.goal .lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.slots{display:flex;gap:6px;flex-wrap:wrap}
+.slot{width:28px;height:28px;border:2px solid var(--ink);border-radius:4px;display:grid;place-items:center;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.slot.filled{background:var(--ink);color:var(--bg)}
+.slot.extra{border-style:dashed;border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-variant-numeric:tabular-nums}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--ink))}
+.chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.chip .n{font-family:var(--f-mono);font-size:12px;opacity:.75}
+.btn{font:600 14px var(--f-body);border-radius:6px;padding:9px 16px;cursor:pointer;border:1px solid transparent}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn.danger{background:transparent;border-color:var(--s-paused);color:var(--s-paused)}
+.btn:focus-visible,.chip:focus-visible,.card:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;cursor:pointer;text-align:left;font:inherit;color:inherit;min-width:0;transition:border-color .15s}
+.card:hover{border-color:var(--ink)}
+.card .head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.card h2{font-family:var(--f-display);font-weight:700;font-size:22px;line-height:1.15;margin:0;letter-spacing:-.01em;min-width:0;overflow-wrap:anywhere}
+.stage-tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--c);white-space:nowrap}
+.pitch{margin:0;color:var(--ink);overflow-wrap:anywhere}
+.pitch.empty{color:var(--muted);font-style:italic}
+.track{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.track span{height:5px;border-radius:2px;background:var(--line)}
+.track span.on{background:var(--c)}
+.paused .track span.on{background:repeating-linear-gradient(45deg,var(--c) 0 4px,transparent 4px 7px)}
+.next{border-top:1px dashed var(--line);padding-top:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.k{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.next .v{overflow-wrap:anywhere}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta .due-soon{color:var(--s-build)}
+.meta .overdue{color:var(--s-paused)}
+.empty-state{border:2px dashed var(--line);border-radius:8px;padding:36px 20px;text-align:center;color:var(--muted)}
+.status{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+
+dialog{border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);padding:0;width:min(640px,calc(100vw - 32px));max-height:calc(100dvh - 32px)}
+dialog::backdrop{background:rgba(10,16,13,.45)}
+form.edit{display:flex;flex-direction:column;gap:14px;padding:22px}
+form.edit h3{font-family:var(--f-display);font-size:22px;margin:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+label.f{display:flex;flex-direction:column;gap:5px;min-width:0}
+label.f span{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{font:15px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;box-sizing:border-box}
+textarea{resize:vertical;min-height:70px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px}
+.actions .r{display:flex;gap:8px;margin-left:auto}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--s-paused);font-size:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Build Slate</h1>
+      <p>Everything Chase is building, where each one stands, and the next move on it.</p>
+    </div>
+    <div class="goal">
+      <div class="lbl" id="goalLbl">Slate goal · 5 projects</div>
+      <div class="slots" id="slots"></div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="chips" id="chips" role="group" aria-label="Filter by stage"></div>
+    <button class="btn primary" id="addBtn" type="button">+ New project</button>
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="empty-state">Loading your slate…</div>
+  </div>
+  <div class="status" id="status"></div>
+</div>
+
+<dialog id="dlg">
+  <form class="edit" id="form" method="dialog">
+    <h3 id="formTitle">New project</h3>
+    <label class="f"><span>Name</span><input id="f-name" required maxlength="80" placeholder="Role Radar"></label>
+    <label class="f"><span>One-liner</span><input id="f-pitch" maxlength="160" placeholder="What it does, for whom"></label>
+    <div class="row">
+      <label class="f"><span>Stage</span><select id="f-stage"></select></label>
+      <label class="f"><span>Kind</span><select id="f-kind">
+        <option value="">—</option><option>Mobile app</option><option>Web app</option><option>AI tool</option><option>Data / research</option><option>Extension</option><option>Other</option>
+      </select></label>
+    </div>
+    <label class="f"><span>Next step</span><input id="f-next" maxlength="200" placeholder="The very next concrete thing to do"></label>
+    <div class="row">
+      <label class="f"><span>Started</span><input id="f-started" type="date"></label>
+      <label class="f"><span>Next milestone date</span><input id="f-target" type="date"></label>
+    </div>
+    <div class="row">
+      <label class="f"><span>Stack</span><input id="f-stack" maxlength="120" placeholder="e.g. Flutter, Supabase"></label>
+      <label class="f"><span>Link (repo or live URL)</span><input id="f-link" maxlength="300" placeholder="https://"></label>
+    </div>
+    <label class="f"><span>Why it matters</span><textarea id="f-why" maxlength="1000" placeholder="Problem, audience, why you"></textarea></label>
+    <label class="f"><span>Notes</span><textarea id="f-notes" maxlength="4000" placeholder="Decisions, open questions, ideas"></textarea></label>
+    <div class="actions">
+      <button class="btn danger" type="button" id="delBtn">Delete</button>
+      <div class="confirm" id="confirm" hidden>Delete this project?
+        <button class="btn danger" type="button" id="delYes">Delete</button>
+        <button class="btn ghost" type="button" id="delNo">Keep</button>
+      </div>
+      <div class="r">
+        <button class="btn ghost" type="button" id="cancelBtn">Cancel</button>
+        <button class="btn primary" type="submit" id="saveBtn">Save</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const STAGES = [
+  {id:"idea",   label:"Idea",     c:"--s-idea",   step:1},
+  {id:"spec",   label:"Spec",     c:"--s-spec",   step:2},
+  {id:"build",  label:"Building", c:"--s-build",  step:3},
+  {id:"beta",   label:"Beta",     c:"--s-beta",   step:4},
+  {id:"live",   label:"Launched", c:"--s-live",   step:5},
+  {id:"paused", label:"Paused",   c:"--s-paused", step:0},
+];
+const GOAL = 5;
+const stageOf = id => STAGES.find(s => s.id === id) || STAGES[0];
+let projects = [], filter = "all", editingId = null, db = null, col = null, readOnly = false;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+$("f-stage").innerHTML = STAGES.map(s => `<option value="${s.id}">${s.label}</option>`).join("");
+
+function fmtDate(iso){ if(!iso) return ""; const [y,m,d]=iso.split("-").map(Number); return new Date(y,m-1,d).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}); }
+function daysUntil(iso){ const [y,m,d]=iso.split("-").map(Number); const t=new Date(y,m-1,d); const n=new Date(); n.setHours(0,0,0,0); return Math.round((t-n)/864e5); }
+
+function render(){
+  // goal slots
+  const n = projects.length, total = Math.max(GOAL, n);
+  $("slots").innerHTML = Array.from({length: total}, (_, i) =>
+    `<div class="slot ${i < n ? (i >= GOAL ? "extra" : "filled") : ""}" title="${i < n ? esc(projects[i].name) : "Open slot"}">${i+1}</div>`).join("");
+  $("goalLbl").textContent = `Slate goal · ${n} of ${GOAL}${n > GOAL ? " — past it" : ""}`;
+
+  // chips
+  const counts = Object.fromEntries(STAGES.map(s => [s.id, projects.filter(p => (p.stage||"idea") === s.id).length]));
+  $("chips").innerHTML = `<button class="chip" type="button" data-f="all" aria-pressed="${filter==="all"}">All <span class="n">${n}</span></button>` +
+    STAGES.map(s => `<button class="chip" type="button" data-f="${s.id}" aria-pressed="${filter===s.id}" style="--c:var(${s.c})"><span class="dot"></span>${s.label} <span class="n">${counts[s.id]}</span></button>`).join("");
+
+  const list = projects.filter(p => filter === "all" || (p.stage||"idea") === filter);
+  if (!projects.length){
+    $("grid").innerHTML = `<div class="empty-state">No projects yet. Use <b>+ New project</b> to put the first one on the slate.</div>`;
+    return;
+  }
+  if (!list.length){
+    $("grid").innerHTML = `<div class="empty-state">Nothing in ${esc(stageOf(filter).label)} right now.</div>`;
+    return;
+  }
+  $("grid").innerHTML = list.map(p => {
+    const s = stageOf(p.stage);
+    const step = p.stage === "paused" ? (p.pausedAt || 1) : s.step;
+    const track = [1,2,3,4,5].map(i => `<span class="${i <= step ? "on" : ""}"></span>`).join("");
+    let due = "";
+    if (p.target){
+      const d = daysUntil(p.target);
+      const cls = d < 0 ? "overdue" : d <= 7 ? "due-soon" : "";
+      due = `<span class="${cls}">Milestone ${fmtDate(p.target)}${d < 0 ? " · overdue" : d <= 7 ? ` · ${d}d` : ""}</span>`;
+    }
+    return `<button class="card ${p.stage==="paused"?"paused":""}" type="button" data-id="${esc(p.id)}" style="--c:var(${s.c})">
+      <div class="head"><h2>${esc(p.name)}</h2><span class="stage-tag">${s.label}</span></div>
+      ${p.pitch ? `<p class="pitch">${esc(p.pitch)}</p>` : `<p class="pitch empty">Add a one-liner</p>`}
+      <div class="track" aria-label="Stage ${s.label}">${track}</div>
+      <div class="next"><span class="k">Next step</span><span class="v">${p.next ? esc(p.next) : `<span class="pitch empty">Not set</span>`}</span></div>
+      <div class="meta">${p.kind ? `<span>${esc(p.kind)}</span>` : ""}${p.stack ? `<span>${esc(p.stack)}</span>` : ""}${due}</div>
+    </button>`;
+  }).join("");
+}
+
+$("chips").addEventListener("click", e => { const b = e.target.closest("[data-f]"); if (!b) return; filter = b.dataset.f; render(); });
+$("grid").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openEditor(c.dataset.id); });
+$("addBtn").addEventListener("click", () => openEditor(null));
+$("cancelBtn").addEventListener("click", () => $("dlg").close());
+
+const FIELDS = ["name","pitch","stage","kind","next","started","target","stack","link","why","notes"];
+function openEditor(id){
+  editingId = id;
+  const p = id ? projects.find(x => x.id === id) : {stage:"idea", started:new Date().toISOString().slice(0,10)};
+  FIELDS.forEach(f => $("f-"+f).value = p?.[f] ?? "");
+  if (!$("f-stage").value) $("f-stage").value = "idea";
+  $("formTitle").textContent = id ? p.name : "New project";
+  $("delBtn").hidden = !id || readOnly; $("confirm").hidden = true;
+  $("saveBtn").disabled = readOnly;
+  $("dlg").showModal();
+}
+
+$("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const body = {};
+  FIELDS.forEach(f => body[f] = $("f-"+f).value.trim());
+  if (!body.name) return;
+  const prev = editingId ? projects.find(x => x.id === editingId) : null;
+  if (body.stage === "paused") body.pausedAt = prev?.stage && prev.stage !== "paused" ? stageOf(prev.stage).step : (prev?.pausedAt || 1);
+  body.order = prev?.order ?? Date.now();
+  body.updatedAt = new Date().toISOString();
+  $("dlg").close();
+  if (!col){
+    const id = editingId || "local-" + Date.now();
+    projects = projects.filter(x => x.id !== id).concat([{id, ...body}]).sort((a,b) => a.order - b.order);
+    render(); return;
+  }
+  try {
+    await (editingId ? col.doc(editingId) : col.doc()).set(body);
+    $("status").textContent = "Saved";
+  } catch(err){
+    if (err?.code === "invalid_argument"){ readOnly = true; $("status").textContent = "This view can read the slate but not change it."; }
+    else $("status").textContent = "Couldn't save just now. Try again in a moment.";
+  }
+});
+
+$("delBtn").addEventListener("click", () => { $("delBtn").hidden = true; $("confirm").hidden = false; });
+$("delNo").addEventListener("click", () => { $("delBtn").hidden = false; $("confirm").hidden = true; });
+$("delYes").addEventListener("click", async () => {
+  const id = editingId; $("dlg").close();
+  if (!col){ projects = projects.filter(x => x.id !== id); render(); return; }
+  try { await col.doc(id).delete(); $("status").textContent = "Deleted"; }
+  catch { $("status").textContent = "Couldn't delete just now. Try again in a moment."; }
+});
+
+render();
+
+(async () => {
+  try { db = await window.claude?.use?.("db"); } catch { db = null; }
+  if (!db){
+    $("status").textContent = "Saved data isn't available in this view, so changes here won't be kept.";
+    $("grid").innerHTML = ""; render(); return;
+  }
+  col = db.collection("projects");
+  col.onSnapshot(snap => {
+    projects = snap.docs.map(d => ({id: d.id, ...d.data()})).sort((a,b) => (a.order||0) - (b.order||0));
+    render();
+  }, () => { $("status").textContent = "Lost the connection to saved data. Reload to reconnect."; });
+})();
+</script>
+
+</body></html>
