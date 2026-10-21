@@ -8,7 +8,7 @@ Updated: 2026-10-21
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
 - Demos are live at **chaseholroyd.com/pm-tools/** (Actions deploy from `main`). The portfolio's "How I work" page links here, and its own copies were removed (portfolio PR #3), so this repo is the only source.
 - `npm test`: 8 build and privacy tests, 10 persona-check tests. `npm run check:private` is clean.
-- Routines gained **resume lint** (Oct 21, PR #4): `routines/resume-lint/resume_lint.py` plus a README that lists the 20 checks and the sources behind the standard rules (Google's XYZ formula, an 800-resume review, The Muse, Emory, Cleveland State, a 2026 ATS guide). The live copy in the career project is the source of truth; copy changes here the same way as the apps.
+- Routines gained **resume lint** (Oct 21, PR #5): `routines/resume-lint/resume_lint.py` plus a README that lists the 20 checks and the sources behind the standard rules (Google's XYZ formula, an 800-resume review, The Muse, Emory, Cleveland State, a 2026 ATS guide). The live copy in the career project is the source of truth; copy changes here the same way as the apps.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
