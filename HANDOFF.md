@@ -14,7 +14,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - PMT-M2.2: demo seeds now match the portfolio pages. Build Slate: ccwatts Beta, Energy Scanner Launched (photo aura app), Stock Agent dropped so the demo sits at 5 of 5; Role Radar copy says nothing about resume tooling. Roadmap: ccwatts M1.1 to M1.7 in Done, plus a second board (Role Radar). `tests/seeds.test.mjs` fails if a stage drifts from the portfolio or the slate passes its cap.
 - PMT-M2.3: the /pm-tools/ landing has a "← Chase Holroyd" link at the top and named CTAs.
 - The live Build Slate and roadmap themselves are still at their Oct 20 state (ccwatts "Spec", one board). The demo seeds were updated from GitHub, not from the live apps. Updating the live apps writes Chase's real data, so that waits on Chase.
-- Studio agents copied into `.claude/agents/` (re-sync with studio-agents `scripts/sync.sh`).
+- Studio agents synced into `.claude/agents/` from studio-agents (includes the upgraded ux-reviewer with the visual pass and showcase review, studio-agents draft PR #6 or later); re-sync with its `scripts/sync.sh`.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
