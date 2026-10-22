@@ -115,3 +115,25 @@ test("R2-UX-7 landing words match the apps", async () => {
   assert.match(html, /five active projects/);
   assert.match(html, /Later, Next, Now and Done/);
 });
+
+// Round 4 (remaining P2s).
+test("R1-UX-12 moving a card shows a pinned notice with Undo", async () => {
+  const rm = await demoPage("roadmap");
+  assert.match(rm, /function showMoved\(/);
+  assert.match(rm, /showMoved\(id,c\.title/);
+  assert.match(rm, /id="movedToast"[^>]*aria-live="polite"/);
+});
+
+test("R4-1 Undo restores the card's old position quietly", async () => {
+  const rm = await demoPage("roadmap");
+  assert.match(rm, /async function moveCard\(id,lane,order,quiet\)/);
+  assert.match(rm, /const was=c\.lane,wasOrder=c\.order;/);
+  assert.match(rm, /moveCard\(id,was,wasOrder,true\)/);
+  assert.match(rm, /Move undone/);
+});
+
+test("R1-UX-10 meta text is at least 13px in the demos", async () => {
+  assert.match(await demoPage("build-slate"), /\.meta\{font-size:13px\}/);
+  assert.match(await demoPage("roadmap"), /\.owner\{font-size:13px\}/);
+  assert.match(await demoPage("roadmap"), /\.card \.m\{font-size:13px\}/);
+});
