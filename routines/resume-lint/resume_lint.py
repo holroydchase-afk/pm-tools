@@ -2,6 +2,7 @@
 """Resume lint: flags wording that makes claims feel soft, reads as AI-written, or breaks the standard resume rules.
 
 Usage: python3 resume_lint.py resume.pdf   (or a .txt of the resume text)
+       python3 resume_lint.py answer.txt --answer   (a form answer or cover letter)
 Needs pdftotext (poppler) for PDFs; pdfplumber is optional, for the hidden-text check.
 Prints only findings, each tagged FIX (change it) or LOOK (judgment call).
 """
@@ -47,6 +48,7 @@ if cur:
 bullets = [l for l in lines if len(l) > 90 and not re.match(r"^[A-Z][\w &/]+:", l)]
 body = "\n".join(lines)
 out = []
+ANSWER = "--answer" in sys.argv  # a form answer or cover letter: first person, any tense, short
 
 def hit(level, what, where=""):
     out.append(f"{level}  {what}" + (f"\n      → {where[:110]}" if where else ""))
@@ -183,7 +185,7 @@ if path.lower().endswith(".pdf"):
         hit("LOOK", "Hidden-text check skipped: pdfplumber isn't installed (pip install pdfplumber).")
 
 # 13. First-person pronouns (standard rule: never "I", "my", "we", "our" on a resume).
-for b in bullets:
+for b in ([] if ANSWER else bullets):
     m = re.findall(r"\b(I|me|my|we|our|us)\b", b)
     if m:
         hit("FIX", f"First-person pronoun ({', '.join(sorted(set(m)))}). Rewrite without it.", b)
@@ -199,7 +201,7 @@ for b in bullets:
 # 15. Tense: past tense on past roles. Pass --current to allow present-tense openers (for someone still employed).
 PAST_IRREG = {"led","built","cut","ran","won","took","drove","grew","set","sold","brought","made","held","kept","spent","began",
               "wrote","taught","put","laid","got","found","gave","stood","rebuilt","co-led","co-founded","shut","split","bought","met","sent","spent","thought","saw","came","went","did","had","was","were"}
-for b in bullets:
+for b in ([] if ANSWER else bullets):
     if re.match(r"^[A-Z][\w &/]+:", b) or len(b) < 100 or b[0].isdigit():
         continue  # skills lines and the summary
     w = b.split()[0].lower().strip(",.")
@@ -208,7 +210,7 @@ for b in bullets:
             hit("LOOK", f"Opener '{b.split()[0]}' may not be past tense. Past roles take past tense; pass --current if the top role is current.", b)
 
 # 16. Bullet punctuation: end every bullet with a period, or none of them. A mix looks careless.
-ends = Counter(b.rstrip().endswith(".") for b in bullets if not re.match(r"^[A-Z][\w &/]+:", b))
+ends = Counter(b.rstrip().endswith(".") for b in bullets if not re.match(r"^[A-Z][\w &/]+:", b)) if not ANSWER else Counter()
 if len(ends) > 1:
     hit("FIX", f"{ends[True]} bullets end with a period and {ends[False]} do not. Make them consistent.")
 
@@ -252,7 +254,10 @@ for b in bullets:
 
 # 20. Word count: strong two-page resumes land around 450–800 words.
 words = len(re.findall(r"\b[\w'$%+-]+\b", body))
-if words > 850:
+if ANSWER:
+    if words > 110:
+        hit("LOOK", f"{words} words. Form answers read best at 80–100; cut a sentence.")
+elif words > 850:
     hit("LOOK", f"{words} words. Strong resumes run 450–800; cut the weakest bullets first.")
 elif words < 400:
     hit("LOOK", f"{words} words. That is light for 8+ years; check the bullet budget.")

@@ -10,6 +10,7 @@ The idea is the same as a linter in a code repo: every miss becomes a check, so 
 python3 resume_lint.py resume.pdf            # needs pdftotext (poppler); pdfplumber is optional
 python3 resume_lint.py resume.txt            # plain text works too
 python3 resume_lint.py resume.pdf --current  # the top role is a current job, so present tense is fine there
+python3 resume_lint.py answer.txt --answer  # a form answer or cover letter: allows "I" and present tense, expects 80–100 words
 ```
 
 It prints one line per finding, tagged **FIX** (change it) or **LOOK** (a judgment call for the owner), with the offending bullet under it. Nothing printed means clean. Fix every FIX, decide each LOOK, re-export, run again.
@@ -39,6 +40,8 @@ It prints one line per finding, tagged **FIX** (change it) or **LOOK** (a judgme
 | 18 | An industry acronym never spelled out (PPA, PV, PTO, NTP, TPO) | LOOK | A reader outside the industry may not know it. Universal ones (AI, API, SQL, B2B, KPI) and company names are skipped. |
 | 19 | A bullet with no number in it | LOOK | 85% of resumes in the review lacked quantified results. The bullet has to earn its place without one. |
 | 20 | Word count outside 400–850 | LOOK | Strong two-page resumes land around 450–800 words. |
+
+`--answer` is for application form answers and cover letters, which should go through the same scan as the resume: it skips the pronoun, tense, period and length checks that only make sense on bullets, and flags an answer over 110 words.
 
 The script joins bullets that wrap across lines, and the summary and skills lines, so a wrapped fragment never shows up as a fake bullet.
 
