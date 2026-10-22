@@ -16,12 +16,14 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Energy Scanner: chaseholroyd.com/energy-scanner/ (Pages is on; first deploy succeeded Oct 21 23:32 UTC). The portfolio's Energy Scanner page links it (ES-M2.3, portfolio PR #8, merged Oct 21).
 - Build Slate and Near-Term Roadmap: chaseholroyd.com/pm-tools/build-slate/ and /pm-tools/roadmap/.
 
+- Recruiter-ready sprint (Oct 22): sprint v2 pasted into every product project; portfolio PR #10 (deploy allowlist, hero tense, resume CTA, CI checks), pm-tools PR #8 (demo seeds) and studio-agents PR #6 (deeper ux-reviewer) merged and deployed.
+
 **Studio setup**
 - Shared agents (studio-agents) are merged into ccwatts, Role Radar and Energy Scanner. Session rules (HANDOFF hook, handoff-check workflow) are in those three and the portfolio.
 - ccwatts v1 (CCW-M1.1 to M1.9) is merged. The Energy Scanner v1 stack and ES-M2.1 (bedtime flow) are merged.
 
 ## Waiting on Chase
-- Recruiter-ready sprint (Oct 22): paste the sprint block into the ccwatts, Role Radar, Energy Scanner and Hearth project chats (given in Product Studio). Review portfolio PR #10 and pm-tools PR (WEB-M4, PMT-M2.2/M2.3). Decide WEB-M4.8 (a "Jan 2026 – present" line on the resume page).
+- Portfolio WEB-M4.8: add a "Jan 2026 – present" line to the resume page? (recruiter-ready review, Oct 22)
 - Portfolio WEB-M2.3 and M2.4: review the case-study [check] questions (planned Oct 22).
 - Portfolio WEB-M2.6: headshot, LinkedIn Featured link and headline.
 - ccwatts CCW-M2.1: one run on real logs on the laptop.

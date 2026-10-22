@@ -81,9 +81,9 @@
     b.setAttribute("role", "note");
     b.style.cssText = "position:sticky;top:0;z-index:9999;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;" +
       "padding:8px 16px;background:#1F5C44;color:#fff;font:14px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
-    b.innerHTML = '<a href="' + (cfg.back || "../../index.html") + '" style="color:#fff;font-weight:600;text-decoration:none">← Chase Holroyd</a>' +
+    b.innerHTML = '<a href="' + (cfg.back || "../../index.html") + '" style="color:#fff;font-weight:600;text-decoration:none">' + (cfg.backLabel || "← Chase Holroyd") + '</a>' +
       '<span style="opacity:.9">Demo · sample data, saved only in your browser</span>' +
-      '<button type="button" style="margin-left:auto;font:inherit;color:#1F5C44;background:#fff;border:0;border-radius:6px;padding:4px 10px;cursor:pointer">Reset demo</button>';
+      '<button type="button" style="margin-left:auto;font:inherit;color:#1F5C44;background:#fff;border:0;border-radius:6px;padding:4px 12px;min-height:44px;cursor:pointer">Reset demo</button>';
     b.querySelector("button").onclick = () => { try { if (cfg.clearAll) localStorage.clear(); else localStorage.removeItem(KEY); } catch (_) {} location.reload(); };
     document.body.prepend(b);
   };
