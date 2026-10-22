@@ -50,6 +50,9 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - 2026-10-21: the portfolio home page lists these as "How I run product work", tagged "Live demos".
 - **Keep in sync:** when a change here alters what the portfolio page or demo shows (features, numbers, screenshots, privacy claims), tell the portfolio thread ("Portfolio research and upgrade plan") or update the page in `holroydchase-afk.github.io` (`tools/build.py`). Any portfolio change that touches this product adds a dated line here.
 
+## Studio stack guide (Oct 22)
+- `STACK.md`: the default stack per kind of product, when to use something else, and what not to add. Project instructions in every project point here (paste given to Chase in the Product Studio thread "Studio tech stack guide").
+
 ## Exact next step
 Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old S1–S10), matching the live board as of Oct 21.
 
