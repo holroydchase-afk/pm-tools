@@ -1,6 +1,8 @@
 /* Sample data for the demo. */
 window.DEMO = {
  "key": "roadmap",
+ "back": "../../pm-tools.html",
+ "backLabel": "← How I work",
  "seed": {
   "boards": {
    "ccwatts": {

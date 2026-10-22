@@ -39,3 +39,19 @@ test("PMT-M2.3 landing page links back to the portfolio at the top and names eac
   assert.ok(back > 0 && back < h1, "back link before the heading");
   assert.ok(html.includes("Try Build Slate") && html.includes("Try the Near-Term Roadmap"));
 });
+
+test("PMT-M2.4 demo bar goes back to the How I work page, not the home page", () => {
+  for (const id of ["build-slate", "roadmap"]) {
+    const ctx = { window: {} };
+    vm.runInNewContext(readFileSync(`demo/${id}/seed.js`, "utf8"), ctx);
+    assert.equal(ctx.window.DEMO.back, "../../pm-tools.html", id);
+    assert.match(ctx.window.DEMO.backLabel, /How I work/, id);
+  }
+  assert.match(readFileSync("demo/fake-db.js", "utf8"), /cfg\.backLabel/);
+});
+
+test("PMT-M2.5 roadmap demo hides the developer schema panel", async () => {
+  const { toDemo } = await import("../scripts/build-demo.mjs");
+  const html = toDemo("roadmap", readFileSync("apps/roadmap.html", "utf8"));
+  assert.match(html, /details\.agents\{display:none\}/);
+});

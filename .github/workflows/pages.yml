@@ -24,9 +24,19 @@ jobs:
         if: github.event_name != 'pull_request'
         with:
           path: _site
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Playwright is a CI-only dev tool here; the repo itself has no dependencies.
+      - run: npm install --no-save playwright@1.56.1 && npx playwright install --with-deps chromium
+      - run: npm run test:e2e
   deploy:
     if: github.event_name != 'pull_request'
-    needs: test
+    needs: [test, e2e]
     runs-on: ubuntu-latest
     permissions:
       pages: write

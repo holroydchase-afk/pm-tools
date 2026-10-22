@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-22 (PMT-M2.2/M2.3 recruiter-ready demo fixes, draft PR)
+Updated: 2026-10-22 (PMT-M2.2/M2.3 merged; overnight loop round 1: PMT-M2.4, M2.5, browser tests)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -14,6 +14,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - PMT-M2.2: demo seeds now match the portfolio pages. Build Slate: ccwatts Beta, Energy Scanner Launched (photo aura app), Stock Agent dropped so the demo sits at 5 of 5; Role Radar copy says nothing about resume tooling. Roadmap: ccwatts M1.1 to M1.7 in Done, plus a second board (Role Radar). `tests/seeds.test.mjs` fails if a stage drifts from the portfolio or the slate passes its cap.
 - PMT-M2.3: the /pm-tools/ landing has a "← Chase Holroyd" link at the top and named CTAs.
 - The live Build Slate and roadmap themselves are still at their Oct 20 state (ccwatts "Spec", one board). The demo seeds were updated from GitHub, not from the live apps. Updating the live apps writes Chase's real data, so that waits on Chase.
+- Overnight loop (Chase, Oct 22: iterate through P2s). Round 1: PMT-M2.4 demo bar goes back to How I work ("← How I work", `back`/`backLabel` in each seed); PMT-M2.5 roadmap demo hides the developer schema panel; QA-11 browser tests (`npm run test:e2e`, Playwright, CI job `e2e` gates deploy; passed 3 runs locally).
 - Studio agents synced into `.claude/agents/` from studio-agents (includes the upgraded ux-reviewer with the visual pass and showcase review, studio-agents draft PR #6 or later); re-sync with its `scripts/sync.sh`.
 
 ## Where each tool came from
@@ -40,6 +41,7 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - **Pages:** https://chaseholroyd.com/pm-tools.html ("How I work") links https://chaseholroyd.com/pm-tools/build-slate/ and https://chaseholroyd.com/pm-tools/roadmap/. Source: `tools/build.py` in `holroydchase-afk.github.io`.
 - **Demo data:** scrubbed snapshots of the real slate and roadmap (`demo/*/seed.js`), saved only in the visitor's browser.
 - **Studio-wide status:** `STUDIO-STATUS.md` in this repo (added Oct 21) is the one cross-project list of what's done (portfolio, domain, every demo) and what's waiting on Chase. Product HANDOFF.md files link to it. Refresh it from every repo's HANDOFF.md and GitHub after any portfolio change.
+- 2026-10-22: demo bar links back to chaseholroyd.com/pm-tools.html (How I work) instead of the home page.
 - 2026-10-22: demo seeds refreshed so Build Slate and the roadmap agree with the product pages (PMT-M2.2); landing links back to chaseholroyd.com (PMT-M2.3).
 - 2026-10-21: the portfolio home page lists these as "How I run product work", tagged "Live demos".
 - **Keep in sync:** when a change here alters what the portfolio page or demo shows (features, numbers, screenshots, privacy claims), tell the portfolio thread ("Portfolio research and upgrade plan") or update the page in `holroydchase-afk.github.io` (`tools/build.py`). Any portfolio change that touches this product adds a dated line here.

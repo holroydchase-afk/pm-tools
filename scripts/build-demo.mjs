@@ -16,7 +16,10 @@ export const APPS = [
 ];
 
 // Demo-only changes to an app, as [old, new] pairs. Each must still match, or the build fails.
-export const EDITS = {};
+export const EDITS = {
+  // The "use this board from other chats" panel documents the live database schema; visitors don't need it (PMT-M2.5).
+  roadmap: [["</head>", "<style>details.agents{display:none}</style></head>"]],
+};
 
 export function toDemo(id, html) {
   let t = html.replace(/<meta name="claude:[^"]*"[^>]*>\s*/g, "");

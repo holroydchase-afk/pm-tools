@@ -1,6 +1,8 @@
 /* Sample data for the demo. */
 window.DEMO = {
  "key": "build-slate",
+ "back": "../../pm-tools.html",
+ "backLabel": "← How I work",
  "seed": {
   "projects": {
    "role-radar": {
