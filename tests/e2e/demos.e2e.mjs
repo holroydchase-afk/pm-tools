@@ -72,3 +72,18 @@ test("QA-11 Roadmap: both sample boards are listed", async () => {
   assert.ok(boards.length >= 2, boards.join(", "));
   await page.close();
 });
+
+test("R1-UX-12 Roadmap: moving a card shows a notice, and Undo puts it back", async () => {
+  const { page, errors } = await open("roadmap/", 1280);
+  const btn = page.locator("button[data-mv]").first();
+  const id = await btn.getAttribute("data-mv");
+  const laneOf = () => page.evaluate((cid) => document.querySelector(`[data-id="${cid}"]`)?.closest("[data-lane]")?.dataset.lane, id);
+  const before = await laneOf();
+  await btn.click();
+  await page.locator("#movedToast:not([hidden])").waitFor();
+  assert.notEqual(await laneOf(), before);
+  await page.locator("#movedToast button").click();
+  await page.waitForFunction(([cid, l]) => document.querySelector(`[data-id="${cid}"]`)?.closest("[data-lane]")?.dataset.lane === l, [id, before]);
+  assert.deepEqual(errors, []);
+  await page.close();
+});
