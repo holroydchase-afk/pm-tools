@@ -11,8 +11,8 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 export const APPS = [
-  { id: "build-slate", name: "Build Slate", blurb: "One board for every product: stage, the very next step, and a milestone date. It caps the slate at five live projects." },
-  { id: "roadmap", name: "Near-Term Roadmap", blurb: "Now, Next, Later and Done lanes with a board per product, owners, session-size estimates and a blocked flag." },
+  { id: "build-slate", name: "Build Slate", blurb: "One board for every product: stage, the very next step, and a milestone date. It caps the slate at five active projects." },
+  { id: "roadmap", name: "Near-Term Roadmap", blurb: "Later, Next, Now and Done lanes with a board per product, owners, session-size estimates and a blocked flag." },
 ];
 
 // Demo-only changes to an app, as [old, new] pairs. Each must still match, or the build fails.
@@ -21,17 +21,23 @@ export const EDITS = {
   "build-slate": [
     // R1-UX-5: stage colors that pass WCAG AA as small text in light mode.
     ["--s-build:#C4731B; --s-beta:#2F7FB6; --s-live:#1F8A55;", "--s-build:#9A5A10; --s-beta:#23679A; --s-live:#17703F;"],
-    ["</head>", "<style>.stage-tag{font-size:12px;font-weight:600}.cardwrap{display:flex;flex-direction:column;gap:4px;min-width:0}.cardwrap .card{flex:1}@media (max-width:640px){.chip{min-height:44px}}.cardwrap .live{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;font-weight:600;color:var(--s-beta)}</style></head>"],
+    // Overrides go before </body> so they load after the app's own CSS (R2-UX-4).
+    ["</body>", "<style>.stage-tag{font-size:12px;font-weight:600}.cardwrap{display:flex;flex-direction:column;gap:4px;min-width:0}.cardwrap .card{flex:1}@media (max-width:640px){.chip,.btn{min-height:44px}}.cardwrap .live{display:inline-flex;align-self:flex-start;align-items:center;min-height:44px;padding:0 4px;font-weight:600;color:var(--s-beta)}.cardwrap .live.none{visibility:hidden}</style></body>"],
+    // R2-UX-5: the seed's kind is a real option.
+    ["<option>AI tool</option>", "<option>AI tool</option><option>Developer tool</option>"],
     // R1-UX-11: say what the five squares mean.
     ["`Slate goal · ${n} of ${GOAL}${n > GOAL ? \" — past it\" : \"\"}`", "`Active projects · ${n} of ${GOAL} max${n > GOAL ? \" — over the cap\" : \"\"}`"],
     // R1-UX-2: a link to each live product, next to the card (a link can't sit inside the card button).
     ['return `<button class="card ', 'return `<div class="cardwrap"><button class="card '],
-    ['</div>\n    </button>`;', '</div>\n    </button>${p.link ? `<a class="live" href="${esc(p.link)}" target="_blank" rel="noopener">${/github\\.com/.test(p.link) ? "View on GitHub" : "Open live demo"} ↗</a>` : ""}</div>`;'],
+    ['</div>\n    </button>`;', '</div>\n    </button>${p.link ? `<a class="live" href="${esc(p.link)}" target="_blank" rel="noopener">${/github\\.com/.test(p.link) ? `${esc(p.name)} on GitHub` : `Try ${esc(p.name)}`} ↗</a>` : `<span class="live none" aria-hidden="true">&nbsp;</span>`}</div>`;'],
   ],
   roadmap: [
     // The "use this board from other chats" panel documents the live database schema; visitors don't need it (PMT-M2.5).
     // R1-UX-4: move buttons big enough to tap.
-    ["</head>", "<style>details.agents{display:none}.move{gap:8px}button[data-mv]{min-height:44px;min-width:44px;padding:0 12px;font-size:14px}@media (max-width:640px){.chip,.lanetabs button,#boardSel{min-height:44px}}</style></head>"],
+    ["</body>", "<style>details.agents{display:none}.move{gap:8px}.move button[data-mv]{min-height:44px;min-width:44px;padding:0 12px;font-size:14px}@media (max-width:640px){.chip,.lanetabs button,#boardSel,.btn{min-height:44px}}</style></body>"],
+    // R2-UX-4: lane colors that pass AA as text in light mode.
+    ["--later:#7A8392; --done:#2F7A52;", "--later:#565E6C; --done:#256845;"],
+    ["<span>“My tasks” owner</span>", "<span>Owner for the “Chase's tasks” filter</span>"],
     // R1-UX-5: orange that passes AA as text in light mode.
     ["--accent:#C2410C;", "--accent:#A8380A;"],
     ["--now:#C2410C;", "--now:#A8380A;"],
