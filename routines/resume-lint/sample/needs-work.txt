@@ -1,0 +1,26 @@
+Jordan Example
+Senior Product Manager | Payments & Platforms
+Springfield, IL | jordan@example.com | linkedin.com/in/jordan-example
+
+SUMMARY
+Seasoned, results-driven product leader with a proven track record of leveraging cutting-edge technology to deliver robust, seamless platforms. Passionate about empowering teams.
+
+EXPERIENCE
+Senior Product Manager	January 2022 - Current
+Acme Payments	Remote
+● Helped drive the roadmap for a payments platform; responsible for various stakeholder relationships and in order to streamline delivery
+● Led a cross-functional team of 4 engineers to launch a new checkout, cutting drop-off by ~15% (pilot), ~20% in some markets
+● Led the migration of two legacy systems (billing and disputes) to a new stack, reducing costs and improving reliability.
+● Build dashboards for leadership — I tracked approval, decline, and refund rates across 3+ partners and shared them weekly
+
+Product Manager	Mar 2019 – Dec 2021
+Beta Lending	Chicago, IL
+● Managed the PPA and NTP workflow for installers, enabling faster funding and supporting ops over time
+● Worked on partner onboarding with the integrations team, cutting partner setup time from one month to one week for new lenders
+
+SKILLS
+Product: Roadmapping, Discovery, Experimentation
+Technical: SQL, REST APIs, JSON
+
+EDUCATION
+B.S., Economics, State University	May 2015
