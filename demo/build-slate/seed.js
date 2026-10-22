@@ -7,9 +7,9 @@ window.DEMO = {
   "projects": {
    "role-radar": {
     "kind": "AI tool",
-    "link": "https://chaseholroyd.com/role-radar.html",
+    "link": "https://chaseholroyd.com/demo/role-radar/",
     "name": "Role Radar",
-    "next": "Host its own public demo, then tune scan cost and fit quality",
+    "next": "Move the public demo into its own repo, then tune scan cost and fit quality",
     "notes": "Still to build: more job-alert sources, and making it reusable for other job seekers.",
     "order": 1,
     "pitch": "Job-search radar: a weekday scan of ~110 company boards, ZipRecruiter, Himalayas and job-alert emails, scoring each role 0–100 against my own criteria.",

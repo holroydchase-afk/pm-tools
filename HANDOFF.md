@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-22 (overnight loop rounds 1-2: PRs #9 and stacked round 2)
+Updated: 2026-10-22 (overnight loop rounds 1-3: PRs #9, #10 and stacked round 3)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -16,6 +16,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - The live Build Slate and roadmap themselves are still at their Oct 20 state (ccwatts "Spec", one board). The demo seeds were updated from GitHub, not from the live apps. Updating the live apps writes Chase's real data, so that waits on Chase.
 - Overnight loop (Chase, Oct 22: iterate through P2s). Round 1: PMT-M2.4 demo bar goes back to How I work ("← How I work", `back`/`backLabel` in each seed); PMT-M2.5 roadmap demo hides the developer schema panel; QA-11 browser tests (`npm run test:e2e`, Playwright, CI job `e2e` gates deploy; passed 3 runs locally).
 - Round 2 (deep ux-reviewer showcase pass, R1-UX findings): Energy Scanner card matches the portfolio (bedtime routine, palm or photo scan, "Web app"); ccwatts stage set to Building (no beta running yet; portfolio says "playground live"); family app notes match the portfolio numbers; roadmap no longer names a real outside person; product cards get "Open live demo ↗" links; demo-only AA colors, 44px move buttons and phone chips, "work sessions", "Chase's tasks", "Active projects · 5 of 5 max", stronger landing focus ring. Demo-only page changes live in `EDITS` in `scripts/build-demo.mjs`.
+- Round 3 (ux-reviewer re-check, R2-UX): demo CSS overrides now load after the app CSS (move-button gap and stage-tag size really apply); Role Radar's next step and card say the demo moves to its own repo (it already exists) and its link opens the demo; links read "Try <product> ↗" with a spacer so the grid lines up; Developer tool kind option; light-mode Later/Done lane colors pass AA; phone buttons 44px; landing says "five active projects" and "Later, Next, Now and Done".
 - Left (P2): R1-UX-12 undo toast after moving a roadmap card; 11-12px meta text.
 - Studio agents synced into `.claude/agents/` from studio-agents (includes the upgraded ux-reviewer with the visual pass and showcase review, studio-agents draft PR #6 or later); re-sync with its `scripts/sync.sh`.
 

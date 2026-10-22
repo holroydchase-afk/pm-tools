@@ -68,7 +68,7 @@ window.DEMO = {
    "c04": {
     "blocked": false,
     "board": "ccwatts",
-    "detail": "Seed parameters from EcoLogits and the research sources. Separate cache-read factor. Sanity-check against Hausfather, Microsoft and Google figures.",
+    "detail": "Seed parameters from EcoLogits and the research sources. Separate cache-read factor. Sanity-check against published research, Microsoft and Google figures.",
     "lane": "done",
     "order": 5,
     "owner": "Claude Code",
@@ -315,7 +315,7 @@ window.DEMO = {
     "phase": "Polish",
     "size": 1,
     "tags": "portfolio",
-    "title": "Host the demo from its own repo"
+    "title": "Move the demo into its own repo"
    },
    "r05": {
     "blocked": false,
