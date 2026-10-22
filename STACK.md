@@ -8,12 +8,17 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 | Need | Default | Studio example | Use something else when |
 |---|---|---|---|
 | A tool only Chase uses, with saved data | claude.ai artifact with its database | Build Slate, Near-Term Roadmap, Role Radar (live) | More than one real user needs a login, or data must outlive the artifact: go to Supabase. |
-| A public page or demo | Static site on GitHub Pages, deployed by Actions from `main` | Portfolio, pm-tools demos, Role Radar and Energy Scanner demos | It needs server code or secrets: use a Supabase edge function, never a server of our own. |
+| A public page or demo | Public repo + static site on GitHub Pages, deployed by Actions from `main` | Portfolio, pm-tools demos, Role Radar and Energy Scanner demos | It needs server code or secrets: use a Supabase edge function, never a server of our own. |
 | Demo data | Sample seed in the repo, saved only in the visitor's browser (`fake-db.js`) | pm-tools and portfolio demos | Never: demos have no login, no backend, no real data. |
 | A web app with real logic | Vite + TypeScript (strict), runs in the browser | Energy Scanner | It's one page with simple logic: plain HTML + JS modules with `// @ts-check` (Role Radar, pm-tools). |
 | A developer tool | Node CLI in TypeScript, npm workspaces, tsup build | ccwatts | It's a one-off script: a plain Node `.mjs` file in `scripts/`. |
 | A mobile app or multi-user product | Expo (React Native) + Supabase (Postgres with row-level security, edge functions) | Hearth | A responsive web page would do: use a static site or Vite instead. |
 | Content pages | Generated HTML from a small script (`tools/build.py`) | Portfolio | Over ~20 pages or a blog: consider Astro. Not before. |
+
+## Hosting rule
+- Default: a **public** repo on **GitHub Pages**. It's free, the public code is portfolio proof, and it serves at chaseholroyd.com/<repo>/ with no DNS work.
+- No GitHub Pro: its only gain here is Pages from private repos, and our repos are public on purpose.
+- Cloudflare Pages only when a repo must stay private, or needs edge functions or per-PR preview deploys. Give the one-line reason in the PR. It would need its own subdomain (for example app.chaseholroyd.com), not a /<repo>/ path.
 
 ## Always (every repo)
 - Tests with what the stack already has: Node test runner for plain JS, Vitest for TypeScript, Playwright for browser flows.
