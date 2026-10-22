@@ -17,8 +17,30 @@ export const APPS = [
 
 // Demo-only changes to an app, as [old, new] pairs. Each must still match, or the build fails.
 export const EDITS = {
-  // The "use this board from other chats" panel documents the live database schema; visitors don't need it (PMT-M2.5).
-  roadmap: [["</head>", "<style>details.agents{display:none}</style></head>"]],
+  // Demo-only polish from the recruiter-ready review (R1-UX). Port to the live apps when Chase OKs it.
+  "build-slate": [
+    // R1-UX-5: stage colors that pass WCAG AA as small text in light mode.
+    ["--s-build:#C4731B; --s-beta:#2F7FB6; --s-live:#1F8A55;", "--s-build:#9A5A10; --s-beta:#23679A; --s-live:#17703F;"],
+    ["</head>", "<style>.stage-tag{font-size:12px;font-weight:600}.cardwrap{display:flex;flex-direction:column;gap:4px;min-width:0}.cardwrap .card{flex:1}@media (max-width:640px){.chip{min-height:44px}}.cardwrap .live{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;font-weight:600;color:var(--s-beta)}</style></head>"],
+    // R1-UX-11: say what the five squares mean.
+    ["`Slate goal · ${n} of ${GOAL}${n > GOAL ? \" — past it\" : \"\"}`", "`Active projects · ${n} of ${GOAL} max${n > GOAL ? \" — over the cap\" : \"\"}`"],
+    // R1-UX-2: a link to each live product, next to the card (a link can't sit inside the card button).
+    ['return `<button class="card ', 'return `<div class="cardwrap"><button class="card '],
+    ['</div>\n    </button>`;', '</div>\n    </button>${p.link ? `<a class="live" href="${esc(p.link)}" target="_blank" rel="noopener">${/github\\.com/.test(p.link) ? "View on GitHub" : "Open live demo"} ↗</a>` : ""}</div>`;'],
+  ],
+  roadmap: [
+    // The "use this board from other chats" panel documents the live database schema; visitors don't need it (PMT-M2.5).
+    // R1-UX-4: move buttons big enough to tap.
+    ["</head>", "<style>details.agents{display:none}.move{gap:8px}button[data-mv]{min-height:44px;min-width:44px;padding:0 12px;font-size:14px}@media (max-width:640px){.chip,.lanetabs button,#boardSel{min-height:44px}}</style></head>"],
+    // R1-UX-5: orange that passes AA as text in light mode.
+    ["--accent:#C2410C;", "--accent:#A8380A;"],
+    ["--now:#C2410C;", "--now:#A8380A;"],
+    // R1-UX-6: plain words for visitors.
+    ['o===me?"My tasks"', 'o===me?"Chase\'s tasks"'],
+    ["${sess%1?sess.toFixed(1):sess} sess`", "${sess%1?sess.toFixed(1):sess} session${sess===1?\"\":\"s\"}`"],
+    ["`<span>${c.size} sess</span>`", "`<span>${c.size} session${Number(c.size)===1?\"\":\"s\"}</span>`"],
+    ["sessions left`", "work sessions left`"],
+  ],
 };
 
 export function toDemo(id, html) {
@@ -55,7 +77,7 @@ h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:0 0 8px}
 .lede{color:var(--muted);max-width:60ch;margin:0 0 28px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
 .card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;color:inherit;text-decoration:none}
-.card:hover,.card:focus-visible{border-color:var(--accent);outline:none}
+.card:hover{border-color:var(--accent)}.card:focus-visible{border-color:var(--accent);outline:3px solid var(--accent);outline-offset:2px}
 .card h2{margin:0;font-size:20px}.card p{margin:0;color:var(--muted)}.card span{color:var(--accent);font-weight:600;margin-top:auto}
 .back{display:inline-block;padding:12px 0;margin-bottom:12px;font-weight:600;text-decoration:none}
 footer{margin-top:40px;color:var(--muted);font-size:14px}a{color:var(--accent)}

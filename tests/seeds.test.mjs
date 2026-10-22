@@ -10,8 +10,8 @@ const seed = (id) => {
   return ctx.window.DEMO.seed;
 };
 
-// Stages must match what chaseholroyd.com says about each product (PMT-M2.2).
-const PORTFOLIO_STAGE = { ccwatts: ["beta", "live"], "Energy Scanner": ["beta", "live"], "Role Radar": ["beta", "live"] };
+// Stages must match what chaseholroyd.com says about each product (PMT-M2.2). ccwatts: "playground live", beta not started yet.
+const PORTFOLIO_STAGE = { ccwatts: ["build", "beta", "live"], "Energy Scanner": ["beta", "live"], "Role Radar": ["beta", "live"] };
 
 test("PMT-M2.2 Build Slate demo stays within its own five-project cap", () => {
   const active = Object.values(seed("build-slate").projects).filter((p) => p.stage !== "paused");
@@ -54,4 +54,36 @@ test("PMT-M2.5 roadmap demo hides the developer schema panel", async () => {
   const { toDemo } = await import("../scripts/build-demo.mjs");
   const html = toDemo("roadmap", readFileSync("apps/roadmap.html", "utf8"));
   assert.match(html, /details\.agents\{display:none\}/);
+});
+
+// Round 2 of the recruiter-ready loop (R1-UX findings).
+const demoPage = async (id) => (await import("../scripts/build-demo.mjs")).toDemo(id, readFileSync(`apps/${id}.html`, "utf8"));
+
+test("R1-UX-1/7/8 Build Slate tells the same story as the portfolio pages", () => {
+  const P = seed("build-slate").projects;
+  assert.match(P["energy-scanner"].pitch, /palm/i);
+  assert.match(P["energy-scanner"].why, /bedtime/i);
+  assert.equal(P["energy-scanner"].kind, "Web app");
+  assert.equal(P["ai-climate-impact"].stage, "build", "no beta is running yet");
+  assert.doesNotMatch(P.hearth.notes, /name coming/i);
+});
+
+test("R1-UX-2 product cards link to the live demos", async () => {
+  const P = seed("build-slate").projects;
+  for (const id of ["role-radar", "energy-scanner", "ai-climate-impact"]) assert.match(P[id].link, /^https:\/\/chaseholroyd\.com\//, id);
+  assert.match(await demoPage("build-slate"), /Open live demo/);
+});
+
+test("R1-UX-3 roadmap demo names no real outside people as targets", () => {
+  assert.doesNotMatch(readFileSync("demo/roadmap/seed.js", "utf8"), /Zeke/);
+});
+
+test("R1-UX-4/5/6/11 demo pages: bigger move buttons, AA colors, plain words", async () => {
+  const rm = await demoPage("roadmap"), bs = await demoPage("build-slate");
+  assert.match(rm, /button\[data-mv\]\{min-height:44px/);
+  assert.match(rm, /--now:#A8380A/);
+  assert.match(rm, /Chase's tasks/);
+  assert.doesNotMatch(rm, /\} sess`/);
+  assert.match(bs, /Active projects/);
+  assert.match(bs, /\.stage-tag\{font-size:12px/);
 });

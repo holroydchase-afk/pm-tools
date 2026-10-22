@@ -188,7 +188,7 @@ window.DEMO = {
    "c14": {
     "blocked": false,
     "board": "ccwatts",
-    "detail": "Reach out to Zeke Hausfather and the EcoLogits maintainers with METHODOLOGY.md.",
+    "detail": "Send METHODOLOGY.md to an outside climate researcher and the EcoLogits maintainers.",
     "lane": "next",
     "order": 1,
     "owner": "Chase",

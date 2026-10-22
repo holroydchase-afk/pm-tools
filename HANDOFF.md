@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-22 (PMT-M2.2/M2.3 merged; overnight loop round 1: PMT-M2.4, M2.5, browser tests)
+Updated: 2026-10-22 (overnight loop rounds 1-2: PRs #9 and stacked round 2)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -15,6 +15,8 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - PMT-M2.3: the /pm-tools/ landing has a "← Chase Holroyd" link at the top and named CTAs.
 - The live Build Slate and roadmap themselves are still at their Oct 20 state (ccwatts "Spec", one board). The demo seeds were updated from GitHub, not from the live apps. Updating the live apps writes Chase's real data, so that waits on Chase.
 - Overnight loop (Chase, Oct 22: iterate through P2s). Round 1: PMT-M2.4 demo bar goes back to How I work ("← How I work", `back`/`backLabel` in each seed); PMT-M2.5 roadmap demo hides the developer schema panel; QA-11 browser tests (`npm run test:e2e`, Playwright, CI job `e2e` gates deploy; passed 3 runs locally).
+- Round 2 (deep ux-reviewer showcase pass, R1-UX findings): Energy Scanner card matches the portfolio (bedtime routine, palm or photo scan, "Web app"); ccwatts stage set to Building (no beta running yet; portfolio says "playground live"); family app notes match the portfolio numbers; roadmap no longer names a real outside person; product cards get "Open live demo ↗" links; demo-only AA colors, 44px move buttons and phone chips, "work sessions", "Chase's tasks", "Active projects · 5 of 5 max", stronger landing focus ring. Demo-only page changes live in `EDITS` in `scripts/build-demo.mjs`.
+- Left (P2): R1-UX-12 undo toast after moving a roadmap card; 11-12px meta text.
 - Studio agents synced into `.claude/agents/` from studio-agents (includes the upgraded ux-reviewer with the visual pass and showcase review, studio-agents draft PR #6 or later); re-sync with its `scripts/sync.sh`.
 
 ## Where each tool came from
@@ -52,6 +54,10 @@ Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old
 PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's current version (see `PLAN.md`).
 
 ## Decisions to review
+- Recruiter-ready polish is demo-only (`EDITS`): port the AA colors, bigger buttons, card links and plain words to the live Build Slate and roadmap? That republishes the live artifacts, so it waits on Chase.
+- ccwatts shows "Building" on the slate (not Beta) until the friend beta starts.
+- Energy Scanner's slate card uses the portfolio's story (bedtime routine with palm or photo scan); the energy-scanner repo's CLAUDE.md describes only the photo app. The Energy Scanner project should confirm which is current.
+- Planning IDs (CCW-M…) stay on the roadmap demo cards.
 - MIT license, matching ccwatts.
 - Templates are generic rewrites, not copies: Hearth's persona roster (real family members) stays private in Hearth. Example personas are NV / PU / SK.
 - Hearth Test Log is not moved yet: it's built from Hearth's own test output (`tracker/build_seed.py`), so it stays with Hearth until a second product needs it.
