@@ -37,7 +37,7 @@ export function toDemo(id, html) {
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
 export function landing() {
-  const cards = APPS.map((a) => `<a class="card" href="${a.id}/"><h2>${esc(a.name)}</h2><p>${esc(a.blurb)}</p><span>Try it</span></a>`).join("\n");
+  const cards = APPS.map((a) => `<a class="card" href="${a.id}/"><h2>${esc(a.name)}</h2><p>${esc(a.blurb)}</p><span>${a.id === "build-slate" ? "Try Build Slate" : "Try the Near-Term Roadmap"}</span></a>`).join("\n");
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PM tools · Chase Holroyd</title>
@@ -54,8 +54,10 @@ h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:0 0 8px}
 .card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;color:inherit;text-decoration:none}
 .card:hover,.card:focus-visible{border-color:var(--accent);outline:none}
 .card h2{margin:0;font-size:20px}.card p{margin:0;color:var(--muted)}.card span{color:var(--accent);font-weight:600;margin-top:auto}
+.back{display:inline-block;padding:12px 0;margin-bottom:12px;font-weight:600;text-decoration:none}
 footer{margin-top:40px;color:var(--muted);font-size:14px}a{color:var(--accent)}
 </style></head><body><main>
+<a class="back" href="/">← Chase Holroyd</a>
 <h1>PM tools</h1>
 <p class="lede">The tools I run my product studio with, live on sample data. Anything you change stays in your browser.</p>
 <div class="grid">

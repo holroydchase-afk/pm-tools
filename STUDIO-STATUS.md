@@ -21,6 +21,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - ccwatts v1 (CCW-M1.1 to M1.9) is merged. The Energy Scanner v1 stack and ES-M2.1 (bedtime flow) are merged.
 
 ## Waiting on Chase
+- Recruiter-ready sprint (Oct 22): paste the sprint block into the ccwatts, Role Radar, Energy Scanner and Hearth project chats (given in Product Studio). Review portfolio PR #10 and pm-tools PR (WEB-M4, PMT-M2.2/M2.3). Decide WEB-M4.8 (a "Jan 2026 – present" line on the resume page).
 - Portfolio WEB-M2.3 and M2.4: review the case-study [check] questions (planned Oct 22).
 - Portfolio WEB-M2.6: headshot, LinkedIn Featured link and headline.
 - ccwatts CCW-M2.1: one run on real logs on the laptop.
@@ -29,6 +30,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Hearth: the new name.
 
 ## Next without Chase
+- Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
 - Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
 
 ## Who owns which repo
