@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-22 (overnight loop rounds 1-4: PRs #9, #10, #11 and stacked round 4)
+Updated: 2026-10-22 (overnight loop rounds 1-5: PRs #9 to #12 and stacked round 5)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -18,6 +18,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Round 2 (deep ux-reviewer showcase pass, R1-UX findings): Energy Scanner card matches the portfolio (bedtime routine, palm or photo scan, "Web app"); ccwatts stage set to Building (no beta running yet; portfolio says "playground live"); family app notes match the portfolio numbers; roadmap no longer names a real outside person; product cards get "Open live demo ↗" links; demo-only AA colors, 44px move buttons and phone chips, "work sessions", "Chase's tasks", "Active projects · 5 of 5 max", stronger landing focus ring. Demo-only page changes live in `EDITS` in `scripts/build-demo.mjs`.
 - Round 3 (ux-reviewer re-check, R2-UX): demo CSS overrides now load after the app CSS (move-button gap and stage-tag size really apply); Role Radar's next step and card say the demo moves to its own repo (it already exists) and its link opens the demo; links read "Try <product> ↗" with a spacer so the grid lines up; Developer tool kind option; light-mode Later/Done lane colors pass AA; phone buttons 44px; landing says "five active projects" and "Later, Next, Now and Done".
 - Round 4: moving a roadmap card shows a pinned "Moved … to Next · Undo" notice for 6 seconds (R1-UX-12, with an e2e test); meta text and owner chips at 13px (R1-UX-10). All review findings from rounds 1-3 are now fixed or listed under Decisions to review.
+- Round 5 (final UX + QA check, R4 findings): Undo puts the card back in its old spot and says "Move undone" instead of a second notice (R4-1, e2e checks the position); roadmap card meta at 13px (R4-2). R4-3 (portfolio copy: "five active projects", lane order) belongs to the portfolio repo. Next step: Chase reviews and merges the stack #9 → #13 in order. Nothing at P0-P2 left in pm-tools.
 - Studio agents synced into `.claude/agents/` from studio-agents (includes the upgraded ux-reviewer with the visual pass and showcase review, studio-agents draft PR #6 or later); re-sync with its `scripts/sync.sh`.
 
 ## Where each tool came from
