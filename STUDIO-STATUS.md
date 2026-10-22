@@ -1,6 +1,6 @@
 # Studio status
 
-_The one cross-project list of what's done and what's waiting on Chase. Product repos print this file at session start. Last checked: 2026-10-21 23:45 UTC, against GitHub (merged PRs and Actions deploys)._
+_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-22 00:05 UTC, against GitHub (merged PRs and Actions deploys)._
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
@@ -13,7 +13,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 **Live demos (no login, sample data only)**
 - Role Radar: chaseholroyd.com/demo/role-radar/ (a snapshot kept in the portfolio repo).
 - ccwatts playground: chaseholroyd.com/ccwatts/ (Pages is on; deploys from `main` have succeeded since Oct 21).
-- Energy Scanner: chaseholroyd.com/energy-scanner/ (Pages is on; first deploy succeeded Oct 21 23:32 UTC). The portfolio's older bedtime demo is still at /demo/energy-scanner/.
+- Energy Scanner: chaseholroyd.com/energy-scanner/ (Pages is on; first deploy succeeded Oct 21 23:32 UTC). The portfolio's Energy Scanner page links it (ES-M2.3, portfolio PR #8, merged Oct 21).
 - Build Slate and Near-Term Roadmap: chaseholroyd.com/pm-tools/build-slate/ and /pm-tools/roadmap/.
 
 **Studio setup**
@@ -29,7 +29,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Hearth: the new name.
 
 ## Next without Chase
-- Portfolio: point the Energy Scanner page at chaseholroyd.com/energy-scanner/ (ES-M2.3), then WEB-M3.1.
+- Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
 
 ## Who owns which repo
 | Repo | Owning project |
