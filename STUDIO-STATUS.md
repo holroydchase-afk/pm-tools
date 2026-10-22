@@ -1,6 +1,6 @@
 # Studio status
 
-_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-22 00:05 UTC, against GitHub (merged PRs and Actions deploys)._
+_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-22 18:40 UTC, against GitHub (merged PRs and Actions deploys)._
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
@@ -11,7 +11,8 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - License audit done in every repo (Oct 21).
 
 **Live demos (no login, sample data only)**
-- Role Radar: chaseholroyd.com/demo/role-radar/ (a snapshot kept in the portfolio repo).
+- Role Radar: chaseholroyd.com/role-radar/, built and deployed from the role-radar repo. The portfolio page links it, and the old /demo/role-radar/ snapshot is deleted (portfolio PR #14, merged Oct 22).
+- Hearth (placeholder name): chaseholroyd.com/demo/hearth/, a no-login demo of a made-up family that lives only in the browser. It's copied into the portfolio repo from Hearth's `app/dist-demo-site/`, and family-photos.html has been refreshed with "Try the demo" and screenshots (portfolio PR #15, merged Oct 22). Neither expo.app nor the repo is linked.
 - ccwatts playground: chaseholroyd.com/ccwatts/ (Pages is on; deploys from `main` have succeeded since Oct 21).
 - Energy Scanner: chaseholroyd.com/energy-scanner/ (Pages is on; first deploy succeeded Oct 21 23:32 UTC). The portfolio's Energy Scanner page links it (ES-M2.3, portfolio PR #8, merged Oct 21).
 - Build Slate and Near-Term Roadmap: chaseholroyd.com/pm-tools/build-slate/ and /pm-tools/roadmap/.
@@ -30,6 +31,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Energy Scanner: a publishable photo for README screenshots; its CLAUDE.md still says "never deploy" although Pages is now on.
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
+- Portfolio WEB-M5 (PR #12, site as an AI-journey case study with career wins on the front page): five [check] answers (Patter link, who uses Energy Scanner, Role Radar and ccwatts, and is "about an hour a night" OK).
 
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
