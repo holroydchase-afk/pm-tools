@@ -21,6 +21,9 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Role Radar (Oct 22-23): recruiter-ready fixes (PRs #20-#25), dream-role scoring (#16) and the job description preview (#18) merged; the private live page was republished with all of them.
 - Recruiter-ready sprint (Oct 22): sprint v2 pasted into every product project; portfolio PR #10 (deploy allowlist, hero tense, resume CTA, CI checks), pm-tools PR #8 (demo seeds) and studio-agents PR #6 (deeper ux-reviewer) merged and deployed.
 
+**Charlie**
+- MVP (stock and options idea helper, paper trading only) pushed to the `charlie` repo on Oct 23. On the Build Slate since the intake; not on the portfolio yet.
+
 **Studio setup**
 - Oct 23: Charlie (CHL) and Crew Clock (CRW) taken in: added to the ownership table below, the live Build Slate (Charlie replaces the Stock Agent card; Crew Clock added) and the product inventory. Both repos are public and still need their `M0.1: studio setup` PR.
 - Oct 23: new-project onboarding kit (pm-tools docs/ONBOARDING.md), stack guide (STACK.md, #15) and agents used by default (studio-agents #7) merged.
@@ -36,7 +39,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
 - Studio: paste the onboarding kit into Charlie and Crew Clock (docs/ONBOARDING.md, "The two pastes", or `/onboard` once that skill is saved; tailored first messages were given in the Product Studio intake thread, Oct 23), and the refresh paste into the existing product projects.
-- Charlie: one laptop run on real Cboe and SEC data (the cloud blocks market-data hosts).
+- Charlie: one laptop run on real Cboe and SEC data (the cloud blocks market-data hosts), plus the next-feature pick: earnings or alpaca (Power Hour, Oct 22).
 - Crew Clock: Supabase setup (docs/SETUP.md steps 1.1 to 1.4) before the crew beta.
 
 ## Next without Chase

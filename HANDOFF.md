@@ -61,6 +61,7 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - **Pages:** https://chaseholroyd.com/pm-tools.html ("How I work") links https://chaseholroyd.com/pm-tools/build-slate/ and https://chaseholroyd.com/pm-tools/roadmap/. Source: `tools/build.py` in `holroydchase-afk.github.io`.
 - **Demo data:** scrubbed snapshots of the real slate and roadmap (`demo/*/seed.js`), saved only in the visitor's browser.
 - **Studio-wide status:** `STUDIO-STATUS.md` in this repo (added Oct 21) is the one cross-project list of what's done (portfolio, domain, every demo) and what's waiting on Chase. Product HANDOFF.md files link to it. Refresh it from every repo's HANDOFF.md and GitHub after any portfolio change.
+- 2026-10-23: STUDIO-STATUS lists the new Charlie repo (owner, Done, Waiting on Chase). No change to the demos.
 - 2026-10-22: demo bar links back to chaseholroyd.com/pm-tools.html (How I work) instead of the home page.
 - 2026-10-22: demo seeds refreshed so Build Slate and the roadmap agree with the product pages (PMT-M2.2); landing links back to chaseholroyd.com (PMT-M2.3).
 - 2026-10-21: the portfolio home page lists these as "How I run product work", tagged "Live demos".
