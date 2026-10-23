@@ -37,6 +37,10 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Live Build Slate: the Stock Agent card became Charlie (stage Building); Crew Clock added (Building). The slate now holds 6 cards against its goal of 5. The demo seed is unchanged until either has a recruiter-ready demo.
 - Onboarding gaps found: neither repo has CLAUDE.md, `.claude/agents/`, handoff-check, dependabot or a PLAN.md with planning IDs. Charlie also lacks CI, a LICENSE and Pages (it's a Python server). Crew Clock has CI and Pages, but Pages deploys on push without waiting for CI, and its HANDOFF.md links two claude.ai artifacts in a public repo. Tailored first-message pastes went to Chase in the intake thread.
 
+## Reusable building blocks (Oct 23)
+- `STACK.md` gained a "Reusable building blocks" section: the rule (extract when a second product needs it, one home, product repos change only through INTAKE), the form ladder (stack row, skill, copied file + sync, package), and a table of eight blocks with home and timing. Supabase rules added to STACK.md; Hearth's after-beta intake is `docs/intakes/hearth-supabase-starter.md`.
+- Next (Product Studio, no Chase step): build the repo kit (`templates/repo/` with ci.yml per stack, CI-gated pages.yml, dependabot) and the shared privacy check in studio-agents, add an RLS checklist to the privacy-security agent, then add all three to `/onboard refresh`.
+
 ## Where each tool came from
 | Here | Came from | Snapshot |
 |---|---|---|
@@ -84,6 +88,7 @@ PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's cu
 - ccwatts shows "Building" on the slate (not Beta) until the friend beta starts.
 - Energy Scanner's slate card uses the portfolio's story (bedtime routine with palm or photo scan); the energy-scanner repo's CLAUDE.md describes only the photo app. The Energy Scanner project should confirm which is current.
 - Planning IDs (CCW-M…) stay on the roadmap demo cards.
+- Reusable blocks: the Supabase starter waits for Hearth's Nov 22 beta (Crew Clock follows the STACK.md Supabase rules until then), and shared repo files are copied with a sync script rather than published as packages.
 - MIT license, matching ccwatts.
 - Templates are generic rewrites, not copies: Hearth's persona roster (real family members) stays private in Hearth. Example personas are NV / PU / SK.
 - Hearth Test Log is not moved yet: it's built from Hearth's own test output (`tracker/build_seed.py`), so it stays with Hearth until a second product needs it.

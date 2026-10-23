@@ -1,6 +1,6 @@
 # Studio stack
 
-_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-22._
+_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-23._
 
 Rule of thumb: start at the top of the ladder and climb only when the product needs it. Reuse what a sibling repo already does before adding anything new.
 
@@ -33,6 +33,37 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 - Monorepo or team tooling: Turborepo, Nx, Docker, Storybook, changesets, CodeQL, 100% coverage targets.
 - Sentry, analytics or tracking.
 - A new language, host or paid service. If one seems needed, ask Chase with a one-line reason and the cost.
+
+## Reusable building blocks
+_Added 2026-10-23. Same rule as the messenger decision (STU-DEC-1, pm-tools PR #22): extract a piece only when a second product needs it, keep one home for it, and schedule work in a product repo through an INTAKE block that the owning project runs. Product Studio never edits a product repo itself._
+
+Pick the lightest form that works, in this order:
+1. **Stack doc row** (this file): a pattern to follow, no shared code.
+2. **studio-agents skill or agent**: a checklist or review that runs in any project.
+3. **Copied file + sync script**: one canonical copy, pulled into each repo the way `sync.sh` copies agents. No versions, no publishing.
+4. **Shared package in its own repo**: only for real code that needs versions and tests of its own (the messenger, once Crew Clock uses it).
+
+| Block | Used by today | Next user | Form | Home | When |
+|---|---|---|---|---|---|
+| Studio agents, session rules, handoff-check | All repos but Hearth, Charlie, Crew Clock | Charlie, Crew Clock | Copied files + sync (done) | studio-agents `sync.sh`, `install-rules.sh` | Done; `/onboard` adds new repos |
+| CI, Pages deploy gated on CI, dependabot, README badge | pm-tools, portfolio, Role Radar, ccwatts, Energy Scanner, Crew Clock (each hand-written) | Charlie, Crew Clock (gate fix) | Copied files + sync: `templates/repo/` with one `ci.yml` per stack (plain JS, TypeScript, Python), a `pages.yml` that waits for CI, `dependabot.yml` | studio-agents, applied by `/onboard` | **Now** (5+ users already) |
+| Privacy check (`check-private.mjs`, pre-commit hook) | Role Radar, pm-tools | Crew Clock (artifact links in a public HANDOFF), Charlie (keys, SEC email) | Copied file + sync, with each repo's extra patterns in a small config file | studio-agents `scripts/` | **Now** |
+| Demo kit (`fake-db.js`, seed file, demo bar with "Sample data" and a back link) | pm-tools, portfolio | Crew Clock demo, Charlie static demo | Copied files + sync | pm-tools `demo/` is canonical; the portfolio copy retires with its last old demo | When Crew Clock or Charlie builds its public demo |
+| Supabase starter (project setup, migrations folder, auth, RLS policy patterns and RLS tests, edge-function relay) | Hearth | Crew Clock (needs Supabase before its crew beta) | Now: **RLS checklist** in the privacy-security agent plus a Supabase row in this file. Later: template folder | studio-agents (checklist); template extracted by Hearth | Checklist now; template after Hearth's Nov 22 beta, with the messenger |
+| Encrypted messenger | Hearth | Crew Clock | Shared package (STU-DEC-1) | Hearth repo, then its own repo | After Nov 22 beta |
+| PM docs (HANDOFF, PLAN, decision log, gate review) | Every repo | New projects | Templates (done) | pm-tools `templates/` | Done |
+| Story log, shifts, digest | Every project | New projects | Skills and routines (done) | studio-agents skills, pm-tools `routines/` | Done |
+
+**Supabase rules (until the starter template exists):**
+- Schema changes only as numbered files in `supabase/migrations/`, made with the Supabase CLI and committed. Never edit the hosted database by hand.
+- Row-level security on every table from its first migration, with a policy per role. Each policy gets a test that a non-member is refused.
+- The browser or app holds only the anon key. The service-role key lives only in edge-function secrets, never in the repo or the client.
+- Public demos never point at the real project: demo mode uses the demo kit, and production uses its own build or URL (Crew Clock risk, Oct 23 intake).
+- The privacy-security agent reviews every migration that adds a table or policy.
+
+Not extracting yet (one user each): Expo app shell and push (Hearth only; Crew Clock is a PWA), Python server layout (Charlie only), Node CLI layout (ccwatts only), the Hearth Test Log, `tools/build.py`. Revisit when a second product needs one.
+
+**How a block lands in product repos:** Product Studio builds the block in studio-agents or pm-tools and adds it to `/onboard refresh`. Each product project picks it up in its own small PR when Chase pastes the refresh (or the INTAKE) there. Extractions out of a product repo (Supabase starter, messenger) are done by that product's project from an INTAKE in `docs/intakes/`.
 
 ## Adding something not on this page
 Say why in one line in the PR ("needs X, the default can't because Y"). If it's likely to repeat in another product, add a row here in the same PR.
