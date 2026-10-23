@@ -4,6 +4,8 @@ _The one cross-project list of what's done and what's waiting on Chase. Every pr
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
+**New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
+
 ## Done
 **Portfolio and domain**
 - chaseholroyd.com is live: domain (Porkbun), DNS and the Pages custom domain are set. The repo is `holroydchase-afk.github.io` (renamed from `portfolio` on Oct 21), so each repo's Pages site serves at chaseholroyd.com/<repo>/.
@@ -30,6 +32,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Energy Scanner: a publishable photo for README screenshots; its CLAUDE.md still says "never deploy" although Pages is now on.
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
+- Studio: merge pm-tools #15 (STACK.md) and studio-agents #7 (agents used by default); the onboarding kit links both. Then paste the kit into Charlie and Crew Clock (docs/ONBOARDING.md, "The two pastes").
 
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
