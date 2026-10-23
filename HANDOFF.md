@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-23 night shift (demo bar follows the portfolio rename; 44px back link)
+Updated: 2026-10-23 (Charlie and Crew Clock intake; night shift: demo bar rename, 44px back link)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -31,6 +31,11 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Why: product repos had the agents copied in, but no CLAUDE.md said when to use them, so they ran only when a paste named them. Companion studio-agents PR #7 adds the when-to-use table, proactive agent descriptions and `templates/CLAUDE-agents.md`.
 - Merged Oct 23 with Chase's go-ahead, together with `STACK.md` (#15) and studio-agents #7.
 - `/onboard` skill (Chase, Oct 23): runs this kit in any project (studio-agents `plugins/studio/skills/onboard`); `/onboard refresh` for existing projects. ONBOARDING.md leads with it; the pastes stay as the fallback.
+
+## Charlie and Crew Clock intake (Oct 23)
+- Both repos (public: `charlie`, `crew-clock`) are in STUDIO-STATUS's ownership table, so the morning digest covers them. Planning codes CHL and CRW.
+- Live Build Slate: the Stock Agent card became Charlie (stage Building); Crew Clock added (Building). The slate now holds 6 cards against its goal of 5. The demo seed is unchanged until either has a recruiter-ready demo.
+- Onboarding gaps found: neither repo has CLAUDE.md, `.claude/agents/`, handoff-check, dependabot or a PLAN.md with planning IDs. Charlie also lacks CI, a LICENSE and Pages (it's a Python server). Crew Clock has CI and Pages, but Pages deploys on push without waiting for CI, and its HANDOFF.md links two claude.ai artifacts in a public repo. Tailored first-message pastes went to Chase in the intake thread.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
@@ -65,13 +70,14 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - `STACK.md`: the default stack per kind of product, when to use something else, and what not to add. Project instructions in every project point here (paste given to Chase in the Product Studio thread "Studio tech stack guide").
 
 ## Exact next step
-Chase pastes the kit into Charlie and Crew Clock (in progress Oct 23), and the refresh paste into the existing product projects. Then add their repos to STUDIO-STATUS from their INTAKE blocks.
+Chase pastes the tailored onboarding first message into the Charlie and Crew Clock projects (repos are already in STUDIO-STATUS and Build Slate, so their INTAKE blocks need nothing more), and the refresh paste into the existing product projects.
 
 Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old S1–S10), matching the live board as of Oct 21.
 
 PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's current version (see `PLAN.md`).
 
 ## Decisions to review
+- Build Slate goal is 5 and it now holds 6 (Charlie took over the Stock Agent card; Crew Clock is new). Pause one, or raise the goal?
 - Onboarding: agents are installed by copy (`sync.sh`), not the plugin, because copies load in cloud sessions with no setup. Every PR ends with an `Agents:` line so use is visible.
 - Recruiter-ready polish is demo-only (`EDITS`): port the AA colors, bigger buttons, card links and plain words to the live Build Slate and roadmap? That republishes the live artifacts, so it waits on Chase.
 - ccwatts shows "Building" on the slate (not Beta) until the friend beta starts.
