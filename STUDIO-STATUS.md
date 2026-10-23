@@ -13,11 +13,12 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - License audit done in every repo (Oct 21).
 
 **Live demos (no login, sample data only)**
-- Role Radar: chaseholroyd.com/demo/role-radar/ (a snapshot kept in the portfolio repo).
+- Role Radar: self-hosted from its own repo at chaseholroyd.com/role-radar/ (Pages from main, rebuilt on every merge). The portfolio's "Try the demo" still opens the old snapshot at /demo/role-radar/ until the repoint intake lands.
 - ccwatts playground: chaseholroyd.com/ccwatts/ (Pages is on; deploys from `main` have succeeded since Oct 21).
 - Energy Scanner: chaseholroyd.com/energy-scanner/ (Pages is on; first deploy succeeded Oct 21 23:32 UTC). The portfolio's Energy Scanner page links it (ES-M2.3, portfolio PR #8, merged Oct 21).
 - Build Slate and Near-Term Roadmap: chaseholroyd.com/pm-tools/build-slate/ and /pm-tools/roadmap/.
 
+- Role Radar (Oct 22-23): recruiter-ready fixes (PRs #20-#25), dream-role scoring (#16) and the job description preview (#18) merged; the private live page was republished with all of them.
 - Recruiter-ready sprint (Oct 22): sprint v2 pasted into every product project; portfolio PR #10 (deploy allowlist, hero tense, resume CTA, CI checks), pm-tools PR #8 (demo seeds) and studio-agents PR #6 (deeper ux-reviewer) merged and deployed.
 
 **Studio setup**
@@ -43,7 +44,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 | Repo | Owning project |
 |---|---|
 | ccwatts | ccwatts |
-| Role-Radar | Role Radar |
+| role-radar | Role Radar |
 | energy-scanner | Energy Scanner |
 | Hearth | Hearth |
 | holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
