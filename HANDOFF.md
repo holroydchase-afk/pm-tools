@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-22 (overnight loop rounds 1-5, PRs #9 to #13, merged)
+Updated: 2026-10-23 (new-project onboarding kit)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -20,6 +20,11 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Round 4: moving a roadmap card shows a pinned "Moved … to Next · Undo" notice for 6 seconds (R1-UX-12, with an e2e test); meta text and owner chips at 13px (R1-UX-10). All review findings from rounds 1-3 are now fixed or listed under Decisions to review.
 - Round 5 (final UX + QA check, R4 findings): Undo puts the card back in its old spot and says "Move undone" instead of a second notice (R4-1, e2e checks the position); roadmap card meta at 13px (R4-2). R4-3 (portfolio copy: "five active projects", lane order) belongs to the portfolio repo. Merged to main on Oct 22 with Chase's go-ahead (#9 to #13). Nothing at P0-P2 left in pm-tools. Next step: port the demo polish to the live apps if Chase wants it (see Decisions to review).
 - Studio agents synced into `.claude/agents/` from studio-agents (includes the upgraded ux-reviewer with the visual pass and showcase review, studio-agents draft PR #6 or later); re-sync with its `scripts/sync.sh`.
+
+## New-project onboarding kit (Oct 23)
+- `docs/ONBOARDING.md`: how a new product project (next: Charlie, Crew Clock) joins the studio in one paste: portfolio and hosting, studio rules, repo setup, studio agents and when to use them by default, recruiter-ready bar, shifts and digest, Atlas Story, INTAKE format, the two pastes, and a refresh paste for existing projects. Linked from STUDIO-STATUS.
+- Why: product repos had the agents copied in, but no CLAUDE.md said when to use them, so they ran only when a paste named them. Companion studio-agents PR #7 adds the when-to-use table, proactive agent descriptions and `templates/CLAUDE-agents.md`.
+- Merged Oct 23 with Chase's go-ahead, together with `STACK.md` (#15) and studio-agents #7.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
@@ -54,11 +59,14 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - `STACK.md`: the default stack per kind of product, when to use something else, and what not to add. Project instructions in every project point here (paste given to Chase in the Product Studio thread "Studio tech stack guide").
 
 ## Exact next step
+Chase pastes the kit into Charlie and Crew Clock (in progress Oct 23), and the refresh paste into the existing product projects. Then add their repos to STUDIO-STATUS from their INTAKE blocks.
+
 Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old S1–S10), matching the live board as of Oct 21.
 
 PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's current version (see `PLAN.md`).
 
 ## Decisions to review
+- Onboarding: agents are installed by copy (`sync.sh`), not the plugin, because copies load in cloud sessions with no setup. Every PR ends with an `Agents:` line so use is visible.
 - Recruiter-ready polish is demo-only (`EDITS`): port the AA colors, bigger buttons, card links and plain words to the live Build Slate and roadmap? That republishes the live artifacts, so it waits on Chase.
 - ccwatts shows "Building" on the slate (not Beta) until the friend beta starts.
 - Energy Scanner's slate card uses the portfolio's story (bedtime routine with palm or photo scan); the energy-scanner repo's CLAUDE.md describes only the photo app. The Energy Scanner project should confirm which is current.
