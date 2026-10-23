@@ -91,3 +91,14 @@ test("R1-UX-12 Roadmap: moving a card shows a notice, and Undo puts it back", as
   assert.deepEqual(errors, []);
   await page.close();
 });
+
+for (const path of ["build-slate/", "roadmap/"]) {
+  test(`Night shift Oct 23: /pm-tools/${path} demo bar back link is a 44px tap target at 390px`, async () => {
+    const { page } = await open(path);
+    const link = page.locator('[role="note"] a').first();
+    assert.match(await link.textContent(), /How I keep it all moving/);
+    const box = await link.boundingBox();
+    assert.ok(box.height >= 44, `back link is ${box.height}px tall`);
+    await page.close();
+  });
+}

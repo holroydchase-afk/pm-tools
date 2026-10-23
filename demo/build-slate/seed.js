@@ -2,7 +2,7 @@
 window.DEMO = {
  "key": "build-slate",
  "back": "../../pm-tools.html",
- "backLabel": "← How I work",
+ "backLabel": "← How I keep it all moving",
  "seed": {
   "projects": {
    "role-radar": {

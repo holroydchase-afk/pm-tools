@@ -1,8 +1,10 @@
 # Studio status
 
-_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-23 02:10 UTC, against GitHub (merged PRs and Actions deploys)._
+_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-23 13:30 UTC, against GitHub (merged PRs and Actions deploys)._
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
+
+**New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
 
 ## Done
 **Portfolio and domain**
@@ -13,13 +15,20 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 **Live demos (no login, sample data only)**
 - Role Radar: chaseholroyd.com/role-radar/, built and deployed from the role-radar repo. The portfolio page links it, and the old /demo/role-radar/ snapshot is deleted (portfolio PR #14, merged Oct 22).
 - Hearth (placeholder name): chaseholroyd.com/demo/hearth/, a no-login demo of a made-up family that lives only in the browser. It's copied into the portfolio repo from Hearth's `app/dist-demo-site/`, and family-photos.html has been refreshed with "Try the demo" and screenshots (portfolio PR #15, merged Oct 22). Neither expo.app nor the repo is linked.
+- Home page (WEB-M5.5, portfolio PR #16, merged Oct 23): numbered AI journey plus the Patter, ADT and Palmetto career cards. Page checks in CI and a 404 noindex (WEB-M4.9, #20, merged Oct 23).
 - ccwatts playground: chaseholroyd.com/ccwatts/ (Pages is on; deploys from `main` have succeeded since Oct 21).
 - Energy Scanner: chaseholroyd.com/energy-scanner/ (Pages is on; first deploy succeeded Oct 21 23:32 UTC). The portfolio's Energy Scanner page links it (ES-M2.3, portfolio PR #8, merged Oct 21).
 - Build Slate and Near-Term Roadmap: chaseholroyd.com/pm-tools/build-slate/ and /pm-tools/roadmap/.
 
+- Role Radar (Oct 22-23): recruiter-ready fixes (PRs #20-#25), dream-role scoring (#16) and the job description preview (#18) merged; the private live page was republished with all of them.
 - Recruiter-ready sprint (Oct 22): sprint v2 pasted into every product project; portfolio PR #10 (deploy allowlist, hero tense, resume CTA, CI checks), pm-tools PR #8 (demo seeds) and studio-agents PR #6 (deeper ux-reviewer) merged and deployed.
 
+**Charlie**
+- MVP (stock and options idea helper, paper trading only) pushed to the `charlie` repo on Oct 23. On the Build Slate since the intake; not on the portfolio yet.
+
 **Studio setup**
+- Oct 23: Charlie (CHL) and Crew Clock (CRW) taken in: added to the ownership table below, the live Build Slate (Charlie replaces the Stock Agent card; Crew Clock added) and the product inventory. Both repos are public and still need their `M0.1: studio setup` PR.
+- Oct 23: new-project onboarding kit (pm-tools docs/ONBOARDING.md), stack guide (STACK.md, #15) and agents used by default (studio-agents #7) merged.
 - Shared agents (studio-agents) are merged into ccwatts, Role Radar and Energy Scanner. Session rules (HANDOFF hook, handoff-check workflow) are in those three and the portfolio.
 - ccwatts recruiter-ready PRs #22-#29 merged to main Oct 22; the Pages deploy succeeded (run 39831937429). PR #2 is closed.
 - ccwatts v1 (CCW-M1.1 to M1.9) is merged. The Energy Scanner v1 stack and ES-M2.1 (bedtime flow) are merged.
@@ -34,7 +43,10 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Energy Scanner: a publishable photo for README screenshots; its CLAUDE.md still says "never deploy" although Pages is now on.
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
-- Portfolio WEB-M5 (PR #12, site as an AI-journey case study with career wins on the front page): five [check] answers (Patter link, who uses Energy Scanner, Role Radar and ccwatts, and is "about an hour a night" OK).
+- Portfolio: three [check] answers unlock the Patter and ADT case studies (WEB-M5.4): Patter's URL, who uses Energy Scanner, Role Radar and ccwatts today, and whether "about an hour a night" is OK to publish.
+- Studio: paste the onboarding kit into Charlie and Crew Clock (docs/ONBOARDING.md, "The two pastes", or `/onboard` once that skill is saved; tailored first messages were given in the Product Studio intake thread, Oct 23), and the refresh paste into the existing product projects.
+- Charlie: one laptop run on real Cboe and SEC data (the cloud blocks market-data hosts), plus the next-feature pick: earnings or alpaca (Power Hour, Oct 22).
+- Crew Clock: Supabase setup (docs/SETUP.md steps 1.1 to 1.4) before the crew beta.
 
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
@@ -44,9 +56,11 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 | Repo | Owning project |
 |---|---|
 | ccwatts | ccwatts |
-| Role-Radar | Role Radar |
+| role-radar | Role Radar |
 | energy-scanner | Energy Scanner |
 | Hearth | Hearth |
+| charlie | Charlie |
+| crew-clock | Crew Clock |
 | holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
 
 The repo decides who does the work:
