@@ -2,7 +2,9 @@
 
 _How a new product project joins Chase's studio in one paste. Owner: Product Studio (change it with a PR here). Last reviewed: 2026-10-23._
 
-Chase pastes two blocks into a new claude.ai project (see [The two pastes](#the-two-pastes)). The project then reads this page and sets itself up. Existing projects can use the [refresh paste](#refresh-paste-for-existing-projects) to adopt anything new here.
+**Fastest way:** in the new project, run **`/onboard`** (the studio-agents `onboard` skill). It reads this page, checks the repo, sets up what's missing in one PR, schedules shifts, starts the story log, writes the INTAKE and hands Chase the project-instructions paste. In an existing project, `/onboard refresh` adopts anything new here.
+
+Without the skill, Chase pastes two blocks (see [The two pastes](#the-two-pastes)) and the project sets itself up from this page. Existing projects can use the [refresh paste](#refresh-paste-for-existing-projects).
 
 ## 1. What you're part of
 - **A portfolio.** Chase is a senior PM job hunting. Every product is a demoable v1 shown at **chaseholroyd.com**: a recruiter or hiring manager opens it from the portfolio and it works, looks finished and tells one true story.
@@ -122,7 +124,7 @@ STUDIO KIT: This product is part of Chase's portfolio at chaseholroyd.com. Follo
 AGENTS BY DEFAULT: Use the studio agents in .claude/agents/ without waiting to be asked: staff-pm at the start of every session or run and before any new feature; qa-tdd for the failing test first and all suites 3x before a PR is ready; engineer to build; ux-reviewer on anything a user sees and before anything goes public; privacy-security on personal data, secrets or money and before any public demo; positioning for README, portfolio copy and the story. End every PR with an "Agents:" line saying who ran and the verdict.
 ```
 
-**2. First message** (new project chat, as the first message):
+**2. First message** (new project chat, as the first message; or just run `/onboard`, which does the same):
 ```
 SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask questions, pick sensible defaults.
 
@@ -137,7 +139,7 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 ```
 
 ## Refresh paste (for existing projects)
-For ccwatts, Role Radar, Energy Scanner and Hearth. Paste as a message; add the AGENTS BY DEFAULT paragraph from paste 1 to their project instructions too.
+For ccwatts, Role Radar, Energy Scanner and Hearth. Run `/onboard refresh`, or paste this as a message; add the AGENTS BY DEFAULT paragraph from paste 1 to their project instructions too.
 ```
 STUDIO REFRESH (Chase approved). Read https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md sections 3-6. Then, in one small PR: re-run studio-agents scripts/sync.sh (skip orchestrator and focus-coach), paste studio-agents templates/CLAUDE-agents.md into CLAUDE.md, update HANDOFF.md. From now on use the agents by default as that section says, including in scheduled runs, and end every PR with an "Agents:" line. Hearth: if the agent migration is parked until after the Nov 22 beta, only add the CLAUDE.md section. Reply in 2 lines with the PR link.
 ```

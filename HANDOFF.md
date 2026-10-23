@@ -2,11 +2,11 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-23 (Charlie and Crew Clock intake)
+Updated: 2026-10-23 (Charlie and Crew Clock intake; night shift: demo bar rename, 44px back link)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
-- Demos are live at **chaseholroyd.com/pm-tools/** (Actions deploy from `main`). The portfolio's "How I work" page links here, and its own copies were removed (portfolio PR #3), so this repo is the only source.
+- Demos are live at **chaseholroyd.com/pm-tools/** (Actions deploy from `main`). The portfolio's "How I keep it all moving" page (formerly "How I work") links here, and its own copies were removed (portfolio PR #3), so this repo is the only source.
 - `npm test`: 8 build and privacy tests, 10 persona-check tests. `npm run check:private` is clean.
 
 ## Recruiter-ready review (Oct 22)
@@ -21,10 +21,16 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Round 5 (final UX + QA check, R4 findings): Undo puts the card back in its old spot and says "Move undone" instead of a second notice (R4-1, e2e checks the position); roadmap card meta at 13px (R4-2). R4-3 (portfolio copy: "five active projects", lane order) belongs to the portfolio repo. Merged to main on Oct 22 with Chase's go-ahead (#9 to #13). Nothing at P0-P2 left in pm-tools. Next step: port the demo polish to the live apps if Chase wants it (see Decisions to review).
 - Studio agents synced into `.claude/agents/` from studio-agents (includes the upgraded ux-reviewer with the visual pass and showcase review, studio-agents draft PR #6 or later); re-sync with its `scripts/sync.sh`.
 
+## Night shift Oct 23 (PMT-M2.6)
+- The portfolio renamed "How I work" to "How I keep it all moving" (WEB-M5.2), so both demo bars now read "← How I keep it all moving" (`backLabel` in each seed; `tests/seeds.test.mjs` pins it).
+- The demo bar's back link was 20px tall on phones; it is now a 44px tap target, with an e2e test per demo. Unit and e2e suites passed 3x each. Sweep at 390px and 1280px: no overflow, console errors or broken images. Chips at 28px on desktop are left as is (pointer input; 44px on phones already).
+- Next: none at P2 or above. The live apps still differ from the demos (see Decisions to review).
+
 ## New-project onboarding kit (Oct 23)
 - `docs/ONBOARDING.md`: how a new product project (next: Charlie, Crew Clock) joins the studio in one paste: portfolio and hosting, studio rules, repo setup, studio agents and when to use them by default, recruiter-ready bar, shifts and digest, Atlas Story, INTAKE format, the two pastes, and a refresh paste for existing projects. Linked from STUDIO-STATUS.
 - Why: product repos had the agents copied in, but no CLAUDE.md said when to use them, so they ran only when a paste named them. Companion studio-agents PR #7 adds the when-to-use table, proactive agent descriptions and `templates/CLAUDE-agents.md`.
 - Merged Oct 23 with Chase's go-ahead, together with `STACK.md` (#15) and studio-agents #7.
+- `/onboard` skill (Chase, Oct 23): runs this kit in any project (studio-agents `plugins/studio/skills/onboard`); `/onboard refresh` for existing projects. ONBOARDING.md leads with it; the pastes stay as the fallback.
 
 ## Charlie and Crew Clock intake (Oct 23)
 - Both repos (public: `charlie`, `crew-clock`) are in STUDIO-STATUS's ownership table, so the morning digest covers them. Planning codes CHL and CRW.
