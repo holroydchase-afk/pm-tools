@@ -55,6 +55,9 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - 2026-10-21: the portfolio home page lists these as "How I run product work", tagged "Live demos".
 - **Keep in sync:** when a change here alters what the portfolio page or demo shows (features, numbers, screenshots, privacy claims), tell the portfolio thread ("Portfolio research and upgrade plan") or update the page in `holroydchase-afk.github.io` (`tools/build.py`). Any portfolio change that touches this product adds a dated line here.
 
+## Studio stack guide (Oct 22)
+- `STACK.md`: the default stack per kind of product, when to use something else, and what not to add. Project instructions in every project point here (paste given to Chase in the Product Studio thread "Studio tech stack guide").
+
 ## Exact next step
 After #15 and studio-agents #7 merge: Chase pastes the kit into Charlie and Crew Clock, and the refresh paste into the existing product projects. Then add their repos to STUDIO-STATUS from their INTAKE blocks.
 
