@@ -1,6 +1,6 @@
 # Studio status
 
-_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-23 13:30 UTC, against GitHub (merged PRs and Actions deploys)._
+_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-23 21:30 UTC, against GitHub (merged PRs and Actions deploys)._
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
@@ -27,6 +27,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - MVP (stock and options idea helper, paper trading only) pushed to the `charlie` repo on Oct 23. On the Build Slate since the intake; not on the portfolio yet.
 
 **Studio setup**
+- Oct 23: Hearth's messenger becomes a shared library, not its own product (pm-tools `DECISIONS.md` STU-DEC-1). Hearth's project extracts it into `packages/messenger` after the Nov 22 beta, from the go-ahead intake in pm-tools `docs/intakes/hearth-messenger-extraction.md`. Crew Clock is the second user (Chase, Oct 23), then others. Nothing changes in Hearth before then.
 - Oct 23: Charlie (CHL) and Crew Clock (CRW) taken in: added to the ownership table below, the live Build Slate (Charlie replaces the Stock Agent card; Crew Clock added) and the product inventory. Both repos are public and still need their `M0.1: studio setup` PR.
 - Oct 23: new-project onboarding kit (pm-tools docs/ONBOARDING.md), stack guide (STACK.md, #15) and agents used by default (studio-agents #7) merged.
 - Shared agents (studio-agents) are merged into ccwatts, Role Radar and Energy Scanner. Session rules (HANDOFF hook, handoff-check workflow) are in those three and the portfolio.
@@ -46,6 +47,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Portfolio: three [check] answers unlock the Patter and ADT case studies (WEB-M5.4): Patter's URL, who uses Energy Scanner, Role Radar and ccwatts today, and whether "about an hour a night" is OK to publish.
 - Studio: paste the onboarding kit into Charlie and Crew Clock (docs/ONBOARDING.md, "The two pastes", or `/onboard` once that skill is saved; tailored first messages were given in the Product Studio intake thread, Oct 23), and the refresh paste into the existing product projects.
 - Charlie: one laptop run on real Cboe and SEC data (the cloud blocks market-data hosts), plus the next-feature pick: earnings or alpaca (Power Hour, Oct 22).
+- Messenger library license: Apache-2.0 (recommended) or AGPL plus a commercial license? One word. Then, after the Nov 22 beta, paste the Hearth intake (pm-tools `docs/intakes/hearth-messenger-extraction.md`) into the Hearth project.
 - Crew Clock: Supabase setup (docs/SETUP.md steps 1.1 to 1.4) before the crew beta.
 
 ## Next without Chase
