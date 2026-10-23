@@ -25,6 +25,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - `docs/ONBOARDING.md`: how a new product project (next: Charlie, Crew Clock) joins the studio in one paste: portfolio and hosting, studio rules, repo setup, studio agents and when to use them by default, recruiter-ready bar, shifts and digest, Atlas Story, INTAKE format, the two pastes, and a refresh paste for existing projects. Linked from STUDIO-STATUS.
 - Why: product repos had the agents copied in, but no CLAUDE.md said when to use them, so they ran only when a paste named them. Companion studio-agents PR #7 adds the when-to-use table, proactive agent descriptions and `templates/CLAUDE-agents.md`.
 - Merged Oct 23 with Chase's go-ahead, together with `STACK.md` (#15) and studio-agents #7.
+- `/onboard` skill (Chase, Oct 23): runs this kit in any project (studio-agents `plugins/studio/skills/onboard`); `/onboard refresh` for existing projects. ONBOARDING.md leads with it; the pastes stay as the fallback.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
