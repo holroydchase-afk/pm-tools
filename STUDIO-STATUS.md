@@ -18,6 +18,9 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 
 - Recruiter-ready sprint (Oct 22): sprint v2 pasted into every product project; portfolio PR #10 (deploy allowlist, hero tense, resume CTA, CI checks), pm-tools PR #8 (demo seeds) and studio-agents PR #6 (deeper ux-reviewer) merged and deployed.
 
+**Charlie**
+- MVP (stock and options idea helper, paper trading only) pushed to the private repo `charlie` on Oct 23. Not on the Build Slate or portfolio.
+
 **Studio setup**
 - Shared agents (studio-agents) are merged into ccwatts, Role Radar and Energy Scanner. Session rules (HANDOFF hook, handoff-check workflow) are in those three and the portfolio.
 - ccwatts v1 (CCW-M1.1 to M1.9) is merged. The Energy Scanner v1 stack and ES-M2.1 (bedtime flow) are merged.
@@ -30,6 +33,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Energy Scanner: a publishable photo for README screenshots; its CLAUDE.md still says "never deploy" although Pages is now on.
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
+- Charlie: one run on the laptop with real data (Cboe and SEC have only been tested against fixtures), plus two picks: Build Slate add or side, and next feature earnings or alpaca (Power Hour, Oct 22).
 
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
@@ -42,6 +46,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 | Role-Radar | Role Radar |
 | energy-scanner | Energy Scanner |
 | Hearth | Hearth |
+| charlie | Charlie |
 | holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
 
 The repo decides who does the work:
