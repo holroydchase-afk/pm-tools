@@ -40,12 +40,13 @@ test("PMT-M2.3 landing page links back to the portfolio at the top and names eac
   assert.ok(html.includes("Try Build Slate") && html.includes("Try the Near-Term Roadmap"));
 });
 
-test("PMT-M2.4 demo bar goes back to the How I work page, not the home page", () => {
+test("PMT-M2.4 demo bar goes back to the portfolio's system page (How I keep it all moving), not the home page", () => {
   for (const id of ["build-slate", "roadmap"]) {
     const ctx = { window: {} };
     vm.runInNewContext(readFileSync(`demo/${id}/seed.js`, "utf8"), ctx);
     assert.equal(ctx.window.DEMO.back, "../../pm-tools.html", id);
-    assert.match(ctx.window.DEMO.backLabel, /How I work/, id);
+    // The portfolio renamed "How I work" to "How I keep it all moving" (WEB-M5.2, Oct 22).
+    assert.equal(ctx.window.DEMO.backLabel, "← How I keep it all moving", id);
   }
   assert.match(readFileSync("demo/fake-db.js", "utf8"), /cfg\.backLabel/);
 });
