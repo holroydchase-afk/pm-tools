@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-22 (STUDIO-STATUS: Role Radar and Hearth demos shipped on the portfolio, PRs #14 and #15)
+Updated: 2026-10-23 (STUDIO-STATUS: Role Radar and Hearth demos shipped on the portfolio, PRs #14 and #15; ccwatts intake: #22-#29 merged, name check clear but not locked, cert check)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).

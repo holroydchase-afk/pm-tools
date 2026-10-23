@@ -1,6 +1,6 @@
 # Studio status
 
-_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-22 18:40 UTC, against GitHub (merged PRs and Actions deploys)._
+_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-23 02:10 UTC, against GitHub (merged PRs and Actions deploys)._
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
@@ -21,6 +21,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 
 **Studio setup**
 - Shared agents (studio-agents) are merged into ccwatts, Role Radar and Energy Scanner. Session rules (HANDOFF hook, handoff-check workflow) are in those three and the portfolio.
+- ccwatts recruiter-ready PRs #22-#29 merged to main Oct 22; the Pages deploy succeeded (run 39831937429). PR #2 is closed.
 - ccwatts v1 (CCW-M1.1 to M1.9) is merged. The Energy Scanner v1 stack and ES-M2.1 (bedtime flow) are merged.
 
 ## Waiting on Chase
@@ -28,6 +29,8 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Portfolio WEB-M2.3 and M2.4: review the case-study [check] questions (planned Oct 22).
 - Portfolio WEB-M2.6: headshot, LinkedIn Featured link and headline.
 - ccwatts CCW-M2.1: one run on real logs on the laptop.
+- ccwatts name (P1): the availability check is clear (npm, PyPI and crates.io unclaimed; nothing on the web, GitHub or trademarks). Not locked: say "lock" to make it final.
+- chaseholroyd.com HTTPS: open https://chaseholroyd.com/ccwatts/ on your phone and confirm there's no certificate warning. The cloud can't check it (it gets GitHub's *.github.io certificate).
 - Energy Scanner: a publishable photo for README screenshots; its CLAUDE.md still says "never deploy" although Pages is now on.
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
