@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-23 (STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-23 (shared messenger library decision; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -36,6 +36,12 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Both repos (public: `charlie`, `crew-clock`) are in STUDIO-STATUS's ownership table, so the morning digest covers them. Planning codes CHL and CRW.
 - Live Build Slate: the Stock Agent card became Charlie (stage Building); Crew Clock added (Building). The slate now holds 6 cards against its goal of 5. The demo seed is unchanged until either has a recruiter-ready demo.
 - Onboarding gaps found: neither repo has CLAUDE.md, `.claude/agents/`, handoff-check, dependabot or a PLAN.md with planning IDs. Charlie also lacks CI, a LICENSE and Pages (it's a Python server). Crew Clock has CI and Pages, but Pages deploys on push without waiting for CI, and its HANDOFF.md links two claude.ai artifacts in a public repo. Tailored first-message pastes went to Chase in the intake thread.
+
+## Shared messenger library (Oct 23, STU-DEC-1)
+- Hearth's intake asked whether its encrypted messenger should be reusable or its own product. Decision, logged in `DECISIONS.md` (new studio decision log): a shared library, `packages/messenger` inside the Hearth repo, extracted after Hearth's Nov 22 beta. Not its own product for now.
+- Hearth's project does the extraction; Product Studio only decides and schedules. The go-ahead INTAKE for Hearth is in `docs/intakes/hearth-messenger-extraction.md`; Chase pastes it after the beta. A post-beta card is on the live roadmap (new Studio board).
+- Second user (Chase, Oct 23): Crew Clock, then others. Crew Clock's integration is its own intake, after Hearth's extraction.
+- License is Chase's call: Apache-2.0 recommended (listed under Waiting on Chase in STUDIO-STATUS).
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
@@ -78,6 +84,7 @@ Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old
 PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's current version (see `PLAN.md`).
 
 ## Decisions to review
+- Messenger library license: Apache-2.0 (recommended) or AGPL-3.0 plus a commercial license. Fill it into `DECISIONS.md` STU-DEC-1 and the Hearth intake before Chase pastes it.
 - Build Slate goal is 5 and it now holds 6 (Charlie took over the Stock Agent card; Crew Clock is new). Pause one, or raise the goal?
 - Onboarding: agents are installed by copy (`sync.sh`), not the plugin, because copies load in cloud sessions with no setup. Every PR ends with an `Agents:` line so use is visible.
 - Recruiter-ready polish is demo-only (`EDITS`): port the AA colors, bigger buttons, card links and plain words to the live Build Slate and roadmap? That republishes the live artifacts, so it waits on Chase.
