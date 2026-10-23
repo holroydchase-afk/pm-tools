@@ -24,7 +24,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 ## New-project onboarding kit (Oct 23)
 - `docs/ONBOARDING.md`: how a new product project (next: Charlie, Crew Clock) joins the studio in one paste: portfolio and hosting, studio rules, repo setup, studio agents and when to use them by default, recruiter-ready bar, shifts and digest, Atlas Story, INTAKE format, the two pastes, and a refresh paste for existing projects. Linked from STUDIO-STATUS.
 - Why: product repos had the agents copied in, but no CLAUDE.md said when to use them, so they ran only when a paste named them. Companion studio-agents PR #7 adds the when-to-use table, proactive agent descriptions and `templates/CLAUDE-agents.md`.
-- The kit links `STACK.md` (PR #15, not merged yet) and studio-agents `templates/CLAUDE-agents.md` (PR #7). Both need merging for every link to resolve on `main`.
+- Merged Oct 23 with Chase's go-ahead, together with `STACK.md` (#15) and studio-agents #7.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
@@ -59,7 +59,7 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - `STACK.md`: the default stack per kind of product, when to use something else, and what not to add. Project instructions in every project point here (paste given to Chase in the Product Studio thread "Studio tech stack guide").
 
 ## Exact next step
-After #15 and studio-agents #7 merge: Chase pastes the kit into Charlie and Crew Clock, and the refresh paste into the existing product projects. Then add their repos to STUDIO-STATUS from their INTAKE blocks.
+Chase pastes the kit into Charlie and Crew Clock (in progress Oct 23), and the refresh paste into the existing product projects. Then add their repos to STUDIO-STATUS from their INTAKE blocks.
 
 Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old S1–S10), matching the live board as of Oct 21.
 

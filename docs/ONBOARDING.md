@@ -6,7 +6,7 @@ Chase pastes two blocks into a new claude.ai project (see [The two pastes](#the-
 
 ## 1. What you're part of
 - **A portfolio.** Chase is a senior PM job hunting. Every product is a demoable v1 shown at **chaseholroyd.com**: a recruiter or hiring manager opens it from the portfolio and it works, looks finished and tells one true story.
-- **Hosting.** Public repo `holroydchase-afk/<repo>`, GitHub Pages deployed by Actions from `main`, served at **chaseholroyd.com/&lt;repo&gt;/** with no DNS work. Stack and hosting defaults: [`STACK.md`](../STACK.md) (pm-tools PR #15; if it isn't on `main` yet, read it on branch `claude/project-thread-j4721b`). A private repo needs a one-line reason; it still gets everything below except Pages until it has a public demo.
+- **Hosting.** Public repo `holroydchase-afk/<repo>`, GitHub Pages deployed by Actions from `main`, served at **chaseholroyd.com/&lt;repo&gt;/** with no DNS work. Stack and hosting defaults: [`STACK.md`](../STACK.md). A private repo needs a one-line reason; it still gets everything below except Pages until it has a public demo.
 - **Other projects.** ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock, and **Product Studio**, which owns the portfolio site, pm-tools and studio-agents. Projects can't see each other's chats, files or memory; shared facts live on GitHub.
 - **Where things stand studio-wide:** [`STUDIO-STATUS.md`](../STUDIO-STATUS.md). Read it before asking Chase anything.
 
@@ -137,7 +137,7 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 ```
 
 ## Refresh paste (for existing projects)
-For ccwatts, Role Radar, Energy Scanner and Hearth, after studio-agents PR #7 merges. Paste as a message; add the AGENTS BY DEFAULT paragraph from paste 1 to their project instructions too.
+For ccwatts, Role Radar, Energy Scanner and Hearth. Paste as a message; add the AGENTS BY DEFAULT paragraph from paste 1 to their project instructions too.
 ```
 STUDIO REFRESH (Chase approved). Read https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md sections 3-6. Then, in one small PR: re-run studio-agents scripts/sync.sh (skip orchestrator and focus-coach), paste studio-agents templates/CLAUDE-agents.md into CLAUDE.md, update HANDOFF.md. From now on use the agents by default as that section says, including in scheduled runs, and end every PR with an "Agents:" line. Hearth: if the agent migration is parked until after the Nov 22 beta, only add the CLAUDE.md section. Reply in 2 lines with the PR link.
 ```
