@@ -4,6 +4,8 @@ _The one cross-project list of what's done and what's waiting on Chase. Every pr
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
+**Steer:** every project's scheduled runs read [STEERING.md](STEERING.md) first.
+
 **New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
 
 ## Done
@@ -51,6 +53,19 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
 - Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
+
+## Shift status
+Latest scheduled run per project, copied by the Product Studio day shift from [issue #26](https://github.com/holroydchase-afk/pm-tools/issues/26) and each repo's HANDOFF.md. Today's steer for every project is in [STEERING.md](STEERING.md).
+
+| Project | Last run |
+|---|---|
+| ccwatts | none yet |
+| Role Radar | none yet |
+| Energy Scanner | none yet |
+| Hearth | none yet |
+| Charlie | none yet |
+| Crew Clock | none yet |
+| Product Studio | none yet |
 
 ## Who owns which repo
 | Repo | Owning project |
