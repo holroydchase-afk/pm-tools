@@ -2,7 +2,11 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-23 (STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-24 (security audit and kit; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+
+## Security audit (Oct 24)
+- All 9 studio repos audited (report: `docs/security/2026-10-24-audit.md`): no secrets in any history, no personal data on public repos. Security kit from studio-agents installed here (`security.yml`, `codeql.yml`, `dependabot.yml`, `privacy-scan.py`, `SECURITY.md`); `.env` added to `.gitignore`. INTAKE for the product projects: `docs/intakes/security-kit.md`. STUDIO-STATUS lists Chase's settings toggles.
+- Next: Chase does the toggles and merges the kit PRs; each product project pastes the intake.
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
