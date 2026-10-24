@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-23 (STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-24 (steering loop: STEERING.md, shift status; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -41,6 +41,11 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - `STACK.md` gained a "Reusable building blocks" section: the rule (extract when a second product needs it, one home, product repos change only through INTAKE), the form ladder (stack row, skill, copied file + sync, package), and a table of eight blocks with home and timing. Supabase rules added to STACK.md; Hearth's after-beta intake is `docs/intakes/hearth-supabase-starter.md`.
 - Next (Product Studio, no Chase step): build the repo kit (`templates/repo/` with ci.yml per stack, CI-gated pages.yml, dependabot) and the shared privacy check in studio-agents, add an RLS checklist to the privacy-security agent, then add all three to `/onboard refresh`.
 
+## Studio steering loop (Oct 24)
+- Chase talks only to the Product Studio coordinator. The coordinator writes `STEERING.md` (studio-wide Polish Freeze rules plus one section per product) from Chase's steers, usually daily.
+- Every project's day shift (12:45pm ET weekdays) and night shift read STEERING.md first; its steer wins over the run's plan. Each run reports one line as a comment on pm-tools issue #26 (fallback: "Last shift:" at the top of its own HANDOFF.md). The Product Studio day shift copies the latest line per project into STUDIO-STATUS "Shift status".
+- Chase pastes the day-shift prompt into each product project once (given in the Product Studio "Set up studio steering loop" thread).
+
 ## Where each tool came from
 | Here | Came from | Snapshot |
 |---|---|---|
@@ -75,6 +80,7 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - `STACK.md`: the default stack per kind of product, when to use something else, and what not to add. Project instructions in every project point here (paste given to Chase in the Product Studio thread "Studio tech stack guide").
 
 ## Exact next step
+Steering loop: Chase merges the STEERING.md PR and pastes the day-shift prompt into each product project. Then:
 Chase pastes the tailored onboarding first message into the Charlie and Crew Clock projects (repos are already in STUDIO-STATUS and Build Slate, so their INTAKE blocks need nothing more), and the refresh paste into the existing product projects.
 
 Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old S1–S10), matching the live board as of Oct 21.
