@@ -1,6 +1,6 @@
 # Studio status
 
-_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-23 13:30 UTC, against GitHub (merged PRs and Actions deploys)._
+_The one cross-project list of what's done and what's waiting on Chase. Every product repo's HANDOFF.md links it. Last checked: 2026-10-24 06:30 UTC, against GitHub (merged PRs and Actions deploys)._
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
@@ -9,13 +9,14 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 ## Done
 **Portfolio and domain**
 - chaseholroyd.com is live: domain (Porkbun), DNS and the Pages custom domain are set. The repo is `holroydchase-afk.github.io` (renamed from `portfolio` on Oct 21), so each repo's Pages site serves at chaseholroyd.com/<repo>/.
-- Pages: Work, Role Radar, ccwatts, Energy Scanner, How I work (PM tools), family photo app ("name coming"), About, Resume, 404. Share card, SEO and the Staff PM hero are merged (WEB-M2.1, M2.2, M2.5).
+- Pages: Work, Studio, Role Radar, ccwatts, Energy Scanner, How I keep it all moving (PM tools), family photo app ("name coming"), About, Resume, 404. Share card, SEO and the Staff PM hero are merged (WEB-M2.1, M2.2, M2.5).
 - License audit done in every repo (Oct 21).
 
 **Live demos (no login, sample data only)**
 - Role Radar: chaseholroyd.com/role-radar/, built and deployed from the role-radar repo. The portfolio page links it, and the old /demo/role-radar/ snapshot is deleted (portfolio PR #14, merged Oct 22).
 - Hearth (placeholder name): chaseholroyd.com/demo/hearth/, a no-login demo of a made-up family that lives only in the browser. It's copied into the portfolio repo from Hearth's `app/dist-demo-site/`, and family-photos.html has been refreshed with "Try the demo" and screenshots (portfolio PR #15, merged Oct 22). Neither expo.app nor the repo is linked.
 - Home page (WEB-M5.5, portfolio PR #16, merged Oct 23): numbered AI journey plus the Patter, ADT and Palmetto career cards. Page checks in CI and a 404 noindex (WEB-M4.9, #20, merged Oct 23).
+- Oct 23-24: prose resume (WEB-M5.6, #19), Studio page (WEB-M6.1, #17), ADT card naming (#21) and the senior Staff-PM voice rewrite (WEB-M5.7, #22) merged and deployed. HTTPS verified Oct 24 02:31Z: the certificate is valid and Enforce HTTPS is on.
 - ccwatts playground: chaseholroyd.com/ccwatts/ (Pages is on; deploys from `main` have succeeded since Oct 21).
 - Energy Scanner: chaseholroyd.com/energy-scanner/ (Pages is on; first deploy succeeded Oct 21 23:32 UTC). The portfolio's Energy Scanner page links it (ES-M2.3, portfolio PR #8, merged Oct 21).
 - Build Slate and Near-Term Roadmap: chaseholroyd.com/pm-tools/build-slate/ and /pm-tools/roadmap/.
@@ -35,11 +36,9 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 
 ## Waiting on Chase
 - Portfolio WEB-M4.8: add a "Jan 2026 – present" line to the resume page? (recruiter-ready review, Oct 22)
-- Portfolio WEB-M2.3 and M2.4: review the case-study [check] questions (planned Oct 22).
 - Portfolio WEB-M2.6: headshot, LinkedIn Featured link and headline.
 - ccwatts CCW-M2.1: one run on real logs on the laptop.
 - ccwatts name (P1): the availability check is clear (npm, PyPI and crates.io unclaimed; nothing on the web, GitHub or trademarks). Not locked: say "lock" to make it final.
-- chaseholroyd.com HTTPS: open https://chaseholroyd.com/ccwatts/ on your phone and confirm there's no certificate warning. The cloud can't check it (it gets GitHub's *.github.io certificate).
 - Energy Scanner: a publishable photo for README screenshots; its CLAUDE.md still says "never deploy" although Pages is now on.
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
