@@ -49,12 +49,12 @@ Pick the lightest form that works, in this order:
 | CI, Pages deploy gated on CI, dependabot, README badge | pm-tools, portfolio, Role Radar, ccwatts, Energy Scanner, Crew Clock (each hand-written) | Charlie, Crew Clock (gate fix) | Copied files + sync: `templates/repo/` with one `ci.yml` per stack (plain JS, TypeScript, Python), a `pages.yml` that waits for CI, `dependabot.yml` | studio-agents, applied by `/onboard` | **Now** (5+ users already) |
 | Privacy check (`check-private.mjs`, pre-commit hook) | Role Radar, pm-tools | Crew Clock (artifact links in a public HANDOFF), Charlie (keys, SEC email) | Copied file + sync, with each repo's extra patterns in a small config file | studio-agents `scripts/` | **Now** |
 | Demo kit (`fake-db.js`, seed file, demo bar with "Sample data" and a back link) | pm-tools, portfolio | Crew Clock demo, Charlie static demo | Copied files + sync | pm-tools `demo/` is canonical; the portfolio copy retires with its last old demo | When Crew Clock or Charlie builds its public demo |
-| Supabase starter (project setup, migrations folder, auth, RLS policy patterns and RLS tests, edge-function relay) | Hearth | Crew Clock (needs Supabase before its crew beta) | Now: **RLS checklist** in the privacy-security agent plus a Supabase row in this file. Later: template folder | studio-agents (checklist); template extracted by Hearth | Checklist now; template after Hearth's Nov 22 beta, with the messenger |
+| Supabase starter (project setup, migrations folder, auth, RLS policy patterns and RLS tests, edge-function relay) | Hearth | Crew Clock (needs Supabase before its crew beta) | Template folder (migrations, auth, RLS patterns and tests, edge-function skeleton) plus an RLS checklist in the privacy-security agent | studio-agents `templates/supabase/`; Hearth adds its proven patterns after the beta | **Now** (Chase, Oct 24: Crew Clock connects Supabase next) |
 | Encrypted messenger | Hearth | Crew Clock | Shared package (STU-DEC-1) | Hearth repo, then its own repo | After Nov 22 beta |
 | PM docs (HANDOFF, PLAN, decision log, gate review) | Every repo | New projects | Templates (done) | pm-tools `templates/` | Done |
 | Story log, shifts, digest | Every project | New projects | Skills and routines (done) | studio-agents skills, pm-tools `routines/` | Done |
 
-**Supabase rules (until the starter template exists):**
+**Supabase rules:**
 - Schema changes only as numbered files in `supabase/migrations/`, made with the Supabase CLI and committed. Never edit the hosted database by hand.
 - Row-level security on every table from its first migration, with a policy per role. Each policy gets a test that a non-member is refused.
 - The browser or app holds only the anon key. The service-role key lives only in edge-function secrets, never in the repo or the client.

@@ -88,7 +88,7 @@ PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's cu
 - ccwatts shows "Building" on the slate (not Beta) until the friend beta starts.
 - Energy Scanner's slate card uses the portfolio's story (bedtime routine with palm or photo scan); the energy-scanner repo's CLAUDE.md describes only the photo app. The Energy Scanner project should confirm which is current.
 - Planning IDs (CCW-M…) stay on the roadmap demo cards.
-- Reusable blocks: the Supabase starter waits for Hearth's Nov 22 beta (Crew Clock follows the STACK.md Supabase rules until then), and shared repo files are copied with a sync script rather than published as packages.
+- Reusable blocks: Chase moved the Supabase starter to now (Oct 24) so Crew Clock can use it; Hearth adds its proven patterns after the beta. Shared repo files are copied with a sync script rather than published as packages.
 - MIT license, matching ccwatts.
 - Templates are generic rewrites, not copies: Hearth's persona roster (real family members) stays private in Hearth. Example personas are NV / PU / SK.
 - Hearth Test Log is not moved yet: it's built from Hearth's own test output (`tracker/build_seed.py`), so it stays with Hearth until a second product needs it.
