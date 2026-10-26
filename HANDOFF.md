@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-23 (shared messenger library decision; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-26 (messenger license AGPL-3.0, Chase; shared messenger library decision; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -41,7 +41,11 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Hearth's intake asked whether its encrypted messenger should be reusable or its own product. Decision, logged in `DECISIONS.md` (new studio decision log): a shared library, `packages/messenger` inside the Hearth repo, extracted after Hearth's Nov 22 beta. Not its own product for now.
 - Hearth's project does the extraction; Product Studio only decides and schedules. The go-ahead INTAKE for Hearth is in `docs/intakes/hearth-messenger-extraction.md`; Chase pastes it after the beta. A post-beta card is on the live roadmap (new Studio board).
 - Second user (Chase, Oct 23): Crew Clock, then others. Crew Clock's integration is its own intake, after Hearth's extraction.
-- License is Chase's call: Apache-2.0 recommended (listed under Waiting on Chase in STUDIO-STATUS).
+- License (Chase, Oct 26): AGPL-3.0. Chase owns the copyright, so his own products can use it under any terms and it can be loosened later. Recorded in STU-DEC-1, the Hearth intake and STUDIO-STATUS.
+
+## Reusable building blocks (Oct 23)
+- `STACK.md` gained a "Reusable building blocks" section: the rule (extract when a second product needs it, one home, product repos change only through INTAKE), the form ladder (stack row, skill, copied file + sync, package), and a table of eight blocks with home and timing. Supabase rules added to STACK.md; Hearth's after-beta intake is `docs/intakes/hearth-supabase-starter.md`.
+- Next (Product Studio, no Chase step): build the repo kit (`templates/repo/` with ci.yml per stack, CI-gated pages.yml, dependabot) and the shared privacy check in studio-agents, add an RLS checklist to the privacy-security agent, then add all three to `/onboard refresh`.
 
 ## Where each tool came from
 | Here | Came from | Snapshot |
@@ -84,13 +88,13 @@ Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old
 PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's current version (see `PLAN.md`).
 
 ## Decisions to review
-- Messenger library license: Apache-2.0 (recommended) or AGPL-3.0 plus a commercial license. Fill it into `DECISIONS.md` STU-DEC-1 and the Hearth intake before Chase pastes it.
 - Build Slate goal is 5 and it now holds 6 (Charlie took over the Stock Agent card; Crew Clock is new). Pause one, or raise the goal?
 - Onboarding: agents are installed by copy (`sync.sh`), not the plugin, because copies load in cloud sessions with no setup. Every PR ends with an `Agents:` line so use is visible.
 - Recruiter-ready polish is demo-only (`EDITS`): port the AA colors, bigger buttons, card links and plain words to the live Build Slate and roadmap? That republishes the live artifacts, so it waits on Chase.
 - ccwatts shows "Building" on the slate (not Beta) until the friend beta starts.
 - Energy Scanner's slate card uses the portfolio's story (bedtime routine with palm or photo scan); the energy-scanner repo's CLAUDE.md describes only the photo app. The Energy Scanner project should confirm which is current.
 - Planning IDs (CCW-M…) stay on the roadmap demo cards.
+- Reusable blocks: Chase moved the Supabase starter to now (Oct 24) so Crew Clock can use it; Hearth adds its proven patterns after the beta. Shared repo files are copied with a sync script rather than published as packages.
 - MIT license, matching ccwatts.
 - Templates are generic rewrites, not copies: Hearth's persona roster (real family members) stays private in Hearth. Example personas are NV / PU / SK.
 - Hearth Test Log is not moved yet: it's built from Hearth's own test output (`tracker/build_seed.py`), so it stays with Hearth until a second product needs it.

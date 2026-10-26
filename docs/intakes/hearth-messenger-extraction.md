@@ -1,6 +1,6 @@
 # Go-ahead INTAKE: extract Hearth's messenger into a shared library
 
-_Chase pastes the block below into the Hearth project after the Nov 22 beta. Decision: `DECISIONS.md` STU-DEC-1. Fill in the license line first._
+_Chase pastes the block below into the Hearth project after the Nov 22 beta. Decision: `DECISIONS.md` STU-DEC-1._
 
 ```
 INTAKE for Hearth (from Product Studio): go ahead and extract the messenger into a shared library
@@ -12,7 +12,7 @@ After the Nov 22 beta ships. Don't start while beta fixes are open.
 
 ## Decision
 - A shared library, not its own product. It lives at packages/messenger inside the Hearth repo, and Hearth imports it from there. It moves to its own repo only when a second product uses it. Chase picked Crew Clock as the second user, then others, so design the three interfaces for a product that isn't Hearth (no Hearth groups or parents inside the package).
-- License for packages/messenger: Apache-2.0 (add its own LICENSE file in the package; Hearth's app license is unchanged).
+- License for packages/messenger: AGPL-3.0 (Chase, Oct 26). Add its own LICENSE file (AGPL-3.0 text, copyright Chase) in the package and an SPDX header (AGPL-3.0-only) on each source file. Chase owns the copyright, so his other products can still use it.
 
 ## Do
 1. Move app/src/messenger/mlsCrypto.ts and the sync engine in client.ts into packages/messenger, behind three interfaces:
