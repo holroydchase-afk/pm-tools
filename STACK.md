@@ -1,6 +1,6 @@
 # Studio stack
 
-_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-23._
+_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-26._
 
 Rule of thumb: start at the top of the ladder and climb only when the product needs it. Reuse what a sibling repo already does before adding anything new.
 
@@ -32,6 +32,7 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 - Framework ports (React, Next, full TypeScript rewrites) of working plain-JS apps.
 - Monorepo or team tooling: Turborepo, Nx, Docker, Storybook, changesets, CodeQL, 100% coverage targets.
 - Sentry, analytics or tracking.
+- GraphQL (Chase, 2026-10-26). Supabase already gives every app a typed REST and RPC API from Postgres, and RLS does the access control. Revisit only if one client must stitch several backends together.
 - A new language, host or paid service. If one seems needed, ask Chase with a one-line reason and the cost.
 
 ## Reusable building blocks
