@@ -39,7 +39,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 
 ## Shared messenger library (Oct 23, STU-DEC-1)
 - Hearth's intake asked whether its encrypted messenger should be reusable or its own product. Decision, logged in `DECISIONS.md` (new studio decision log): a shared library, `packages/messenger` inside the Hearth repo, extracted after Hearth's Nov 22 beta. Not its own product for now.
-- Hearth's project does the extraction; Product Studio only decides and schedules. The go-ahead INTAKE for Hearth is in `docs/intakes/hearth-messenger-extraction.md`; Chase pastes it after the beta. A post-beta card is on the live roadmap (new Studio board).
+- Hearth's project does the extraction; Product Studio only decides and schedules. Hearth started the extraction on Oct 26, ahead of the beta (Chase), so the go-ahead INTAKE in `docs/intakes/hearth-messenger-extraction.md` is reference only and needs no paste. A post-beta card is on the live roadmap (new Studio board).
 - Second user (Chase, Oct 23): Crew Clock, then others. Crew Clock's integration is its own intake, after Hearth's extraction.
 - License (Chase, Oct 26): AGPL-3.0. Chase owns the copyright, so his own products can use it under any terms and it can be loosened later. Recorded in STU-DEC-1, the Hearth intake and STUDIO-STATUS.
 

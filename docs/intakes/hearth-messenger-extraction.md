@@ -1,6 +1,6 @@
 # Go-ahead INTAKE: extract Hearth's messenger into a shared library
 
-_Chase pastes the block below into the Hearth project after the Nov 22 beta. Decision: `DECISIONS.md` STU-DEC-1._
+_Reference only: Hearth started the extraction on Oct 26, ahead of the beta, under AGPL-3.0 (Chase), so this doesn't need pasting. Decision: `DECISIONS.md` STU-DEC-1._
 
 ```
 INTAKE for Hearth (from Product Studio): go ahead and extract the messenger into a shared library
