@@ -1,6 +1,6 @@
 # Studio stack
 
-_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-23._
+_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-26._
 
 Rule of thumb: start at the top of the ladder and climb only when the product needs it. Reuse what a sibling repo already does before adding anything new.
 
@@ -13,6 +13,7 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 | A web app with real logic | Vite + TypeScript (strict), runs in the browser | Energy Scanner | It's one page with simple logic: plain HTML + JS modules with `// @ts-check` (Role Radar, pm-tools). |
 | A developer tool | Node CLI in TypeScript, npm workspaces, tsup build | ccwatts | It's a one-off script: a plain Node `.mjs` file in `scripts/`. |
 | A mobile app or multi-user product | Expo (React Native) + Supabase (Postgres with row-level security, edge functions) | Hearth | A responsive web page would do: use a static site or Vite instead. |
+| An API for an app's own data | Supabase's REST and RPC API from Postgres, with row-level security (Chase, 2026-10-26) | Hearth | Screens need nested reads across many tables in one request (a feed, a profile with its photos and comments): turn on Supabase's built-in GraphQL (`pg_graphql`) for those reads. It uses the same tables and RLS, so no new server. A hand-built GraphQL server only if one client must combine several backends. |
 | Content pages | Generated HTML from a small script (`tools/build.py`) | Portfolio | Over ~20 pages or a blog: consider Astro. Not before. |
 
 ## Hosting rule
