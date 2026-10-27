@@ -51,6 +51,9 @@ Pick the lightest form that works, in this order:
 | Demo kit (`fake-db.js`, seed file, demo bar with "Sample data" and a back link) | pm-tools, portfolio | Crew Clock demo, Charlie static demo | Copied files + sync | pm-tools `demo/` is canonical; the portfolio copy retires with its last old demo | When Crew Clock or Charlie builds its public demo |
 | Supabase starter (project setup, migrations folder, auth, RLS policy patterns and RLS tests, edge-function relay) | Hearth | Crew Clock (needs Supabase before its crew beta) | Template folder (migrations, auth, RLS patterns and tests, edge-function skeleton) plus an RLS checklist in the privacy-security agent | studio-agents `templates/supabase/`; Hearth adds its proven patterns after the beta | **Now** (Chase, Oct 24: Crew Clock connects Supabase next) |
 | Encrypted messenger | Hearth | Crew Clock | Shared package (STU-DEC-1) | Hearth repo, then its own repo | After Nov 22 beta |
+| Accounts and names (`ACCOUNTS.md`: service, login, where the name is, rename cost; "Decide the name before" list) | Hearth | Crew Clock, Charlie (both pre-name, pre-store) | Template | pm-tools `templates/ACCOUNTS.md`, listed in `docs/ONBOARDING.md` | Done (Oct 27, Hearth intake) |
+| Architecture docs (reader, seven writing rules, "Last checked" footer, docs-as-we-go CLAUDE.md rule) | Hearth | Crew Clock (crew location data), Charlie | Template folder: README + system overview, data flow, threat model | pm-tools `templates/architecture/` | Done (Oct 27, Hearth intake) |
+| Agent roster check (`check-agents.sh`) and log check (`check-logs.mjs`, roots and banned words in `studio-checks.json`) | Hearth | Every repo with `.claude/agents/`; every JS/TS repo | Copied files, installed by `install-rules.sh` | studio-agents `templates/scripts/` | Done (Oct 27, Hearth intake); products pick it up on `/onboard refresh` |
 | PM docs (HANDOFF, PLAN, decision log, gate review) | Every repo | New projects | Templates (done) | pm-tools `templates/` | Done |
 | Story log, shifts, digest | Every project | New projects | Skills and routines (done) | studio-agents skills, pm-tools `routines/` | Done |
 
@@ -61,7 +64,7 @@ Pick the lightest form that works, in this order:
 - Public demos never point at the real project: demo mode uses the demo kit, and production uses its own build or URL (Crew Clock risk, Oct 23 intake).
 - The privacy-security agent reviews every migration that adds a table or policy.
 
-Not extracting yet (one user each): Expo app shell and push (Hearth only; Crew Clock is a PWA), Python server layout (Charlie only), Node CLI layout (ccwatts only), the Hearth Test Log, `tools/build.py`. Revisit when a second product needs one.
+Not extracting yet (one user each): Hearth's Expo Go check, photo pipeline, crypto kit, upload queue and problem log, Expo app shell and push (Hearth only; Crew Clock is a PWA), Python server layout (Charlie only), Node CLI layout (ccwatts only), the Hearth Test Log, `tools/build.py`. Revisit when a second product needs one.
 
 **How a block lands in product repos:** Product Studio builds the block in studio-agents or pm-tools and adds it to `/onboard refresh`. Each product project picks it up in its own small PR when Chase pastes the refresh (or the INTAKE) there. Extractions out of a product repo (Supabase starter, messenger) are done by that product's project from an INTAKE in `docs/intakes/`.
 
