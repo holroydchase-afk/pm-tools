@@ -55,6 +55,7 @@ Agents only help if the session calls them. Today the product repos have the age
 | Building, once the failing test exists | `engineer` |
 | Any screen, word or CLI output a user sees; before anything goes public (showcase review mode) | `ux-reviewer` |
 | Personal data, sign-in, secrets, money, location, telemetry; before a public demo, deploy or repo going public | `privacy-security` |
+| A new dependency, vendor, paid service, schema change or CI/deploy workflow; picking this project's stack rung | `architect` |
 | README, landing or portfolio copy; a name or tagline; after each milestone, the "why I built it" story | `positioning` |
 
 One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-reviewer and privacy-security if users or the public will see it, positioning for any copy. Every PR body ends with `Agents: staff-pm scoped M1.2; qa-tdd red then green, 3x; ux-reviewer no P0/P1` (or why none ran). `orchestrator` and `focus-coach` are Product Studio's; don't sync them.
