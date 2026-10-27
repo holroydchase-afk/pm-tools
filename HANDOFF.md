@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-26 (STACK.md: no GraphQL; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-26 (STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -38,7 +38,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Onboarding gaps found: neither repo has CLAUDE.md, `.claude/agents/`, handoff-check, dependabot or a PLAN.md with planning IDs. Charlie also lacks CI, a LICENSE and Pages (it's a Python server). Crew Clock has CI and Pages, but Pages deploys on push without waiting for CI, and its HANDOFF.md links two claude.ai artifacts in a public repo. Tailored first-message pastes went to Chase in the intake thread.
 
 ## Stack check (Oct 26)
-- Chase asked whether TypeScript, React Native, GraphQL and YAML should be the stack. Repo check: TypeScript in ccwatts and Energy Scanner, `@ts-check` JS in Role Radar and pm-tools, Expo/React Native in Hearth, YAML for workflows and Role Radar's `criteria.yaml`, no GraphQL. `STACK.md` now lists GraphQL under Don't add, with the reason (Chase, Oct 26).
+- Chase asked whether TypeScript, React Native, GraphQL and YAML should be the stack. Repo check: TypeScript in ccwatts and Energy Scanner, `@ts-check` JS in Role Radar and pm-tools, Expo/React Native in Hearth, YAML for workflows and Role Radar's `criteria.yaml`, no GraphQL. `STACK.md` now has an API row: Supabase REST/RPC by default, Supabase's built-in GraphQL (`pg_graphql`) when screens need nested reads across many tables (Chase, Oct 26: keep GraphQL as an option).
 
 ## Reusable building blocks (Oct 23)
 - `STACK.md` gained a "Reusable building blocks" section: the rule (extract when a second product needs it, one home, product repos change only through INTAKE), the form ladder (stack row, skill, copied file + sync, package), and a table of eight blocks with home and timing. Supabase rules added to STACK.md; Hearth's after-beta intake is `docs/intakes/hearth-supabase-starter.md`.

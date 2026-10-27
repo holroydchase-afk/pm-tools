@@ -13,6 +13,7 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 | A web app with real logic | Vite + TypeScript (strict), runs in the browser | Energy Scanner | It's one page with simple logic: plain HTML + JS modules with `// @ts-check` (Role Radar, pm-tools). |
 | A developer tool | Node CLI in TypeScript, npm workspaces, tsup build | ccwatts | It's a one-off script: a plain Node `.mjs` file in `scripts/`. |
 | A mobile app or multi-user product | Expo (React Native) + Supabase (Postgres with row-level security, edge functions) | Hearth | A responsive web page would do: use a static site or Vite instead. |
+| An API for an app's own data | Supabase's REST and RPC API from Postgres, with row-level security (Chase, 2026-10-26) | Hearth | Screens need nested reads across many tables in one request (a feed, a profile with its photos and comments): turn on Supabase's built-in GraphQL (`pg_graphql`) for those reads. It uses the same tables and RLS, so no new server. A hand-built GraphQL server only if one client must combine several backends. |
 | Content pages | Generated HTML from a small script (`tools/build.py`) | Portfolio | Over ~20 pages or a blog: consider Astro. Not before. |
 
 ## Hosting rule
@@ -32,7 +33,6 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 - Framework ports (React, Next, full TypeScript rewrites) of working plain-JS apps.
 - Monorepo or team tooling: Turborepo, Nx, Docker, Storybook, changesets, CodeQL, 100% coverage targets.
 - Sentry, analytics or tracking.
-- GraphQL (Chase, 2026-10-26). Supabase already gives every app a typed REST and RPC API from Postgres, and RLS does the access control. Revisit only if one client must stitch several backends together.
 - A new language, host or paid service. If one seems needed, ask Chase with a one-line reason and the cost.
 
 ## Reusable building blocks
