@@ -27,8 +27,10 @@ The full text is the project instructions paste below; it's the same in every pr
 | `CLAUDE.md` | What it is, who it's for, hard rules, stack and test commands, plus the **Studio agents** section | pm-tools `templates/CLAUDE.md` + studio-agents `templates/CLAUDE-agents.md` |
 | `HANDOFF.md` | Done, In progress, Exact next step, Decisions to review, Blockers, and **Portfolio / public presence** (see below) | pm-tools `templates/HANDOFF.md` |
 | `PLAN.md` | Milestones and tasks with [planning IDs](https://github.com/holroydchase-afk/studio-agents/blob/main/docs/planning-ids.md): `M1` outcome, `M1.1` one PR, branch `m1.1-slug`, PR `M1.1: …`. Your code is in that doc (Charlie `CHL`, Crew Clock `CRW`). `M1` is "recruiter-demoable v1". | staff-pm writes it |
+| `docs/product/ACCOUNTS.md` | Every outside account, its login, where the name is baked in, rename cost, and the "Decide the name before" list. No secrets | pm-tools `templates/ACCOUNTS.md` |
+| `docs/architecture/` | Only if the product stores or moves anyone's data: writing rules, system overview, data flow, threat model | pm-tools `templates/architecture/` |
 | `.claude/agents/` | The studio team | studio-agents `scripts/sync.sh <repo>` |
-| `.claude/settings.json`, `.github/workflows/handoff-check.yml` | Prints HANDOFF.md into every session; fails a PR that doesn't update it | studio-agents `scripts/install-rules.sh <repo>` |
+| `.claude/settings.json`, `.github/workflows/handoff-check.yml`, `scripts/check-agents.sh`, `scripts/check-logs.mjs`, `studio-checks.json` | Prints HANDOFF.md into every session; fails a PR that doesn't update it; checks the CLAUDE.md agent table against `.claude/agents/` and that no `console.*` call logs keys, URLs, emails or raw errors (set the log roots in `studio-checks.json`; run both from the test script and CI) | studio-agents `scripts/install-rules.sh <repo>` |
 | `.github/workflows/ci.yml` | On every PR: install, typecheck, test, build, privacy check. CI badge at the top of the README | STACK.md "Always" |
 | `.github/workflows/pages.yml` | Deploys the demo from `main`, only after CI passes | Copy from energy-scanner or ccwatts |
 | `.github/dependabot.yml` | npm and Actions, weekly, minor and patch grouped | STACK.md |

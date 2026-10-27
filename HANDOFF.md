@@ -44,6 +44,12 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - `STACK.md` gained a "Reusable building blocks" section: the rule (extract when a second product needs it, one home, product repos change only through INTAKE), the form ladder (stack row, skill, copied file + sync, package), and a table of eight blocks with home and timing. Supabase rules added to STACK.md; Hearth's after-beta intake is `docs/intakes/hearth-supabase-starter.md`.
 - Next (Product Studio, no Chase step): build the repo kit (`templates/repo/` with ci.yml per stack, CI-gated pages.yml, dependabot) and the shared privacy check in studio-agents, add an RLS checklist to the privacy-security agent, then add all three to `/onboard refresh`.
 
+## Hearth reusable blocks (Oct 27, Hearth intake)
+- `templates/ACCOUNTS.md` (accounts, logins, where the name is, rename cost, "Decide the name before" list; no secrets or ids) and `templates/architecture/` (README with the reader and seven writing rules, plus system overview, data flow and threat model starters). `templates/CLAUDE.md` gained the matching two rules; `docs/ONBOARDING.md` lists both in the day-one file table, plus the shared checks `install-rules.sh` now installs.
+- `STACK.md`: three rows (accounts, architecture docs, roster and log checks), and Hearth's one-user pieces named under "Not extracting yet".
+- Companion studio-agents PR: `check-agents.sh`, `check-logs.mjs` and `studio-checks.json`, installed by `install-rules.sh`.
+- Next: merge both PRs; products pick them up on the next `/onboard refresh`. Hearth keeps its own copies until it swaps to the shared ones (its call).
+
 ## Where each tool came from
 | Here | Came from | Snapshot |
 |---|---|---|
@@ -52,6 +58,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 | `demo/*/seed.js`, `demo/fake-db.js` | The portfolio repo's demo copies (already scrubbed); stages refreshed from GitHub | Oct 22 |
 | `templates/` | Hearth repo `docs/product/PM-TOOLS.md` and the docs it lists, made generic (no family names or Hearth specifics) | Oct 21 |
 | `scripts/check-persona-checks.sh` | Hearth's TDPM check, with "Chase override" generalized to "<who> override" | Oct 21 |
+| `templates/ACCOUNTS.md`, `templates/architecture/` | Hearth `docs/product/ACCOUNTS.md` and `docs/architecture/README.md`, made generic (no ids, emails or Hearth names) | Oct 27 |
 | `routines/night-shift.md` | The night-shift paste (Role Radar project), with the owner's goal made a placeholder | Oct 21 |
 | `routines/shared-doc-inbox/` | The career-docs pending inbox and `pending.py`, made generic | Oct 21 |
 | `scripts/check-private.mjs`, `.githooks/` | Role Radar repo | Oct 21 |
