@@ -70,6 +70,6 @@ Not extracting yet (one user each): Hearth's Expo Go check, photo pipeline, cryp
 **How a block lands in product repos:** Product Studio builds the block in studio-agents or pm-tools and adds it to `/onboard refresh`. Each product project picks it up in its own small PR when Chase pastes the refresh (or the INTAKE) there. Extractions out of a product repo (Supabase starter, messenger) are done by that product's project from an INTAKE in `docs/intakes/`.
 
 ## Adding something not on this page
-Say why in one line in the PR ("needs X, the default can't because Y"). If it's likely to repeat in another product, add a row here in the same PR.
+Run the studio-agents `architect` agent first: it checks fit, the ladder rung and what a sibling repo already has. Then say why in one line in the PR ("needs X, the default can't because Y"). If it's likely to repeat in another product, add a row here in the same PR.
 
 Background: the Oct 22 stack review found the stacks fine and the gap was CI on pull requests and visible badges (plan in project memory, `stack-upgrade`).

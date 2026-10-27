@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-26 (STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-27 (studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Current state
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -81,10 +81,15 @@ The portfolio (repo `holroydchase-afk.github.io`) links to /pm-tools/build-slate
 - 2026-10-21: the portfolio home page lists these as "How I run product work", tagged "Live demos".
 - **Keep in sync:** when a change here alters what the portfolio page or demo shows (features, numbers, screenshots, privacy claims), tell the portfolio thread ("Portfolio research and upgrade plan") or update the page in `holroydchase-afk.github.io` (`tools/build.py`). Any portfolio change that touches this product adds a dated line here.
 
+## Studio architect (Oct 27, Chase's go)
+- studio-agents adds an `architect` agent: owns STACK.md fit, reuse before build, architecture docs matching code, cross-repo consistency, and a weekly drift sweep. `docs/ONBOARDING.md` lists it in the agents table (synced to product repos, unlike orchestrator and focus-coach); STACK.md "Adding something not on this page" runs it first. Paired PR in studio-agents.
+
 ## Studio stack guide (Oct 22)
 - `STACK.md`: the default stack per kind of product, when to use something else, and what not to add. Project instructions in every project point here (paste given to Chase in the Product Studio thread "Studio tech stack guide").
 
 ## Exact next step
+Merge this and the paired studio-agents architect PR; product projects pick the agent up on their next `scripts/sync.sh`. The weekly architect drift sweep goes into the Product Studio night shift's prompt (Sundays) when that shift is turned back on; it is paused, and its prompt can only be edited from the thread it posts into.
+
 Chase pastes the tailored onboarding first message into the Charlie and Crew Clock projects (repos are already in STUDIO-STATUS and Build Slate, so their INTAKE blocks need nothing more), and the refresh paste into the existing product projects.
 
 Roadmap demo seed: ccwatts cards use the planning IDs (`CCW-M1.1` and so on, old S1–S10), matching the live board as of Oct 21.
