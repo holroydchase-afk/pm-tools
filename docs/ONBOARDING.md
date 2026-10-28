@@ -41,10 +41,10 @@ To read pm-tools and studio-agents, attach them read-only to the session (both a
 **HANDOFF.md "Portfolio / public presence" section** (copy this shape from ccwatts): the portfolio page URL, the live demo URL and how it deploys, what the demo data is, a link to STUDIO-STATUS, then one dated line per change to the public demo or portfolio page. The morning digest and Product Studio read this section.
 
 ## 4. Studio agents: use them by default
-Agents only help if the session calls them. Today the product repos have the agents copied in, but nothing tells a session when to use them, so they run only when a paste names them. Fix: the **Studio agents** section in every CLAUDE.md, and an `Agents:` line in every PR.
+Agents only help if the session calls them. Hearth uses them best because its main session is a **chief of staff** that delegates every piece of work instead of doing it, and CI fails when its roster drifts. Every repo gets the same: the **Studio agents** section in CLAUDE.md (studio-agents `templates/CLAUDE-agents.md`), and `agents-check.yml`, which fails a PR with no `Agents:` line or a code PR that doesn't name `qa-tdd`.
 
 **Install** (pick one; copy is the default because it works in cloud sessions with no setup and the agents are visible in the repo):
-- Copy: from a studio-agents clone, `scripts/sync.sh ../<repo>` then `scripts/install-rules.sh ../<repo>`. Re-run `sync.sh` to pick up improvements.
+- Copy: from a studio-agents clone, `scripts/sync.sh ../<repo>` (skips orchestrator and focus-coach) then `scripts/install-rules.sh ../<repo>` (HANDOFF hook, handoff-check, agents-check, check-agents.sh, check-logs.mjs). Re-run `sync.sh` to pick up improvements.
 - Plugin: add `extraKnownMarketplaces` `chase-studio` (github `holroydchase-afk/studio-agents`) and `"enabledPlugins": { "studio@chase-studio": true }` to `.claude/settings.json`.
 
 **When to use which** (delegate with the Agent tool, without waiting for Chase to ask):
@@ -142,7 +142,12 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 ```
 
 ## Refresh paste (for existing projects)
-For ccwatts, Role Radar, Energy Scanner and Hearth. Run `/onboard refresh`, or paste this as a message; add the AGENTS BY DEFAULT paragraph from paste 1 to their project instructions too.
+The same text for ccwatts, Role Radar, Energy Scanner, Charlie and Crew Clock (Hearth already has it). Paste it as a message in the project's main thread. It is a hardening change, so it fits the Polish Freeze.
 ```
-STUDIO REFRESH (Chase approved). Read https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md sections 3-6. Then, in one small PR: re-run studio-agents scripts/sync.sh (skip orchestrator and focus-coach), paste studio-agents templates/CLAUDE-agents.md into CLAUDE.md, update HANDOFF.md. From now on use the agents by default as that section says, including in scheduled runs, and end every PR with an "Agents:" line. Hearth: if the agent migration is parked until after the Nov 22 beta, only add the CLAUDE.md section. Reply in 2 lines with the PR link.
+STUDIO REFRESH (Chase approved; hardening, fits the Polish Freeze). Bring this repo's agent setup up to Hearth's. Clone holroydchase-afk/studio-agents and read its templates/CLAUDE-agents.md, then in ONE PR titled "studio refresh: agents by default":
+1. Run studio-agents scripts/sync.sh <this repo> and scripts/install-rules.sh <this repo>. Keep project-only agents; merge by hand anything install-rules reports as "kept existing".
+2. Replace the "Studio agents" section of CLAUDE.md with templates/CLAUDE-agents.md (add it if missing). Keep any project-only agents as extra rows.
+3. Add bash scripts/check-agents.sh to the test script and CI. Run all checks; CI must be green, including agents-check.
+4. Update HANDOFF.md. End the PR body with an Agents: line (this PR: staff-pm scoped; qa-tdd ran the checks 3x).
+From now on you are the chief of staff in every session and scheduled run: send each piece of work to the agent the table names (qa-tdd writes the failing test before any fix, and runs all suites 3x before a PR is ready), and never open a PR without the Agents: line. Don't merge. Reply in 2 lines with the PR link.
 ```
