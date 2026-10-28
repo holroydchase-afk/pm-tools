@@ -2,9 +2,10 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-27 (studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-28 (ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Current state
+- Agents by default, enforced (Oct 28): ONBOARDING section 4 and the refresh paste now point at studio-agents' `agents-check.yml` (PR body needs an `Agents:` line; code PRs must name qa-tdd) and Hearth's chief-of-staff rule. Next: Chase pastes the refresh into ccwatts, Role Radar, Energy Scanner, Charlie and Crew Clock once the studio-agents PR merges.
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
 - Demos are live at **chaseholroyd.com/pm-tools/** (Actions deploy from `main`). The portfolio's "How I keep it all moving" page (formerly "How I work") links here, and its own copies were removed (portfolio PR #3), so this repo is the only source.
 - `npm test`: 8 build and privacy tests, 10 persona-check tests. `npm run check:private` is clean.
