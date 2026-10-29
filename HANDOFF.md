@@ -2,9 +2,10 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-28 (studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-29 (TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Current state
+- TypeScript (Oct 29, Chase: TypeScript is the studio standard for onboarding and AI coding): `scripts/build-demo.ts`, `scripts/check-private.ts` and every test are now `.ts`. Node 22 runs them directly (type stripping), so there is no build step. `npm run typecheck` (`tsc -p .`, strict, noEmit, erasable syntax only) is in CI before `npm test`. Dev deps only: typescript and @types/node (pinned to Node 22). Left as JS on purpose: `demo/*.js` and `demo/fake-db.js` (browser files served as they are), `apps/*.html` (exact copies of the live artifact pages), and `scripts/check-logs.mjs` (a studio-agents copy; convert it there). Actions minutes are out until about Nov 1, so typecheck, unit tests (24) and e2e (8) were run locally 3 times each: "CI skipped". Studio order for the rest: Role Radar, Crew Clock (intakes in their projects), then the portfolio.
 - Studio refresh (Oct 28, PR "studio refresh: agents by default"): studio-agents `sync.sh` and `install-rules.sh` applied. `.claude/agents/` now has architect plus refreshed staff-pm, qa-tdd, engineer, ux-reviewer, privacy-security, positioning; orchestrator and focus-coach kept (studio-only, synced by name). CLAUDE.md has the "Studio agents" section (chief of staff rule, table with the two studio-only rows). New: `.claude/settings.json` (SessionStart prints this file), `handoff-check.yml`, `agents-check.yml` (PR body needs an `Agents:` line; code PRs name qa-tdd), `scripts/check-agents.sh` (now part of `npm test`, so CI runs it), `scripts/check-logs.mjs` and `studio-checks.json` (log roots `scripts`, `demo`; passes, not yet wired into CI). Next: Chase reviews and merges; then consider adding `node scripts/check-logs.mjs` to `npm test`.
 - Agents by default, enforced (Oct 28): ONBOARDING section 4 and the refresh paste now point at studio-agents' `agents-check.yml` (PR body needs an `Agents:` line; code PRs must name qa-tdd) and Hearth's chief-of-staff rule. Next: Chase pastes the refresh into ccwatts, Role Radar, Energy Scanner, Charlie and Crew Clock once the studio-agents PR merges.
 - PMT-M1 is done (Oct 21): the repo holds the source of **Build Slate** and the **Near-Term Roadmap** (`apps/`), sample-data demos of both (`demo/`), generic PM templates (`templates/`) and routines (`routines/`).
@@ -63,7 +64,7 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 | `templates/ACCOUNTS.md`, `templates/architecture/` | Hearth `docs/product/ACCOUNTS.md` and `docs/architecture/README.md`, made generic (no ids, emails or Hearth names) | Oct 27 |
 | `routines/night-shift.md` | The night-shift paste (Role Radar project), with the owner's goal made a placeholder | Oct 21 |
 | `routines/shared-doc-inbox/` | The career-docs pending inbox and `pending.py`, made generic | Oct 21 |
-| `scripts/check-private.mjs`, `.githooks/` | Role Radar repo | Oct 21 |
+| `scripts/check-private.ts` (was `.mjs`), `.githooks/` | Role Radar repo | Oct 21 |
 
 The live artifact links are in project memory (`pm-tools`), not here: this repo is public.
 

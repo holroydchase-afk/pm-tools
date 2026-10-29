@@ -4,8 +4,8 @@ import { mkdtempSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import vm from "node:vm";
-import { APPS, build, toDemo } from "../scripts/build-demo.mjs";
-import { scanText } from "../scripts/check-private.mjs";
+import { APPS, build, toDemo } from "../scripts/build-demo.ts";
+import { scanText } from "../scripts/check-private.ts";
 
 const out = build(mkdtempSync(join(tmpdir(), "pmtools-")));
 
@@ -21,7 +21,7 @@ for (const { id } of APPS) {
   });
 
   test(`${id}: seed is valid and has data`, () => {
-    const ctx = { window: {} };
+    const ctx = { window: {} as { DEMO: { key: string; seed: Record<string, object> } } };
     vm.runInNewContext(readFileSync(join(out, id, "seed.js"), "utf8"), ctx);
     assert.equal(ctx.window.DEMO.key, id);
     const cols = Object.values(ctx.window.DEMO.seed);

@@ -13,7 +13,7 @@ The product management tools Chase runs his studio with: the source of each app,
 ## Layout
 - `apps/`: the real app pages, exactly as published.
 - `demo/`: seeds and `fake-db.js`, the stand-in for the artifact database.
-- `scripts/build-demo.mjs`: builds `_site/` (what Pages serves).
+- `scripts/build-demo.ts`: builds `_site/` (what Pages serves).
 - `templates/`: generic PM docs to copy into a product repo.
 - `routines/`: night shift, the shared-doc inbox, and pointers to the privacy check.
 

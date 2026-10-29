@@ -7,7 +7,7 @@ import { createRequire } from "node:module";
 import { mkdtempSync, readFileSync, existsSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, extname } from "node:path";
-import { build } from "../../scripts/build-demo.mjs";
+import { build } from "../../scripts/build-demo.ts";
 
 const { chromium } = createRequire(import.meta.url)("playwright");
 const out = build(mkdtempSync(join(tmpdir(), "pmtools-e2e-")));

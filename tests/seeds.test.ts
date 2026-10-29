@@ -2,10 +2,15 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
-import { landing } from "../scripts/build-demo.mjs";
+import { landing } from "../scripts/build-demo.ts";
 
-const seed = (id) => {
-  const ctx = { window: {} };
+// Shape of the sample data each demo/<app>/seed.js sets on window.DEMO.
+type Doc = Record<string, any>;
+type Demo = { key: string; back: string; backLabel: string; seed: Record<string, Record<string, Doc>> };
+const sandbox = () => ({ window: {} as { DEMO: Demo } });
+
+const seed = (id: string) => {
+  const ctx = sandbox();
   vm.runInNewContext(readFileSync(`demo/${id}/seed.js`, "utf8"), ctx);
   return ctx.window.DEMO.seed;
 };
@@ -30,7 +35,7 @@ test("PMT-M2.2 Roadmap demo shows more than one board and ccwatts v1 as done", (
   const { boards, cards } = seed("roadmap");
   assert.ok(Object.keys(boards).length >= 2, "board switcher needs two boards");
   const playground = Object.values(cards).find((c) => /playground/i.test(c.title));
-  assert.equal(playground.lane, "done");
+  assert.equal(playground?.lane, "done");
 });
 
 test("PMT-M2.3 landing page links back to the portfolio at the top and names each demo", () => {
@@ -42,7 +47,7 @@ test("PMT-M2.3 landing page links back to the portfolio at the top and names eac
 
 test("PMT-M2.4 demo bar goes back to the portfolio's system page (How I keep it all moving), not the home page", () => {
   for (const id of ["build-slate", "roadmap"]) {
-    const ctx = { window: {} };
+    const ctx = sandbox();
     vm.runInNewContext(readFileSync(`demo/${id}/seed.js`, "utf8"), ctx);
     assert.equal(ctx.window.DEMO.back, "../../pm-tools.html", id);
     // The portfolio renamed "How I work" to "How I keep it all moving" (WEB-M5.2, Oct 22).
@@ -52,13 +57,13 @@ test("PMT-M2.4 demo bar goes back to the portfolio's system page (How I keep it 
 });
 
 test("PMT-M2.5 roadmap demo hides the developer schema panel", async () => {
-  const { toDemo } = await import("../scripts/build-demo.mjs");
+  const { toDemo } = await import("../scripts/build-demo.ts");
   const html = toDemo("roadmap", readFileSync("apps/roadmap.html", "utf8"));
   assert.match(html, /details\.agents\{display:none\}/);
 });
 
 // Round 2 of the recruiter-ready loop (R1-UX findings).
-const demoPage = async (id) => (await import("../scripts/build-demo.mjs")).toDemo(id, readFileSync(`apps/${id}.html`, "utf8"));
+const demoPage = async (id: string) => (await import("../scripts/build-demo.ts")).toDemo(id, readFileSync(`apps/${id}.html`, "utf8"));
 
 test("R1-UX-1/7/8 Build Slate tells the same story as the portfolio pages", () => {
   const P = seed("build-slate").projects;
@@ -111,7 +116,7 @@ test("R2-UX-4/6 demo overrides load after the app's CSS and fix lane contrast an
 });
 
 test("R2-UX-7 landing words match the apps", async () => {
-  const { landing } = await import("../scripts/build-demo.mjs");
+  const { landing } = await import("../scripts/build-demo.ts");
   const html = landing();
   assert.match(html, /five active projects/);
   assert.match(html, /Later, Next, Now and Done/);
