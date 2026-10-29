@@ -57,8 +57,9 @@ Agents only help if the session calls them. Hearth uses them best because its ma
 | Personal data, sign-in, secrets, money, location, telemetry; before a public demo, deploy or repo going public | `privacy-security` |
 | A new dependency, vendor, paid service, schema change or CI/deploy workflow; picking this project's stack rung | `architect` |
 | README, landing or portfolio copy; a name or tagline; after each milestone, the "why I built it" story | `positioning` |
+| End of any turn where Chase made a call, a plan changed or a lesson was learned (in the background) | `story-keeper` |
 
-One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-reviewer and privacy-security if users or the public will see it, positioning for any copy. Every PR body ends with `Agents: staff-pm scoped M1.2; qa-tdd red then green, 3x; ux-reviewer no P0/P1` (or why none ran). `orchestrator` and `focus-coach` are Product Studio's; don't sync them.
+One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-reviewer and privacy-security if users or the public will see it, positioning for any copy, story-keeper whenever a call or lesson is worth logging. Every PR body ends with `Agents: staff-pm scoped M1.2; qa-tdd red then green, 3x; ux-reviewer no P0/P1` (or why none ran). `orchestrator` and `focus-coach` are Product Studio's; don't sync them.
 
 ## 5. The recruiter-ready bar (definition of done for M1)
 - A recruiter on a phone with 90 seconds and a hiring manager on a laptop with 5 minutes can open it from chaseholroyd.com and understand it.
@@ -74,7 +75,7 @@ One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-rev
 - **Waiting on Chase:** put it under Blockers in HANDOFF.md as one step. Check STUDIO-STATUS first so you don't re-ask.
 
 ## 7. Story log
-Keep a private claude.ai artifact titled **"Atlas Story: &lt;project name&gt;"** (create it the first time, mining the project's history). After any notable decision, fix or pivot, especially one driven by Chase's prompting or a lesson learned, append: date, title, problem, Chase's call, decision and why, result, one-line story angle. Under 120 words, no secrets or personal data. Mirror it to `docs/STORY.md` if the repo has one. Product Studio mines these for the portfolio and LinkedIn.
+Keep a private claude.ai artifact titled **"Atlas Story: &lt;project name&gt;"** (create it the first time, mining the project's history). After any notable decision, fix or pivot, especially one driven by Chase's prompting or a lesson learned, append: date, title, problem, Chase's call, decision and why, result, one-line story angle. Under 120 words, no secrets or personal data. Mirror it to `docs/STORY.md` if the repo has one. Product Studio mines these for the portfolio and LinkedIn. The `story-keeper` agent writes the entries: the main session hands it what just happened at the end of any turn with a call, pivot, win or lesson (in the background), then appends the entry it returns to the artifact. It replies `No entry` for routine turns and never logs the same moment twice.
 
 ## 8. INTAKE block (for work Product Studio owns)
 ```
@@ -120,11 +121,11 @@ OWNERSHIP RULE: The repo decides who does the work.
 - Any other project writes an INTAKE block and Chase pastes it into the owner. It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
-STORY LOG: After any notable decision, fix or pivot (especially one driven by Chase's prompting or a lesson learned), append an entry to the private artifact "Atlas Story: <project name>": date, title, problem, Chase's call, decision and why, result, and a one-line story angle. Under 120 words, no secrets or personal data. Mirror it to docs/STORY.md if the repo has one.
+STORY LOG: At the end of any turn where I made a call, a plan changed, something broke and got fixed, or we learned a lesson, run the story-keeper agent in the background with today's date, what happened (quote me where it matters) and the titles of the last few Atlas Story entries. Append the entry it returns to the private artifact "Atlas Story: <project name>" (create it the first time); it mirrors to docs/STORY.md itself. If it returns a Memory line, save it to project memory. Skip routine turns. No secrets or personal data.
 
 STUDIO KIT: This product is part of Chase's portfolio at chaseholroyd.com. Follow https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md (repo setup, recruiter-ready bar, shifts, digest).
 
-AGENTS BY DEFAULT: Use the studio agents in .claude/agents/ without waiting to be asked: staff-pm at the start of every session or run and before any new feature; qa-tdd for the failing test first and all suites 3x before a PR is ready; engineer to build; ux-reviewer on anything a user sees and before anything goes public; privacy-security on personal data, secrets or money and before any public demo; positioning for README, portfolio copy and the story. End every PR with an "Agents:" line saying who ran and the verdict.
+AGENTS BY DEFAULT: Use the studio agents in .claude/agents/ without waiting to be asked: staff-pm at the start of every session or run and before any new feature; qa-tdd for the failing test first and all suites 3x before a PR is ready; engineer to build; ux-reviewer on anything a user sees and before anything goes public; privacy-security on personal data, secrets or money and before any public demo; positioning for README, portfolio copy and the story; story-keeper at the end of any turn with a decision or lesson. End every PR with an "Agents:" line saying who ran and the verdict.
 ```
 
 **2. First message** (new project chat, as the first message; or just run `/onboard`, which does the same):
