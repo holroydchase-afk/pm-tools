@@ -3,7 +3,7 @@
 // artifact-only tags and loads the demo's seed.js and ../fake-db.js first, so the app runs
 // on sample data kept only in the visitor's browser. Seeds (demo/<app>/seed.js) are edited
 // by hand and never written here.
-// Usage: node scripts/build-demo.mjs [outDir]   (default _site; GitHub Pages serves it at /pm-tools/)
+// Usage: node scripts/build-demo.ts [outDir]   (default _site; GitHub Pages serves it at /pm-tools/)
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -53,13 +53,13 @@ export const EDITS = {
   ],
 };
 
-export function toDemo(id, html) {
+export function toDemo(id: string, html: string): string {
   let t = html.replace(/<meta name="claude:[^"]*"[^>]*>\s*/g, "");
-  for (const [from, to] of EDITS[id] || []) {
+  for (const [from, to] of EDITS[id as keyof typeof EDITS] || []) {
     if (!t.includes(from)) throw new Error(`${id}: app changed, update EDITS (${from})`);
     t = t.replace(from, to);
   }
-  const once = (from, to) => {
+  const once = (from: string, to: string) => {
     if (!t.includes(from)) throw new Error(`${id}: page has no ${from}`);
     t = t.replace(from, to);
   };
@@ -69,7 +69,8 @@ export function toDemo(id, html) {
   return t;
 }
 
-const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const ENTITIES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
+const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ENTITIES[c]);
 
 export function landing() {
   const cards = APPS.map((a) => `<a class="card" href="${a.id}/"><h2>${esc(a.name)}</h2><p>${esc(a.blurb)}</p><span>${a.id === "build-slate" ? "Try Build Slate" : "Try the Near-Term Roadmap"}</span></a>`).join("\n");

@@ -15,4 +15,6 @@ Copy what you need into a product repo (most go in `docs/product/`; `HANDOFF.md`
 | `UAT-LOG.md` | The owner's running list from trying the product, newest first. | Builders |
 | `IDEAS.md` | The #idea inbox: logged word for word, no discussion. | Planning |
 | `LESSONS.md` | Post mortems. Each one adds a rule. | Builders |
+| `ACCOUNTS.md` | Every outside account, its login, where the name is baked in and the rename cost; the "decide the name before" list. No secrets, ever. | Claude, before any step that locks in a name |
+| `architecture/` | Technical docs for a privacy-minded engineer: README with the seven writing rules, plus system overview, data flow and threat model starters. Goes in `docs/architecture/`. | Reviewers, the white paper |
 | `PM-TOOLS.md` | Which of these a product uses, and its action items. | The owner |
