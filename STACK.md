@@ -1,6 +1,6 @@
 # Studio stack
 
-_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-26._
+_The default tech choices for every studio product, and when to pick something else. Projects link here from their instructions; change it with a PR. Last reviewed: 2026-10-29._
 
 Rule of thumb: start at the top of the ladder and climb only when the product needs it. Reuse what a sibling repo already does before adding anything new.
 
@@ -10,8 +10,8 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 | A tool only Chase uses, with saved data | claude.ai artifact with its database | Build Slate, Near-Term Roadmap, Role Radar (live) | More than one real user needs a login, or data must outlive the artifact: go to Supabase. |
 | A public page or demo | Public repo + static site on GitHub Pages, deployed by Actions from `main` | Portfolio, pm-tools demos, Role Radar and Energy Scanner demos | It needs server code or secrets: use a Supabase edge function, never a server of our own. |
 | Demo data | Sample seed in the repo, saved only in the visitor's browser (`fake-db.js`) | pm-tools and portfolio demos | Never: demos have no login, no backend, no real data. |
-| A web app with real logic | Vite + TypeScript (strict), runs in the browser | Energy Scanner | It's one page with simple logic: plain HTML + JS modules with `// @ts-check` (Role Radar, pm-tools). |
-| A developer tool | Node CLI in TypeScript, npm workspaces, tsup build | ccwatts | It's a one-off script: a plain Node `.mjs` file in `scripts/`. |
+| A web app with real logic | Vite + TypeScript (strict), runs in the browser | Energy Scanner | It's one page with simple logic: plain HTML + JS modules, moving to TypeScript compiled to the same classic scripts (Role Radar, Crew Clock: in progress, Oct 29). |
+| A developer tool | Node CLI in TypeScript, npm workspaces, tsup build | ccwatts | It's a one-off script or a test: a `.ts` file that Node 22 runs directly (type stripping, erasable syntax only), checked by `tsc` with `noEmit` (pm-tools, Oct 29). |
 | A mobile app or multi-user product | Expo (React Native) + Supabase (Postgres with row-level security, edge functions) | Hearth | A responsive web page would do: use a static site or Vite instead. |
 | An API for an app's own data | Supabase's REST and RPC API from Postgres, with row-level security (Chase, 2026-10-26) | Hearth | Screens need nested reads across many tables in one request (a feed, a profile with its photos and comments): turn on Supabase's built-in GraphQL (`pg_graphql`) for those reads. It uses the same tables and RLS, so no new server. A hand-built GraphQL server only if one client must combine several backends. |
 | Content pages | Generated HTML from a small script (`tools/build.py`) | Portfolio | Over ~20 pages or a blog: consider Astro. Not before. |
@@ -48,7 +48,7 @@ Pick the lightest form that works, in this order:
 |---|---|---|---|---|---|
 | Studio agents, session rules, handoff-check | All repos but Hearth, Charlie, Crew Clock | Charlie, Crew Clock | Copied files + sync (done) | studio-agents `sync.sh`, `install-rules.sh` | Done; `/onboard` adds new repos |
 | CI, Pages deploy gated on CI, dependabot, README badge | pm-tools, portfolio, Role Radar, ccwatts, Energy Scanner, Crew Clock (each hand-written) | Charlie, Crew Clock (gate fix) | Copied files + sync: `templates/repo/` with one `ci.yml` per stack (plain JS, TypeScript, Python), a `pages.yml` that waits for CI, `dependabot.yml` | studio-agents, applied by `/onboard` | **Now** (5+ users already) |
-| Privacy check (`check-private.mjs`, pre-commit hook) | Role Radar, pm-tools | Crew Clock (artifact links in a public HANDOFF), Charlie (keys, SEC email) | Copied file + sync, with each repo's extra patterns in a small config file | studio-agents `scripts/` | **Now** |
+| Privacy check (`check-private`, pre-commit hook) | Role Radar, pm-tools | Crew Clock (artifact links in a public HANDOFF), Charlie (keys, SEC email) | Copied file + sync, with each repo's extra patterns in a small config file | studio-agents `scripts/` | **Now** |
 | Demo kit (`fake-db.js`, seed file, demo bar with "Sample data" and a back link) | pm-tools, portfolio | Crew Clock demo, Charlie static demo | Copied files + sync | pm-tools `demo/` is canonical; the portfolio copy retires with its last old demo | When Crew Clock or Charlie builds its public demo |
 | Supabase starter (project setup, migrations folder, auth, RLS policy patterns and RLS tests, edge-function relay) | Hearth | Crew Clock (needs Supabase before its crew beta) | Template folder (migrations, auth, RLS patterns and tests, edge-function skeleton) plus an RLS checklist in the privacy-security agent | studio-agents `templates/supabase/`; Hearth adds its proven patterns after the beta | **Now** (Chase, Oct 24: Crew Clock connects Supabase next) |
 | Encrypted messenger | Hearth | Crew Clock | Shared package (STU-DEC-1) | Hearth repo, then its own repo | After Nov 22 beta |
