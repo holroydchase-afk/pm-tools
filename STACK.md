@@ -10,7 +10,7 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 | A tool only Chase uses, with saved data | claude.ai artifact with its database | Build Slate, Near-Term Roadmap, Role Radar (live) | More than one real user needs a login, or data must outlive the artifact: go to Supabase. |
 | A public page or demo | Public repo + static site on GitHub Pages, deployed by Actions from `main` | Portfolio, pm-tools demos, Role Radar and Energy Scanner demos | It needs server code or secrets: use a Supabase edge function, never a server of our own. |
 | Demo data | Sample seed in the repo, saved only in the visitor's browser (`fake-db.js`) | pm-tools and portfolio demos | Never: demos have no login, no backend, no real data. |
-| A web app with real logic | Vite + TypeScript (strict), runs in the browser | Energy Scanner | It's one page with simple logic: plain HTML + JS modules, moving to TypeScript compiled to the same classic scripts (Role Radar, Crew Clock: in progress, Oct 29). |
+| A web app with real logic | Vite + TypeScript (strict), runs in the browser | Energy Scanner | It's one page with simple logic: plain HTML + JS modules, written in strict TypeScript and bundled by esbuild to the same classic scripts (`npm run build`), tests as `.test.ts` run by Node 22 (Role Radar: done Oct 29; Crew Clock: in progress). |
 | A developer tool | Node CLI in TypeScript, npm workspaces, tsup build | ccwatts | It's a one-off script or a test: a `.ts` file that Node 22 runs directly (type stripping, erasable syntax only), checked by `tsc` with `noEmit` (pm-tools, Oct 29). |
 | A mobile app or multi-user product | Expo (React Native) + Supabase (Postgres with row-level security, edge functions) | Hearth | A responsive web page would do: use a static site or Vite instead. |
 | An API for an app's own data | Supabase's REST and RPC API from Postgres, with row-level security (Chase, 2026-10-26) | Hearth | Screens need nested reads across many tables in one request (a feed, a profile with its photos and comments): turn on Supabase's built-in GraphQL (`pg_graphql`) for those reads. It uses the same tables and RLS, so no new server. A hand-built GraphQL server only if one client must combine several backends. |
@@ -30,7 +30,7 @@ Rule of thumb: start at the top of the ladder and climb only when the product ne
 
 ## Don't add (until a real need shows up)
 - A backend, login or database for a demo.
-- Framework ports (React, Next, full TypeScript rewrites) of working plain-JS apps.
+- Framework ports (React, Next) of working plain-JS apps. Moving plain JS to TypeScript is the exception: it's the studio standard since Oct 29.
 - Monorepo or team tooling: Turborepo, Nx, Docker, Storybook, changesets, CodeQL, 100% coverage targets.
 - Sentry, analytics or tracking.
 - A new language, host or paid service. If one seems needed, ask Chase with a one-line reason and the cost.
