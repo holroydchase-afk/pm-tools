@@ -2,7 +2,7 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-29 (security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-29 (shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
 ## Security audit (Oct 24)
 - All 9 studio repos audited (report: `docs/security/2026-10-24-audit.md`): no secrets in any history, no personal data on public repos. Security kit from studio-agents installed here (`security.yml`, `codeql.yml`, `dependabot.yml`, `privacy-scan.py`, `SECURITY.md`); `.env` added to `.gitignore`. INTAKE for the product projects: `docs/intakes/security-kit.md`. STUDIO-STATUS lists Chase's settings toggles.
@@ -43,6 +43,12 @@ ux-reviewer and qa-tdd reviewed the demos; the ranked list is in the portfolio r
 - Both repos (public: `charlie`, `crew-clock`) are in STUDIO-STATUS's ownership table, so the morning digest covers them. Planning codes CHL and CRW.
 - Live Build Slate: the Stock Agent card became Charlie (stage Building); Crew Clock added (Building). The slate now holds 6 cards against its goal of 5. The demo seed is unchanged until either has a recruiter-ready demo.
 - Onboarding gaps found: neither repo has CLAUDE.md, `.claude/agents/`, handoff-check, dependabot or a PLAN.md with planning IDs. Charlie also lacks CI, a LICENSE and Pages (it's a Python server). Crew Clock has CI and Pages, but Pages deploys on push without waiting for CI, and its HANDOFF.md links two claude.ai artifacts in a public repo. Tailored first-message pastes went to Chase in the intake thread.
+
+## Shared messenger library (Oct 23, STU-DEC-1)
+- Hearth's intake asked whether its encrypted messenger should be reusable or its own product. Decision, logged in `DECISIONS.md` (new studio decision log): a shared library, `packages/messenger` inside the Hearth repo, extracted after Hearth's Nov 22 beta. Not its own product for now.
+- Hearth's project does the extraction; Product Studio only decides and schedules. Hearth started the extraction on Oct 26, ahead of the beta (Chase), so the go-ahead INTAKE in `docs/intakes/hearth-messenger-extraction.md` is reference only and needs no paste. A post-beta card is on the live roadmap (new Studio board).
+- Second user (Chase, Oct 23): Crew Clock, then others. Crew Clock's integration is its own intake, after Hearth's extraction.
+- License (Chase, Oct 26): AGPL-3.0. Chase owns the copyright, so his own products can use it under any terms and it can be loosened later. Recorded in STU-DEC-1, the Hearth intake and STUDIO-STATUS.
 
 ## Stack check (Oct 26)
 - Chase asked whether TypeScript, React Native, GraphQL and YAML should be the stack. Repo check: TypeScript in ccwatts and Energy Scanner, `@ts-check` JS in Role Radar and pm-tools, Expo/React Native in Hearth, YAML for workflows and Role Radar's `criteria.yaml`, no GraphQL. `STACK.md` now has an API row: Supabase REST/RPC by default, Supabase's built-in GraphQL (`pg_graphql`) when screens need nested reads across many tables (Chase, Oct 26: keep GraphQL as an option).

@@ -28,6 +28,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 
 **Studio setup**
 - Oct 24: security audit of all 9 repos. No leaked secrets in any history (gitleaks) and no personal data on public repos or the site. Security kit (gitleaks, privacy scan, dependency review, CodeQL, Dependabot) built in studio-agents; product projects install it from [docs/intakes/security-kit.md](docs/intakes/security-kit.md).
+- Oct 23: Hearth's messenger becomes a shared library, not its own product (pm-tools `DECISIONS.md` STU-DEC-1). Hearth's project is extracting it into `packages/messenger` now (started Oct 26, ahead of the Nov 22 beta). Crew Clock is the second user (Chase, Oct 23), then others. License: AGPL-3.0 (Chase, Oct 26).
 - Oct 23: Charlie (CHL) and Crew Clock (CRW) taken in: added to the ownership table below, the live Build Slate (Charlie replaces the Stock Agent card; Crew Clock added) and the product inventory. Both repos are public and still need their `M0.1: studio setup` PR.
 - Oct 23: new-project onboarding kit (pm-tools docs/ONBOARDING.md), stack guide (STACK.md, #15) and agents used by default (studio-agents #7) merged.
 - Shared agents (studio-agents) are merged into ccwatts, Role Radar and Energy Scanner. Session rules (HANDOFF hook, handoff-check workflow) are in those three and the portfolio.
