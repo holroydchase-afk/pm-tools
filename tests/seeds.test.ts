@@ -5,7 +5,7 @@ import vm from "node:vm";
 import { landing } from "../scripts/build-demo.ts";
 
 // Shape of the sample data each demo/<app>/seed.js sets on window.DEMO.
-type Doc = Record<string, any>;
+type Doc = Record<string, string>;
 type Demo = { key: string; back: string; backLabel: string; seed: Record<string, Record<string, Doc>> };
 const sandbox = () => ({ window: {} as { DEMO: Demo } });
 
