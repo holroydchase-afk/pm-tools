@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - run: npm ci
+      - run: npm run typecheck
       - run: npm test
       - run: npm run check:private
       - run: npm run build
@@ -31,8 +33,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      # Playwright is a CI-only dev tool here; the repo itself has no dependencies.
-      - run: npm install --no-save playwright@1.56.1 && npx playwright install --with-deps chromium
+      - run: npm ci && npx playwright install --with-deps chromium
       - run: npm run test:e2e
   deploy:
     if: github.event_name != 'pull_request'

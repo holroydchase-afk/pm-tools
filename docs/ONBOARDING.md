@@ -27,8 +27,10 @@ The full text is the project instructions paste below; it's the same in every pr
 | `CLAUDE.md` | What it is, who it's for, hard rules, stack and test commands, plus the **Studio agents** section | pm-tools `templates/CLAUDE.md` + studio-agents `templates/CLAUDE-agents.md` |
 | `HANDOFF.md` | Done, In progress, Exact next step, Decisions to review, Blockers, and **Portfolio / public presence** (see below) | pm-tools `templates/HANDOFF.md` |
 | `PLAN.md` | Milestones and tasks with [planning IDs](https://github.com/holroydchase-afk/studio-agents/blob/main/docs/planning-ids.md): `M1` outcome, `M1.1` one PR, branch `m1.1-slug`, PR `M1.1: …`. Your code is in that doc (Charlie `CHL`, Crew Clock `CRW`). `M1` is "recruiter-demoable v1". | staff-pm writes it |
+| `docs/product/ACCOUNTS.md` | Every outside account, its login, where the name is baked in, rename cost, and the "Decide the name before" list. No secrets | pm-tools `templates/ACCOUNTS.md` |
+| `docs/architecture/` | Only if the product stores or moves anyone's data: writing rules, system overview, data flow, threat model | pm-tools `templates/architecture/` |
 | `.claude/agents/` | The studio team | studio-agents `scripts/sync.sh <repo>` |
-| `.claude/settings.json`, `.github/workflows/handoff-check.yml` | Prints HANDOFF.md into every session; fails a PR that doesn't update it | studio-agents `scripts/install-rules.sh <repo>` |
+| `.claude/settings.json`, `.github/workflows/handoff-check.yml`, `scripts/check-agents.sh`, `scripts/check-logs.mjs`, `studio-checks.json` | Prints HANDOFF.md into every session; fails a PR that doesn't update it; checks the CLAUDE.md agent table against `.claude/agents/` and that no `console.*` call logs keys, URLs, emails or raw errors (set the log roots in `studio-checks.json`; run both from the test script and CI) | studio-agents `scripts/install-rules.sh <repo>` |
 | `.github/workflows/ci.yml` | On every PR: install, typecheck, test, build, privacy check. CI badge at the top of the README | STACK.md "Always" |
 | `.github/workflows/pages.yml` | Deploys the demo from `main`, only after CI passes | Copy from energy-scanner or ccwatts |
 | `.github/dependabot.yml` | npm and Actions, weekly, minor and patch grouped | STACK.md |
@@ -39,10 +41,10 @@ To read pm-tools and studio-agents, attach them read-only to the session (both a
 **HANDOFF.md "Portfolio / public presence" section** (copy this shape from ccwatts): the portfolio page URL, the live demo URL and how it deploys, what the demo data is, a link to STUDIO-STATUS, then one dated line per change to the public demo or portfolio page. The morning digest and Product Studio read this section.
 
 ## 4. Studio agents: use them by default
-Agents only help if the session calls them. Today the product repos have the agents copied in, but nothing tells a session when to use them, so they run only when a paste names them. Fix: the **Studio agents** section in every CLAUDE.md, and an `Agents:` line in every PR.
+Agents only help if the session calls them. Hearth uses them best because its main session is a **chief of staff** that delegates every piece of work instead of doing it, and CI fails when its roster drifts. Every repo gets the same: the **Studio agents** section in CLAUDE.md (studio-agents `templates/CLAUDE-agents.md`), and `agents-check.yml`, which fails a PR with no `Agents:` line or a code PR that doesn't name `qa-tdd`.
 
 **Install** (pick one; copy is the default because it works in cloud sessions with no setup and the agents are visible in the repo):
-- Copy: from a studio-agents clone, `scripts/sync.sh ../<repo>` then `scripts/install-rules.sh ../<repo>`. Re-run `sync.sh` to pick up improvements.
+- Copy: from a studio-agents clone, `scripts/sync.sh ../<repo>` (skips orchestrator and focus-coach) then `scripts/install-rules.sh ../<repo>` (HANDOFF hook, handoff-check, agents-check, check-agents.sh, check-logs.mjs). Re-run `sync.sh` to pick up improvements.
 - Plugin: add `extraKnownMarketplaces` `chase-studio` (github `holroydchase-afk/studio-agents`) and `"enabledPlugins": { "studio@chase-studio": true }` to `.claude/settings.json`.
 
 **When to use which** (delegate with the Agent tool, without waiting for Chase to ask):
@@ -53,6 +55,7 @@ Agents only help if the session calls them. Today the product repos have the age
 | Building, once the failing test exists | `engineer` |
 | Any screen, word or CLI output a user sees; before anything goes public (showcase review mode) | `ux-reviewer` |
 | Personal data, sign-in, secrets, money, location, telemetry; before a public demo, deploy or repo going public | `privacy-security` |
+| A new dependency, vendor, paid service, schema change or CI/deploy workflow; picking this project's stack rung | `architect` |
 | README, landing or portfolio copy; a name or tagline; after each milestone, the "why I built it" story | `positioning` |
 
 One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-reviewer and privacy-security if users or the public will see it, positioning for any copy. Every PR body ends with `Agents: staff-pm scoped M1.2; qa-tdd red then green, 3x; ux-reviewer no P0/P1` (or why none ran). `orchestrator` and `focus-coach` are Product Studio's; don't sync them.
@@ -139,7 +142,12 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 ```
 
 ## Refresh paste (for existing projects)
-For ccwatts, Role Radar, Energy Scanner and Hearth. Run `/onboard refresh`, or paste this as a message; add the AGENTS BY DEFAULT paragraph from paste 1 to their project instructions too.
+The same text for ccwatts, Role Radar, Energy Scanner, Charlie and Crew Clock (Hearth already has it). Paste it as a message in the project's main thread. It is a hardening change, so it fits the Polish Freeze.
 ```
-STUDIO REFRESH (Chase approved). Read https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md sections 3-6. Then, in one small PR: re-run studio-agents scripts/sync.sh (skip orchestrator and focus-coach), paste studio-agents templates/CLAUDE-agents.md into CLAUDE.md, update HANDOFF.md. From now on use the agents by default as that section says, including in scheduled runs, and end every PR with an "Agents:" line. Hearth: if the agent migration is parked until after the Nov 22 beta, only add the CLAUDE.md section. Reply in 2 lines with the PR link.
+STUDIO REFRESH (Chase approved; hardening, fits the Polish Freeze). Bring this repo's agent setup up to Hearth's. Clone holroydchase-afk/studio-agents and read its templates/CLAUDE-agents.md, then in ONE PR titled "studio refresh: agents by default":
+1. Run studio-agents scripts/sync.sh <this repo> and scripts/install-rules.sh <this repo>. Keep project-only agents; merge by hand anything install-rules reports as "kept existing".
+2. Replace the "Studio agents" section of CLAUDE.md with templates/CLAUDE-agents.md (add it if missing). Keep any project-only agents as extra rows.
+3. Add bash scripts/check-agents.sh to the test script and CI. Run all checks; CI must be green, including agents-check.
+4. Update HANDOFF.md. End the PR body with an Agents: line (this PR: staff-pm scoped; qa-tdd ran the checks 3x).
+From now on you are the chief of staff in every session and scheduled run: send each piece of work to the agent the table names (qa-tdd writes the failing test before any fix, and runs all suites 3x before a PR is ready), and never open a PR without the Agents: line. Don't merge. Reply in 2 lines with the PR link.
 ```

@@ -1,0 +1,9 @@
+{
+  "logs": {
+    "roots": [
+      "scripts",
+      "demo"
+    ],
+    "banned": []
+  }
+}
