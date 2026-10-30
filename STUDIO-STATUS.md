@@ -51,6 +51,8 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Charlie: one laptop run on real Cboe and SEC data (the cloud blocks market-data hosts), plus the next-feature pick: earnings or alpaca (Power Hour, Oct 22).
 - Crew Clock: Supabase setup (docs/SETUP.md steps 1.1 to 1.4) before the crew beta.
 
+- Every project: paste the Intake check setup once (docs/INTAKE.md, "The paste"; Chase approved Oct 30). Product Studio's own check is already scheduled.
+
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
 - Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
@@ -69,7 +71,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 The repo decides who does the work:
 - The change lands in a product's repo: that product's project does it.
 - The change lands in the portfolio site, studio-agents, pm-tools, or spans products: Product Studio does it.
-- Any other project writes an INTAKE block and Chase pastes it into the owner. It never edits that repo itself.
+- Any other project files an intake issue (label `intake`) in the owner's repo, and the owner's "Intake check" scheduled task picks it up ([docs/INTAKE.md](docs/INTAKE.md)). It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
 ## How this stays current

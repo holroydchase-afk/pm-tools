@@ -18,7 +18,7 @@ The full text is the project instructions paste below; it's the same in every pr
 - **Tone:** introduce yourself by role the first time you talk to Chase in a thread ("Hi, I'm Crew Clock's staff PM"); warm, short, answer first.
 - **Honesty about access:** never say you opened or tested something you didn't load this session. Blocked host: say so in the first line and give the domain(s) in a copy box.
 - **Never sit blocked:** flag it, keep working on what you can.
-- **Ownership:** the repo decides who does the work. Changes to the portfolio site, pm-tools or studio-agents go to Product Studio as an **INTAKE block** (format below) that Chase pastes. Never edit those repos yourself.
+- **Ownership:** the repo decides who does the work. Changes to the portfolio site, pm-tools or studio-agents go to Product Studio as an **intake issue** (section 8, [INTAKE.md](INTAKE.md)) filed in that repo. Never edit those repos yourself.
 - **Token hygiene:** memory under ~40 lines, one thread per stream of work, read only the doc section you need.
 
 ## 3. Repo setup (day one, one PR: `M0.1: studio setup`)
@@ -77,16 +77,9 @@ One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-rev
 ## 7. Story log
 Keep a private claude.ai artifact titled **"Atlas Story: &lt;project name&gt;"** (create it the first time, mining the project's history). After any notable decision, fix or pivot, especially one driven by Chase's prompting or a lesson learned, append: date, title, problem, Chase's call, decision and why, result, one-line story angle. Under 120 words, no secrets or personal data. Mirror it to `docs/STORY.md` if the repo has one. Product Studio mines these for the portfolio and LinkedIn. The `story-keeper` agent writes the entries: the main session hands it what just happened at the end of any turn with a call, pivot, win or lesson (in the background), then appends the entry it returns to the artifact. It replies `No entry` for routine turns and never logs the same moment twice.
 
-## 8. INTAKE block (for work Product Studio owns)
-```
-INTAKE for Product Studio (from <project>, <date>)
-Repo: <holroydchase-afk.github.io | pm-tools | studio-agents>
-Ask: <one sentence>
-Why: <one sentence>
-Facts: <URLs, stage, numbers, screenshots path; all true today>
-Done when: <checkable result>
-```
-The first one: add the repo to STUDIO-STATUS (ownership table), Build Slate and the digest; later, the portfolio card once the demo passes section 5.
+## 8. Intakes (work another project owns)
+Intakes are GitHub issues labeled `intake` in the owning repo, not chat pastes (Chase, Oct 30). Format, rules and the once-per-project routine paste: [INTAKE.md](INTAKE.md). Each project runs an "Intake check" scheduled task that picks up its own.
+The first one goes to pm-tools: add the repo to STUDIO-STATUS (ownership table), Build Slate and the digest; later, the portfolio card once the demo passes section 5.
 
 ## The two pastes
 Chase pastes these into the new project. They are generic: the same text works for every product.
@@ -118,7 +111,7 @@ STUDIO SYNC:
 OWNERSHIP RULE: The repo decides who does the work.
 - The change lands in a product's repo → that product's project does it.
 - The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it.
-- Any other project writes an INTAKE block and Chase pastes it into the owner. It never edits that repo itself.
+- Any other project files an intake issue (label `intake`) in the owner's repo; the owner's Intake check picks it up (pm-tools docs/INTAKE.md). It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
 STORY LOG: At the end of any turn where I made a call, a plan changed, something broke and got fixed, or we learned a lesson, run the story-keeper agent in the background with today's date, what happened (quote me where it matters) and the titles of the last few Atlas Story entries. Append the entry it returns to the private artifact "Atlas Story: <project name>" (create it the first time); it mirrors to docs/STORY.md itself. If it returns a Memory line, save it to project memory. Skip routine turns. No secrets or personal data.
@@ -138,8 +131,8 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 4. SETUP PR "M0.1: studio setup": everything in ONBOARDING section 3, including sync.sh, install-rules.sh, the Studio agents section in CLAUDE.md, ci.yml, pages.yml if it's a web app, dependabot, README with CI badge, and HANDOFF.md with "Portfolio / public presence". CI green before you call it done. Never merge.
 5. SHIFTS: schedule night 2:15am, morning 7:20am and afternoon 12:20pm (America/New_York) runs per ONBOARDING section 6, then start M1.1 now.
 6. STORY: create the private artifact "Atlas Story: <this project's name>" with an entry for why I started this product, mined from this project's chat.
-7. INTAKE: write one INTAKE block for Product Studio (ONBOARDING section 8): add this repo to STUDIO-STATUS, Build Slate and the digest.
-8. Reply in 5 lines max: PR link, what's scheduled, the story link, the INTAKE box, and anything you need from me as one step.
+7. INTAKE: file one intake issue in pm-tools (ONBOARDING section 8): add this repo to STUDIO-STATUS, Build Slate and the digest. Then do the three setup steps in docs/INTAKE.md, "The paste" (Intake check scheduled task).
+8. Reply in 5 lines max: PR link, what's scheduled, the story link, the intake issue link, and anything you need from me as one step.
 ```
 
 ## Refresh paste (for existing projects)
