@@ -6,7 +6,7 @@ The product management tools Chase runs his studio with: the source of each app,
 - **This repo is PUBLIC.** Never commit real data from the live apps (Build Slate projects, roadmap cards, notes), personal data, emails, phone numbers, or private links. That includes claude.ai artifact links and database or trigger ids; those live in project memory, not here. `npm run check:private` enforces the patterns; run it before every push (`npm run hooks` installs it as a pre-commit hook).
 - **The live apps hold Chase's real data. Keep them working.** `apps/*.html` are copies of the live artifact pages. Change an app here first, test the demo, then republish the same page to the live artifact without touching its database or capabilities. Never write to a live app's database from this repo.
 - Demo seeds (`demo/<app>/seed.js`) are sample data: a scrubbed snapshot with private links and notes removed, or made up. Never paste live data into them.
-- Never merge to `main`, force-push, rewrite history or delete branches. Never deploy by hand; Pages deploys from `main` only.
+- Never force-push, rewrite history or delete branches. Never deploy by hand; Pages deploys from `main` only, so a PR that changes `apps/`, `demo/` or the demo build waits for Chase's go. Other PRs (docs, templates, routines, tests) merge on green, oldest first (Chase, Oct 31).
 - Keep `HANDOFF.md` current in every push.
 - Run `npm test` and `npm run check:private` before every push.
 

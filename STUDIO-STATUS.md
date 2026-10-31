@@ -80,6 +80,9 @@ On each: Private vulnerability reporting → Enable, and Dependabot security upd
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
 - Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
 
+## PR queue rule (Oct 31)
+New PRs are fine; each names its owning thread and a `Merge after:` line. Threads merge their own PRs on green, oldest first, without asking Chase. The one gate: a merge that changes a live demo or live product (portfolio `main`, a public demo or live app, a release) waits for Chase, and that ask lists the repo's open PRs in merge order. Before merging #N, a thread merges older ones first or warns Chase about any it can't (with its thread). Full rule: studio-agents `docs/session-rules.md`, "Pull requests"; the PR QUEUE block in [docs/ONBOARDING.md](docs/ONBOARDING.md).
+
 ## Who owns which repo
 | Repo | Owning project |
 |---|---|
@@ -89,7 +92,7 @@ On each: Private vulnerability reporting → Enable, and Dependabot security upd
 | Hearth | Hearth |
 | charlie | Charlie |
 | crew-clock | Crew Clock |
-| holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
+| holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio (Atlas) |
 
 The repo decides who does the work:
 - The change lands in a product's repo: that product's project does it.

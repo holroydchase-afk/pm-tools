@@ -3,7 +3,7 @@
 stage: live
 goal: agent-team
 milestone: PMT-M3
-now: PMT-M3 done in this repo; portfolio PR #45 waits on Chase
+now: PR queue rule (PR QUEUE block in ONBOARDING paste, STUDIO-STATUS); portfolio PR #45 waits on Chase
 next: Product repos add the status header from their intake issues; Chase merges the portfolio PR
 waiting_on_chase:
   - Merge the portfolio Studio Console PR (a merge to main deploys the site)
@@ -13,7 +13,10 @@ blockers:
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-31 (intro by role in TONE; Studio Console PMT-M3 scoped in PLAN.md; demo banner standard DEMO-BAR: slim Demo bar with a push-down drawer; intakes as GitHub issues, docs/INTAKE.md; story-keeper agent in ONBOARDING and the project-instructions paste; STACK.md: Role Radar on TypeScript; open-PR cleanup; STUDIO-STATUS refreshed; shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-31 (PR queue rule: PR QUEUE block in the project-instructions paste and STUDIO-STATUS; intro by role in TONE; Studio Console PMT-M3 scoped in PLAN.md; demo banner standard DEMO-BAR: slim Demo bar with a push-down drawer; intakes as GitHub issues, docs/INTAKE.md; story-keeper agent in ONBOARDING and the project-instructions paste; STACK.md: Role Radar on TypeScript; open-PR cleanup; STUDIO-STATUS refreshed; shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+
+## PR queue rule (Oct 31)
+- Chase: PRs pile up across threads (Charlie had 6 to 8 open across 4) and merging them is an orchestration job. New PRs stay fine. ONBOARDING's STUDIO RULES paste gets a PR QUEUE block; STUDIO-STATUS gets a short "PR queue rule" section. Full rule in studio-agents `docs/session-rules.md` (paired PR). Chase, same day: threads merge their own PRs on green, oldest first; only a merge that changes a live demo or product waits for him. CLAUDE.md's merge line now matches (apps/demo changes still wait). Also Chase: every project calls Product Studio's chief of staff "Atlas" (OWNERSHIP RULE line in the paste, STUDIO-STATUS table). Next: Chase pastes the updated STUDIO RULES block into each project's instructions.
 
 ## qa-tdd refresh (Oct 31)
 - Synced qa-tdd from studio-agents main (#31, #33): reports end with a ```qa block, it never fixes product code, flaky is never green. `scripts/check-qa-report.mjs` validates the block; CLAUDE.md gains "Relay qa-tdd's verdict as-is". Only qa-tdd and its checker were synced; the other agents' refresh is a separate studio refresh.
