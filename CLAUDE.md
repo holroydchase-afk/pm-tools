@@ -6,7 +6,7 @@ The product management tools Chase runs his studio with: the source of each app,
 - **This repo is PUBLIC.** Never commit real data from the live apps (Build Slate projects, roadmap cards, notes), personal data, emails, phone numbers, or private links. That includes claude.ai artifact links and database or trigger ids; those live in project memory, not here. `npm run check:private` enforces the patterns; run it before every push (`npm run hooks` installs it as a pre-commit hook).
 - **The live apps hold Chase's real data. Keep them working.** `apps/*.html` are copies of the live artifact pages. Change an app here first, test the demo, then republish the same page to the live artifact without touching its database or capabilities. Never write to a live app's database from this repo.
 - Demo seeds (`demo/<app>/seed.js`) are sample data: a scrubbed snapshot with private links and notes removed, or made up. Never paste live data into them.
-- Never merge to `main`, force-push, rewrite history or delete branches. Never deploy by hand; Pages deploys from `main` only.
+- Never force-push, rewrite history or delete branches. Never deploy by hand; Pages deploys from `main` only, so a PR that changes `apps/`, `demo/` or the demo build waits for Chase's go. Other PRs (docs, templates, routines, tests) merge on green, oldest first (Chase, Oct 31).
 - Keep `HANDOFF.md` current in every push.
 - Run `npm test` and `npm run check:private` before every push.
 
@@ -33,5 +33,7 @@ The main session is Chase's **chief of staff**: it doesn't do specialist work it
 | Studio only: a portfolio, tooling, renaming or new-project ask during an application window or after the evening cutoff | `focus-coach` |
 
 **One task, in order:** staff-pm scopes it, qa-tdd writes the failing test (red), engineer builds, qa-tdd runs all suites 3x (green), then ux-reviewer and privacy-security if users or the public will see it, positioning for any copy. Review findings get IDs (`<CODE>-R<n>`, P0 to P2) and each fix gets its own failing test first.
+
+**Relay qa-tdd's verdict as-is.** When qa-tdd hands back, paste its final ```qa block verbatim into your reply and the PR body, with every QA-R ID; never summarize a flaky or red verdict as green.
 
 **The `Agents:` line (CI enforces it).** Every PR body has a line starting `Agents:` naming who ran and the verdict, for example `Agents: staff-pm scoped M1.2; qa-tdd red then green, 3x; ux-reviewer no P0/P1`. A PR that changes anything other than docs must name `qa-tdd` on that line, or say `qa-tdd skipped: <reason>`. `.github/workflows/agents-check.yml` fails the PR otherwise, and runs `scripts/check-agents.sh` so this table and `.claude/agents/` never drift. Bot PRs and titles with `[skip agents]` are exempt.

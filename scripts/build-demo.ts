@@ -4,7 +4,7 @@
 // on sample data kept only in the visitor's browser. Seeds (demo/<app>/seed.js) are edited
 // by hand and never written here.
 // Usage: node scripts/build-demo.ts [outDir]   (default _site; GitHub Pages serves it at /pm-tools/)
-import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -73,32 +73,36 @@ const ENTITIES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ENTITIES[c]);
 
 export function landing() {
-  const cards = APPS.map((a) => `<a class="card" href="${a.id}/"><h2>${esc(a.name)}</h2><p>${esc(a.blurb)}</p><span>${a.id === "build-slate" ? "Try Build Slate" : "Try the Near-Term Roadmap"}</span></a>`).join("\n");
+  // PMT-M3.5: /pm-tools/ now opens the Studio Console. The two older apps stay up as archived demos (nothing deleted).
+  const old = APPS.map((a) => `<li><a href="${a.id}/">${esc(a.name)}</a> <span class="tag">Archived</span> ${esc(a.blurb)}</li>`).join("\n");
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PM tools · Chase Holroyd</title>
-<meta name="description" content="Live demos of the product management tools behind a one-person product studio.">
+<meta http-equiv="refresh" content="0; url=console/">
+<title>Studio Console · Chase Holroyd</title>
+<meta name="description" content="The Studio Console: the goal-first page Chase uses to direct a team of AI agents.">
 <link rel="icon" href="favicon.svg">
 <style>
-:root{--bg:#F6F7F4;--fg:#1C2420;--muted:#5C6B63;--line:#D5DCD7;--accent:#2F6B4F;--card:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#121815;--fg:#E3EAE5;--muted:#9AAAA1;--line:#2C3832;--accent:#7FC6A1;--card:#1A221E}}
+:root{--bg:#F6F7F4;--fg:#1C2420;--muted:#5C6B63;--line:#D5DCD7;--accent:#2F6B4F}
+@media (prefers-color-scheme:dark){:root{--bg:#121815;--fg:#E3EAE5;--muted:#9AAAA1;--line:#2C3832;--accent:#7FC6A1}}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
 main{max-width:860px;margin:0 auto;padding:40px 16px 64px}
 h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:0 0 8px}
-.lede{color:var(--muted);max-width:60ch;margin:0 0 28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
-.card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;color:inherit;text-decoration:none}
-.card:hover{border-color:var(--accent)}.card:focus-visible{border-color:var(--accent);outline:3px solid var(--accent);outline-offset:2px}
-.card h2{margin:0;font-size:20px}.card p{margin:0;color:var(--muted)}.card span{color:var(--accent);font-weight:600;margin-top:auto}
+.lede{color:var(--muted);max-width:60ch;margin:0 0 20px}
+.btn{display:inline-block;background:var(--accent);color:var(--bg);font-weight:600;padding:12px 18px;border-radius:8px;text-decoration:none}
 .back{display:inline-block;padding:12px 0;margin-bottom:12px;font-weight:600;text-decoration:none}
+ul{padding-left:20px;color:var(--muted)}li{margin:6px 0}
+.tag{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:1px 8px}
 footer{margin-top:40px;color:var(--muted);font-size:14px}a{color:var(--accent)}
 </style></head><body><main>
 <a class="back" href="/">← Chase Holroyd</a>
-<h1>PM tools</h1>
-<p class="lede">The tools I run my product studio with, live on sample data. Anything you change stays in your browser.</p>
-<div class="grid">
-${cards}
-</div>
+<h1>Studio Console</h1>
+<p class="lede">PM tools now open the Studio Console, the goal-first page I use to direct my agent team.</p>
+<p><a class="btn" href="console/">Open the Studio Console</a></p>
+<h2>Earlier apps</h2>
+<p>The Studio Console replaced these. Their sample-data demos stay up, read as history:</p>
+<ul>
+${old}
+</ul>
 <footer><a href="https://github.com/holroydchase-afk/pm-tools">Source and templates on GitHub</a> · <a href="https://chaseholroyd.com/">chaseholroyd.com</a></footer>
 </main></body></html>
 `;
@@ -117,6 +121,12 @@ export function build(out = join(ROOT, "_site")) {
     writeFileSync(join(out, id, "index.html"), toDemo(id, readFileSync(join(ROOT, "apps", `${id}.html`), "utf8")));
   }
   writeFileSync(join(out, "index.html"), landing());
+  // Studio Console (PMT-M3.2): the page plus the sample feed as studio.json. In CI, `npm run feed`
+  // runs next and overwrites studio.json with the real feed.
+  mkdirSync(join(out, "console"), { recursive: true });
+  for (const f of ["index.html", "app.js"]) copyFileSync(join(ROOT, "console", f), join(out, "console", f));
+  copyFileSync(join(ROOT, "console", "sample-studio.json"), join(out, "console", "studio.json"));
+  cpSync(join(ROOT, "console", "fonts"), join(out, "console", "fonts"), { recursive: true }); // self-hosted, OFL (SEC-C5)
   return out;
 }
 

@@ -9,16 +9,16 @@ Without the skill, Chase pastes two blocks (see [The two pastes](#the-two-pastes
 ## 1. What you're part of
 - **A portfolio.** Chase is a senior PM job hunting. Every product is a demoable v1 shown at **chaseholroyd.com**: a recruiter or hiring manager opens it from the portfolio and it works, looks finished and tells one true story.
 - **Hosting.** Public repo `holroydchase-afk/<repo>`, GitHub Pages deployed by Actions from `main`, served at **chaseholroyd.com/&lt;repo&gt;/** with no DNS work. Stack and hosting defaults: [`STACK.md`](../STACK.md). A private repo needs a one-line reason; it still gets everything below except Pages until it has a public demo.
-- **Other projects.** ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock, and **Product Studio**, which owns the portfolio site, pm-tools and studio-agents. Projects can't see each other's chats, files or memory; shared facts live on GitHub.
+- **Other projects.** ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock, and **Product Studio** (its chief of staff is **Atlas**; call it Atlas), which owns the portfolio site, pm-tools and studio-agents. Projects can't see each other's chats, files or memory; shared facts live on GitHub.
 - **Where things stand studio-wide:** [`STUDIO-STATUS.md`](../STUDIO-STATUS.md). Read it before asking Chase anything.
 
 ## 2. Studio rules (short form)
 The full text is the project instructions paste below; it's the same in every project.
 - **Effort:** do it yourself. When Chase is truly needed, one step: an exact link, a fenced copy box with the click path, or a one-word question with your pick.
-- **Tone:** introduce yourself by role the first time you talk to Chase in a thread ("Hi, I'm Crew Clock's staff PM"); warm, short, answer first.
+- **Tone:** introduce yourself by role the first time you talk to Chase in any thread, chat or run report ("Hi Chase, I'm Crew Clock's chief of staff"); warm, short, answer first. Also in every repo's CLAUDE.md via studio-agents `templates/CLAUDE-agents.md`, so it holds even if a project's instructions are stale.
 - **Honesty about access:** never say you opened or tested something you didn't load this session. Blocked host: say so in the first line and give the domain(s) in a copy box.
 - **Never sit blocked:** flag it, keep working on what you can.
-- **Ownership:** the repo decides who does the work. Changes to the portfolio site, pm-tools or studio-agents go to Product Studio as an **INTAKE block** (format below) that Chase pastes. Never edit those repos yourself.
+- **Ownership:** the repo decides who does the work. Changes to the portfolio site, pm-tools or studio-agents go to Product Studio as an **intake issue** (section 8, [INTAKE.md](INTAKE.md)) filed in that repo. Never edit those repos yourself.
 - **Token hygiene:** memory under ~40 lines, one thread per stream of work, read only the doc section you need.
 
 ## 3. Repo setup (day one, one PR: `M0.1: studio setup`)
@@ -62,8 +62,9 @@ git clone -q --depth 1 https://github.com/holroydchase-afk/studio-agents /tmp/st
 | Personal data, sign-in, secrets, money, location, telemetry; before a public demo, deploy or repo going public | `privacy-security` |
 | A new dependency, vendor, paid service, schema change or CI/deploy workflow; picking this project's stack rung | `architect` |
 | README, landing or portfolio copy; a name or tagline; after each milestone, the "why I built it" story | `positioning` |
+| End of any turn where Chase made a call, a plan changed or a lesson was learned (in the background) | `story-keeper` |
 
-One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-reviewer and privacy-security if users or the public will see it, positioning for any copy. Every PR body ends with `Agents: staff-pm scoped M1.2; qa-tdd red then green, 3x; ux-reviewer no P0/P1` (or why none ran). `orchestrator` and `focus-coach` are Product Studio's; don't sync them.
+One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-reviewer and privacy-security if users or the public will see it, positioning for any copy, story-keeper whenever a call or lesson is worth logging. Every PR body ends with `Agents: staff-pm scoped M1.2; qa-tdd red then green, 3x; ux-reviewer no P0/P1` (or why none ran). `orchestrator` and `focus-coach` are Product Studio's; don't sync them.
 
 ## 5. The recruiter-ready bar (definition of done for M1)
 - A recruiter on a phone with 90 seconds and a hiring manager on a laptop with 5 minutes can open it from chaseholroyd.com and understand it.
@@ -79,18 +80,11 @@ One task, in order: staff-pm, qa-tdd (red), engineer, qa-tdd (green, 3x), ux-rev
 - **Waiting on Chase:** put it under Blockers in HANDOFF.md as one step. Check STUDIO-STATUS first so you don't re-ask.
 
 ## 7. Story log
-Keep a private claude.ai artifact titled **"Atlas Story: &lt;project name&gt;"** (create it the first time, mining the project's history). After any notable decision, fix or pivot, especially one driven by Chase's prompting or a lesson learned, append: date, title, problem, Chase's call, decision and why, result, one-line story angle. Under 120 words, no secrets or personal data. Mirror it to `docs/STORY.md` if the repo has one. Product Studio mines these for the portfolio and LinkedIn.
+Keep a private claude.ai artifact titled **"Atlas Story: &lt;project name&gt;"** (create it the first time, mining the project's history). After any notable decision, fix or pivot, especially one driven by Chase's prompting or a lesson learned, append: date, title, problem, Chase's call, decision and why, result, one-line story angle. Under 120 words, no secrets or personal data. Mirror it to `docs/STORY.md` if the repo has one. Product Studio mines these for the portfolio and LinkedIn. The `story-keeper` agent writes the entries: the main session hands it what just happened at the end of any turn with a call, pivot, win or lesson (in the background), then appends the entry it returns to the artifact. It replies `No entry` for routine turns and never logs the same moment twice.
 
-## 8. INTAKE block (for work Product Studio owns)
-```
-INTAKE for Product Studio (from <project>, <date>)
-Repo: <holroydchase-afk.github.io | pm-tools | studio-agents>
-Ask: <one sentence>
-Why: <one sentence>
-Facts: <URLs, stage, numbers, screenshots path; all true today>
-Done when: <checkable result>
-```
-The first one: add the repo to STUDIO-STATUS (ownership table), Build Slate and the digest; later, the portfolio card once the demo passes section 5.
+## 8. Intakes (work another project owns)
+Intakes are GitHub issues labeled `intake` in the owning repo, not chat pastes (Chase, Oct 30). Format, rules and the once-per-project routine paste: [INTAKE.md](INTAKE.md). Each project runs an "Intake check" scheduled task that picks up its own.
+The first one goes to pm-tools: add the repo to STUDIO-STATUS (ownership table), Build Slate and the digest; later, the portfolio card once the demo passes section 5.
 
 ## The two pastes
 Chase pastes these into the new project. They are generic: the same text works for every product.
@@ -105,7 +99,7 @@ EFFORT: Chase is a full-time dad with little time.
 - Pick sensible defaults and keep going. If Chase is about to waste time or money or take a risky step, say so briefly first.
 - Never sit blocked: flag the blocker, then keep working on whatever else can be done.
 
-TONE: Every agent introduces itself by role when it first talks to Chase in a thread (for example "Hi, I'm Hearth's staff PM") and stays personable and warm, never robotic.
+TONE: Every session and agent introduces itself by role the first time it talks to Chase in any thread, chat or scheduled-run report (for example "Hi Chase, I'm Charlie's chief of staff" or "Hi Chase, I'm Hearth's staff PM"), then leads with the answer. Stay personable and warm, never robotic.
 
 HONESTY ABOUT ACCESS: Never imply you opened, tested or checked a website, live page or API unless you actually loaded it in this session. If a fetch is blocked, the host isn't on the allowed list, or a tool is unavailable, say so plainly in your first line ("I couldn't reach X, so this is untested") and give Chase the fix in one copy box: the exact domain(s), one per line, plus the click path to the environment's allowed hosts. Say "verified" only for what you ran.
 
@@ -119,17 +113,25 @@ STUDIO SYNC:
 - If memory or chat disagrees with those files or with GitHub (merged PRs, deploy runs), trust GitHub and fix your memory.
 - Every commit or PR that makes progress updates HANDOFF.md in the same change. Changes to the public demo or portfolio page get a line under "Portfolio / public presence".
 
+PR QUEUE:
+- New PRs are fine: one small task each. Every PR body has the project-thread line and a "Merge after:" line (the PR it depends on, or none).
+- Merge your own PRs yourself once green, oldest first, without asking me. Close anything superseded.
+- The one gate: if a merge changes a live demo or live product (a deploy to a public site or demo, a live app, an npm/store/TestFlight release), ask me first. This replaces any "never merge" line in the repo's CLAUDE.md.
+- Before merging #N, check the repo's older open PRs and merge those first. If one is gated, red, a draft or another thread's unfinished work, tell me: "Heads up: #33 is still open (title, owned by <thread link from its PR body>). Merge 33 then 34, or just 34?" with your pick.
+- Every merge ask shows that repo's open PRs in merge order: number, title, owning thread, ready or not, so one "go" clears them.
+- Merge green Dependabot PRs yourself on your next run, oldest first.
+
 OWNERSHIP RULE: The repo decides who does the work.
 - The change lands in a product's repo → that product's project does it.
-- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it.
-- Any other project writes an INTAKE block and Chase pastes it into the owner. It never edits that repo itself.
+- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it. Product Studio is called Atlas: when I say "Atlas" I mean Product Studio, and you call it Atlas too.
+- Any other project files an intake issue (label `intake`) in the owner's repo; the owner's Intake check picks it up (pm-tools docs/INTAKE.md). It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
-STORY LOG: After any notable decision, fix or pivot (especially one driven by Chase's prompting or a lesson learned), append an entry to the private artifact "Atlas Story: <project name>": date, title, problem, Chase's call, decision and why, result, and a one-line story angle. Under 120 words, no secrets or personal data. Mirror it to docs/STORY.md if the repo has one.
+STORY LOG: At the end of any turn where I made a call, a plan changed, something broke and got fixed, or we learned a lesson, run the story-keeper agent in the background with today's date, what happened (quote me where it matters) and the titles of the last few Atlas Story entries. Append the entry it returns to the private artifact "Atlas Story: <project name>" (create it the first time); it mirrors to docs/STORY.md itself. If it returns a Memory line, save it to project memory. Skip routine turns. No secrets or personal data.
 
 STUDIO KIT: This product is part of Chase's portfolio at chaseholroyd.com. Follow https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md (repo setup, recruiter-ready bar, shifts, digest).
 
-AGENTS BY DEFAULT: Use the studio agents in .claude/agents/ without waiting to be asked: staff-pm at the start of every session or run and before any new feature; qa-tdd for the failing test first and all suites 3x before a PR is ready; engineer to build; ux-reviewer on anything a user sees and before anything goes public; privacy-security on personal data, secrets or money and before any public demo; positioning for README, portfolio copy and the story. End every PR with an "Agents:" line saying who ran and the verdict.
+AGENTS BY DEFAULT: Use the studio agents in .claude/agents/ without waiting to be asked: staff-pm at the start of every session or run and before any new feature; qa-tdd for the failing test first and all suites 3x before a PR is ready; engineer to build; ux-reviewer on anything a user sees and before anything goes public; privacy-security on personal data, secrets or money and before any public demo; positioning for README, portfolio copy and the story; story-keeper at the end of any turn with a decision or lesson. End every PR with an "Agents:" line saying who ran and the verdict.
 ```
 
 **2. First message** (new project chat, as the first message; or just run `/onboard`, which does the same):
@@ -139,11 +141,11 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 1. Read https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md end to end (attach holroydchase-afk/pm-tools and holroydchase-afk/studio-agents read-only, or clone them; both are public). Then read STUDIO-STATUS.md there.
 2. REPO: if this project has a repo attached, use it. If not, give me one copy box: the repo name (public, MIT, no README) with the link https://github.com/new, plus the click path to attach it in this project's settings. Meanwhile do steps 3 and 6 in project files, and push them once the repo exists.
 3. SCOPE: have staff-pm write PLAN.md (M1 = recruiter-demoable v1, tasks M1.1 onward with done-criteria, using this product's code from planning-ids.md) and the CLAUDE.md hard rules. privacy-security reviews the rules for this product's risks (personal data, money, location, public repo).
-4. SETUP PR "M0.1: studio setup": everything in ONBOARDING section 3, including sync.sh, install-rules.sh, the Studio agents section in CLAUDE.md, ci.yml, pages.yml if it's a web app, dependabot, README with CI badge, and HANDOFF.md with "Portfolio / public presence". CI green before you call it done. Never merge.
+4. SETUP PR "M0.1: studio setup": everything in ONBOARDING section 3, including sync.sh, install-rules.sh, the Studio agents section in CLAUDE.md, ci.yml, pages.yml if it's a web app, dependabot, README with CI badge, and HANDOFF.md with "Portfolio / public presence". CI green before you call it done. Merge it on green unless it changes a live demo or product (PR QUEUE).
 5. SHIFTS: schedule night 2:15am, morning 7:20am and afternoon 12:20pm (America/New_York) runs per ONBOARDING section 6, then start M1.1 now.
 6. STORY: create the private artifact "Atlas Story: <this project's name>" with an entry for why I started this product, mined from this project's chat.
-7. INTAKE: write one INTAKE block for Product Studio (ONBOARDING section 8): add this repo to STUDIO-STATUS, Build Slate and the digest.
-8. Reply in 5 lines max: PR link, what's scheduled, the story link, the INTAKE box, and anything you need from me as one step.
+7. INTAKE: file one intake issue in pm-tools (ONBOARDING section 8): add this repo to STUDIO-STATUS, Build Slate and the digest. Then do the three setup steps in docs/INTAKE.md, "The paste" (Intake check scheduled task).
+8. Reply in 5 lines max: PR link, what's scheduled, the story link, the intake issue link, and anything you need from me as one step.
 ```
 
 ## Refresh paste (for existing projects)

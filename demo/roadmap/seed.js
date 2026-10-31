@@ -1,8 +1,9 @@
 /* Sample data for the demo. */
 window.DEMO = {
  "key": "roadmap",
+ "name": "Near-Term Roadmap",
  "back": "../../pm-tools.html",
- "backLabel": "← How I keep it all moving",
+ "backLabel": "← Studio Console",
  "seed": {
   "boards": {
    "ccwatts": {
