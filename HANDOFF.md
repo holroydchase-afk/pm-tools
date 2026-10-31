@@ -2,7 +2,15 @@
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
-Updated: 2026-10-30 (intakes as GitHub issues, docs/INTAKE.md; story-keeper agent in ONBOARDING and the project-instructions paste; STACK.md: Role Radar on TypeScript; open-PR cleanup; STUDIO-STATUS refreshed; shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+Updated: 2026-10-31 (demo banner standard DEMO-BAR: slim Demo bar with a push-down drawer; intakes as GitHub issues, docs/INTAKE.md; story-keeper agent in ONBOARDING and the project-instructions paste; STACK.md: Role Radar on TypeScript; open-PR cleanup; STUDIO-STATUS refreshed; shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+
+## Demo banner standard (Oct 31, DEMO-BAR)
+- Chase: the demo banners looked funky; wanted a slim "Demo" bar with a more-info indicator that expands, standard copy, and controls that fit each product's design system. Spec: `docs/DEMO-BANNER.md` (push-down drawer chosen over a modal; standard copy; tokens; accessibility; done-when list).
+- Built in `demo/fake-db.js` for Build Slate and the roadmap: `← Portfolio` link, outlined Demo badge, "Sample data" and Details ⌄ in a 44px bar drawn in each app's own tokens; the drawer has the standard copy, Reset demo (asks first, says "Sample data restored" after) and the full back link. Seeds gained `name`. ux-reviewer: old bar 4/10, new 7/10 before DEMO-R1..R6, all fixed. e2e: DEMO-BAR and DEMO-R cases (16 total).
+- The same `fake-db.js` was copied to holroydchase-afk.github.io `demo/` (the unlinked Energy Scanner snapshot).
+- Intakes filed for the product-owned demos (Role Radar, Energy Scanner, ccwatts, Hearth, Charlie, Crew Clock); each product applies the spec in its own design system.
+- CI: `ubuntu-latest` moved to Ubuntu 26.04, where Playwright 1.56.1 can't install Chromium, so the e2e job (which gates the Pages deploy) failed on every PR. pages.yml pins e2e to `ubuntu-24.04`; drop the pin when Playwright is bumped.
+- Next: Chase merges; then products pick up their intakes.
 
 ## Intakes as GitHub issues (Oct 30)
 - Chase approved routing cross-project intakes through GitHub instead of chat pastes. `docs/INTAKE.md` has the issue format (label `intake`, filed in the owning repo), the pick-up rules and the once-per-project paste that schedules an "Intake check" (4x a day, stops at once when nothing is open). ONBOARDING section 8 and the ownership rule in STUDIO-STATUS and the project-instructions paste now point at it.

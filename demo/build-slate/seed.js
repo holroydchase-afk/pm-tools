@@ -1,6 +1,7 @@
 /* Sample data for the demo. */
 window.DEMO = {
  "key": "build-slate",
+ "name": "Build Slate",
  "back": "../../pm-tools.html",
  "backLabel": "← How I keep it all moving",
  "seed": {
