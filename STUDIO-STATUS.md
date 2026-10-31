@@ -80,6 +80,9 @@ On each: Private vulnerability reporting → Enable, and Dependabot security upd
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
 - Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
 
+## PR queue rule (Oct 31)
+New PRs are fine, but each names its owning thread and a `Merge after:` line; the thread that opens a PR drives it to merged or closed; before merging #N a thread warns Chase about any older open PR in that repo (with its thread) and merges oldest first; every merge ask lists the repo's open PRs in merge order. Full rule: studio-agents `docs/session-rules.md`, "Pull requests". It's the PR QUEUE block in the project-instructions paste ([docs/ONBOARDING.md](docs/ONBOARDING.md)).
+
 ## Who owns which repo
 | Repo | Owning project |
 |---|---|

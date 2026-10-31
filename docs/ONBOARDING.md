@@ -108,6 +108,13 @@ STUDIO SYNC:
 - If memory or chat disagrees with those files or with GitHub (merged PRs, deploy runs), trust GitHub and fix your memory.
 - Every commit or PR that makes progress updates HANDOFF.md in the same change. Changes to the public demo or portfolio page get a line under "Portfolio / public presence".
 
+PR QUEUE:
+- New PRs are fine: one small task each. Every PR body has the project-thread line and a "Merge after:" line (the PR it depends on, or none).
+- You own the PRs you open: drive each to merged or closed, and close anything superseded.
+- Before merging #N, or asking me to, check the repo's other open PRs. If an older one is open, tell me first: "Heads up: #33 is still open (title, owned by <thread link from its PR body>). Merge 33 then 34, or just 34?" with your pick. Merge oldest first, each on green.
+- Every merge ask shows that repo's open PRs in merge order: number, title, owning thread, ready or not.
+- Merge green Dependabot PRs yourself on your next run, oldest first.
+
 OWNERSHIP RULE: The repo decides who does the work.
 - The change lands in a product's repo → that product's project does it.
 - The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it.
