@@ -118,7 +118,7 @@ PR QUEUE:
 
 OWNERSHIP RULE: The repo decides who does the work.
 - The change lands in a product's repo → that product's project does it.
-- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it. Its chief of staff is called Atlas: refer to Product Studio as Atlas.
+- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it. Product Studio is called Atlas: when I say "Atlas" I mean Product Studio, and you call it Atlas too.
 - Any other project files an intake issue (label `intake`) in the owner's repo; the owner's Intake check picks it up (pm-tools docs/INTAKE.md). It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
