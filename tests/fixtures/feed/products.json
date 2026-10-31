@@ -1,0 +1,86 @@
+[
+  {
+    "repo": "pm-tools",
+    "name": "PM tools",
+    "code": "PMT",
+    "handoffFile": "handoff-pm-tools.md",
+    "runLogFiles": {
+      "claude/demo-bar": "runlogs/pm-tools/claude-demo-bar.log",
+      "claude/feed-builder": "runlogs/pm-tools/claude-feed-builder.log",
+      "claude/old-polish": "runlogs/pm-tools/claude-old-polish.log"
+    },
+    "intake": [{ "number": 61, "title": "Studio Console status header" }],
+    "prs": [
+      {
+        "number": 50, "title": "PMT-M3.1: Studio Console feed builder", "draft": true, "author": "sample-builder",
+        "updatedAt": "2026-10-31T09:00:00Z", "checks": "pending", "branch": "claude/feed-builder",
+        "body": "Sentinel body PMT50: the feed builder reads recorded fixtures only.\n\nAgents: staff-pm scoped PMT-M3; qa-tdd red"
+      },
+      {
+        "number": 48, "title": "DEMO-BAR: slim demo bar with a push-down drawer", "draft": false, "author": "sample-builder",
+        "updatedAt": "2026-10-30T23:00:00Z", "checks": "success", "branch": "claude/demo-bar",
+        "body": "Sentinel body PMT48: the drawer opens below the slim bar.\n\nAgents: staff-pm scoped DEMO-BAR; qa-tdd red then green, 3x; engineer built; ux-reviewer no P0/P1; privacy-security skipped: no data change"
+      },
+      {
+        "number": 47, "title": "studio refresh: agents by default", "draft": false, "author": "sample-builder",
+        "updatedAt": "2026-10-31T10:00:00Z", "checks": "none", "branch": "claude/studio-refresh",
+        "body": "Sentinel body PMT47: refreshes the agent table with no Agents line at all."
+      }
+    ]
+  },
+  {
+    "repo": "ccwatts",
+    "name": "ccwatts",
+    "code": "CCW",
+    "handoffFile": "handoff-ccwatts.md",
+    "runLogFiles": {
+      "claude/pace-spike": "runlogs/ccwatts/claude-pace-spike.log"
+    },
+    "intake": [],
+    "prs": [
+      {
+        "number": 72, "title": "CCW-M4.1: Pace spike", "draft": false, "author": "sample-builder",
+        "updatedAt": "2026-10-30T06:00:00Z", "checks": "success", "branch": "claude/pace-spike",
+        "body": "Sentinel body CCW72: pace estimates come from session length only.\n\nAgents: staff-pm scoped CCW-M4.1; qa-tdd red then green, 3x; engineer built; positioning named the pace copy"
+      },
+      {
+        "number": 71, "title": "CCW-M4.0: Pace burnout tracker notes", "draft": true, "author": "sample-builder",
+        "updatedAt": "2026-10-29T08:00:00Z", "checks": "none", "branch": "claude/pace-notes",
+        "body": "Sentinel body CCW71: notes for a tracker nobody scoped yet.\n\nAgents: qa-tdd skipped: notes only"
+      },
+      {
+        "number": 70, "title": "Bump vitest from 3.2.0 to 3.2.4", "draft": false, "author": "dependabot[bot]",
+        "updatedAt": "2026-10-28T04:00:00Z", "checks": "failure", "branch": "dependabot/npm_and_yarn/vitest-3.2.4",
+        "body": "Sentinel body CCW70: bumps vitest with release notes and commits."
+      },
+      {
+        "number": 69, "title": "Bump zod from 4.1.0 to 4.1.5", "draft": false, "author": "dependabot[bot]",
+        "updatedAt": "2026-10-28T04:05:00Z", "checks": "success", "branch": "dependabot/npm_and_yarn/zod-4.1.5",
+        "body": "Sentinel body CCW69: bumps zod with release notes and commits."
+      }
+    ]
+  },
+  {
+    "repo": "role-radar",
+    "name": "Role Radar",
+    "code": "RR",
+    "handoffFile": "handoff-role-radar.md",
+    "runLogFiles": {
+      "claude/rr-demo-bar": "runlogs/role-radar/claude-rr-demo-bar.log",
+      "claude/rr-evals": "runlogs/role-radar/claude-rr-evals.log"
+    },
+    "intake": [{ "number": 59, "title": "MCP server" }, { "number": 62, "title": "Demo bar standard" }],
+    "prs": [
+      {
+        "number": 63, "title": "RR-M2.3: Demo bar", "draft": false, "author": "sample-builder",
+        "updatedAt": "2026-10-30T10:00:00Z", "checks": "failure", "branch": "claude/rr-demo-bar",
+        "body": "Sentinel body RR63: the demo bar uses the radar green tokens.\n\nAgents: staff-pm scoped RR-M2.3; qa-tdd red then green, 3x; engineer built; ux-reviewer 8/10"
+      },
+      {
+        "number": 64, "title": "AGT-EV1: Role Radar scoring evals", "draft": true, "author": "sample-builder",
+        "updatedAt": "2026-10-30T13:00:00Z", "checks": "pending", "branch": "claude/rr-evals",
+        "body": "Sentinel body RR64: twelve scoring evals on sample postings.\n\nAgents: architect picked node:test; qa-tdd red"
+      }
+    ]
+  }
+]
