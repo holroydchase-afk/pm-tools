@@ -43,9 +43,14 @@ To read pm-tools and studio-agents, attach them read-only to the session (both a
 ## 4. Studio agents: use them by default
 Agents only help if the session calls them. Hearth uses them best because its main session is a **chief of staff** that delegates every piece of work instead of doing it, and CI fails when its roster drifts. Every repo gets the same: the **Studio agents** section in CLAUDE.md (studio-agents `templates/CLAUDE-agents.md`), and `agents-check.yml`, which fails a PR with no `Agents:` line or a code PR that doesn't name `qa-tdd`.
 
-**Install** (pick one; copy is the default because it works in cloud sessions with no setup and the agents are visible in the repo):
+**Install** (pick one; copy is the default because the agents are visible in the repo):
 - Copy: from a studio-agents clone, `scripts/sync.sh ../<repo>` (skips orchestrator and focus-coach) then `scripts/install-rules.sh ../<repo>` (HANDOFF hook, handoff-check, agents-check, check-agents.sh, check-logs.mjs). Re-run `sync.sh` to pick up improvements.
 - Plugin: add `extraKnownMarketplaces` `chase-studio` (github `holroydchase-afk/studio-agents`) and `"enabledPlugins": { "studio@chase-studio": true }` to `.claude/settings.json`.
+
+**Cloud project threads need one more step.** They start in the folder above the repos, so a repo's `.claude/agents/` and `.claude/settings.json` never load and the agents can't be called by name. Add this line once to the end of each project's environment setup script (Project settings → Cloud environment → gear beside the environment → Setup script). It installs every studio agent and the run-log hook at user level (studio-agents `scripts/install-cloud.sh`):
+```
+git clone -q --depth 1 https://github.com/holroydchase-afk/studio-agents /tmp/studio-agents && mkdir -p ~/.claude/agents && cp /tmp/studio-agents/plugins/studio/agents/*.md ~/.claude/agents/ && { [ -f /tmp/studio-agents/scripts/install-cloud.sh ] && bash /tmp/studio-agents/scripts/install-cloud.sh; true; } || true
+```
 
 **When to use which** (delegate with the Agent tool, without waiting for Chase to ask):
 | Moment | Agent |
