@@ -162,12 +162,19 @@ test("CON-8 Focus edge: no effort yet shows an empty bar, not NaN, and no off-go
 // ---------------------------------------------------------------- CON-9: Call Sheet
 
 const ORDER = ["failing", "merge", "decide", "idleDrafts", "inProgress", "dependabot"] as const;
+// UX-S3: Decide shows the first call per product and the first 3 from studio status (the rest sit
+// behind a "N more" button that opens the drawer and has no link).
+function shownDecide(decide: Feed["callSheet"]["decide"]) {
+  const seen = new Set<string>();
+  let studio = 0;
+  return decide.filter((d) => (d.repo === null ? studio++ < 3 : !seen.has(d.repo) && !!seen.add(d.repo)));
+}
 
 test("CON-9 Call Sheet: items sort worst first (failing, merge, decide, idle drafts, in progress, Dependabot)", () => {
   const feed = fixtureFeed();
   const html = app().renderCallSheet(feed);
   const groups = tagsWith(html, "data-group").map(({ tag }) => attr(tag, "data-group"));
-  const expected = ORDER.flatMap((k) => feed.callSheet[k].map(() => k));
+  const expected = ORDER.flatMap((k) => (k === "decide" ? shownDecide(feed.callSheet.decide) : feed.callSheet[k]).map(() => k));
   assert.deepEqual(groups, expected, "one item per feed entry, in worst-first group order");
 });
 
@@ -178,7 +185,7 @@ test("CON-9 Call Sheet: every item has one button, and it links to the PR, HANDO
   for (const h of hrefs) assert.ok(h.startsWith("https://github.com/"), `button goes to GitHub: ${h}`);
   const expected = ORDER.flatMap((k) =>
     k === "decide"
-      ? feed.callSheet.decide.map((d) => (d.repo ? `${GH}${d.repo}/blob/main/HANDOFF.md` : `${GH}pm-tools/blob/main/STUDIO-STATUS.md`))
+      ? shownDecide(feed.callSheet.decide).map((d) => (d.repo ? `${GH}${d.repo}/blob/main/HANDOFF.md` : `${GH}pm-tools/blob/main/STUDIO-STATUS.md`))
       : k === "dependabot"
         ? feed.callSheet.dependabot.map((d) => `${GH}${d.repo}/pulls?`)
         : feed.callSheet[k].map((p) => `${GH}${p.repo}/pull/${p.number}`),
