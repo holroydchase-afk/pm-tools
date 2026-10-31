@@ -10,7 +10,7 @@ Updated: 2026-10-31 (demo banner standard DEMO-BAR: slim Demo bar with a push-do
 - The same `fake-db.js` was copied to holroydchase-afk.github.io `demo/` (the unlinked Energy Scanner snapshot).
 - Intakes filed for the product-owned demos (Role Radar, Energy Scanner, ccwatts, Hearth, Charlie, Crew Clock); each product applies the spec in its own design system.
 - CI: `ubuntu-latest` moved to Ubuntu 26.04, where Playwright 1.56.1 can't install Chromium, so the e2e job (which gates the Pages deploy) failed on every PR. pages.yml pins e2e to `ubuntu-24.04`; drop the pin when Playwright is bumped.
-- Merged Oct 31 (#48). STUDIO-STATUS now has a "GitHub settings" log (Chase: log every repo and GitHub setting he changes). Dependency graph went on Oct 31, so the `dependencies` check is green again.
+- Merged Oct 31 (#48). STUDIO-STATUS now has a "GitHub settings" log (Chase: log every repo and GitHub setting he changes). Dependency graph went on for pm-tools Oct 31 (its `dependencies` check is green again); holroydchase-afk.github.io still reports it off.
 - Next: products pick up their intakes.
 
 ## Intakes as GitHub issues (Oct 30)
