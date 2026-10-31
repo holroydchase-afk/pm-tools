@@ -25,7 +25,7 @@ Success: 5 weekdays in a row Chase works from the Call Sheet without opening a H
 | Task | Status | Done when |
 |---|---|---|
 | PMT-M3.1 Feed builder: pure `scripts/feed/` core + thin fetch layer, recorded fixtures, `goals.json` | todo | CON-1 to CON-7 pass on fixtures with no network; `npm test`, typecheck, check:private green; no new runtime deps |
-| PMT-M3.2 Console UI: Focus + Call Sheet, scheduled Action (hourly + manual) writes `studio.json` into the Pages build | todo | CON-8 to CON-11 pass; ux-reviewer no P0/P1; privacy-security signs off the Action and feed |
+| PMT-M3.2 Console UI: Focus + Call Sheet, scheduled Action (hourly + manual) writes `studio.json` into the Pages build (one deploy path: pages.yml gains the cron and runs `npm run feed` after the build, no separate workflow) | todo | CON-8 to CON-11 pass; ux-reviewer no P0/P1; privacy-security signs off the Action and feed |
 | PMT-M3.3 Console UI: Build Slate (drawer), Horizon Board, Agent Roster | todo | CON-12 to CON-15 pass; ux-reviewer no P0/P1 |
 | PMT-M3.4 Status-header standard in studio-agents (template + handoff-check) and intake issues to each product repo | todo | studio-agents PR merged; one intake issue per product; CON-16 passes |
 | PMT-M3.5 Portfolio copy (holroydchase-afk.github.io) and retire the old demos | todo | Portfolio links the console; `/pm-tools/` redirects; demo seeds and the two artifact DBs marked archived (read-only), nothing deleted in M3 |
@@ -39,7 +39,7 @@ Acceptance criteria (Given/When/Then; type):
 - CON-6 (auto) Given agent-run log text, when built, then runs per agent per product for the last 7 days match the fixture's hand count.
 - CON-7 (auto) Given any fixture set, when built, then studio.json matches the Feed shape check and contains no PR body text, emails or private-repo names; check:private passes on the output.
 - CON-8 (auto) Given studio.json, when Focus loads, then 3-4 goal cards show name and measure, the effort bar sums to 100%, and off-goal items are listed separately.
-- CON-9 (auto) Given studio.json, when Call Sheet loads, then items sort worst first and each button links to the GitHub PR, issue or setting.
+- CON-9 (auto) Given studio.json, when Call Sheet loads, then items sort worst first (failing, ready to merge, decisions, drafts idle over 24h, in progress, Dependabot batch; feed order within a group) and each item's one button links to GitHub: the PR, the repo's HANDOFF.md for a decision (STUDIO-STATUS.md when it has no repo), or the repo's open Dependabot PRs.
 - CON-10 (auto) Given studio.json older than 2h, when any view loads, then a stale-feed warning shows the build time.
 - CON-11 (manual) Given the Action runs on schedule, when Chase opens the console on his phone, then the feed time is under 1h old and every view works at 390px.
 - CON-12 (auto) Given more than 5 active products, when Build Slate loads, then the WIP bar shows over cap in warning color.

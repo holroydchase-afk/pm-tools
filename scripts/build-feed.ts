@@ -17,11 +17,13 @@ const readJson = <T>(f: string): T => JSON.parse(readFileSync(join(ROOT, f), "ut
 const outFlag = process.argv.indexOf("--out");
 const out = resolve(outFlag >= 0 && process.argv[outFlag + 1] ? process.argv[outFlag + 1] : join(ROOT, "_site", "console", "studio.json"));
 
-const { input: fetched, skipped } = await fetchFeedInput(readJson<ConsoleConfig>("console.config.json"), readJson<Goal[]>("goals.json"), process.env.GITHUB_TOKEN);
+const config = readJson<ConsoleConfig>("console.config.json");
+const { input: fetched, skipped } = await fetchFeedInput(config, readJson<Goal[]>("goals.json"), process.env.GITHUB_TOKEN);
 // Feed items naming an unreadable repo or a denylisted term are dropped by core (CON-R2, CON-R4).
 const deny = loadDenylist(process.env.PRIVATE_DENYLIST);
 const agents = readdirSync(join(ROOT, ".claude", "agents")).filter((n) => n.endsWith(".md")).map((n) => n.slice(0, -3)).sort();
-const input = { ...fetched, privateRepos: [...(fetched.privateRepos ?? []), ...deny], agents };
+const repoNames = Object.fromEntries(config.products.map((p) => [p.repo, p.name]));
+const input = { ...fetched, privateRepos: [...(fetched.privateRepos ?? []), ...deny], agents, repoNames };
 for (const s of skipped) console.warn(`build-feed: skipped ${s.repo}: ${s.reason}`);
 if (input.products.length === 0) { console.error("build-feed: no repo could be read; studio.json not written."); process.exit(1); }
 

@@ -100,3 +100,31 @@ test("CON-R4 build-feed: without that term on the denylist, the same text is pub
   assert.equal(r.status, 0, r.logs);
   assert.ok(r.feed?.includes(DENIED));
 });
+
+// ---------------------------------------------------------------- PMT-M3.2 security review
+
+test("SEC-C2 fetch: only PRs by an owner, member, collaborator or Dependabot reach the feed; outsiders' PRs are dropped", async () => {
+  const prs = [
+    { number: 1, title: "Owner PR", login: "sample-owner", author_association: "OWNER" },
+    { number: 2, title: "Member PR", login: "sample-member", author_association: "MEMBER" },
+    { number: 3, title: "Collaborator PR", login: "sample-collab", author_association: "COLLABORATOR" },
+    { number: 4, title: "Bump left-pad", login: "dependabot[bot]", author_association: "NONE" },
+    { number: 5, title: "<img src=x> drive-by", login: "sample-stranger", author_association: "NONE" },
+    { number: 6, title: "First-time contributor", login: "sample-newcomer", author_association: "FIRST_TIME_CONTRIBUTOR" },
+    { number: 7, title: "Past contributor", login: "sample-contributor", author_association: "CONTRIBUTOR" },
+  ];
+  const { input } = await withStub(
+    { repos: { "pm-tools": { handoff: HANDOFF, prs } } },
+    () => fetchFeedInput(config("pm-tools"), goals),
+  );
+  assert.deepEqual(input.products[0].prs.map((p) => p.number).sort((a, b) => a - b), [1, 2, 3, 4], "allowed authors kept");
+});
+
+test("SEC-C4 fetch: every repo skipped for any reason (404, 403, 5xx, private) is added to privateRepos", async () => {
+  const { input, skipped } = await withStub(
+    { repos: { "pm-tools": { handoff: HANDOFF }, ccwatts: { status: 500 }, Hearth: { status: 403, body: RATE_LIMIT }, "family-vault": { private: true } } },
+    () => fetchFeedInput(config("pm-tools", "ccwatts", "role-radar", "Hearth", "family-vault"), goals),
+  );
+  assert.deepEqual(skipped.map((s) => s.repo).sort(), ["Hearth", "ccwatts", "family-vault", "role-radar"]);
+  assert.deepEqual([...(input.privateRepos ?? [])].sort(), ["Hearth", "ccwatts", "family-vault", "role-radar"], "500 and 403 repos count as private too");
+});

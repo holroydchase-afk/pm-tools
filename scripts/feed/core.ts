@@ -130,6 +130,16 @@ function cleaner(privateRepos: string[]) {
   return (text: string): string | null => (res.some((re) => re.test(text)) ? null : redact(text));
 }
 
+// A HANDOFF decision that is really "merge this PR", already listed under merge (UX-C3).
+const FILLER = new Set(["merge", "the", "and", "for", "pr"]);
+function duplicatesMerge(text: string, pr: CallSheetPr): boolean {
+  if (new RegExp(`#${pr.number}(?![0-9])`).test(text)) return true;
+  if (!/^merge\b/i.test(text.trim())) return false;
+  const words = (text.toLowerCase().match(/[a-z0-9]{3,}/g) ?? []).filter((w) => !FILLER.has(w));
+  const title = pr.title.toLowerCase();
+  return words.length > 0 && words.every((w) => title.includes(w));
+}
+
 // ------------------------------------------------------------------ the feed
 
 export function buildFeed(input: FeedInput, now: Date): Feed {
@@ -203,7 +213,10 @@ export function buildFeed(input: FeedInput, now: Date): Feed {
       openPrs: p.prs.length, intakes: p.intake.length,
     };
     summaries.push(s);
-    for (const text of [...s.waiting_on_chase, ...s.decisions]) callSheet.decide.push({ repo: p.repo, text });
+    const merging = callSheet.merge.filter((m) => m.repo === p.repo);
+    for (const text of [...s.waiting_on_chase, ...s.decisions]) {
+      if (!merging.some((m) => duplicatesMerge(text, m))) callSheet.decide.push({ repo: p.repo, text });
+    }
   }
 
   // STUDIO-STATUS "## Waiting on Chase": every top-level bullet.
@@ -213,7 +226,12 @@ export function buildFeed(input: FeedInput, now: Date): Feed {
   const pct = shares([...input.goals.map((g) => units.get(g.id) ?? 0), units.get(null) ?? 0]);
   return {
     builtAt: now.toISOString(),
-    goals: input.goals.map((g, i) => ({ id: g.id, name: g.name, measure: g.measure, effort: pct[i] })),
+    goals: input.goals.map((g, i) => ({
+      id: g.id, name: g.name, measure: g.measure, effort: pct[i],
+      reads: (g.match.repos ?? []).map((r) => input.repoNames?.[r] ?? input.products.find((p) => p.repo === r)?.name ?? r),
+      ...(g.status ? { status: g.status } : {}),
+      ...(g.progress ? { progress: g.progress } : {}),
+    })),
     offGoalEffort: pct[input.goals.length],
     offGoal: [...offGoalPrs, ...offGoalRuns],
     callSheet,
