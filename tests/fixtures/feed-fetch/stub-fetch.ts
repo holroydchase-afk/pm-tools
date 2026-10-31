@@ -4,7 +4,9 @@
 // Any request that is not api.github.com throws, so a test can never reach the network.
 import { readFileSync } from "node:fs";
 
-export type StubRepo = { status?: number; body?: string; private?: boolean; handoff?: string };
+// prs: open PRs as the REST API returns them (SEC-C2 reads user.login and author_association).
+export type StubPr = { number: number; title: string; login: string; author_association: string; draft?: boolean };
+export type StubRepo = { status?: number; body?: string; private?: boolean; handoff?: string; prs?: StubPr[] };
 export type Scenario = { repos: Record<string, StubRepo> };
 
 const json = (status: number, data: unknown) =>
@@ -22,7 +24,11 @@ export function stubFetch(scenario: Scenario): typeof fetch {
     if (rest === "") return json(200, { private: !!entry.private });
     if (rest === "/contents/HANDOFF.md") return entry.handoff === undefined ? json(404, { message: "Not Found" }) : new Response(entry.handoff, { status: 200 });
     if (rest.startsWith("/contents/")) return json(404, { message: "Not Found" });
-    if (rest === "/pulls" || rest === "/issues") return json(200, []);
+    if (rest === "/pulls") return json(200, (entry.prs ?? []).map((p) => ({
+      number: p.number, title: p.title, draft: !!p.draft, user: { login: p.login }, author_association: p.author_association,
+      updated_at: "2026-10-31T11:00:00Z", body: "", head: { ref: `branch-${p.number}`, sha: `sha${p.number}` },
+    })));
+    if (rest === "/issues") return json(200, []);
     if (rest.includes("/check-runs")) return json(200, { check_runs: [] });
     return json(404, { message: "Not Found" });
   }) as typeof fetch;

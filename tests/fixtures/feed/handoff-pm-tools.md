@@ -21,8 +21,8 @@ _Read this before starting work on this repo._
 - Section text that the header overrides: port the roadmap polish.
 
 ## Decisions to review
-- Whether off-goal items get a park action later.
-- Goal measures for goals.json.
+- Whether off-goal items get a park action later. Parking needs write access the console doesn't have yet.
+- Goal measures for goals.json. Each goal card shows its measure, so it should be one you can check.
 
 ## Blockers
 - Section text that the header overrides: Actions minutes.

@@ -14,4 +14,4 @@ blockers:
 -->
 
 ## Decisions to review
-- Score threshold for the shortlist (70 or 75).
+- Score threshold for the shortlist (70 or 75). Sets how many roles reach the weekday list.

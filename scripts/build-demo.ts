@@ -4,7 +4,7 @@
 // on sample data kept only in the visitor's browser. Seeds (demo/<app>/seed.js) are edited
 // by hand and never written here.
 // Usage: node scripts/build-demo.ts [outDir]   (default _site; GitHub Pages serves it at /pm-tools/)
-import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -117,6 +117,12 @@ export function build(out = join(ROOT, "_site")) {
     writeFileSync(join(out, id, "index.html"), toDemo(id, readFileSync(join(ROOT, "apps", `${id}.html`), "utf8")));
   }
   writeFileSync(join(out, "index.html"), landing());
+  // Studio Console (PMT-M3.2): the page plus the sample feed as studio.json. In CI, `npm run feed`
+  // runs next and overwrites studio.json with the real feed.
+  mkdirSync(join(out, "console"), { recursive: true });
+  for (const f of ["index.html", "app.js"]) copyFileSync(join(ROOT, "console", f), join(out, "console", f));
+  copyFileSync(join(ROOT, "console", "sample-studio.json"), join(out, "console", "studio.json"));
+  cpSync(join(ROOT, "console", "fonts"), join(out, "console", "fonts"), { recursive: true }); // self-hosted, OFL (SEC-C5)
   return out;
 }
 

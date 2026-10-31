@@ -7,7 +7,8 @@ import { mkdtempSync, readFileSync, existsSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, extname } from "node:path";
 import { build } from "../../scripts/build-demo.ts";
-import { chromium, type Browser } from "playwright";
+import { type Browser } from "playwright";
+import { launchChromium } from "./launch.ts";
 
 const out = build(mkdtempSync(join(tmpdir(), "pmtools-e2e-")));
 const TYPES: Record<string, string> = { ".html": "text/html", ".js": "text/javascript", ".svg": "image/svg+xml", ".css": "text/css" };
@@ -27,7 +28,7 @@ before(async () => {
   const addr = server.address();
   assert.ok(addr && typeof addr === "object", "server has a port");
   base = `http://localhost:${addr.port}/pm-tools/`;
-  browser = await chromium.launch();
+  browser = await launchChromium();
 });
 after(async () => { await browser?.close(); server?.close(); });
 
@@ -191,3 +192,92 @@ for (const path of ["build-slate/", "roadmap/"]) {
     await page.close();
   });
 }
+
+// PMT-M3.2 Studio Console, served with the sample feed the build copies in (built 2026-10-31T12:00Z).
+// The page clock is pinned 12h later, so the sample feed is stale on every run (CON-10).
+const SAMPLE_BUILT = "2026-10-31T12:00:00.000Z";
+async function openConsole(hash: string, width: number, offsite: string[] = []) {
+  const page = await browser.newPage({ viewport: { width, height: 844 } });
+  const errors: string[] = [];
+  page.on("request", (r) => { if (new URL(r.url()).hostname !== "localhost") offsite.push(r.url()); });
+  page.on("pageerror", (e) => errors.push(e.message));
+  page.on("console", (m) => { if (m.type() === "error" && !/fonts\.(googleapis|gstatic)\.com/.test(m.location().url)) errors.push(m.text()); });
+  await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await page.clock.setFixedTime(new Date("2026-11-01T00:00:00Z"));
+  await page.goto(base + "console/" + hash);
+  await page.waitForLoadState("networkidle");
+  return { page, errors };
+}
+
+for (const width of [390, 1280]) {
+  test(`CON-11 /pm-tools/console/ at ${width}px: Focus, Call Sheet and a later view load with no errors and no sideways scroll`, async () => {
+    const { page, errors } = await openConsole("", width);
+    const views = page.getByRole("navigation", { name: "Views" });
+    const check = async (heading: string | RegExp) => {
+      await page.getByRole("heading", { level: 1, name: heading }).waitFor();
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      assert.ok(overflow <= 0, `${heading}: scrolls sideways by ${overflow}px`);
+    };
+    await check("Focus"); // the default view
+    await views.getByRole("link", { name: /Call Sheet/ }).click();
+    await check("Call Sheet");
+    const hrefs = await page.getByRole("main").getByRole("link").evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).href));
+    assert.ok(hrefs.length > 0, "the sample Call Sheet has buttons");
+    for (const h of hrefs) assert.ok(h.startsWith("https://github.com/"), `CON-9: ${h} goes to GitHub`);
+    await views.getByRole("link", { name: /Build Slate/ }).click();
+    await page.getByText("Not built yet").waitFor(); // UX-C2: placeholder tabs say "Not built yet"
+    assert.deepEqual(errors, []);
+    await page.close();
+  });
+}
+
+test("CON-10 /pm-tools/console/: a stale sample feed says so in every view, with its build time", async () => {
+  for (const hash of ["#focus", "#calls"]) {
+    const { page, errors } = await openConsole(hash, 390);
+    await page.getByText("Sample feed").first().waitFor();
+    const alert = page.getByRole("alert");
+    await alert.waitFor();
+    assert.equal(await alert.locator(`time[datetime="${SAMPLE_BUILT}"]`).count(), 1, `${hash}: warning shows the build time`);
+    assert.deepEqual(errors, []);
+    await page.close();
+  }
+});
+
+// PMT-M3.2 review fixes.
+test("SEC-C5 /pm-tools/console/: the page requests nothing from another host (fonts are self-hosted)", async () => {
+  const offsite: string[] = [];
+  for (const hash of ["#focus", "#calls"]) {
+    const { page, errors } = await openConsole(hash, 390, offsite);
+    await page.getByRole("heading", { level: 1 }).waitFor();
+    assert.deepEqual(errors, []);
+    await page.close();
+  }
+  assert.deepEqual(offsite, [], "no third-party requests");
+});
+
+test("CON-R10 /pm-tools/console/: the stale warning also shows on a view that isn't built yet", async () => {
+  const { page, errors } = await openConsole("#slate", 390);
+  await page.getByRole("heading", { level: 1, name: "Build Slate" }).waitFor();
+  const alert = page.getByRole("alert");
+  await alert.waitFor();
+  assert.equal(await alert.locator(`time[datetime="${SAMPLE_BUILT}"]`).count(), 1);
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
+test("CON-R11 /pm-tools/console/: a feed that fails to load says so with a Retry button, and Retry loads it", async () => {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await page.clock.setFixedTime(new Date("2026-11-01T00:00:00Z"));
+  const feedUrl = /\/console\/studio\.json/;
+  await page.route(feedUrl, (r) => r.fulfill({ status: 404, body: "Not Found" }));
+  await page.goto(base + "console/#focus");
+  await page.getByRole("heading", { name: /feed didn.t load/i }).waitFor();
+  const retry = page.getByRole("button", { name: "Retry" });
+  await retry.waitFor();
+  await page.unroute(feedUrl);
+  await retry.click();
+  await page.getByRole("heading", { level: 1, name: "Focus" }).waitFor();
+  assert.equal(await page.getByRole("heading", { name: /feed didn.t load/i }).count(), 0, "the error is gone after Retry");
+  await page.close();
+});

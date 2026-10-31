@@ -50,18 +50,23 @@ async function checksFor(gh: Client, repo: string, sha: string): Promise<Checks>
   return "success";
 }
 
+const TRUSTED = new Set(["OWNER", "MEMBER", "COLLABORATOR"]);
+
 async function fetchProduct(gh: Client, owner: string, p: ConsoleConfig["products"][number]): Promise<ProductInput> {
   const repo = `${owner}/${p.repo}`;
-  type ApiPr = { number: number; title: string; draft: boolean; user: { login: string }; updated_at: string; body: string | null; head: { ref: string; sha: string } };
+  type ApiPr = { number: number; title: string; draft: boolean; user: { login: string }; author_association: string; updated_at: string; body: string | null; head: { ref: string; sha: string } };
   type ApiIssue = { number: number; title: string; pull_request?: unknown };
   const [handoff, apiPrs, issues] = await Promise.all([
     gh.file(repo, "HANDOFF.md"),
     gh.json<ApiPr[]>(`/repos/${repo}/pulls?state=open&per_page=100`),
     gh.json<ApiIssue[]>(`/repos/${repo}/issues?state=open&labels=intake&per_page=100`),
   ]);
+  // SEC-C2: only PRs from people with write access (or Dependabot) reach the feed; a stranger's
+  // PR title would otherwise be published on the console.
+  const trusted = apiPrs.filter((pr) => TRUSTED.has(pr.author_association) || pr.user.login === "dependabot[bot]");
   const prs: PullRequest[] = [];
   const runLogs: Record<string, string> = {};
-  await Promise.all(apiPrs.map(async (pr) => {
+  await Promise.all(trusted.map(async (pr) => {
     const branch = pr.head.ref;
     const [checks, log] = await Promise.all([
       checksFor(gh, repo, pr.head.sha),
@@ -91,7 +96,8 @@ export async function fetchFeedInput(config: ConsoleConfig, goals: Goal[], token
   let studioStatus = "";
   try { studioStatus = await gh.file(`${config.owner}/${config.statusRepo}`, "STUDIO-STATUS.md"); }
   catch (e) { skipped.push({ repo: `${config.statusRepo} STUDIO-STATUS.md`, reason: (e as Error).message }); }
-  // Unreadable repos may be private (GitHub answers 404 for those): keep their names out of the feed.
-  const privateRepos = skipped.filter((s) => s.reason === "private" || s.reason === "not found").map((s) => s.repo);
+  // SEC-C4: we can't tell whether a repo we couldn't read is private (GitHub answers 404 for
+  // those, and errors hide it), so every skipped repo's name is kept out of the feed.
+  const privateRepos = skipped.filter((s) => config.products.some((p) => p.repo === s.repo)).map((s) => s.repo);
   return { input: { goals, products, studioStatus, privateRepos }, skipped };
 }

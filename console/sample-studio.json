@@ -1,0 +1,359 @@
+{
+  "sample": true,
+  "builtAt": "2026-10-31T12:00:00.000Z",
+  "goals": [
+    {
+      "id": "staff-pm-role",
+      "name": "Land a Staff PM role",
+      "measure": "3 applications a weekday",
+      "effort": 22,
+      "reads": [
+        "Role Radar"
+      ],
+      "status": "Role Radar scans every weekday"
+    },
+    {
+      "id": "portfolio",
+      "name": "Portfolio recruiter-ready",
+      "measure": "Every v1 demoable from chaseholroyd.com",
+      "effort": 22,
+      "reads": [
+        "Portfolio"
+      ],
+      "status": "Demo bars rolling out to each product",
+      "progress": {
+        "done": 5,
+        "of": 7,
+        "label": "demos live"
+      }
+    },
+    {
+      "id": "hearth-beta",
+      "name": "Hearth beta on Nov 22",
+      "measure": "TestFlight beta build",
+      "effort": 0,
+      "reads": [
+        "Hearth"
+      ],
+      "status": "Waiting on Apple Developer enrollment",
+      "progress": {
+        "target": "2026-11-22",
+        "label": "to beta"
+      }
+    },
+    {
+      "id": "agent-team",
+      "name": "Agent team production grade",
+      "measure": "Evals pass for every studio agent",
+      "effort": 30,
+      "reads": [
+        "Studio agents",
+        "PM tools"
+      ],
+      "status": "First agent evals in review",
+      "progress": {
+        "done": 0,
+        "of": 8,
+        "label": "agents with evals"
+      }
+    }
+  ],
+  "offGoalEffort": 26,
+  "offGoal": [
+    {
+      "kind": "pr",
+      "repo": "ccwatts",
+      "number": 72,
+      "title": "CCW-M4.1: Pace spike"
+    },
+    {
+      "kind": "pr",
+      "repo": "ccwatts",
+      "number": 71,
+      "title": "CCW-M4.0: Pace burnout tracker notes"
+    },
+    {
+      "kind": "runs",
+      "repo": "ccwatts",
+      "count": 4
+    }
+  ],
+  "callSheet": {
+    "merge": [
+      {
+        "repo": "pm-tools",
+        "number": 48,
+        "title": "DEMO-BAR: slim demo bar with a push-down drawer",
+        "goal": "portfolio"
+      },
+      {
+        "repo": "ccwatts",
+        "number": 72,
+        "title": "CCW-M4.1: Pace spike",
+        "goal": null
+      }
+    ],
+    "failing": [
+      {
+        "repo": "role-radar",
+        "number": 63,
+        "title": "RR-M2.3: Demo bar",
+        "goal": "staff-pm-role"
+      }
+    ],
+    "inProgress": [
+      {
+        "repo": "pm-tools",
+        "number": 50,
+        "title": "PMT-M3.1: Studio Console feed builder",
+        "goal": "agent-team"
+      },
+      {
+        "repo": "pm-tools",
+        "number": 47,
+        "title": "studio refresh: agents by default",
+        "goal": "agent-team"
+      },
+      {
+        "repo": "role-radar",
+        "number": 64,
+        "title": "AGT-EV1: Role Radar scoring evals",
+        "goal": "agent-team"
+      }
+    ],
+    "decide": [
+      {
+        "repo": "pm-tools",
+        "text": "Review goal names in goals.json"
+      },
+      {
+        "repo": "pm-tools",
+        "text": "Whether off-goal items get a park action later. Parking needs write access the console doesn't have yet."
+      },
+      {
+        "repo": "pm-tools",
+        "text": "Goal measures for goals.json. Each goal card shows its measure, so it should be one you can check."
+      },
+      {
+        "repo": "ccwatts",
+        "text": "Ship pace during the Polish Freeze or wait. Holds the Pace release and two PRs."
+      },
+      {
+        "repo": "ccwatts",
+        "text": "Range label wording on the summary line. It is the first number every user reads."
+      },
+      {
+        "repo": "role-radar",
+        "text": "Pick the weekday scan time"
+      },
+      {
+        "repo": "role-radar",
+        "text": "Score threshold for the shortlist (70 or 75). Sets how many roles reach the weekday list."
+      },
+      {
+        "repo": null,
+        "text": "Turn on private vulnerability reporting for pm-tools."
+      },
+      {
+        "repo": null,
+        "text": "Paste the intake check into each product project."
+      }
+    ],
+    "idleDrafts": [
+      {
+        "repo": "ccwatts",
+        "number": 71,
+        "title": "CCW-M4.0: Pace burnout tracker notes",
+        "goal": null
+      }
+    ],
+    "dependabot": [
+      {
+        "repo": "ccwatts",
+        "count": 2
+      }
+    ]
+  },
+  "products": [
+    {
+      "repo": "pm-tools",
+      "name": "PM tools",
+      "code": "PMT",
+      "header": "present",
+      "stage": "build",
+      "goal": "agent-team",
+      "milestone": "PMT-M3",
+      "now": [
+        "PMT-M3.1 feed builder tests are red"
+      ],
+      "next": [
+        "engineer builds scripts/feed/core.ts"
+      ],
+      "decisions": [
+        "Whether off-goal items get a park action later. Parking needs write access the console doesn't have yet.",
+        "Goal measures for goals.json. Each goal card shows its measure, so it should be one you can check."
+      ],
+      "waiting_on_chase": [
+        "Review goal names in goals.json",
+        "Merge the demo bar PR"
+      ],
+      "blockers": [],
+      "openPrs": 3,
+      "intakes": 1
+    },
+    {
+      "repo": "ccwatts",
+      "name": "ccwatts",
+      "code": "CCW",
+      "header": "missing",
+      "stage": null,
+      "goal": null,
+      "milestone": null,
+      "now": [
+        "CCW-M4.1 pace spike: a burnout signal from session length,",
+        "CCW-M4.0 notes for the pace tracker.",
+        "Methodology page copy pass."
+      ],
+      "next": [
+        "Decide whether pace ships behind an opt-in flag."
+      ],
+      "decisions": [
+        "Ship pace during the Polish Freeze or wait. Holds the Pace release and two PRs.",
+        "Range label wording on the summary line. It is the first number every user reads."
+      ],
+      "waiting_on_chase": [],
+      "blockers": [
+        "Waiting on the 0.1.2 release review."
+      ],
+      "openPrs": 4,
+      "intakes": 0
+    },
+    {
+      "repo": "role-radar",
+      "name": "Role Radar",
+      "code": "RR",
+      "header": "present",
+      "stage": "polish",
+      "goal": "staff-pm-role",
+      "milestone": "RR-M2",
+      "now": [
+        "RR-M2.3 demo bar in the Role Radar design system"
+      ],
+      "next": [
+        "Fix the failing e2e check on the demo bar PR"
+      ],
+      "decisions": [
+        "Score threshold for the shortlist (70 or 75). Sets how many roles reach the weekday list."
+      ],
+      "waiting_on_chase": [
+        "Pick the weekday scan time"
+      ],
+      "blockers": [
+        "Scan cost over budget on long job posts",
+        "Demo bar e2e fails on narrow screens"
+      ],
+      "openPrs": 2,
+      "intakes": 2
+    }
+  ],
+  "gates": [
+    {
+      "repo": "pm-tools",
+      "number": 50,
+      "gates": {
+        "staff-pm": "ok",
+        "qa-tdd": "ok",
+        "engineer": "n/a",
+        "ux-reviewer": "n/a",
+        "privacy-security": "n/a"
+      }
+    },
+    {
+      "repo": "pm-tools",
+      "number": 48,
+      "gates": {
+        "staff-pm": "ok",
+        "qa-tdd": "ok",
+        "engineer": "ok",
+        "ux-reviewer": "missing",
+        "privacy-security": "n/a"
+      }
+    },
+    {
+      "repo": "pm-tools",
+      "number": 47,
+      "gates": {
+        "staff-pm": "n/a",
+        "qa-tdd": "n/a",
+        "engineer": "n/a",
+        "ux-reviewer": "n/a",
+        "privacy-security": "n/a"
+      }
+    },
+    {
+      "repo": "ccwatts",
+      "number": 72,
+      "gates": {
+        "staff-pm": "missing",
+        "qa-tdd": "ok",
+        "engineer": "ok",
+        "ux-reviewer": "n/a",
+        "privacy-security": "n/a",
+        "positioning": "ok"
+      }
+    },
+    {
+      "repo": "ccwatts",
+      "number": 71,
+      "gates": {
+        "staff-pm": "n/a",
+        "qa-tdd": "n/a",
+        "engineer": "n/a",
+        "ux-reviewer": "n/a",
+        "privacy-security": "n/a"
+      }
+    },
+    {
+      "repo": "role-radar",
+      "number": 63,
+      "gates": {
+        "staff-pm": "ok",
+        "qa-tdd": "ok",
+        "engineer": "ok",
+        "ux-reviewer": "ok",
+        "privacy-security": "n/a"
+      }
+    },
+    {
+      "repo": "role-radar",
+      "number": 64,
+      "gates": {
+        "staff-pm": "n/a",
+        "qa-tdd": "ok",
+        "engineer": "n/a",
+        "ux-reviewer": "n/a",
+        "privacy-security": "n/a",
+        "architect": "ok"
+      }
+    }
+  ],
+  "runs": {
+    "pm-tools": {
+      "staff-pm": 2,
+      "qa-tdd": 3,
+      "engineer": 1,
+      "ux-reviewer": 1
+    },
+    "ccwatts": {
+      "qa-tdd": 2,
+      "engineer": 1,
+      "positioning": 1
+    },
+    "role-radar": {
+      "staff-pm": 1,
+      "qa-tdd": 2,
+      "engineer": 1,
+      "ux-reviewer": 1
+    }
+  }
+}

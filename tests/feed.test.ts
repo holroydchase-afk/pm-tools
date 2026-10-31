@@ -68,7 +68,10 @@ test("CON-1 header wins over the fallback sections; decisions still come from th
   const h = core().parseHandoff(read("handoff-pm-tools.md"));
   const all = JSON.stringify(h);
   assert.ok(!all.includes("Section text that the header overrides"), "In progress / next / blockers sections are ignored when a header exists");
-  assert.deepEqual(h.decisions, ["Whether off-goal items get a park action later.", "Goal measures for goals.json."]);
+  assert.deepEqual(h.decisions, [
+    "Whether off-goal items get a park action later. Parking needs write access the console doesn't have yet.",
+    "Goal measures for goals.json. Each goal card shows its measure, so it should be one you can check.",
+  ]);
 });
 
 test("CON-1 header list keys: multiple blockers and a one-item waiting list", () => {
@@ -115,7 +118,7 @@ test("CON-2 no header: now/next/decisions/blockers come from the four sections, 
   assert.equal(h.goal, null);
   assert.equal(h.milestone, null);
   assert.deepEqual(h.next, ["Decide whether pace ships behind an opt-in flag."]);
-  assert.deepEqual(h.decisions, ["Ship pace during the Polish Freeze or wait.", "Range label wording on the summary line."]);
+  assert.deepEqual(h.decisions, ["Ship pace during the Polish Freeze or wait. Holds the Pace release and two PRs.", "Range label wording on the summary line. It is the first number every user reads."]);
   assert.deepEqual(h.blockers, ["Waiting on the 0.1.2 release review."]);
   assert.deepEqual(h.waiting_on_chase, []);
 });

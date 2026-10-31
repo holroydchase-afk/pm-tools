@@ -17,8 +17,8 @@ _No status header yet; the console falls back to these sections._
 - Decide whether pace ships behind an opt-in flag.
 
 ## Decisions to review
-- Ship pace during the Polish Freeze or wait.
-- Range label wording on the summary line.
+- Ship pace during the Polish Freeze or wait. Holds the Pace release and two PRs.
+- Range label wording on the summary line. It is the first number every user reads.
 
 ## Blockers
 - Waiting on the 0.1.2 release review.

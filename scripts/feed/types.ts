@@ -60,11 +60,17 @@ export type AgentsLineEntry = { agent: string; status: "ran" | "skipped" };
 // Input
 // ---------------------------------------------------------------------------------------------
 
+// Goal progress (UX-C1): a count ("5 of 7 demos live") or a target date ("22 days to beta", counted
+// from the feed time; the card bar shows time elapsed since `from`, default 30 days before the target).
+export type GoalProgress = { done: number; of: number; label: string } | { target: string; from?: string; label: string };
+
 // goals.json at the repo root is `Goal[]`.
 export type Goal = {
   id: string;
   name: string;
   measure: string;
+  status?: string; // optional short, public-safe status line shown as a chip on the goal card (UX-C1)
+  progress?: GoalProgress; // optional; leave it out when the numbers are private (UX-C1)
   match: { repos?: string[]; idPrefixes?: string[] };
 };
 
@@ -103,6 +109,9 @@ export type FeedInput = {
   // The agent roster: the file names (minus .md) in .claude/agents/. Only these names (plus the
   // five core gates) become gate keys; any other first word on an Agents: line is ignored (CON-R5).
   agents: string[];
+  // Display names by repo (console.config.json), for each goal's "Reads:" line (UX-C1). A repo
+  // with no entry falls back to its product's name in `products`, then to the repo name.
+  repoNames?: Record<string, string>;
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -122,7 +131,8 @@ export type FeedInput = {
 // 7 days (now - 7d < at <= now). Shares are integer percents over goals + off-goal, rounded by the
 // largest-remainder method (ties: goals.json order, off-goal last) so they sum to exactly 100.
 // With zero units, every share is 0.
-export type GoalEffort = { id: string; name: string; measure: string; effort: number };
+// reads: display names of the goal's match.repos, in that order (UX-C1); status only when goals.json has one.
+export type GoalEffort = { id: string; name: string; measure: string; effort: number; reads: string[]; status?: string; progress?: GoalProgress };
 
 export type OffGoalItem =
   | { kind: "pr"; repo: string; number: number; title: string }
@@ -138,7 +148,9 @@ export type CallSheetPr = { repo: string; number: number; title: string; goal: s
 //               updated within 24h of `now` (whatever its checks).
 //   idleDrafts: draft, not Dependabot, updatedAt more than 24h before `now`.
 // decide: HANDOFF decisions and waiting_on_chase items plus STUDIO-STATUS "## Waiting on Chase"
-// bullets, one line each (shape is pinned in M3.2, CON-9).
+// bullets, one line each (shape is pinned in M3.2, CON-9). A HANDOFF item that duplicates a PR in
+// `merge` for the same repo is dropped (UX-C3): it names "#<number>", or it starts with "Merge" and
+// every other word of 3+ letters (minus "the", "and", "for", "PR") appears in that PR's title.
 export type DecideItem = { repo: string | null; text: string };
 
 export type CallSheet = {
