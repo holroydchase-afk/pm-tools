@@ -215,14 +215,17 @@ ${body}`;
 
   if (typeof document === "undefined") return;
   const $ = (id) => document.getElementById(id);
-  // A Map, so a hash like #constructor can never pick a view.
-  const VIEWS = new Map([
-    ["focus", (f) => renderFocus(f)],
-    ["calls", (f) => renderCallSheet(f)],
-    ["slate", () => later("Build Slate", "Every product's stage, milestone and health, with its handoff notes in ten lines.")],
-    ["horizon", () => later("Horizon Board", "Milestones for every product in Now, Next, Later and Done, by planning ID.")],
-    ["agents", () => later("Agent Roster", "Agent runs per product and the gates on each open PR.")],
-  ]);
+  // A fixed switch, so nothing in the URL hash can pick which function runs.
+  const VIEW_IDS = ["focus", "calls", "slate", "horizon", "agents"];
+  function renderView(v, f) {
+    switch (v) {
+      case "calls": return renderCallSheet(f);
+      case "slate": return later("Build Slate", "Every product's stage, milestone and health, with its handoff notes in ten lines.");
+      case "horizon": return later("Horizon Board", "Milestones for every product in Now, Next, Later and Done, by planning ID.");
+      case "agents": return later("Agent Roster", "Agent runs per product and the gates on each open PR.");
+      default: return renderFocus(f);
+    }
+  }
   function later(title, what) {
     return `<h1>${title}</h1><p class="lede">${what}</p><div class="panel"><p class="empty">Not built yet.</p></div>`;
   }
@@ -230,7 +233,7 @@ ${body}`;
   let state = "loading"; // loading | ready | failed
 
   function route() {
-    const v = VIEWS.has(location.hash.slice(1)) ? location.hash.slice(1) : "focus";
+    const v = VIEW_IDS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "focus";
     document.querySelectorAll("#nav a").forEach((a) => (a.dataset.v === v ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current")));
     const main = $("main");
     if (state === "failed") {
@@ -239,7 +242,7 @@ ${body}`;
 <p class="muted" style="margin:0">The console couldn't read studio.json. The hourly build may have failed, or the connection dropped.</p>
 <div><button class="btn primary" type="button" id="retry">Retry</button></div></div>`;
       $("retry").addEventListener("click", load);
-    } else if (state === "ready") main.innerHTML = (VIEWS.get(v) || VIEWS.get("focus"))(feed);
+    } else if (state === "ready") main.innerHTML = renderView(v, feed);
     else main.innerHTML = `<p class="muted">Loading the feed…</p>`;
   }
 
