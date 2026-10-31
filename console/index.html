@@ -44,6 +44,7 @@ a{color:var(--accent)}
 nav{display:flex;gap:4px;overflow-x:auto;padding-block:8px 0;scrollbar-width:none}
 nav a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;padding:10px 12px 12px;border-bottom:2px solid transparent;min-height:44px;display:flex;align-items:center;gap:6px}
 nav a[aria-current="page"]{color:var(--fg);border-color:var(--accent)}
+@media (max-width:760px){nav{-webkit-mask-image:linear-gradient(to right,#000 85%,transparent);mask-image:linear-gradient(to right,#000 85%,transparent);padding-right:32px}}
 .count{font:500 11.5px var(--f-mono);background:var(--chip);color:var(--fg);padding:1px 6px;border-radius:999px}
 .count.hot{background:var(--accent);color:var(--on-accent)}
 .count.warn{background:var(--warn-soft);color:var(--warn)}
@@ -169,7 +170,7 @@ td.nowrap{white-space:nowrap} td.what{min-width:160px}
 <header class="site">
   <div class="wrap">
     <div class="top">
-      <a class="back" href="../">← PM tools</a>
+      <a class="back" href="/">← Chase Holroyd</a>
       <div class="brand">Studio Console <small>Staff PM view of the agent team</small></div>
       <div class="status" id="status"><span>Loading the feed…</span></div>
     </div>

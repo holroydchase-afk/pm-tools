@@ -3,7 +3,7 @@
 stage: live
 goal: agent-team
 milestone: PMT-M3
-now: PMT-M3.4 status header standard; PMT-M3.5 portfolio copy for the Studio Console
+now: PMT-M3 done in this repo; portfolio PR #45 waits on Chase
 next: Product repos add the status header from their intake issues; Chase merges the portfolio PR
 waiting_on_chase:
   - Merge the portfolio Studio Console PR (a merge to main deploys the site)
@@ -19,6 +19,8 @@ Updated: 2026-10-31 (intro by role in TONE; Studio Console PMT-M3 scoped in PLAN
 - Chase: some projects don't introduce themselves by role. The TONE line in ONBOARDING's project-instructions paste now covers every thread, chat and run report, with "Hi Chase, I'm Charlie's chief of staff" as the example; section 2 says the rule also ships in every repo's CLAUDE.md (paired studio-agents PR). Next: Chase pastes the STUDIO RULES block into each project's instructions so they're identical.
 
 ## Studio Console (Oct 31, PMT-M3)
+- PMT-M3.4 (Oct 31): studio-agents #34 merged (status header template + warn-only check). This HANDOFF has the header. Intake issues filed: role-radar #64, ccwatts #78, energy-scanner #40. Hearth, charlie and crew-clock still need theirs (this thread can't reach those repos); the text is in `/mnt/project-files/pmo/intakes/2026-10-31-status-header.md`.
+- PMT-M3.5 (Oct 31): `/pm-tools/` now redirects to the console and lists Build Slate and the roadmap as archived demos (nothing deleted); demo bars say "← Studio Console"; the console back link is "← Chase Holroyd" to `/` (CON-P-R5) with a right-edge fade on the phone tab row (CON-P-R7). qa-tdd wrote CON-M35-1..4 red first; npm test 186 and e2e 33 green 3x. Portfolio PR holroydchase-afk.github.io #45 (Studio Console page) waits on Chase. Not done, needs Chase: marking the live Build Slate and roadmap artifact databases read-only (that means republishing live apps). Open: CON-P-R8, the Call Sheet badge counts 44, too many to read as "one step each"; manual check CON-M35-4m (fade at 390px, light and dark).
 - Chase approved replacing Build Slate and the Near-Term Roadmap with a goal-first Studio Console (mock: `/mnt/project-files/pmo/console/studio-console-mock.html`). Five views: Focus, Call Sheet, Build Slate, Horizon Board, Agent Roster. Built hourly from public repos into `studio.json`; static page, no database.
 - Portfolio / public presence: PMT-M3.2 makes the console public at chaseholroyd.com/pm-tools/console/ (Focus and Call Sheet; other tabs say "Not built yet"). It is not linked from the landing or the portfolio until M3.5. The hourly Pages run replaces the sample feed with the live one; ux-reviewer 8/10, privacy-security signed off.
 - Done: staff-pm scoped PMT-M3 in PLAN.md (tasks M3.1 to M3.5, criteria CON-1 to CON-16, success and stop signals). Console lives at `/pm-tools/console/` during M3; the landing redirects in M3.5.
