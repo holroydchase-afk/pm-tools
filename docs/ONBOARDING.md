@@ -9,7 +9,7 @@ Without the skill, Chase pastes two blocks (see [The two pastes](#the-two-pastes
 ## 1. What you're part of
 - **A portfolio.** Chase is a senior PM job hunting. Every product is a demoable v1 shown at **chaseholroyd.com**: a recruiter or hiring manager opens it from the portfolio and it works, looks finished and tells one true story.
 - **Hosting.** Public repo `holroydchase-afk/<repo>`, GitHub Pages deployed by Actions from `main`, served at **chaseholroyd.com/&lt;repo&gt;/** with no DNS work. Stack and hosting defaults: [`STACK.md`](../STACK.md). A private repo needs a one-line reason; it still gets everything below except Pages until it has a public demo.
-- **Other projects.** ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock, and **Product Studio**, which owns the portfolio site, pm-tools and studio-agents. Projects can't see each other's chats, files or memory; shared facts live on GitHub.
+- **Other projects.** ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock, and **Product Studio** (its chief of staff is **Atlas**; call it Atlas), which owns the portfolio site, pm-tools and studio-agents. Projects can't see each other's chats, files or memory; shared facts live on GitHub.
 - **Where things stand studio-wide:** [`STUDIO-STATUS.md`](../STUDIO-STATUS.md). Read it before asking Chase anything.
 
 ## 2. Studio rules (short form)
@@ -118,7 +118,7 @@ PR QUEUE:
 
 OWNERSHIP RULE: The repo decides who does the work.
 - The change lands in a product's repo → that product's project does it.
-- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it.
+- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it. Its chief of staff is called Atlas: refer to Product Studio as Atlas.
 - Any other project files an intake issue (label `intake`) in the owner's repo; the owner's Intake check picks it up (pm-tools docs/INTAKE.md). It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 

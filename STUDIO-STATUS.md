@@ -92,7 +92,7 @@ New PRs are fine; each names its owning thread and a `Merge after:` line. Thread
 | Hearth | Hearth |
 | charlie | Charlie |
 | crew-clock | Crew Clock |
-| holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
+| holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio (Atlas) |
 
 The repo decides who does the work:
 - The change lands in a product's repo: that product's project does it.
