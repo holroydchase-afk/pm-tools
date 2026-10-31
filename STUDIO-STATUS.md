@@ -38,7 +38,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - ccwatts v1 (CCW-M1.1 to M1.9) is merged. The Energy Scanner v1 stack and ES-M2.1 (bedtime flow) are merged.
 
 ## Waiting on Chase
-- **Security toggles** (Oct 24 audit, about 10 min): the numbered list at the end of [docs/security/2026-10-24-audit.md](docs/security/2026-10-24-audit.md). Step 1, Dependency graph ("Enable all" at https://github.com/settings/security_analysis), matters most now: the kit is merged, and until it's on, the `dependencies` check is red on every PR in pm-tools, studio-agents and the portfolio. Also: Dependabot alerts and security updates, private vulnerability reporting (each SECURITY.md points to it), secret scanning and push protection on Charlie, push protection on Crew Clock; optional: rename Energy Scanner's default branch to `main` and protect `main`.
+- **GitHub settings still off** (checked by API on Oct 31; click paths under "GitHub settings" below): private vulnerability reporting and Dependabot security updates on all 8 public repos, secret scanning and push protection on Charlie, push protection on Crew Clock. Optional: rename Energy Scanner's default branch to `main` and protect `main`.
 - Portfolio WEB-M4.8: add a "Jan 2026 – present" line to the resume page? (recruiter-ready review, Oct 22)
 - Portfolio WEB-M2.6: LinkedIn Featured link and headline (the headshot is on the site since Oct 26).
 - ccwatts CCW-M2.1: one run on real logs on the laptop.
@@ -52,6 +52,29 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Crew Clock: Supabase setup (docs/SETUP.md steps 1.1 to 1.4) before the crew beta.
 
 - Every project: paste the Intake check setup once (docs/INTAKE.md, "The paste"; Chase approved Oct 30). Product Studio's own check is already scheduled.
+
+## GitHub settings (Chase's account and repo config)
+Every GitHub setting Chase changes is logged here with its date, so no thread asks twice. Threads can read these settings through the API but can't change them.
+
+| Date | Setting | Where | Why |
+|---|---|---|---|
+| 2026-10-31 | Dependency graph on | All repos | Lets GitHub map each repo's packages. It powers the `dependencies` PR check (fails a PR that adds a package with a known vulnerability) and Dependabot alerts. Until it was on, that check was red on every PR. Verified green on the pm-tools #48 re-run. |
+| 2026-10-24 | Pages custom domain chaseholroyd.com, Enforce HTTPS | holroydchase-afk.github.io, Settings → Pages | The portfolio's domain (Porkbun DNS). |
+
+State on 2026-10-31 (API check of the public repos): secret scanning and push protection are on everywhere except Charlie (both off) and Crew Clock (push protection off). Dependabot security updates and private vulnerability reporting are off everywhere. Hearth is private, so its settings aren't readable here.
+
+Still to switch on, one page per repo (Settings → Code security):
+```
+https://github.com/holroydchase-afk/pm-tools/settings/security_analysis
+https://github.com/holroydchase-afk/holroydchase-afk.github.io/settings/security_analysis
+https://github.com/holroydchase-afk/studio-agents/settings/security_analysis
+https://github.com/holroydchase-afk/ccwatts/settings/security_analysis
+https://github.com/holroydchase-afk/role-radar/settings/security_analysis
+https://github.com/holroydchase-afk/energy-scanner/settings/security_analysis
+https://github.com/holroydchase-afk/charlie/settings/security_analysis
+https://github.com/holroydchase-afk/crew-clock/settings/security_analysis
+```
+On each: Private vulnerability reporting → Enable, and Dependabot security updates → Enable. On Charlie also Secret scanning and Push protection → Enable; on Crew Clock, Push protection → Enable.
 
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
