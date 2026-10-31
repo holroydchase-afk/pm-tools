@@ -81,7 +81,7 @@ On each: Private vulnerability reporting → Enable, and Dependabot security upd
 - Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
 
 ## PR queue rule (Oct 31)
-New PRs are fine, but each names its owning thread and a `Merge after:` line; the thread that opens a PR drives it to merged or closed; before merging #N a thread warns Chase about any older open PR in that repo (with its thread) and merges oldest first; every merge ask lists the repo's open PRs in merge order. Full rule: studio-agents `docs/session-rules.md`, "Pull requests". It's the PR QUEUE block in the project-instructions paste ([docs/ONBOARDING.md](docs/ONBOARDING.md)).
+New PRs are fine; each names its owning thread and a `Merge after:` line. Threads merge their own PRs on green, oldest first, without asking Chase. The one gate: a merge that changes a live demo or live product (portfolio `main`, a public demo or live app, a release) waits for Chase, and that ask lists the repo's open PRs in merge order. Before merging #N, a thread merges older ones first or warns Chase about any it can't (with its thread). Full rule: studio-agents `docs/session-rules.md`, "Pull requests"; the PR QUEUE block in [docs/ONBOARDING.md](docs/ONBOARDING.md).
 
 ## Who owns which repo
 | Repo | Owning project |

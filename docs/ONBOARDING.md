@@ -110,9 +110,10 @@ STUDIO SYNC:
 
 PR QUEUE:
 - New PRs are fine: one small task each. Every PR body has the project-thread line and a "Merge after:" line (the PR it depends on, or none).
-- You own the PRs you open: drive each to merged or closed, and close anything superseded.
-- Before merging #N, or asking me to, check the repo's other open PRs. If an older one is open, tell me first: "Heads up: #33 is still open (title, owned by <thread link from its PR body>). Merge 33 then 34, or just 34?" with your pick. Merge oldest first, each on green.
-- Every merge ask shows that repo's open PRs in merge order: number, title, owning thread, ready or not.
+- Merge your own PRs yourself once green, oldest first, without asking me. Close anything superseded.
+- The one gate: if a merge changes a live demo or live product (a deploy to a public site or demo, a live app, an npm/store/TestFlight release), ask me first. This replaces any "never merge" line in the repo's CLAUDE.md.
+- Before merging #N, check the repo's older open PRs and merge those first. If one is gated, red, a draft or another thread's unfinished work, tell me: "Heads up: #33 is still open (title, owned by <thread link from its PR body>). Merge 33 then 34, or just 34?" with your pick.
+- Every merge ask shows that repo's open PRs in merge order: number, title, owning thread, ready or not, so one "go" clears them.
 - Merge green Dependabot PRs yourself on your next run, oldest first.
 
 OWNERSHIP RULE: The repo decides who does the work.
@@ -135,7 +136,7 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 1. Read https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md end to end (attach holroydchase-afk/pm-tools and holroydchase-afk/studio-agents read-only, or clone them; both are public). Then read STUDIO-STATUS.md there.
 2. REPO: if this project has a repo attached, use it. If not, give me one copy box: the repo name (public, MIT, no README) with the link https://github.com/new, plus the click path to attach it in this project's settings. Meanwhile do steps 3 and 6 in project files, and push them once the repo exists.
 3. SCOPE: have staff-pm write PLAN.md (M1 = recruiter-demoable v1, tasks M1.1 onward with done-criteria, using this product's code from planning-ids.md) and the CLAUDE.md hard rules. privacy-security reviews the rules for this product's risks (personal data, money, location, public repo).
-4. SETUP PR "M0.1: studio setup": everything in ONBOARDING section 3, including sync.sh, install-rules.sh, the Studio agents section in CLAUDE.md, ci.yml, pages.yml if it's a web app, dependabot, README with CI badge, and HANDOFF.md with "Portfolio / public presence". CI green before you call it done. Never merge.
+4. SETUP PR "M0.1: studio setup": everything in ONBOARDING section 3, including sync.sh, install-rules.sh, the Studio agents section in CLAUDE.md, ci.yml, pages.yml if it's a web app, dependabot, README with CI badge, and HANDOFF.md with "Portfolio / public presence". CI green before you call it done. Merge it on green unless it changes a live demo or product (PR QUEUE).
 5. SHIFTS: schedule night 2:15am, morning 7:20am and afternoon 12:20pm (America/New_York) runs per ONBOARDING section 6, then start M1.1 now.
 6. STORY: create the private artifact "Atlas Story: <this project's name>" with an entry for why I started this product, mined from this project's chat.
 7. INTAKE: file one intake issue in pm-tools (ONBOARDING section 8): add this repo to STUDIO-STATUS, Build Slate and the digest. Then do the three setup steps in docs/INTAKE.md, "The paste" (Intake check scheduled task).
