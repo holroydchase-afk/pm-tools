@@ -9,6 +9,8 @@ import { join, extname } from "node:path";
 import { build } from "../../scripts/build-demo.ts";
 import { type Browser } from "playwright";
 import { launchChromium } from "./launch.ts";
+import { buildFeed } from "../../scripts/feed/core.ts";
+import { liveInput, LIVE_NOW } from "../fixtures/feed-live/load.ts";
 
 const out = build(mkdtempSync(join(tmpdir(), "pmtools-e2e-")));
 const TYPES: Record<string, string> = { ".html": "text/html", ".js": "text/javascript", ".svg": "image/svg+xml", ".css": "text/css" };
@@ -225,7 +227,8 @@ for (const width of [390, 1280]) {
     assert.ok(hrefs.length > 0, "the sample Call Sheet has buttons");
     for (const h of hrefs) assert.ok(h.startsWith("https://github.com/"), `CON-9: ${h} goes to GitHub`);
     await views.getByRole("link", { name: /Build Slate/ }).click();
-    await page.getByText("Not built yet").waitFor(); // UX-C2: placeholder tabs say "Not built yet"
+    await check("Build Slate"); // PMT-M3.3: every tab is built now
+    assert.equal(await page.getByText("Not built yet").count(), 0);
     assert.deepEqual(errors, []);
     await page.close();
   });
@@ -279,5 +282,164 @@ test("CON-R11 /pm-tools/console/: a feed that fails to load says so with a Retry
   await retry.click();
   await page.getByRole("heading", { level: 1, name: "Focus" }).waitFor();
   assert.equal(await page.getByRole("heading", { name: /feed didn.t load/i }).count(), 0, "the error is gone after Retry");
+  await page.close();
+});
+
+// PMT-M3.3 Build Slate, Horizon Board and Agent Roster (CON-12 to CON-15) in the browser.
+for (const width of [390, 1280]) {
+  test(`CON-12..15 /pm-tools/console/ at ${width}px: Build Slate, Horizon Board and Agent Roster render with no errors and no sideways scroll`, async () => {
+    const { page, errors } = await openConsole("#slate", width);
+    for (const [hash, heading] of [["#slate", "Build Slate"], ["#horizon", "Horizon Board"], ["#agents", "Agent Roster"]] as const) {
+      await page.goto(base + "console/" + hash);
+      await page.getByRole("heading", { level: 1, name: heading }).waitFor();
+      assert.equal(await page.getByText("Not built yet").count(), 0, `${heading} is built`);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      assert.ok(overflow <= 0, `${heading} at ${width}px: scrolls sideways by ${overflow}px`);
+    }
+    await page.goto(base + "console/#slate");
+    assert.ok(await page.locator("main [data-product]").count() > 0, "the sample slate has product cards");
+    await page.goto(base + "console/#horizon");
+    assert.ok(await page.locator("main [data-hz-row]").count() > 0, "the sample horizon has rows");
+    await page.goto(base + "console/#agents");
+    await page.getByText(/no evals yet/i).first().waitFor();
+    assert.deepEqual(errors, []);
+    await page.close();
+  });
+}
+
+test("CON-13 /pm-tools/console/#slate: a product opens its drawer from the keyboard, Escape closes it and focus returns", async () => {
+  const { page, errors } = await openConsole("#slate", 390);
+  const card = page.locator("main button[data-product]").first();
+  await card.waitFor();
+  const name = (await card.getAttribute("data-product"))!;
+  await card.focus();
+  await page.keyboard.press("Enter");
+  const dialog = page.getByRole("dialog");
+  await dialog.waitFor();
+  assert.ok(await dialog.getByRole("link", { name: /HANDOFF|handoff notes/i }).count() > 0, "drawer links the HANDOFF");
+  const href = await dialog.getByRole("link", { name: /HANDOFF|handoff notes/i }).first().getAttribute("href");
+  assert.equal(href, `https://github.com/holroydchase-afk/${name}/blob/main/HANDOFF.md`);
+  assert.ok(await dialog.evaluate((d) => d.contains(document.activeElement)), "focus moves into the drawer");
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  assert.ok(overflow <= 0, `drawer at 390px scrolls sideways by ${overflow}px`);
+  await page.keyboard.press("Escape");
+  await dialog.waitFor({ state: "hidden" });
+  assert.equal(await page.evaluate(() => (document.activeElement as HTMLElement | null)?.getAttribute("data-product")), name, "focus returns to the product card");
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
+// PMT-M3.3 review on the real feed (ux-reviewer 4/10): UX-S3, UX-S5 and UX-S8 in the browser, on the
+// live-shape fixture (tests/fixtures/feed-live/) built through core.ts and served as studio.json.
+async function openLive(hash: string, width: number, colorScheme: "light" | "dark" = "light", feed: unknown = buildFeed(liveInput(), LIVE_NOW)) {
+  const page = await browser.newPage({ viewport: { width, height: 844 }, colorScheme });
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await page.route(/\/console\/studio\.json/, (r) => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(feed) }));
+  await page.clock.setFixedTime(new Date("2026-10-31T12:30:00Z"));
+  await page.goto(base + "console/" + hash);
+  await page.getByRole("heading", { level: 1 }).waitFor();
+  return { page, errors };
+}
+
+for (const width of [390, 1280]) {
+  test(`UX-S5 /pm-tools/console/#focus at ${width}px on the live-shape feed: no element is wider than its goal card (status pills wrap)`, async () => {
+    const { page, errors } = await openLive("#focus", width);
+    const cards = page.locator("main [data-goal]");
+    assert.ok(await cards.count() > 0);
+    const over = await cards.evaluateAll((cs) => cs.flatMap((c) => {
+      const box = c.getBoundingClientRect();
+      return [...c.querySelectorAll("*")].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > box.right + 0.5 || r.left < box.left - 0.5); })
+        .map((e) => `${(c as HTMLElement).dataset.goal}: ${(e.textContent ?? "").trim().slice(0, 40)}`);
+    }));
+    assert.deepEqual(over, [], "elements spilling out of their goal card");
+    assert.deepEqual(errors, []);
+    await page.close();
+  });
+}
+
+test("UX-S3 /pm-tools/console/#calls on the live-shape feed: \"N more from <product>\" opens that product's drawer", async () => {
+  const { page, errors } = await openLive("#calls", 390);
+  const more = page.getByRole("button", { name: /^\d+ more from Role Radar$/ });
+  await more.click();
+  const dialog = page.getByRole("dialog", { name: "Role Radar" });
+  await dialog.waitFor();
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
+for (const scheme of ["light", "dark"] as const) {
+  test(`UX-S8 /pm-tools/console/ ${scheme}: green status text has at least 4.5:1 contrast`, async () => {
+    const found: string[] = [];
+    // Slate on the live-shape feed (health chips), Roster on the sample feed (passed gates).
+    for (const [hash, feed] of [["#slate", undefined], ["#agents", JSON.parse(readFileSync(join(out, "console", "studio.json"), "utf8"))]] as const) {
+      const { page, errors } = await openLive(hash, 1280, scheme, feed);
+      const ratios = await page.locator("main .chip.ok, main .gate.ok, main [data-health='ok']").evaluateAll((els) => {
+        const rgb = (s: string) => (s.match(/[\d.]+/g) ?? []).map(Number);
+        const lum = ([r, g, b]: number[]) => [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
+        const bg = (e: Element | null): number[] => {
+          for (; e; e = e.parentElement) { const c = rgb(getComputedStyle(e).backgroundColor); if (c.length === 3 || (c.length === 4 && c[3] > 0)) return c; }
+          return [255, 255, 255];
+        };
+        return els.map((e) => {
+          const a = lum(rgb(getComputedStyle(e).color)), b = lum(bg(e));
+          return { text: (e.textContent ?? "").trim().slice(0, 30), ratio: (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05) };
+        });
+      });
+      for (const r of ratios) { found.push(r.text); assert.ok(r.ratio >= 4.5, `${hash} ${scheme} "${r.text}": ${r.ratio.toFixed(2)}:1`); }
+      assert.deepEqual(errors, []);
+      await page.close();
+    }
+    assert.ok(found.length > 0, "found green status text to check");
+  });
+}
+
+// PMT-M3.3 review round 3 (ux-reviewer 6/10): UX-S10 and UX-S12 in the browser, live-shape feed.
+for (const width of [390, 1280]) {
+  test(`UX-S10 /pm-tools/console/#calls at ${width}px on the live-shape feed: a Decide row's two buttons are at least 8px apart`, async () => {
+    const { page, errors } = await openLive("#calls", width);
+    const gaps = await page.locator("main [data-group='decide']").evaluateAll((rows) => rows.flatMap((r) => {
+      const btns = [...r.querySelectorAll("a, button")].map((b) => b.getBoundingClientRect()).filter((b) => b.width > 0);
+      if (btns.length < 2) return [];
+      const [a, b] = btns;
+      // The space between the two boxes, across or down, whichever way they sit.
+      const gap = Math.max(b.left - a.right, a.left - b.right, b.top - a.bottom, a.top - b.bottom);
+      return [{ text: (r.querySelector("strong")?.textContent ?? "").slice(0, 40), gap }];
+    }));
+    assert.ok(gaps.length > 0, "the live-shape feed has Decide rows with a \"more\" button");
+    for (const g of gaps) assert.ok(g.gap >= 8, `${width}px "${g.text}": buttons ${g.gap.toFixed(1)}px apart`);
+    assert.deepEqual(errors, []);
+    await page.close();
+  });
+}
+
+test("UX-S12 /pm-tools/console/#agents at 390px on the live-shape feed: every gate pill is whole and on screen, stacked under its PR title", async () => {
+  const { page, errors } = await openLive("#agents", 390);
+  const rows = await page.locator("main [data-gate-row]").evaluateAll((trs) => trs.map((tr) => {
+    const vw = document.documentElement.clientWidth;
+    const pills = [...tr.querySelectorAll("[data-gate]")].map((g) => {
+      const r = g.getBoundingClientRect();
+      // Clipped: a scrolling or overflow-hidden ancestor cuts the pill off.
+      let clipped = false;
+      for (let e = g.parentElement; e && e !== document.body; e = e.parentElement) {
+        const s = getComputedStyle(e);
+        if (s.overflowX !== "visible") { const c = e.getBoundingClientRect(); if (r.left < c.left - 0.5 || r.right > c.right + 0.5) clipped = true; }
+      }
+      return { name: (g.textContent ?? "").trim(), left: r.left, right: r.right, top: r.top, clipped, vw };
+    });
+    const title = tr.querySelector("td.what, [data-gate-row] td:nth-child(2)")?.getBoundingClientRect();
+    return { row: (tr as HTMLElement).dataset.gateRow, pills, titleBottom: title ? title.bottom : null };
+  }));
+  const withPills = rows.filter((r) => r.pills.length);
+  assert.ok(withPills.length > 0, "the live-shape feed has gate pills");
+  for (const r of withPills) {
+    for (const p of r.pills) {
+      assert.ok(p.left >= 0 && p.right <= p.vw + 0.5, `${r.row} "${p.name}": outside the viewport (${p.left.toFixed(0)}..${p.right.toFixed(0)} of ${p.vw})`);
+      assert.ok(!p.clipped, `${r.row} "${p.name}": clipped by a scrolling box`);
+      assert.ok(r.titleBottom !== null && p.top >= r.titleBottom - 0.5, `${r.row} "${p.name}": beside the PR title, not under it`);
+    }
+  }
+  assert.deepEqual(errors, []);
   await page.close();
 });

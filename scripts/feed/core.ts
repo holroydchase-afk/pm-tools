@@ -4,7 +4,7 @@
 import { redact, termRe } from "../private-patterns.ts";
 import type {
   AgentsLineEntry, CallSheet, CallSheetPr, DecideItem, Feed, FeedInput, GateRow, GateState, Goal, Handoff,
-  OffGoalItem, ProductSummary, PullRequest, RunEntry,
+  Health, HorizonCard, HorizonRow, MergedPr, OffGoalItem, ProductSummary, PullRequest, RunEntry, Track,
 } from "./types.ts";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -12,6 +12,7 @@ const AGENT = /^[a-z0-9][a-z0-9-]{0,40}$/;
 const ISO_UTC = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/;
 const DEPENDABOT = "dependabot[bot]";
 const CORE_GATES = ["staff-pm", "qa-tdd", "engineer", "ux-reviewer", "privacy-security"];
+const DEFAULT_WIP_CAP = 5;
 
 // ------------------------------------------------------------------ HANDOFF (CON-1, CON-2)
 
@@ -59,13 +60,14 @@ export function parseHandoff(md: string): Handoff {
     return {
       header: "missing", stage: null, goal: null, milestone: null,
       now: sectionBullets(lines, "In progress"), next: sectionBullets(lines, "Exact next step"),
-      decisions, waiting_on_chase: [], blockers: sectionBullets(lines, "Blockers"),
+      decisions, waiting_on_chase: [], blockers: sectionBullets(lines, "Blockers"), later: sectionBullets(lines, "Later"),
     };
   }
   return {
     header: "present", stage: asScalar(h.get("stage")), goal: asScalar(h.get("goal")), milestone: asScalar(h.get("milestone")),
     now: asList(h.get("now")), next: asList(h.get("next")), decisions,
     waiting_on_chase: asList(h.get("waiting_on_chase")), blockers: asList(h.get("blockers")),
+    later: h.has("later") ? asList(h.get("later")) : sectionBullets(lines, "Later"),
   };
 }
 
@@ -102,11 +104,18 @@ export function parseAgentsLine(prBody: string): AgentsLineEntry[] {
 // Planning ID: the leading token of a PR title before ":" ("CCW-M4.1: Pace spike" -> "CCW-M4.1").
 const planningId = (title: string): string | null => /^([A-Za-z0-9][A-Za-z0-9.-]*):/.exec(title.trim())?.[1] ?? null;
 
+const escRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const hasKeyword = (title: string, kw: string) => new RegExp(`(?:^|[^A-Za-z0-9])${escRe(kw)}`, "i").test(title);
+
 function goalFor(goals: Goal[], repo: string, title: string | null): string | null {
   const id = title === null ? null : planningId(title);
   if (id) {
     const byPrefix = goals.find((g) => (g.match.idPrefixes ?? []).some((p) => id.startsWith(p)));
     if (byPrefix) return byPrefix.id;
+  }
+  if (title !== null) {
+    const byKeyword = goals.find((g) => (g.match.keywords ?? []).some((k) => k.trim() !== "" && hasKeyword(title, k.trim())));
+    if (byKeyword) return byKeyword.id;
   }
   return goals.find((g) => (g.match.repos ?? []).includes(repo))?.id ?? null;
 }
@@ -120,6 +129,72 @@ function shares(units: number[]): number[] {
   let left = 100 - out.reduce((a, b) => a + b, 0);
   for (const { i } of order) { if (left-- <= 0) break; out[i]++; }
   return out;
+}
+
+// ------------------------------------------------------------------ Build Slate and Horizon (CON-12, CON-14)
+
+const TRACK: Record<string, Track> = { idea: "idea", build: "building", building: "building", beta: "beta", live: "live", parked: "parked" };
+const trackOf = (stage: string | null): Track | null => (stage === null ? null : TRACK[stage.trim().toLowerCase()] ?? null);
+
+// The newest entry; on a tie the first one read wins.
+function newestRun(logs: Iterable<RunEntry[]>): RunEntry | null {
+  let best: RunEntry | null = null;
+  for (const entries of logs) for (const e of entries) if (!best || e.at.localeCompare(best.at) > 0) best = e;
+  return best && { agent: best.agent, at: best.at };
+}
+
+const count = (n: number, one: string, many = one + "s") => `${n} ${n === 1 ? one : many}`;
+
+function healthOf(prs: PullRequest[], blockers: number, nowMs: number): Health {
+  const own = prs.filter((pr) => pr.author !== DEPENDABOT);
+  const failing = own.filter((pr) => !pr.draft && pr.checks === "failure").length;
+  const idle = own.filter((pr) => pr.draft && Date.parse(pr.updatedAt) < nowMs - DAY_MS).length;
+  if (failing || blockers) {
+    const why = [failing ? `${count(failing, "PR")} failing checks` : "", blockers ? count(blockers, "blocker") : ""].filter(Boolean);
+    return { level: "bad", note: why.join(", ") };
+  }
+  if (idle) return { level: "warn", note: `${count(idle, "draft")} idle over 24h` };
+  return { level: "ok", note: "No failing checks or blockers" };
+}
+
+// A leading planning ID: "CCW-M4.1: Pace spike" and "CCW-M4.1 pace spike" -> { id: "CCW-M4.1", title: "Pace spike" / "pace spike" }.
+const LEADING_ID = /^([A-Z][A-Z0-9]{0,7}(?:-[A-Z0-9]+(?:\.[A-Z0-9]+)*)+):?\s+(\S.*)$/;
+function splitId(text: string): { id: string | null; title: string } {
+  const m = LEADING_ID.exec(text.trim());
+  return m ? { id: m[1], title: m[2].trim() } : { id: null, title: text.trim() };
+}
+
+// A Horizon card from a HANDOFF bullet or PR title (UX-S9): markdown off, no leading date, first
+// sentence only; a planning ID goes to the label (a leading one, else the first one in the text) and
+// never stays in the title.
+const MD_LINK = /\[([^\]]*)\]\([^)]*\)/g;
+const LEADING_DATE = /^(?:\d{4}-\d{2}-\d{2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2})\b[:,]?\s*/;
+const MID_ID = /\b[A-Z][A-Z0-9]{1,7}-(?:M\d+(?:\.\d+)*|R\d+)\b/g;
+function cardOf(text: string): { id: string | null; title: string } {
+  const plainText = text.replace(MD_LINK, "$1").replace(/\*\*|__|`/g, "").replace(/\s+/g, " ").trim().replace(LEADING_DATE, "");
+  const sentence = /^(.+?[.!?])(?=\s|$)/.exec(plainText)?.[1] ?? plainText;
+  const lead = splitId(sentence);
+  const id = lead.id ?? sentence.match(MID_ID)?.[0] ?? null;
+  const title = (lead.id ? lead.title : sentence).replace(MID_ID, "").replace(/\(\s*\)/g, "").replace(/\s+([,.;:!?)])/g, "$1").replace(/\s+/g, " ").replace(/^[\s:,;-]+/, "").trim();
+  return { id, title: title || sentence };
+}
+
+function horizonRow(s: ProductSummary, prs: PullRequest[], merged: MergedPr[]): HorizonRow {
+  const prById = new Map<string, number>();
+  for (const pr of prs) {
+    const { id } = splitId(pr.title);
+    if (id && pr.author !== DEPENDABOT && !prById.has(id)) prById.set(id, pr.number);
+  }
+  const seen = new Set<string>();
+  const place = (cards: HorizonCard[]) => cards.filter((c) => {
+    if (c.id === null) return true;
+    if (seen.has(c.id)) return false;
+    seen.add(c.id);
+    return true;
+  });
+  const fromText = (xs: string[]) => xs.map((t) => { const c = cardOf(t); return { ...c, pr: c.id === null ? null : prById.get(c.id) ?? null }; });
+  const done = place(merged.map((m) => ({ ...cardOf(m.title), pr: m.number })));
+  return { repo: s.repo, now: place(fromText(s.now)), next: place(fromText(s.next)), later: place(fromText(s.later)), done };
 }
 
 // ------------------------------------------------------------------ privacy (CON-7)
@@ -165,9 +240,12 @@ export function buildFeed(input: FeedInput, now: Date): Feed {
   const summaries: ProductSummary[] = [];
   const gates: GateRow[] = [];
   const runs: Feed["runs"] = {};
+  const horizon: HorizonRow[] = [];
 
   for (const p of products) {
-    const h = parseHandoff(p.handoff);
+    const parsed = parseHandoff(p.handoff);
+    // UX-S1: no status header -> the config stage (a header's stage wins).
+    const h = parsed.header === "missing" && p.stage ? { ...parsed, stage: p.stage } : parsed;
     const logs = new Map(Object.entries(p.runLogs).map(([branch, text]) => [branch, parseRunLog(text)]));
     const prGoal = new Map<string, string | null>(); // branch -> goal of its open PR
 
@@ -211,8 +289,17 @@ export function buildFeed(input: FeedInput, now: Date): Feed {
       now: cleanList(h.now), next: cleanList(h.next), decisions: cleanList(h.decisions),
       waiting_on_chase: cleanList(h.waiting_on_chase), blockers: cleanList(h.blockers),
       openPrs: p.prs.length, intakes: p.intake.length,
+      group: p.group ?? null, track: trackOf(h.stage), lastRun: newestRun(logs.values()),
+      health: { level: "ok", note: "" }, later: cleanList(h.later),
     };
+    s.health = healthOf(p.prs, s.blockers.length, nowMs);
     summaries.push(s);
+    // Done: merges in the last 7 days whose title names no private repo.
+    const merged = (p.merged ?? []).filter((m) => inWindow(m.mergedAt)).flatMap((m) => {
+      const title = clean(m.title);
+      return title === null ? [] : [{ ...m, title }];
+    });
+    horizon.push(horizonRow(s, p.prs.flatMap((pr) => { const title = clean(pr.title); return title === null ? [] : [{ ...pr, title }]; }), merged));
     const merging = callSheet.merge.filter((m) => m.repo === p.repo);
     for (const text of [...s.waiting_on_chase, ...s.decisions]) {
       if (!merging.some((m) => duplicatesMerge(text, m))) callSheet.decide.push({ repo: p.repo, text });
@@ -238,5 +325,8 @@ export function buildFeed(input: FeedInput, now: Date): Feed {
     products: summaries,
     gates,
     runs,
+    wipCap: Number.isInteger(input.wipCap) && input.wipCap! > 0 ? input.wipCap! : DEFAULT_WIP_CAP,
+    horizon,
+    workItems: [...units.values()].reduce((a, b) => a + b, 0),
   };
 }

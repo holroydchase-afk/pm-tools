@@ -11,6 +11,8 @@ waiting_on_chase:
 blockers:
   - Scan cost over budget on long job posts
   - Demo bar e2e fails on narrow screens
+later:
+  - RR-M3 MCP server
 -->
 
 ## Decisions to review

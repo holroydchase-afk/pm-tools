@@ -135,7 +135,10 @@ test("UX-C3 Call Sheet: every decision has a reason line and a title that starts
   const f = feed();
   const html = app().renderCallSheet(f);
   const decide = rows(html, "data-group").filter((r) => attr(r.tag, "data-group") === "decide");
-  assert.equal(decide.length, f.callSheet.decide.length);
+  // UX-S3: one call per product, at most 3 from studio status; the rest open from the drawer.
+  const products = new Set(f.callSheet.decide.map((d) => d.repo).filter((r) => r !== null));
+  const studio = f.callSheet.decide.filter((d) => d.repo === null).length;
+  assert.equal(decide.length, products.size + Math.min(3, studio));
   for (const r of decide) {
     const reason = tagsWith(r.html, "data-reason");
     assert.equal(reason.length, 1, "one reason line");
@@ -144,6 +147,10 @@ test("UX-C3 Call Sheet: every decision has a reason line and a title that starts
     assert.doesNotMatch(title, /\.$/, `"${title}" has no trailing period`);
     const reasonText = text(r.html.slice(r.html.indexOf(reason[0].tag)));
     assert.ok(reasonText.length > 0, "reason line is not empty");
+    // UX-S10 (supersedes the old "any later sentence" rule): a reason shows only as a whole
+    // sentence, 4 words or more and not ending on a dangling word; otherwise the line names the source.
+    assert.ok(reasonText.split(/\s+/).length >= 4, `reason "${reasonText}" is a whole sentence`);
+    assert.doesNotMatch(reasonText, /\b(?:is|are|was|were|be|the|a|an|to|of|in|on|for|with|and|or|but|from|by|at)\.$/i, `reason "${reasonText}" doesn't end mid-phrase`);
   }
 });
 
@@ -359,10 +366,13 @@ test("UX-C3/UX-C9 reason: with one sentence the reason names the source, and the
   for (const r of [a, b]) assert.equal((text(r.html).match(/Handoff notes|Studio status/g) ?? []).length, 1, `source named once: ${text(r.html)}`);
 });
 
-test("UX-C9 a decision whose reason comes from the bullet keeps a source chip", () => {
+// UX-S10 supersedes the source chip: the row's button names the source instead.
+test("UX-C9 a decision whose reason comes from the bullet still names its source (on its button, not a chip)", () => {
   const f = clone(feed());
   f.callSheet.decide = [{ repo: "ccwatts", text: "Ship pace now or wait. The freeze ends soon." }];
-  assert.match(text(decideRows(f)[0].html), /Handoff notes/);
+  const html = decideRows(f)[0].html;
+  assert.match(text(html), /Open handoff notes/);
+  assert.doesNotMatch(html, /class="[^"]*\bchip\b[^"]*"[^>]*>\s*Handoff notes/);
 });
 
 test("UX-C10 no title on the Call Sheet or Focus shows a file name (*.json, *.md, ...)", () => {

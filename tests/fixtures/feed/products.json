@@ -3,6 +3,8 @@
     "repo": "pm-tools",
     "name": "PM tools",
     "code": "PMT",
+    "group": "Studio tools",
+    "merged": [{ "number": 46, "title": "PMT-M2.6: Night shift demo bar fixes", "mergedAt": "2026-10-28T21:00:00Z" }],
     "handoffFile": "handoff-pm-tools.md",
     "runLogFiles": {
       "claude/demo-bar": "runlogs/pm-tools/claude-demo-bar.log",
@@ -32,6 +34,7 @@
     "repo": "ccwatts",
     "name": "ccwatts",
     "code": "CCW",
+    "merged": [{ "number": 68, "title": "CCW-M2.6: Release plan", "mergedAt": "2026-10-29T15:00:00Z" }],
     "handoffFile": "handoff-ccwatts.md",
     "runLogFiles": {
       "claude/pace-spike": "runlogs/ccwatts/claude-pace-spike.log"
@@ -64,6 +67,10 @@
     "repo": "role-radar",
     "name": "Role Radar",
     "code": "RR",
+    "merged": [
+      { "number": 58, "title": "RR-M2.2: TypeScript conversion", "mergedAt": "2026-10-29T18:00:00Z" },
+      { "number": 51, "title": "RR-M1.9: Weekday scan", "mergedAt": "2026-10-12T18:00:00Z" }
+    ],
     "handoffFile": "handoff-role-radar.md",
     "runLogFiles": {
       "claude/rr-demo-bar": "runlogs/role-radar/claude-rr-demo-bar.log",
