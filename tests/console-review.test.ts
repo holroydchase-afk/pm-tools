@@ -188,12 +188,13 @@ test("UX-C4 effort bar: segment colors are the reviewed ones and every label is 
 
 // ---------------------------------------------------------------- UX-C5, UX-C6, UX-C8
 
-test("UX-C5 header: subtitle \"Staff PM view of the agent team\" and a \"← PM tools\" link back to /pm-tools/", () => {
+test("UX-C5 header: subtitle \"Staff PM view of the agent team\" and a \"← Chase Holroyd\" link back to / (CON-P-R5, PMT-M3.5)", () => {
   const html = readFileSync(join(ROOT, "console", "index.html"), "utf8");
   assert.match(html, /Staff PM view of the agent team/);
-  const a = html.match(/<a\b[^>]*href="([^"]*)"[^>]*>\s*←\s*PM tools\s*<\/a>/);
-  assert.ok(a, "a link reading ← PM tools");
-  assert.ok(["../", "/pm-tools/"].includes(a[1]), `back link goes to /pm-tools/ (href ${a[1]})`);
+  const a = html.match(/<a\b[^>]*href="([^"]*)"[^>]*>\s*←\s*Chase Holroyd\s*<\/a>/);
+  assert.ok(a, "a link reading ← Chase Holroyd");
+  assert.equal(a[1], "/", `back link goes to / (href ${a[1]})`);
+  assert.doesNotMatch(html, />\s*←\s*PM tools\s*</, "no ← PM tools link left");
 });
 
 test("UX-C6 Focus: every off-goal item, PRs and agent runs alike, has one button to GitHub", () => {

@@ -143,7 +143,7 @@ for (const path of ["build-slate/", "roadmap/"]) {
     assert.match(text, /made-up sample data/);
     assert.match(text, /saved only in this browser/);
     assert.ok((await appTop()) > closedTop, "the drawer pushes the app down instead of covering it");
-    for (const el of [panel.getByRole("button", { name: "Reset demo" }), panel.getByRole("link", { name: /How I keep it all moving/ })]) {
+    for (const el of [panel.getByRole("button", { name: "Reset demo" }), panel.getByRole("link", { name: /Studio Console/ })]) {
       const b = await el.boundingBox();
       assert.ok(b && b.height >= 44, `${await el.textContent()} is ${b?.height}px tall`);
     }
