@@ -15,6 +15,9 @@ _Read this before starting work on this repo. Update it in the same commit whene
 
 Updated: 2026-10-31 (intro by role in TONE; Studio Console PMT-M3 scoped in PLAN.md; demo banner standard DEMO-BAR: slim Demo bar with a push-down drawer; intakes as GitHub issues, docs/INTAKE.md; story-keeper agent in ONBOARDING and the project-instructions paste; STACK.md: Role Radar on TypeScript; open-PR cleanup; STUDIO-STATUS refreshed; shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
+## qa-tdd refresh (Oct 31)
+- Synced qa-tdd from studio-agents main (#31, #33): reports end with a ```qa block, it never fixes product code, flaky is never green. `scripts/check-qa-report.mjs` validates the block; CLAUDE.md gains "Relay qa-tdd's verdict as-is". Only qa-tdd and its checker were synced; the other agents' refresh is a separate studio refresh.
+
 ## Intro by role everywhere (Oct 31)
 - Chase: some projects don't introduce themselves by role. The TONE line in ONBOARDING's project-instructions paste now covers every thread, chat and run report, with "Hi Chase, I'm Charlie's chief of staff" as the example; section 2 says the rule also ships in every repo's CLAUDE.md (paired studio-agents PR). Next: Chase pastes the STUDIO RULES block into each project's instructions so they're identical.
 
