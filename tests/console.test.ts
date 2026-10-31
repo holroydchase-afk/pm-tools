@@ -78,7 +78,8 @@ const clone = <T>(x: T): T => JSON.parse(JSON.stringify(x)) as T;
 
 const ENT: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ENT[c]);
-const unesc = (s: string) => s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
+// &amp; goes last, so "&amp;lt;" decodes to "&lt;" and not "<".
+const unesc = (s: string) => s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&amp;/g, "&");
 // Opening tags carrying an attribute, and one attribute's value from a tag.
 const tagsWith = (html: string, attr: string) => [...html.matchAll(new RegExp(`<[a-z][^>]*\\s${attr}(?:="[^"]*")?[^>]*>`, "gi"))].map((m) => ({ tag: m[0], at: m.index }));
 const attr = (tag: string, name: string) => tag.match(new RegExp(`\\s${name}="([^"]*)"`))?.[1];
