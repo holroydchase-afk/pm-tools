@@ -24,11 +24,11 @@ Success: 5 weekdays in a row Chase works from the Call Sheet without opening a H
 
 | Task | Status | Done when |
 |---|---|---|
-| PMT-M3.1 Feed builder: pure `scripts/feed/` core + thin fetch layer, recorded fixtures, `goals.json` | todo | CON-1 to CON-7 pass on fixtures with no network; `npm test`, typecheck, check:private green; no new runtime deps |
-| PMT-M3.2 Console UI: Focus + Call Sheet, scheduled Action (hourly + manual) writes `studio.json` into the Pages build (one deploy path: pages.yml gains the cron and runs `npm run feed` after the build, no separate workflow) | todo | CON-8 to CON-11 pass; ux-reviewer no P0/P1; privacy-security signs off the Action and feed |
-| PMT-M3.3 Console UI: Build Slate (drawer), Horizon Board, Agent Roster | todo | CON-12 to CON-15 pass; ux-reviewer no P0/P1 |
-| PMT-M3.4 Status-header standard in studio-agents (template + handoff-check) and intake issues to each product repo | todo | studio-agents PR merged; one intake issue per product; CON-16 passes |
-| PMT-M3.5 Portfolio copy (holroydchase-afk.github.io) and retire the old demos | todo | Portfolio links the console; `/pm-tools/` redirects; demo seeds and the two artifact DBs marked archived (read-only), nothing deleted in M3 |
+| PMT-M3.1 Feed builder: pure `scripts/feed/` core + thin fetch layer, recorded fixtures, `goals.json` | done (#51) | CON-1 to CON-7 pass on fixtures with no network; `npm test`, typecheck, check:private green; no new runtime deps |
+| PMT-M3.2 Console UI: Focus + Call Sheet, scheduled Action (hourly + manual) writes `studio.json` into the Pages build (one deploy path: pages.yml gains the cron and runs `npm run feed` after the build, no separate workflow) | done (#52) | CON-8 to CON-11 pass; ux-reviewer no P0/P1; privacy-security signs off the Action and feed |
+| PMT-M3.3 Console UI: Build Slate (drawer), Horizon Board, Agent Roster | done (#53) | CON-12 to CON-15 pass; ux-reviewer no P0/P1 |
+| PMT-M3.4 Status-header standard in studio-agents (template + handoff-check) and intake issues to each product repo | in progress (studio-agents #34) | studio-agents PR merged; one intake issue per product; CON-16 passes |
+| PMT-M3.5 Portfolio copy (holroydchase-afk.github.io) and retire the old demos | in progress | Portfolio links the console; `/pm-tools/` redirects; demo seeds and the two artifact DBs marked archived (read-only), nothing deleted in M3 |
 
 Acceptance criteria (Given/When/Then; type):
 - CON-1 (auto) Given a HANDOFF with a status header, when parsed, then stage, goal, milestone, now, next, waiting_on_chase and blockers come from the header.

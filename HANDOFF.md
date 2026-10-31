@@ -1,4 +1,15 @@
 # Handoff: PM tools
+<!-- status
+stage: live
+goal: agent-team
+milestone: PMT-M3
+now: PMT-M3.4 status header standard; PMT-M3.5 portfolio copy for the Studio Console
+next: Product repos add the status header from their intake issues; Chase merges the portfolio PR
+waiting_on_chase:
+  - Merge the portfolio Studio Console PR (a merge to main deploys the site)
+blockers:
+  - Agent Roster stays empty until studio-agents #27 (cloud run-log hook) merges
+-->
 
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
