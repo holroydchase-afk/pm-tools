@@ -9,6 +9,7 @@ Updated: 2026-10-31 (demo banner standard DEMO-BAR: slim Demo bar with a push-do
 - Built in `demo/fake-db.js` for Build Slate and the roadmap: `← Portfolio` link, outlined Demo badge, "Sample data" and Details ⌄ in a 44px bar drawn in each app's own tokens; the drawer has the standard copy, Reset demo (asks first, says "Sample data restored" after) and the full back link. Seeds gained `name`. ux-reviewer: old bar 4/10, new 7/10 before DEMO-R1..R6, all fixed. e2e: DEMO-BAR and DEMO-R cases (16 total).
 - The same `fake-db.js` was copied to holroydchase-afk.github.io `demo/` (the unlinked Energy Scanner snapshot).
 - Intakes filed for the product-owned demos (Role Radar, Energy Scanner, ccwatts, Hearth, Charlie, Crew Clock); each product applies the spec in its own design system.
+- CI: `ubuntu-latest` moved to Ubuntu 26.04, where Playwright 1.56.1 can't install Chromium, so the e2e job (which gates the Pages deploy) failed on every PR. pages.yml pins e2e to `ubuntu-24.04`; drop the pin when Playwright is bumped.
 - Next: Chase merges; then products pick up their intakes.
 
 ## Intakes as GitHub issues (Oct 30)
