@@ -38,7 +38,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - ccwatts v1 (CCW-M1.1 to M1.9) is merged. The Energy Scanner v1 stack and ES-M2.1 (bedtime flow) are merged.
 
 ## Waiting on Chase
-- **GitHub settings still off** (checked by API on Oct 31; click paths under "GitHub settings" below): Dependency graph on holroydchase-afk.github.io (the `dependencies` check there still says it's off), private vulnerability reporting and Dependabot security updates on all 8 public repos, secret scanning and push protection on Charlie, push protection on Crew Clock. Optional: rename Energy Scanner's default branch to `main` and protect `main`.
+- **GitHub settings still off** (checked by API on Oct 31; click paths under "GitHub settings" below): private vulnerability reporting and Dependabot security updates on all 8 public repos, secret scanning and push protection on Charlie, push protection on Crew Clock. Optional: rename Energy Scanner's default branch to `main` and protect `main`.
 - Portfolio WEB-M4.8: add a "Jan 2026 – present" line to the resume page? (recruiter-ready review, Oct 22)
 - Portfolio WEB-M2.6: LinkedIn Featured link and headline (the headshot is on the site since Oct 26).
 - ccwatts CCW-M2.1: one run on real logs on the laptop.
@@ -58,7 +58,7 @@ Every GitHub setting Chase changes is logged here with its date, so no thread as
 
 | Date | Setting | Where | Why |
 |---|---|---|---|
-| 2026-10-31 | Dependency graph on | pm-tools (the portfolio repo still reports it off; other repos not yet checked by a PR) | Lets GitHub map each repo's packages. It powers the `dependencies` PR check (fails a PR that adds a package with a known vulnerability) and Dependabot alerts. Until it was on, that check was red on every PR. Verified green on the pm-tools #48 re-run. |
+| 2026-10-31 | Dependency graph on | pm-tools, holroydchase-afk.github.io (both `dependencies` checks re-ran green) | Lets GitHub map each repo's packages. It powers the `dependencies` PR check (fails a PR that adds a package with a known vulnerability) and Dependabot alerts. Until it was on, that check was red on every PR. Verified green on the pm-tools #48 re-run. |
 | 2026-10-24 | Pages custom domain chaseholroyd.com, Enforce HTTPS | holroydchase-afk.github.io, Settings → Pages | The portfolio's domain (Porkbun DNS). |
 
 State on 2026-10-31 (API check of the public repos): secret scanning and push protection are on everywhere except Charlie (both off) and Crew Clock (push protection off). Dependabot security updates and private vulnerability reporting are off everywhere. Hearth is private, so its settings aren't readable here.
@@ -74,7 +74,7 @@ https://github.com/holroydchase-afk/energy-scanner/settings/security_analysis
 https://github.com/holroydchase-afk/charlie/settings/security_analysis
 https://github.com/holroydchase-afk/crew-clock/settings/security_analysis
 ```
-On each: Dependency graph → Enable (if it isn't already), Private vulnerability reporting → Enable, and Dependabot security updates → Enable. On Charlie also Secret scanning and Push protection → Enable; on Crew Clock, Push protection → Enable.
+On each: Private vulnerability reporting → Enable, and Dependabot security updates → Enable. On Charlie also Secret scanning and Push protection → Enable; on Crew Clock, Push protection → Enable.
 
 ## Next without Chase
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
