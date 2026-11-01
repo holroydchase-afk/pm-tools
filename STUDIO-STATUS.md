@@ -7,6 +7,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 **New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
 
 ## Done
+- Studio standard (Nov 1, Chase: "standardize ... put it in everyones intakes"): studio-agents `docs/studio-standard.md` merges Product Studio's and Hearth's rules. Intake issues filed in ccwatts, role-radar, energy-scanner, charlie, crew-clock and Hearth; each project's Intake check adopts it. ONBOARDING's project-instructions block now points at it.
 **Portfolio and domain**
 - chaseholroyd.com is live: domain (Porkbun), DNS and the Pages custom domain are set. The repo is `holroydchase-afk.github.io` (renamed from `portfolio` on Oct 21), so each repo's Pages site serves at chaseholroyd.com/<repo>/.
 - Pages: Work, Studio, Role Radar, ccwatts, Energy Scanner, How I keep it all moving (PM tools), family photo app ("name coming"), About, Resume, 404. Share card, SEO and the Staff PM hero are merged (WEB-M2.1, M2.2, M2.5).
@@ -47,7 +48,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
 - Portfolio: three [check] answers unlock the Patter and ADT case studies (WEB-M5.4): Patter's URL, who uses Energy Scanner, Role Radar and ccwatts today, and whether "about an hour a night" is OK to publish.
-- Studio: paste the onboarding kit into Charlie and Crew Clock (docs/ONBOARDING.md, "The two pastes", or `/onboard` once that skill is saved; tailored first messages were given in the Product Studio intake thread, Oct 23), and the refresh paste into the existing product projects.
+- Studio standard (Nov 1): paste the project-instructions block (docs/ONBOARDING.md, "The two pastes", block 1) into each project's settings once: Product Studio, ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock. It replaces the older onboarding and refresh pastes. Everything else arrives as intake issues.
 - Charlie: one laptop run on real Cboe and SEC data (the cloud blocks market-data hosts), plus the next-feature pick: earnings or alpaca (Power Hour, Oct 22).
 - Crew Clock: Supabase setup (docs/SETUP.md steps 1.1 to 1.4) before the crew beta.
 

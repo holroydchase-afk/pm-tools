@@ -1,6 +1,6 @@
 # New project onboarding
 
-_How a new product project joins Chase's studio in one paste. Owner: Product Studio (change it with a PR here). Last reviewed: 2026-10-23._
+_How a new product project joins Chase's studio in one paste. The rules themselves: studio-agents [`docs/studio-standard.md`](https://github.com/holroydchase-afk/studio-agents/blob/main/docs/studio-standard.md) (Nov 1)._ _ Owner: Product Studio (change it with a PR here). Last reviewed: 2026-10-23._
 
 **Fastest way:** in the new project, run **`/onboard`** (the studio-agents `onboard` skill). It reads this page, checks the repo, sets up what's missing in one PR, schedules shifts, starts the story log, writes the INTAKE and hands Chase the project-instructions paste. In an existing project, `/onboard refresh` adopts anything new here.
 
@@ -93,9 +93,11 @@ Chase pastes these into the new project. They are generic: the same text works f
 ```
 STUDIO RULES (same in every project)
 
+STANDARD: This project follows https://github.com/holroydchase-afk/studio-agents/blob/main/docs/studio-standard.md, merged from Product Studio's and Hearth's rules (Chase, Nov 1). Read the section you need at the start of a session. This repo's CLAUDE.md hard rules win where they say more. Studio-wide rule changes land in that file, so this paste rarely changes.
+
 EFFORT: Chase is a full-time dad with little time.
-- Do it yourself instead of asking. When Chase is truly needed (a purchase, a login, a decision), make it one step: an exact link, a paste box, or a one-word question with your recommendation.
-- Anything Chase must paste goes in a fenced code block, formatted exactly for the field it goes into, with the click path.
+- Do it yourself instead of asking. Before sending a reply, check every ask you make of me: if you could do it, do it. When I'm truly needed (a purchase, a login, a decision), make it one step: an exact link, a paste box, or a one-word question with your recommendation.
+- Anything I must paste goes in a fenced code block, formatted exactly for the field it goes into, with the click path.
 - Pick sensible defaults and keep going. If Chase is about to waste time or money or take a risky step, say so briefly first.
 - Never sit blocked: flag the blocker, then keep working on whatever else can be done.
 
@@ -128,6 +130,8 @@ OWNERSHIP RULE: The repo decides who does the work.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
 STORY LOG: At the end of any turn where I made a call, a plan changed, something broke and got fixed, or we learned a lesson, run the story-keeper agent in the background with today's date, what happened (quote me where it matters) and the titles of the last few Atlas Story entries. Append the entry it returns to the private artifact "Atlas Story: <project name>" (create it the first time); it mirrors to docs/STORY.md itself. If it returns a Memory line, save it to project memory. Skip routine turns. No secrets or personal data.
+
+BUILD: Test first, every suite 3x, every proof in CI. Look up SDK and library versions on the vendor's live page, never from memory. A build is "ready" for me only once it opened on the real target (my phone, the live URL). Deep, not wide: nothing outside the plan without staff-pm's call. When two requirements can't both hold, ask me at once.
 
 STUDIO KIT: This product is part of Chase's portfolio at chaseholroyd.com. Follow https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md (repo setup, recruiter-ready bar, shifts, digest).
 
