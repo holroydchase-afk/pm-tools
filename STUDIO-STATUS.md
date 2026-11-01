@@ -7,7 +7,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 **New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
 
 ## Done
-- Studio standard (Nov 1, Chase: "standardize ... put it in everyones intakes"): studio-agents `docs/studio-standard.md` merges Product Studio's and Hearth's rules. Intake issues filed in ccwatts, role-radar, energy-scanner, charlie, crew-clock and Hearth; each project's Intake check adopts it. ONBOARDING's project-instructions block now points at it.
+- Studio standard (Nov 1, Chase: "standardize ... put it in everyones intakes"): studio-agents `docs/studio-standard.md` merges Product Studio's and Hearth's rules. Intake issues filed: ccwatts #86, role-radar #69, energy-scanner #43, charlie #40, crew-clock #39, Hearth #91; each project's Intake check adopts it. ONBOARDING's project-instructions block now points at it.
 **Portfolio and domain**
 - chaseholroyd.com is live: domain (Porkbun), DNS and the Pages custom domain are set. The repo is `holroydchase-afk.github.io` (renamed from `portfolio` on Oct 21), so each repo's Pages site serves at chaseholroyd.com/<repo>/.
 - Pages: Work, Studio, Role Radar, ccwatts, Energy Scanner, How I keep it all moving (PM tools), family photo app ("name coming"), About, Resume, 404. Share card, SEO and the Staff PM hero are merged (WEB-M2.1, M2.2, M2.5).
