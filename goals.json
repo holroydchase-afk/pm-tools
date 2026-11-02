@@ -1,0 +1,33 @@
+[
+  {
+    "id": "staff-pm-role",
+    "name": "Land a Staff PM role",
+    "measure": "3 applications a weekday",
+    "status": "Role Radar scans every weekday",
+    "match": { "repos": ["role-radar"], "keywords": ["resume", "application", "job search"] }
+  },
+  {
+    "id": "portfolio",
+    "name": "Portfolio recruiter-ready",
+    "measure": "Every v1 demoable from chaseholroyd.com",
+    "status": "Demo bars rolling out to each product",
+    "progress": { "done": 5, "of": 7, "label": "demos live" },
+    "match": { "repos": ["holroydchase-afk.github.io"], "idPrefixes": ["WEB-", "DEMO-"], "keywords": ["portfolio", "demo", "recruiter"] }
+  },
+  {
+    "id": "hearth-beta",
+    "name": "Hearth beta on Nov 22",
+    "measure": "TestFlight beta build",
+    "status": "Waiting on Apple Developer enrollment",
+    "progress": { "target": "2026-11-22", "label": "to beta" },
+    "match": { "repos": ["Hearth"], "idPrefixes": ["HRT-"], "keywords": ["beta", "TestFlight"] }
+  },
+  {
+    "id": "agent-team",
+    "name": "Agent team production grade",
+    "measure": "Evals pass for every studio agent",
+    "status": "First agent evals in review",
+    "progress": { "done": 0, "of": 8, "label": "agents with evals" },
+    "match": { "repos": ["studio-agents", "pm-tools"], "idPrefixes": ["PMT-", "AGT-"], "keywords": ["agent", "eval", "studio agents", "re-sync", "qa-tdd", "ux-reviewer"] }
+  }
+]

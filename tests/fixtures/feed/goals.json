@@ -1,0 +1,26 @@
+[
+  {
+    "id": "staff-pm-role",
+    "name": "Land a Staff PM role",
+    "measure": "3 applications a weekday",
+    "match": { "repos": ["role-radar"] }
+  },
+  {
+    "id": "portfolio",
+    "name": "Portfolio recruiter-ready",
+    "measure": "Every v1 demoable from chaseholroyd.com",
+    "match": { "repos": ["holroydchase-afk.github.io"], "idPrefixes": ["WEB-", "DEMO-"] }
+  },
+  {
+    "id": "hearth-beta",
+    "name": "Hearth beta on Nov 22",
+    "measure": "TestFlight build with the family",
+    "match": { "repos": ["Hearth"], "idPrefixes": ["HRT-"] }
+  },
+  {
+    "id": "agent-team",
+    "name": "Agent team production grade",
+    "measure": "Evals pass for every studio agent",
+    "match": { "repos": ["studio-agents", "pm-tools"], "idPrefixes": ["PMT-", "AGT-"] }
+  }
+]

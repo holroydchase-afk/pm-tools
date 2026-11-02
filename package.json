@@ -10,6 +10,8 @@
     "typecheck": "tsc -p .",
     "build": "node scripts/build-demo.ts",
     "check:private": "node scripts/check-private.ts",
+    "feed": "node scripts/build-feed.ts",
+    "feed:sample": "node scripts/build-sample-feed.ts",
     "hooks": "git config core.hooksPath .githooks",
     "test:e2e": "node --test \"tests/e2e/*.e2e.ts\""
   },
