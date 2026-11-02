@@ -368,7 +368,7 @@ test("CON-6 a product with no run logs has an empty runs entry", () => {
 // ---------------------------------------------------------------- CON-7: schema and privacy
 
 function assertFeedShape(f: Feed) {
-  assert.deepEqual(Object.keys(f).sort(), ["builtAt", "callSheet", "gates", "goals", "offGoal", "offGoalEffort", "products", "runs"]);
+  assert.deepEqual(Object.keys(f).sort(), ["builtAt", "callSheet", "gates", "goals", "horizon", "offGoal", "offGoalEffort", "products", "runs", "wipCap", "workItems"]);
   assert.equal(f.builtAt, NOW.toISOString());
   assert.ok(Array.isArray(f.goals) && f.goals.every((g) => typeof g.id === "string" && typeof g.name === "string" && typeof g.measure === "string" && Number.isInteger(g.effort)));
   assert.ok(Number.isInteger(f.offGoalEffort));

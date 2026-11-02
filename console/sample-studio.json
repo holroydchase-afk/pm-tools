@@ -6,7 +6,7 @@
       "id": "staff-pm-role",
       "name": "Land a Staff PM role",
       "measure": "3 applications a weekday",
-      "effort": 22,
+      "effort": 0,
       "reads": [
         "Role Radar"
       ],
@@ -16,7 +16,7 @@
       "id": "portfolio",
       "name": "Portfolio recruiter-ready",
       "measure": "Every v1 demoable from chaseholroyd.com",
-      "effort": 22,
+      "effort": 44,
       "reads": [
         "Portfolio"
       ],
@@ -98,7 +98,7 @@
         "repo": "role-radar",
         "number": 63,
         "title": "RR-M2.3: Demo bar",
-        "goal": "staff-pm-role"
+        "goal": "portfolio"
       }
     ],
     "inProgress": [
@@ -199,7 +199,18 @@
       ],
       "blockers": [],
       "openPrs": 3,
-      "intakes": 1
+      "intakes": 1,
+      "group": "Studio tools",
+      "track": "building",
+      "lastRun": {
+        "agent": "qa-tdd",
+        "at": "2026-10-31T08:30:00Z"
+      },
+      "health": {
+        "level": "ok",
+        "note": "No failing checks or blockers"
+      },
+      "later": []
     },
     {
       "repo": "ccwatts",
@@ -226,7 +237,21 @@
         "Waiting on the 0.1.2 release review."
       ],
       "openPrs": 4,
-      "intakes": 0
+      "intakes": 0,
+      "group": null,
+      "track": null,
+      "lastRun": {
+        "agent": "qa-tdd",
+        "at": "2026-10-30T05:00:00Z"
+      },
+      "health": {
+        "level": "bad",
+        "note": "1 blocker"
+      },
+      "later": [
+        "CCW-M5 MCP server for teams",
+        "Docs site"
+      ]
     },
     {
       "repo": "role-radar",
@@ -253,7 +278,20 @@
         "Demo bar e2e fails on narrow screens"
       ],
       "openPrs": 2,
-      "intakes": 2
+      "intakes": 2,
+      "group": null,
+      "track": null,
+      "lastRun": {
+        "agent": "qa-tdd",
+        "at": "2026-11-02T00:00:00Z"
+      },
+      "health": {
+        "level": "bad",
+        "note": "1 PR failing checks, 2 blockers"
+      },
+      "later": [
+        "RR-M3 MCP server"
+      ]
     }
   ],
   "gates": [
@@ -355,5 +393,111 @@
       "engineer": 1,
       "ux-reviewer": 1
     }
-  }
+  },
+  "wipCap": 5,
+  "horizon": [
+    {
+      "repo": "pm-tools",
+      "now": [
+        {
+          "id": "PMT-M3.1",
+          "title": "feed builder tests are red",
+          "pr": 50
+        }
+      ],
+      "next": [
+        {
+          "id": null,
+          "title": "engineer builds scripts/feed/core.ts",
+          "pr": null
+        }
+      ],
+      "later": [],
+      "done": [
+        {
+          "id": "PMT-M2.6",
+          "title": "Night shift demo bar fixes",
+          "pr": 46
+        }
+      ]
+    },
+    {
+      "repo": "ccwatts",
+      "now": [
+        {
+          "id": "CCW-M4.1",
+          "title": "pace spike: a burnout signal from session length,",
+          "pr": 72
+        },
+        {
+          "id": "CCW-M4.0",
+          "title": "notes for the pace tracker.",
+          "pr": 71
+        },
+        {
+          "id": null,
+          "title": "Methodology page copy pass.",
+          "pr": null
+        }
+      ],
+      "next": [
+        {
+          "id": null,
+          "title": "Decide whether pace ships behind an opt-in flag.",
+          "pr": null
+        }
+      ],
+      "later": [
+        {
+          "id": "CCW-M5",
+          "title": "MCP server for teams",
+          "pr": null
+        },
+        {
+          "id": null,
+          "title": "Docs site",
+          "pr": null
+        }
+      ],
+      "done": [
+        {
+          "id": "CCW-M2.6",
+          "title": "Release plan",
+          "pr": 68
+        }
+      ]
+    },
+    {
+      "repo": "role-radar",
+      "now": [
+        {
+          "id": "RR-M2.3",
+          "title": "demo bar in the Role Radar design system",
+          "pr": 63
+        }
+      ],
+      "next": [
+        {
+          "id": null,
+          "title": "Fix the failing e2e check on the demo bar PR",
+          "pr": null
+        }
+      ],
+      "later": [
+        {
+          "id": "RR-M3",
+          "title": "MCP server",
+          "pr": null
+        }
+      ],
+      "done": [
+        {
+          "id": "RR-M2.2",
+          "title": "TypeScript conversion",
+          "pr": 58
+        }
+      ]
+    }
+  ],
+  "workItems": 23
 }

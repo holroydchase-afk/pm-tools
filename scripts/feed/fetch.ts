@@ -1,12 +1,13 @@
 // The Studio Console feed's only I/O: reads public repos through the GitHub REST API and returns
 // a FeedInput for core.ts (minus the agent roster, which build-feed reads from disk). Global
 // fetch, no dependencies; GITHUB_TOKEN (optional) raises the rate limit. A repo that 404s, is private or errors is skipped and reported, never fatal.
-import type { Checks, FeedInput, Goal, IntakeIssue, ProductInput, PullRequest } from "./types.ts";
+import type { Checks, FeedInput, Goal, IntakeIssue, MergedPr, ProductInput, PullRequest } from "./types.ts";
 
 export type ConsoleConfig = {
   owner: string;
   statusRepo: string; // the repo holding STUDIO-STATUS.md
-  products: { repo: string; name: string; code: string; group?: string }[];
+  products: { repo: string; name: string; code: string; group?: string; stage?: string }[];
+  wipCap?: number; // active products allowed on the Build Slate (CON-12); the feed defaults to 5
 };
 export type Skipped = { repo: string; reason: string };
 
@@ -56,10 +57,13 @@ async function fetchProduct(gh: Client, owner: string, p: ConsoleConfig["product
   const repo = `${owner}/${p.repo}`;
   type ApiPr = { number: number; title: string; draft: boolean; user: { login: string }; author_association: string; updated_at: string; body: string | null; head: { ref: string; sha: string } };
   type ApiIssue = { number: number; title: string; pull_request?: unknown };
-  const [handoff, apiPrs, issues] = await Promise.all([
+  type ApiClosed = { number: number; title: string; user: { login: string }; author_association: string; merged_at: string | null };
+  const [handoff, apiPrs, issues, closed] = await Promise.all([
     gh.file(repo, "HANDOFF.md"),
     gh.json<ApiPr[]>(`/repos/${repo}/pulls?state=open&per_page=100`),
     gh.json<ApiIssue[]>(`/repos/${repo}/issues?state=open&labels=intake&per_page=100`),
+    // Horizon's Done column (PMT-M3.3): the newest closed PRs; core keeps merges in the last 7 days.
+    gh.json<ApiClosed[]>(`/repos/${repo}/pulls?state=closed&sort=updated&direction=desc&per_page=50`),
   ]);
   // SEC-C2: only PRs from people with write access (or Dependabot) reach the feed; a stranger's
   // PR title would otherwise be published on the console.
@@ -77,7 +81,11 @@ async function fetchProduct(gh: Client, owner: string, p: ConsoleConfig["product
   }));
   prs.sort((a, b) => b.number - a.number); // Promise.all finishes in any order; keep the output stable
   const intake: IntakeIssue[] = issues.filter((i) => !i.pull_request).map((i) => ({ number: i.number, title: i.title }));
-  return { repo: p.repo, name: p.name, code: p.code, handoff, prs, intake, runLogs };
+  // Merged only (not closed unmerged), from people with write access; Dependabot bumps stay off the board.
+  const merged: MergedPr[] = closed
+    .filter((pr) => pr.merged_at !== null && TRUSTED.has(pr.author_association) && pr.user.login !== "dependabot[bot]")
+    .map((pr) => ({ number: pr.number, title: pr.title, mergedAt: pr.merged_at! }));
+  return { repo: p.repo, name: p.name, code: p.code, handoff, prs, intake, runLogs, merged, ...(p.group ? { group: p.group } : {}), ...(p.stage ? { stage: p.stage } : {}) };
 }
 
 export async function fetchFeedInput(config: ConsoleConfig, goals: Goal[], token?: string): Promise<{ input: Omit<FeedInput, "agents">; skipped: Skipped[] }> {
@@ -99,5 +107,5 @@ export async function fetchFeedInput(config: ConsoleConfig, goals: Goal[], token
   // SEC-C4: we can't tell whether a repo we couldn't read is private (GitHub answers 404 for
   // those, and errors hide it), so every skipped repo's name is kept out of the feed.
   const privateRepos = skipped.filter((s) => config.products.some((p) => p.repo === s.repo)).map((s) => s.repo);
-  return { input: { goals, products, studioStatus, privateRepos }, skipped };
+  return { input: { goals, products, studioStatus, privateRepos, ...(config.wipCap !== undefined ? { wipCap: config.wipCap } : {}) }, skipped };
 }
