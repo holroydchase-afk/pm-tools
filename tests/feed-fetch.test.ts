@@ -128,3 +128,20 @@ test("SEC-C4 fetch: every repo skipped for any reason (404, 403, 5xx, private) i
   assert.deepEqual(skipped.map((s) => s.repo).sort(), ["Hearth", "ccwatts", "family-vault", "role-radar"]);
   assert.deepEqual([...(input.privateRepos ?? [])].sort(), ["Hearth", "ccwatts", "family-vault", "role-radar"], "500 and 403 repos count as private too");
 });
+
+// ---------------------------------------------------------------- PMT-M3.3 (Build Slate group, Horizon Done)
+
+test("CON-12 fetch: a product's console.config.json group reaches the feed input", async () => {
+  const cfg: ConsoleConfig = { owner: "sample-owner", statusRepo: "pm-tools", products: [{ repo: "pm-tools", name: "PM tools", code: "PMT", group: "Studio tools" }, { repo: "ccwatts", name: "ccwatts", code: "CCW" }] };
+  const { input } = await withStub({ repos: { "pm-tools": { handoff: HANDOFF }, ccwatts: { handoff: HANDOFF } } }, () => fetchFeedInput(cfg, goals));
+  assert.deepEqual(input.products.map((p) => (p as { group?: string }).group ?? null), ["Studio tools", null]);
+});
+
+test("CON-14 fetch: merged PRs (not ones closed unmerged) reach the input as { number, title, mergedAt }", async () => {
+  const closed = [
+    { number: 9, title: "CCW-M2.6: Release plan", merged_at: "2026-10-30T10:00:00Z", closed_at: "2026-10-30T10:00:00Z" },
+    { number: 8, title: "Abandoned idea", merged_at: null, closed_at: "2026-10-30T09:00:00Z" },
+  ];
+  const { input } = await withStub({ repos: { ccwatts: { handoff: HANDOFF, closed } } }, () => fetchFeedInput(config("ccwatts"), goals));
+  assert.deepEqual((input.products[0] as { merged?: unknown }).merged, [{ number: 9, title: "CCW-M2.6: Release plan", mergedAt: "2026-10-30T10:00:00Z" }]);
+});
