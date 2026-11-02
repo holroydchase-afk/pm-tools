@@ -7,6 +7,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 **New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
 
 ## Done
+- Studio standard (Nov 1, Chase: "standardize ... put it in everyones intakes"): studio-agents `docs/studio-standard.md` merges Product Studio's and Hearth's rules. Intake issues filed: ccwatts #86, role-radar #69, energy-scanner #43, charlie #40, crew-clock #39, Hearth #91; each project's Intake check adopts it. ONBOARDING's project-instructions block now points at it.
 **Portfolio and domain**
 - chaseholroyd.com is live: domain (Porkbun), DNS and the Pages custom domain are set. The repo is `holroydchase-afk.github.io` (renamed from `portfolio` on Oct 21), so each repo's Pages site serves at chaseholroyd.com/<repo>/.
 - Pages: Work, Studio, Role Radar, ccwatts, Energy Scanner, How I keep it all moving (PM tools), family photo app ("name coming"), About, Resume, 404. Share card, SEO and the Staff PM hero are merged (WEB-M2.1, M2.2, M2.5).
@@ -47,7 +48,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 - Role Radar: try "Import from Gmail" on the live page.
 - Hearth: the new name.
 - Portfolio: three [check] answers unlock the Patter and ADT case studies (WEB-M5.4): Patter's URL, who uses Energy Scanner, Role Radar and ccwatts today, and whether "about an hour a night" is OK to publish.
-- Studio: paste the onboarding kit into Charlie and Crew Clock (docs/ONBOARDING.md, "The two pastes", or `/onboard` once that skill is saved; tailored first messages were given in the Product Studio intake thread, Oct 23), and the refresh paste into the existing product projects.
+- Studio standard (Nov 1): paste the project-instructions block (docs/ONBOARDING.md, "The two pastes", block 1) into each project's settings once: Product Studio, ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock. It replaces the older onboarding and refresh pastes. Everything else arrives as intake issues.
 - Charlie: one laptop run on real Cboe and SEC data (the cloud blocks market-data hosts), plus the next-feature pick: earnings or alpaca (Power Hour, Oct 22).
 - Crew Clock: Supabase setup (docs/SETUP.md steps 1.1 to 1.4) before the crew beta.
 
@@ -80,6 +81,9 @@ On each: Private vulnerability reporting → Enable, and Dependabot security upd
 - Recruiter-ready review (Oct 22): ranked list in holroydchase-afk.github.io `docs/reviews/2026-10-22-recruiter-ready.md`. Overnight: WEB-M4.7 product screenshots, P2 polish.
 - Portfolio: WEB-M3.1 (outcomes on the Role Radar and ccwatts pages). After one release, delete the old `demo/energy-scanner/` copy.
 
+## PR queue rule (Oct 31)
+New PRs are fine; each names its owning thread and a `Merge after:` line. Threads merge their own PRs on green, oldest first, without asking Chase. The one gate: a merge that changes a live demo or live product (portfolio `main`, a public demo or live app, a release) waits for Chase, and that ask lists the repo's open PRs in merge order. Before merging #N, a thread merges older ones first or warns Chase about any it can't (with its thread). Full rule: studio-agents `docs/session-rules.md`, "Pull requests"; the PR QUEUE block in [docs/ONBOARDING.md](docs/ONBOARDING.md).
+
 ## Who owns which repo
 | Repo | Owning project |
 |---|---|
@@ -89,7 +93,7 @@ On each: Private vulnerability reporting → Enable, and Dependabot security upd
 | Hearth | Hearth |
 | charlie | Charlie |
 | crew-clock | Crew Clock |
-| holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio |
+| holroydchase-afk.github.io (portfolio), pm-tools, studio-agents, and anything spanning more than one project | Product Studio (Atlas) |
 
 The repo decides who does the work:
 - The change lands in a product's repo: that product's project does it.

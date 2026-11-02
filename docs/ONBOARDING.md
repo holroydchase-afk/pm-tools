@@ -1,6 +1,6 @@
 # New project onboarding
 
-_How a new product project joins Chase's studio in one paste. Owner: Product Studio (change it with a PR here). Last reviewed: 2026-10-23._
+_How a new product project joins Chase's studio in one paste. The rules themselves: studio-agents [`docs/studio-standard.md`](https://github.com/holroydchase-afk/studio-agents/blob/main/docs/studio-standard.md) (Nov 1)._ _ Owner: Product Studio (change it with a PR here). Last reviewed: 2026-10-23._
 
 **Fastest way:** in the new project, run **`/onboard`** (the studio-agents `onboard` skill). It reads this page, checks the repo, sets up what's missing in one PR, schedules shifts, starts the story log, writes the INTAKE and hands Chase the project-instructions paste. In an existing project, `/onboard refresh` adopts anything new here.
 
@@ -9,7 +9,7 @@ Without the skill, Chase pastes two blocks (see [The two pastes](#the-two-pastes
 ## 1. What you're part of
 - **A portfolio.** Chase is a senior PM job hunting. Every product is a demoable v1 shown at **chaseholroyd.com**: a recruiter or hiring manager opens it from the portfolio and it works, looks finished and tells one true story.
 - **Hosting.** Public repo `holroydchase-afk/<repo>`, GitHub Pages deployed by Actions from `main`, served at **chaseholroyd.com/&lt;repo&gt;/** with no DNS work. Stack and hosting defaults: [`STACK.md`](../STACK.md). A private repo needs a one-line reason; it still gets everything below except Pages until it has a public demo.
-- **Other projects.** ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock, and **Product Studio**, which owns the portfolio site, pm-tools and studio-agents. Projects can't see each other's chats, files or memory; shared facts live on GitHub.
+- **Other projects.** ccwatts, Role Radar, Energy Scanner, Hearth, Charlie, Crew Clock, and **Product Studio** (its chief of staff is **Atlas**; call it Atlas), which owns the portfolio site, pm-tools and studio-agents. Projects can't see each other's chats, files or memory; shared facts live on GitHub.
 - **Where things stand studio-wide:** [`STUDIO-STATUS.md`](../STUDIO-STATUS.md). Read it before asking Chase anything.
 
 ## 2. Studio rules (short form)
@@ -43,9 +43,14 @@ To read pm-tools and studio-agents, attach them read-only to the session (both a
 ## 4. Studio agents: use them by default
 Agents only help if the session calls them. Hearth uses them best because its main session is a **chief of staff** that delegates every piece of work instead of doing it, and CI fails when its roster drifts. Every repo gets the same: the **Studio agents** section in CLAUDE.md (studio-agents `templates/CLAUDE-agents.md`), and `agents-check.yml`, which fails a PR with no `Agents:` line or a code PR that doesn't name `qa-tdd`.
 
-**Install** (pick one; copy is the default because it works in cloud sessions with no setup and the agents are visible in the repo):
+**Install** (pick one; copy is the default because the agents are visible in the repo):
 - Copy: from a studio-agents clone, `scripts/sync.sh ../<repo>` (skips orchestrator and focus-coach) then `scripts/install-rules.sh ../<repo>` (HANDOFF hook, handoff-check, agents-check, check-agents.sh, check-logs.mjs). Re-run `sync.sh` to pick up improvements.
 - Plugin: add `extraKnownMarketplaces` `chase-studio` (github `holroydchase-afk/studio-agents`) and `"enabledPlugins": { "studio@chase-studio": true }` to `.claude/settings.json`.
+
+**Cloud project threads need one more step.** They start in the folder above the repos, so a repo's `.claude/agents/` and `.claude/settings.json` never load and the agents can't be called by name. Add this line once to the end of each project's environment setup script (Project settings → Cloud environment → gear beside the environment → Setup script). It installs every studio agent and the run-log hook at user level (studio-agents `scripts/install-cloud.sh`):
+```
+git clone -q --depth 1 https://github.com/holroydchase-afk/studio-agents /tmp/studio-agents && mkdir -p ~/.claude/agents && cp /tmp/studio-agents/plugins/studio/agents/*.md ~/.claude/agents/ && { [ -f /tmp/studio-agents/scripts/install-cloud.sh ] && bash /tmp/studio-agents/scripts/install-cloud.sh; true; } || true
+```
 
 **When to use which** (delegate with the Agent tool, without waiting for Chase to ask):
 | Moment | Agent |
@@ -88,9 +93,11 @@ Chase pastes these into the new project. They are generic: the same text works f
 ```
 STUDIO RULES (same in every project)
 
+STANDARD: This project follows https://github.com/holroydchase-afk/studio-agents/blob/main/docs/studio-standard.md, merged from Product Studio's and Hearth's rules (Chase, Nov 1). Read the section you need at the start of a session. This repo's CLAUDE.md hard rules win where they say more. Studio-wide rule changes land in that file, so this paste rarely changes.
+
 EFFORT: Chase is a full-time dad with little time.
-- Do it yourself instead of asking. When Chase is truly needed (a purchase, a login, a decision), make it one step: an exact link, a paste box, or a one-word question with your recommendation.
-- Anything Chase must paste goes in a fenced code block, formatted exactly for the field it goes into, with the click path.
+- Do it yourself instead of asking. Before sending a reply, check every ask you make of me: if you could do it, do it. When I'm truly needed (a purchase, a login, a decision), make it one step: an exact link, a paste box, or a one-word question with your recommendation.
+- Anything I must paste goes in a fenced code block, formatted exactly for the field it goes into, with the click path.
 - Pick sensible defaults and keep going. If Chase is about to waste time or money or take a risky step, say so briefly first.
 - Never sit blocked: flag the blocker, then keep working on whatever else can be done.
 
@@ -108,13 +115,23 @@ STUDIO SYNC:
 - If memory or chat disagrees with those files or with GitHub (merged PRs, deploy runs), trust GitHub and fix your memory.
 - Every commit or PR that makes progress updates HANDOFF.md in the same change. Changes to the public demo or portfolio page get a line under "Portfolio / public presence".
 
+PR QUEUE:
+- New PRs are fine: one small task each. Every PR body has the project-thread line and a "Merge after:" line (the PR it depends on, or none).
+- Merge your own PRs yourself once green, oldest first, without asking me. Close anything superseded.
+- The one gate: if a merge changes a live demo or live product (a deploy to a public site or demo, a live app, an npm/store/TestFlight release), ask me first. This replaces any "never merge" line in the repo's CLAUDE.md.
+- Before merging #N, check the repo's older open PRs and merge those first. If one is gated, red, a draft or another thread's unfinished work, tell me: "Heads up: #33 is still open (title, owned by <thread link from its PR body>). Merge 33 then 34, or just 34?" with your pick.
+- Every merge ask shows that repo's open PRs in merge order: number, title, owning thread, ready or not, so one "go" clears them.
+- Merge green Dependabot PRs yourself on your next run, oldest first.
+
 OWNERSHIP RULE: The repo decides who does the work.
 - The change lands in a product's repo → that product's project does it.
-- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it.
+- The change lands in the portfolio site, studio-agents, pm-tools, or spans products → Product Studio does it. Product Studio is called Atlas: when I say "Atlas" I mean Product Studio, and you call it Atlas too.
 - Any other project files an intake issue (label `intake`) in the owner's repo; the owner's Intake check picks it up (pm-tools docs/INTAKE.md). It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
 STORY LOG: At the end of any turn where I made a call, a plan changed, something broke and got fixed, or we learned a lesson, run the story-keeper agent in the background with today's date, what happened (quote me where it matters) and the titles of the last few Atlas Story entries. Append the entry it returns to the private artifact "Atlas Story: <project name>" (create it the first time); it mirrors to docs/STORY.md itself. If it returns a Memory line, save it to project memory. Skip routine turns. No secrets or personal data.
+
+BUILD: Test first, every suite 3x, every proof in CI. Look up SDK and library versions on the vendor's live page, never from memory. A build is "ready" for me only once it opened on the real target (my phone, the live URL). Deep, not wide: nothing outside the plan without staff-pm's call. When two requirements can't both hold, ask me at once.
 
 STUDIO KIT: This product is part of Chase's portfolio at chaseholroyd.com. Follow https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md (repo setup, recruiter-ready bar, shifts, digest).
 
@@ -128,7 +145,7 @@ SET UP THIS PROJECT (studio onboarding, Chase approved). Act now, don't ask ques
 1. Read https://github.com/holroydchase-afk/pm-tools/blob/main/docs/ONBOARDING.md end to end (attach holroydchase-afk/pm-tools and holroydchase-afk/studio-agents read-only, or clone them; both are public). Then read STUDIO-STATUS.md there.
 2. REPO: if this project has a repo attached, use it. If not, give me one copy box: the repo name (public, MIT, no README) with the link https://github.com/new, plus the click path to attach it in this project's settings. Meanwhile do steps 3 and 6 in project files, and push them once the repo exists.
 3. SCOPE: have staff-pm write PLAN.md (M1 = recruiter-demoable v1, tasks M1.1 onward with done-criteria, using this product's code from planning-ids.md) and the CLAUDE.md hard rules. privacy-security reviews the rules for this product's risks (personal data, money, location, public repo).
-4. SETUP PR "M0.1: studio setup": everything in ONBOARDING section 3, including sync.sh, install-rules.sh, the Studio agents section in CLAUDE.md, ci.yml, pages.yml if it's a web app, dependabot, README with CI badge, and HANDOFF.md with "Portfolio / public presence". CI green before you call it done. Never merge.
+4. SETUP PR "M0.1: studio setup": everything in ONBOARDING section 3, including sync.sh, install-rules.sh, the Studio agents section in CLAUDE.md, ci.yml, pages.yml if it's a web app, dependabot, README with CI badge, and HANDOFF.md with "Portfolio / public presence". CI green before you call it done. Merge it on green unless it changes a live demo or product (PR QUEUE).
 5. SHIFTS: schedule night 2:15am, morning 7:20am and afternoon 12:20pm (America/New_York) runs per ONBOARDING section 6, then start M1.1 now.
 6. STORY: create the private artifact "Atlas Story: <this project's name>" with an entry for why I started this product, mined from this project's chat.
 7. INTAKE: file one intake issue in pm-tools (ONBOARDING section 8): add this repo to STUDIO-STATUS, Build Slate and the digest. Then do the three setup steps in docs/INTAKE.md, "The paste" (Intake check scheduled task).

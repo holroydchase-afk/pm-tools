@@ -38,20 +38,21 @@ test("PMT-M2.2 Roadmap demo shows more than one board and ccwatts v1 as done", (
   assert.equal(playground?.lane, "done");
 });
 
-test("PMT-M2.3 landing page links back to the portfolio at the top and names each demo", () => {
+test("PMT-M2.3 landing page links back to the portfolio at the top and names each demo (archived since PMT-M3.5)", () => {
   const html = landing();
   const back = html.indexOf('href="/"'), h1 = html.indexOf("<h1");
   assert.ok(back > 0 && back < h1, "back link before the heading");
-  assert.ok(html.includes("Try Build Slate") && html.includes("Try the Near-Term Roadmap"));
+  assert.ok(html.includes("Build Slate") && html.includes("Near-Term Roadmap"), "names each demo");
+  assert.ok(!html.includes("Try Build Slate") && !html.includes("Try the Near-Term Roadmap"), "no Try call to action for archived demos");
 });
 
-test("PMT-M2.4 demo bar goes back to the portfolio's system page (How I keep it all moving), not the home page", () => {
+test("PMT-M2.4 demo bar goes back to the portfolio's system page (Studio Console since PMT-M3.5), not the home page", () => {
   for (const id of ["build-slate", "roadmap"]) {
     const ctx = sandbox();
     vm.runInNewContext(readFileSync(`demo/${id}/seed.js`, "utf8"), ctx);
     assert.equal(ctx.window.DEMO.back, "../../pm-tools.html", id);
-    // The portfolio renamed "How I work" to "How I keep it all moving" (WEB-M5.2, Oct 22).
-    assert.equal(ctx.window.DEMO.backLabel, "← How I keep it all moving", id);
+    // The portfolio renamed "How I keep it all moving" to "Studio Console" (PMT-M3.5, Oct 31).
+    assert.equal(ctx.window.DEMO.backLabel, "← Studio Console", id);
   }
   assert.match(readFileSync("demo/fake-db.js", "utf8"), /cfg\.backLabel/);
 });
@@ -115,11 +116,11 @@ test("R2-UX-4/6 demo overrides load after the app's CSS and fix lane contrast an
   assert.doesNotMatch(rm, /“My tasks” owner/);
 });
 
-test("R2-UX-7 landing words match the apps", async () => {
+test("R2-UX-7 landing words match the apps (PMT-M3.5: the console, with the old demos archived)", async () => {
   const { landing } = await import("../scripts/build-demo.ts");
   const html = landing();
-  assert.match(html, /five active projects/);
-  assert.match(html, /Later, Next, Now and Done/);
+  assert.match(html, /Studio Console/);
+  assert.match(html, /Archived/);
 });
 
 // Round 4 (remaining P2s).
