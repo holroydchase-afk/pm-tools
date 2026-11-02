@@ -1,0 +1,45 @@
+[
+  {
+    "repo": "role-radar", "name": "Role Radar", "code": "RR", "stage": "beta", "handoffFile": "handoff-role-radar.md",
+    "prs": [
+      { "number": 61, "title": "RR-M4.1: Header and tabs", "draft": false, "author": "sample-builder", "updatedAt": "2026-10-31T09:00:00Z", "body": "Agents: staff-pm scoped RR-M4.1; qa-tdd red then green, 3x; engineer built", "checks": "success", "branch": "claude/rr-m4-1" },
+      { "number": 62, "title": "Demo bar: link the sample tracker", "draft": false, "author": "sample-builder", "updatedAt": "2026-10-31T08:00:00Z", "body": "Agents: qa-tdd skipped: docs only", "checks": "pending", "branch": "claude/rr-demo-bar" }
+    ],
+    "intake": [{ "number": 59, "title": "MCP server for the tracker" }],
+    "merged": [{ "number": 58, "title": "RR-M2.2: TypeScript conversion", "mergedAt": "2026-10-29T18:00:00Z" }]
+  },
+  {
+    "repo": "ccwatts", "name": "ccwatts", "code": "CCW", "stage": "live", "handoffFile": "handoff-ccwatts.md",
+    "prs": [
+      { "number": 74, "title": "CCW-M4.2: Pace core", "draft": false, "author": "sample-builder", "updatedAt": "2026-10-31T10:00:00Z", "body": "Agents: staff-pm scoped CCW-M4.2; qa-tdd red", "checks": "pending", "branch": "claude/pace-core" },
+      { "number": 75, "title": "Bump vitest from 3.2.0 to 3.2.4", "draft": false, "author": "dependabot[bot]", "updatedAt": "2026-10-30T10:00:00Z", "body": "", "checks": "success", "branch": "dependabot/npm_and_yarn/vitest-3.2.4" }
+    ],
+    "intake": [],
+    "merged": []
+  },
+  {
+    "repo": "energy-scanner", "name": "Energy Scanner", "code": "ES", "stage": "build", "handoffFile": "handoff-energy-scanner.md",
+    "prs": [
+      { "number": 37, "title": "Re-sync studio agents: ux-shots and the agent run log", "draft": true, "author": "sample-builder", "updatedAt": "2026-10-29T08:00:00Z", "body": "Agents: qa-tdd skipped: agent files only", "checks": "none", "branch": "claude/resync-agents" }
+    ],
+    "intake": [],
+    "merged": []
+  },
+  {
+    "repo": "charlie", "name": "Charlie", "code": "CHL", "stage": "idea", "handoffFile": "handoff-charlie.md",
+    "prs": [
+      { "number": 28, "title": "Log the portfolio card in HANDOFF", "draft": false, "author": "sample-builder", "updatedAt": "2026-10-31T07:00:00Z", "body": "Agents: qa-tdd skipped: docs only", "checks": "success", "branch": "claude/portfolio-card" },
+      { "number": 29, "title": "CHL-R3: CI runs the PS1 browser test", "draft": false, "author": "sample-builder", "updatedAt": "2026-10-31T06:00:00Z", "body": "Agents: qa-tdd red then green, 3x; engineer built; positioning copy pass", "checks": "failure", "branch": "claude/chl-r3" }
+    ],
+    "intake": [{ "number": 12, "title": "Game save slots" }, { "number": 13, "title": "Controller remap" }],
+    "merged": []
+  },
+  {
+    "repo": "pm-tools", "name": "PM tools", "code": "PMT", "stage": "build", "group": "Studio tools", "handoffFile": "handoff-pm-tools.md",
+    "prs": [
+      { "number": 55, "title": "PMT-M3.3: Build Slate, Horizon Board and Agent Roster", "draft": false, "author": "sample-builder", "updatedAt": "2026-10-31T11:00:00Z", "body": "Agents: staff-pm scoped PMT-M3.3; qa-tdd red then green, 3x; engineer built; ux-reviewer 4/10", "checks": "success", "branch": "claude/pmt-m3-3" }
+    ],
+    "intake": [],
+    "merged": [{ "number": 52, "title": "PMT-M3.2: Focus and Call Sheet", "mergedAt": "2026-10-30T20:00:00Z" }]
+  }
+]

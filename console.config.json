@@ -1,0 +1,15 @@
+{
+  "owner": "holroydchase-afk",
+  "statusRepo": "pm-tools",
+  "products": [
+    { "repo": "role-radar", "name": "Role Radar", "code": "RR", "stage": "beta" },
+    { "repo": "ccwatts", "name": "ccwatts", "code": "CCW", "stage": "live" },
+    { "repo": "energy-scanner", "name": "Energy Scanner", "code": "ES", "stage": "live" },
+    { "repo": "Hearth", "name": "Hearth", "code": "HRT", "stage": "building" },
+    { "repo": "charlie", "name": "Charlie", "code": "CHL", "stage": "building" },
+    { "repo": "crew-clock", "name": "Crew Clock", "code": "CRW", "stage": "building" },
+    { "repo": "pm-tools", "name": "PM tools", "code": "PMT", "group": "Studio tools", "stage": "live" },
+    { "repo": "studio-agents", "name": "Studio agents", "code": "AGT", "group": "Studio tools", "stage": "live" },
+    { "repo": "holroydchase-afk.github.io", "name": "Portfolio", "code": "WEB", "group": "Studio tools", "stage": "live" }
+  ]
+}
