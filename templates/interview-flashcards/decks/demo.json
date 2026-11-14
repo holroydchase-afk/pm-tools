@@ -1,0 +1,21 @@
+{
+ "Terms": [
+  [
+   "MCP",
+   "What is MCP in one sentence?",
+   "<p>An open standard that lets an AI agent safely use a company's tools and data.</p><p>Demo: a fictional startup exposed its pricing rules to agents this way.</p>"
+  ],
+  [
+   "Agentic pipeline",
+   "What is an agentic pipeline?",
+   "<p>AI agents do multi-step work and a human approves at defined points.</p><p class='warn'>Demo warning: note what you must never claim.</p>"
+  ]
+ ],
+ "Numbers": [
+  [
+   "Onboarding 2 weeks to 48 hours",
+   "Defend the number.",
+   "<p>Demo only: say the baseline, who did the work, and what changed.</p>"
+  ]
+ ]
+}
