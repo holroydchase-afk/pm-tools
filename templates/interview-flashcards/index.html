@@ -1,0 +1,76 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Interview Flashcards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{--bg:#f6f7f4;--fg:#1d2420;--muted:#5d6a62;--card:#ffffff;--line:#d9dfd9;--accent:#1f6b4f;--accent-fg:#ffffff;--warn:#a5481f;--good:#1f6b4f;--back:#eaf2ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131916;--fg:#e8eee9;--muted:#9aa9a0;--card:#1b231f;--line:#2e3a33;--accent:#6fcf9f;--accent-fg:#0d1a13;--warn:#e59a73;--good:#6fcf9f;--back:#22302a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#131916;--fg:#e8eee9;--muted:#9aa9a0;--card:#1b231f;--line:#2e3a33;--accent:#6fcf9f;--accent-fg:#0d1a13;--warn:#e59a73;--good:#6fcf9f;--back:#22302a;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 Inter,system-ui,sans-serif;padding-block:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:16px;min-width:0}
+h1{font-size:1.25rem;margin:0;text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin:0}
+.decks{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 12px}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.decks button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;gap:8px;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;min-height:260px;display:flex;flex-direction:column;gap:12px;cursor:pointer;min-width:0}
+.tag{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.q{font-size:1.15rem;font-weight:600;text-wrap:balance}
+.hint{color:var(--muted);font-size:.9rem}
+.ans{background:var(--back);border-radius:8px;padding:12px 14px;font-size:.95rem}
+.ans p{margin:0 0 8px}.ans p:last-child{margin:0}
+.ans b{color:var(--accent)}
+.warn{color:var(--warn)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row button{flex:1;min-width:110px}
+.good{background:var(--good);color:var(--accent-fg);border-color:var(--good)}
+.again{border-color:var(--warn);color:var(--warn)}
+.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+</style>
+<main>
+<div>
+<h1>Interview flashcards</h1>
+<p class="sub">Say the answer out loud first, then flip. Mark Got it or Again. Do 5 cards at a time.</p>
+</div>
+<label class="sub">Load deck (.json): <input type="file" id="file" accept=".json,application/json"></label>
+<div class="decks" id="decks" role="group" aria-label="Decks"></div>
+<div class="bar" aria-hidden="true"><i id="prog" style="width:0"></i></div>
+<div class="meta"><span id="count"></span><span id="score"></span></div>
+<div class="card" id="card" tabindex="0" role="button" aria-label="Flip card"></div>
+<div class="row" id="ctl"></div>
+</main>
+<script>
+var DECKS=null;
+var DEMO={"Sample":[["Term","What does this card ask?","<p>Load your own deck JSON with the button above.</p>"]]};
+try{DECKS=JSON.parse(localStorage.getItem('ipdeck')||'null')}catch(e){}
+if(!DECKS)DECKS=DEMO;
+var names=Object.keys(DECKS),cur=names[0],i=0,flipped=false,got={};
+function load(f){var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(!d||typeof d!=='object')throw 0;DECKS=d;try{localStorage.setItem('ipdeck',r.result)}catch(e){}names=Object.keys(DECKS);cur=names[0];i=0;flipped=false;render()}catch(e){document.getElementById("count").textContent="Not a valid deck file"}};r.readAsText(f)}
+function sv(){try{localStorage.setItem('ipfc',JSON.stringify(got))}catch(e){}}
+try{got=JSON.parse(localStorage.getItem('ipfc')||'{}')}catch(e){got={}}
+function key(){return cur+'|'+i}
+function render(){
+ var d=DECKS[cur],c=d[i];
+ var el=document.getElementById('decks');el.innerHTML='';
+ names.forEach(function(n){var b=document.createElement('button');b.textContent=n;b.id='deck-'+n.replace(/\W/g,'');b.setAttribute('aria-pressed',n===cur);b.onclick=function(){cur=n;i=0;flipped=false;render()};el.appendChild(b)});
+ var done=d.filter(function(_,k){return got[cur+'|'+k]==='g'}).length;
+ document.getElementById('count').textContent='Card '+(i+1)+' of '+d.length;
+ document.getElementById('score').textContent=done+' of '+d.length+' got it';
+ document.getElementById('prog').style.width=(done/d.length*100)+'%';
+ var card=document.getElementById('card');
+ card.innerHTML='<div class="tag">'+cur+' / '+c[0]+'</div><div class="q">'+c[1]+'</div>'+(flipped?'<div class="ans">'+c[2]+'</div>':'<div class="hint">Say your answer out loud, then tap to flip.</div>');
+ var ctl=document.getElementById('ctl');ctl.innerHTML='';
+ function add(t,cls,fn,id){var b=document.createElement('button');b.textContent=t;b.className=cls;b.id=id;b.onclick=fn;ctl.appendChild(b)}
+ if(!flipped){add('Flip','primary',flip,'flip')}
+ else{add('Again','again',function(){got[key()]='a';sv();next()},'again');add('Got it','good',function(){got[key()]='g';sv();next()},'gotit')}
+}
+function flip(){flipped=!flipped;render()}
+function next(){flipped=false;i=(i+1)%DECKS[cur].length;render()}
+document.getElementById('card').onclick=flip;
+document.getElementById('card').onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}};
+document.getElementById("file").onchange=function(e){if(e.target.files[0])load(e.target.files[0])};
+render();
+</script>
