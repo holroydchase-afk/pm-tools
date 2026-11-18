@@ -12,7 +12,7 @@ import { launchChromium } from "./launch.ts";
 import { buildFeed } from "../../scripts/feed/core.ts";
 import { liveInput, LIVE_NOW } from "../fixtures/feed-live/load.ts";
 
-const out = build(mkdtempSync(join(tmpdir(), "pmtools-e2e-")));
+const out = build(mkdtempSync(join(tmpdir(), "pmtools-e2e-")), true); // the console code is tested on sample data; the live site hides it (CONSOLE_PUBLIC)
 const TYPES: Record<string, string> = { ".html": "text/html", ".js": "text/javascript", ".svg": "image/svg+xml", ".css": "text/css" };
 let server: Server, browser: Browser, base: string;
 

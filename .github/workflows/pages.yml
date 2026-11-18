@@ -29,10 +29,12 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run check:private
-      - run: npm run build
-      # Overwrites the sample feed in _site/console/. The Actions token only reads public repos.
+      - env:
+          CONSOLE_PUBLIC: ${{ vars.CONSOLE_PUBLIC }}
+        run: npm run build
+      # Overwrites the sample feed in _site/console/ (only when the console is public: repo variable CONSOLE_PUBLIC). The Actions token only reads public repos.
       # If it fails, the run fails and the live site keeps its last good feed (the page shows its age).
-      - if: github.event_name != 'pull_request'
+      - if: github.event_name != 'pull_request' && vars.CONSOLE_PUBLIC == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run feed

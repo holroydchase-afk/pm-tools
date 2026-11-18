@@ -3,7 +3,7 @@
 stage: live
 goal: agent-team
 milestone: PMT-M3
-now: Studio standard (Nov 1): ONBOARDING project-instructions block points at studio-agents docs/studio-standard.md; intakes filed in 6 product repos
+now: Studio Console hidden (Nov 18, PR open); before that Studio standard (Nov 1): ONBOARDING project-instructions block points at studio-agents docs/studio-standard.md; intakes filed in 6 product repos
 next: Product repos add the status header from their intake issues; Chase merges the portfolio PR
 waiting_on_chase:
   - Paste the ONBOARDING project-instructions block into each of the 7 projects once (Studio standard)
@@ -15,6 +15,11 @@ blockers:
 _Read this before starting work on this repo. Update it in the same commit whenever you make progress._
 
 Updated: 2026-11-01 (Studio standard: ONBOARDING paste points at studio-agents docs/studio-standard.md; ONBOARDING: cloud setup-script line merged; PR queue rule: PR QUEUE block in the project-instructions paste and STUDIO-STATUS; intro by role in TONE; Studio Console PMT-M3 scoped in PLAN.md; demo banner standard DEMO-BAR: slim Demo bar with a push-down drawer; intakes as GitHub issues, docs/INTAKE.md; story-keeper agent in ONBOARDING and the project-instructions paste; STACK.md: Role Radar on TypeScript; open-PR cleanup; STUDIO-STATUS refreshed; shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
+
+## Studio Console hidden (Nov 18, PR open)
+- Chase (Nov 18): the Studio Console and Studio page use real data and are weak, so hide them for now. Done: the demo build now ships a "not public right now" stub at `/pm-tools/console/` (no app, no feed, no fonts) and the landing page no longer redirects to or links the console. It is off unless the repo variable `CONSOLE_PUBLIC` is `true`; `pages.yml` passes it to the build and only runs `npm run feed` when it is `true`. Nothing is deleted; Build Slate and the Roadmap sample demos stay up. Tests: `tests/console-hidden.test.ts` (CON-HIDE-1..4); existing console tests build with the console on.
+- What the live console showed (public repos only, no emails): the goal list including "Land a Staff PM role, 3 applications a weekday", PR titles, and the decide list from each repo's HANDOFF.
+- To show it again: set the repo variable `CONSOLE_PUBLIC` to `true` (Settings, Secrets and variables, Variables) and rerun the Pages workflow. A merge deploys the site.
 
 ## Interview flashcards template (Nov 14)
 - Done: `templates/interview-flashcards/`, a one-page offline flashcard tool (Load deck, JSON decks, Got it / Again saved in the browser) with a fictional demo deck and a README prompt that builds a deck from a resume and posting. Real decks stay in `*.private.json` (gitignored). Not under `apps/` or `demo/`, so no live page or deploy changes.

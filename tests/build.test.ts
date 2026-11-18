@@ -7,7 +7,7 @@ import vm from "node:vm";
 import { APPS, build, toDemo } from "../scripts/build-demo.ts";
 import { scanText } from "../scripts/check-private.ts";
 
-const out = build(mkdtempSync(join(tmpdir(), "pmtools-")));
+const out = build(mkdtempSync(join(tmpdir(), "pmtools-")), true);
 
 for (const { id } of APPS) {
   test(`${id}: demo page loads the seed and fake db before the app`, () => {

@@ -278,7 +278,7 @@ test("PMT-M3.2 sample feed: console/sample-studio.json is the fixture feed with 
 });
 
 test("PMT-M3.2 build: _site/console/ has the page, app.js and the sample feed as studio.json", () => {
-  const out = build(mkdtempSync(join(tmpdir(), "pmtools-console-")));
+  const out = build(mkdtempSync(join(tmpdir(), "pmtools-console-")), true);
   for (const f of ["index.html", "app.js", "studio.json"]) assert.ok(existsSync(join(out, "console", f)), `_site/console/${f}`);
   assert.equal(readFileSync(join(out, "console", "studio.json"), "utf8"), readFileSync(join(ROOT, "console", "sample-studio.json"), "utf8"));
   const html = readFileSync(join(out, "console", "index.html"), "utf8");
