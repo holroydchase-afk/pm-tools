@@ -39,7 +39,7 @@ test("PMT-M2.2 Roadmap demo shows more than one board and ccwatts v1 as done", (
 });
 
 test("PMT-M2.3 landing page links back to the portfolio at the top and names each demo (archived since PMT-M3.5)", () => {
-  const html = landing();
+  const html = landing(true);
   const back = html.indexOf('href="/"'), h1 = html.indexOf("<h1");
   assert.ok(back > 0 && back < h1, "back link before the heading");
   assert.ok(html.includes("Build Slate") && html.includes("Near-Term Roadmap"), "names each demo");
@@ -118,7 +118,7 @@ test("R2-UX-4/6 demo overrides load after the app's CSS and fix lane contrast an
 
 test("R2-UX-7 landing words match the apps (PMT-M3.5: the console, with the old demos archived)", async () => {
   const { landing } = await import("../scripts/build-demo.ts");
-  const html = landing();
+  const html = landing(true);
   assert.match(html, /Studio Console/);
   assert.match(html, /Archived/);
 });

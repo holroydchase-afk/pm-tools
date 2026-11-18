@@ -23,24 +23,24 @@ const links = (html: string) =>
 // ---------------------------------------------------------------- CON-M35-1
 
 test("CON-M35-1 /pm-tools/ redirects to the Studio Console straight away", () => {
-  assert.match(landing(), /<meta http-equiv="refresh" content="0; url=console\/">/);
+  assert.match(landing(true), /<meta http-equiv="refresh" content="0; url=console\/">/);
 });
 
 test("CON-M35-1 /pm-tools/ shows a visible \"Open the Studio Console\" link to console/", () => {
-  const a = links(landing()).find((l) => l.href === "console/");
+  const a = links(landing(true)).find((l) => l.href === "console/");
   assert.ok(a, "a link to console/");
   assert.equal(a.text, "Open the Studio Console");
 });
 
 test("CON-M35-1 /pm-tools/ keeps the ← Chase Holroyd link to / before the heading", () => {
-  const html = landing();
+  const html = landing(true);
   const back = links(html).find((l) => l.href === "/" && l.text === "← Chase Holroyd");
   assert.ok(back, "← Chase Holroyd link to /");
   assert.ok(back.index < html.indexOf("<h1"), "back link before the h1");
 });
 
 test("CON-M35-1 /pm-tools/ lists Build Slate and the Roadmap as archived, with no Try call to action", () => {
-  const html = landing();
+  const html = landing(true);
   for (const href of ["build-slate/", "roadmap/"]) {
     const a = links(html).find((l) => l.href === href);
     assert.ok(a, `a link to ${href}`);

@@ -72,14 +72,19 @@ export function toDemo(id: string, html: string): string {
 const ENTITIES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ENTITIES[c]);
 
-export function landing() {
+// Chase, Nov 18: the Studio Console reads his real status from public repos and isn't ready to show, so it is off
+// unless the repo variable CONSOLE_PUBLIC is "true" (pages.yml passes it in). Nothing is deleted.
+export const consolePublic = () => process.env.CONSOLE_PUBLIC === "true";
+
+const HIDDEN_NOTE = "The Studio Console isn't public right now. It will be back.";
+
+export function landing(pub = consolePublic()) {
   // PMT-M3.5: /pm-tools/ now opens the Studio Console. The two older apps stay up as archived demos (nothing deleted).
   const old = APPS.map((a) => `<li><a href="${a.id}/">${esc(a.name)}</a> <span class="tag">Archived</span> ${esc(a.blurb)}</li>`).join("\n");
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=console/">
-<title>Studio Console · Chase Holroyd</title>
-<meta name="description" content="The Studio Console: the goal-first page Chase uses to direct a team of AI agents.">
+${pub ? '<meta http-equiv="refresh" content="0; url=console/">\n' : '<meta name="robots" content="noindex">\n'}<title>${pub ? "Studio Console" : "PM tools"} · Chase Holroyd</title>
+<meta name="description" content="${pub ? "The Studio Console: the goal-first page Chase uses to direct a team of AI agents." : "Sample-data demos of two earlier PM apps."}">
 <link rel="icon" href="favicon.svg">
 <style>
 :root{--bg:#F6F7F4;--fg:#1C2420;--muted:#5C6B63;--line:#D5DCD7;--accent:#2F6B4F}
@@ -95,11 +100,14 @@ ul{padding-left:20px;color:var(--muted)}li{margin:6px 0}
 footer{margin-top:40px;color:var(--muted);font-size:14px}a{color:var(--accent)}
 </style></head><body><main>
 <a class="back" href="/">← Chase Holroyd</a>
-<h1>Studio Console</h1>
+${pub ? `<h1>Studio Console</h1>
 <p class="lede">PM tools now open the Studio Console, the goal-first page I use to direct my agent team.</p>
 <p><a class="btn" href="console/">Open the Studio Console</a></p>
 <h2>Earlier apps</h2>
-<p>The Studio Console replaced these. Their sample-data demos stay up, read as history:</p>
+<p>The Studio Console replaced these. Their sample-data demos stay up, read as history:</p>` : `<h1>PM tools</h1>
+<p class="lede">${HIDDEN_NOTE}</p>
+<h2>Earlier apps</h2>
+<p>Sample-data demos of two earlier apps, read as history:</p>`}
 <ul>
 ${old}
 </ul>
@@ -108,7 +116,7 @@ ${old}
 `;
 }
 
-export function build(out = join(ROOT, "_site")) {
+export function build(out = join(ROOT, "_site"), pub = consolePublic()) {
   rmSync(out, { recursive: true, force: true });
   mkdirSync(out, { recursive: true });
   copyFileSync(join(ROOT, "demo", "fake-db.js"), join(out, "fake-db.js"));
@@ -120,10 +128,19 @@ export function build(out = join(ROOT, "_site")) {
     copyFileSync(seed, join(out, id, "seed.js"));
     writeFileSync(join(out, id, "index.html"), toDemo(id, readFileSync(join(ROOT, "apps", `${id}.html`), "utf8")));
   }
-  writeFileSync(join(out, "index.html"), landing());
+  writeFileSync(join(out, "index.html"), landing(pub));
   // Studio Console (PMT-M3.2): the page plus the sample feed as studio.json. In CI, `npm run feed`
   // runs next and overwrites studio.json with the real feed.
   mkdirSync(join(out, "console"), { recursive: true });
+  if (!pub) {
+    writeFileSync(join(out, "console", "index.html"), `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Studio Console · Chase Holroyd</title><link rel="icon" href="../favicon.svg"></head>
+<body style="font:16px/1.55 system-ui,sans-serif;max-width:640px;margin:0 auto;padding:40px 16px"><main>
+<h1>Studio Console</h1><p>${HIDDEN_NOTE}</p><p><a href="/">← Chase Holroyd</a></p></main></body></html>
+`);
+    return out;
+  }
   for (const f of ["index.html", "app.js"]) copyFileSync(join(ROOT, "console", f), join(out, "console", f));
   copyFileSync(join(ROOT, "console", "sample-studio.json"), join(out, "console", "studio.json"));
   cpSync(join(ROOT, "console", "fonts"), join(out, "console", "fonts"), { recursive: true }); // self-hosted, OFL (SEC-C5)
