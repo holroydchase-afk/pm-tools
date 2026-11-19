@@ -4,6 +4,8 @@ _The one cross-project list of what's done and what's waiting on Chase. Every pr
 
 Before asking Chase to do something, check this file and the repo's own `HANDOFF.md`. If it's under "Done", it's done. If it's under "Waiting on Chase", it has already been asked.
 
+**Looking for a plan, an idea or a product's state?** See [BOARD.md](BOARD.md): one row per product and the ideas list, kept current by every thread.
+
 **New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
 
 ## Done
