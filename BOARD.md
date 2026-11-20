@@ -33,7 +33,10 @@ Small side tools, as opposed to the six products. Full list, top 3 and the paste
 | Cut-Open Palettes | artifact in Hearth project | done, 9 presets | yes (top 3) |
 | Stakeholder Twins | Claude page in another project | built, stage 1 not run | yes (top 3) |
 | Live color tester | artifacts in Hearth project | works, tied to Hearth | yes |
-| Demo live-check | `hearth` repo (PR 112) | runs in CI daily | yes, needs a retry |
+| Deploy live-check | `hearth` (PR 112) and `ccwatts` workflows | runs in CI on both | yes, one generic Action |
+| Token-to-kWh estimator | `ccwatts estimate` (PR #101) | waits on Chase's go | yes |
+| Hunch-to-plan template | artifact in Charlie project | done v1 | yes |
+| Three-seat review prompt, cloud hook installer, cloud browser check | ccwatts project and repo | working or unproven | maybe |
 | Interview flashcards | `templates/interview-flashcards` | working | yes |
 | Job-board readers | `role-radar/fetch-boards.py` | working | yes |
 | Persona check | pm-tools `scripts/` | working | yes (feature it) |
