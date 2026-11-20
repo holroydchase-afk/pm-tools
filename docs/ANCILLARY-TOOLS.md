@@ -1,20 +1,20 @@
 # Ancillary tools
 
-_Chase's small, useful side tools, as opposed to the six main products (Hearth, ccwatts, Role Radar, Energy Scanner, Charlie, Crew Clock). Model: `hero-backgrounds`, a one-file library with a literal name that Chase can post as "whipped up X. Fork it." Compiled 2026-11-20 from BOARD.md, STUDIO-STATUS.md, the studio inventory, the Product Studio artifacts and every repo this project can read. Verified means read in a repo or listed in the project; nothing was run. Hearth's list is merged (Nov 20). Other projects can't be seen from here, so the last section is a paste-in ask that gets their tools reported back._
+_Chase's small, useful side tools, as opposed to the six main products (Hearth, ccwatts, Role Radar, Energy Scanner, Charlie, Crew Clock). Model: `hero-backgrounds`, a one-file library with a literal name that Chase can post as "whipped up X. Fork it." Compiled 2026-11-20 from BOARD.md, STUDIO-STATUS.md, the studio inventory, the Product Studio artifacts and every repo this project can read. Verified means read in a repo or listed in the project; nothing was run. Hearth's and Role Radar's lists are merged (Nov 20). Other projects can't be seen from here, so the last section is a paste-in ask that gets their tools reported back._
 
 ## Top 3 to mature next
 1. **hero-backgrounds.** Already a public repo with a live demo, MIT, no dependencies. Smallest step to a LinkedIn post: add a short GIF to the README and one more mode or a preset gallery.
 2. **Cut-Open Palettes.** Builds an app palette from a cut fruit: editable hex, light and dark modes, readability checks, CSS and JSON export. Done with 9 presets and already reads like a post. Needs its own repo and a one-file page.
 3. **Stakeholder Twins.** The most distinctive (AI persona tester: pick a stakeholder, upload a screenshot, chat in character). Needs its own public repo and a first stage 1 run. The reviewer personas in `docs/reviewers/` are natural seed personas.
 
-Next in line: **Live color tester** (make it general with your own screenshot), **Demo live-check** (needs one retry added), **Interview flashcards** (lift out of `templates/`, sample deck only).
+Next in line: **Interview flashcards** (Role Radar's top 3 too), **Job-board readers**, **Live color tester** (make it general with your own screenshot), **Demo live-check** (needs one retry added), **Interview flashcards** (lift out of `templates/`, sample deck only).
 
 ## The list
 
 | Tool | What it does | Where it lives | State | Mature? |
 |---|---|---|---|---|
 | **hero-backgrounds** | Animated canvas hero backgrounds, 8 modes, one JS file, no dependencies | repo `hero-backgrounds` (+ Pages demo) | Shipped v0, MIT, README and demo | **Yes** |
-| **Stakeholder Twins** | Stakeholder persona dropdown, screenshot upload, chat in character | Claude page in another project (no repo yet) | Built; stage 1 not run yet | **Yes** |
+| **Stakeholder Twins** | Stakeholder persona dropdown, screenshot upload, chat in character | Claude page "Stakeholder Twin Tester" in another project (no repo yet) | Scoped and built as a page; stage 1 not run yet | **Yes** |
 | **Cut-Open Palettes** | Builds an app palette from a cut fruit, editable hex, light and dark, readability checks, CSS and JSON export | Artifact in Hearth project | Done, 9 presets, ready to share | **Yes** |
 | **Live color tester** | Swatches plus a hex box that recolor a mock screen live (Paper Color Tester, Paper White Picker) | Artifacts in Hearth project | Works, tied to Hearth | **Yes** (make general with your own screenshot) |
 | **Demo live-check** | Checks a deployed demo before and after each publish: version.txt matches the commit, for new and returning visitors | `hearth` repo, demo workflow (PR 112) | Runs in CI daily | **Yes** (needs one retry added) |
@@ -23,6 +23,11 @@ Next in line: **Live color tester** (make it general with your own screenshot), 
 | **Font picker** | Compares fonts side by side (Hearth Font Choices) | Artifact in Hearth project | Static | Maybe (small, quick to make general) |
 | **Glass bar mock** | Tab bar that looks like iOS 26 glass, for the web | `hearth` repo, web demo | Live in the demo | Maybe (as a small CSS snippet) |
 | **Photo-app layout study** | How photo apps lay out their screens | Artifact in Hearth project | Doc | No (research, not a tool) |
+| **Job-board readers** | Pull PM roles from Greenhouse, Ashby and Lever boards | `role-radar/fetch-boards.py` | Working | **Yes** (own repo; company list stays private) |
+| **Persona check** | CI fails if a decision skips a persona | pm-tools `scripts/check-persona-checks.sh` (from Hearth) | Working | **Yes** (feature it in pm-tools) |
+| **Remote check** | Remote, hybrid or on-site verdict per job posting | `role-radar/remote-check.js` | Working | Maybe (pm-tools) |
+| **Resume optimizer prompt** | Maps a posting to a resume, three review passes | shared project folder | Working | Maybe (scrub personal details first) |
+| **Night shift prompt** | Overnight milestone runner | pm-tools `routines/night-shift.md` | Working | Maybe |
 | **Interview flashcards** | Load a JSON deck, flip cards, mark Got it or Again, saved in the browser | pm-tools `templates/interview-flashcards` | Working, fictional sample deck | **Yes** |
 | **Studio agents kit** | 10 agents (staff-pm, qa-tdd, engineer, ux-reviewer and more), 9 skills, repo templates, CI checks | repo `studio-agents` | In daily use across all repos | Maybe (tied to studio conventions; needs a generic README) |
 | **ux-shots and ux-rules** | Screenshot a UI at set sizes and check it against design rules | `studio-agents/tools`, copied into Hearth | In use | Maybe (bundle with the agents kit or split out) |

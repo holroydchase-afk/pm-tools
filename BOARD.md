@@ -35,6 +35,9 @@ Small side tools, as opposed to the six products. Full list, top 3 and the paste
 | Live color tester | artifacts in Hearth project | works, tied to Hearth | yes |
 | Demo live-check | `hearth` repo (PR 112) | runs in CI daily | yes, needs a retry |
 | Interview flashcards | `templates/interview-flashcards` | working | yes |
+| Job-board readers | `role-radar/fetch-boards.py` | working | yes |
+| Persona check | pm-tools `scripts/` | working | yes (feature it) |
+| Remote check, resume optimizer prompt, night shift prompt | Role Radar, shared folder, pm-tools | working | maybe |
 | Fruit theme tester, screen option tester, font picker, glass bar mock | Hearth project and repo | done | maybe |
 | Studio agents kit, ux-shots and ux-rules | `studio-agents` | in use | maybe |
 | @holroyd/messenger | `hearth/packages/messenger` | works, no outside review | maybe |
