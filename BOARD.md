@@ -31,7 +31,7 @@ Small side tools, as opposed to the six products. Full list, top 3 and the paste
 |---|---|---|---|
 | hero-backgrounds | repo `hero-backgrounds` | shipped v0 | yes (top 3) |
 | Cut-Open Palettes | artifact in Hearth project | done, 9 presets | yes (top 3) |
-| Stakeholder Twins | Claude page in another project | built, stage 1 not run | yes (top 3) |
+| Stakeholder Twins (+ twin CLI, persona files) | repo `cohort` (rename to `stakeholder-twins`) | working, voices being tuned | yes (top 3) |
 | Live color tester | artifacts in Hearth project | works, tied to Hearth | yes |
 | Deploy live-check | `hearth` (PR 112) and `ccwatts` workflows | runs in CI on both | yes, one generic Action |
 | Token-to-kWh estimator | `ccwatts estimate` (PR #101) | waits on Chase's go | yes |

@@ -1,12 +1,12 @@
 # Ancillary tools
 
-_Chase's small, useful side tools, as opposed to the six main products (Hearth, ccwatts, Role Radar, Energy Scanner, Charlie, Crew Clock). Model: `hero-backgrounds`, a one-file library with a literal name that Chase can post as "whipped up X. Fork it." Compiled 2026-11-20 from BOARD.md, STUDIO-STATUS.md, the studio inventory, the Product Studio artifacts and every repo this project can read. Verified means read in a repo or listed in the project; nothing was run. Hearth's, Role Radar's and ccwatts' lists are merged (Nov 20). Other projects can't be seen from here, so the last section is a paste-in ask that gets their tools reported back._
+_Chase's small, useful side tools, as opposed to the six main products (Hearth, ccwatts, Role Radar, Energy Scanner, Charlie, Crew Clock). Model: `hero-backgrounds`, a one-file library with a literal name that Chase can post as "whipped up X. Fork it." Compiled 2026-11-20 from BOARD.md, STUDIO-STATUS.md, the studio inventory, the Product Studio artifacts and every repo this project can read. Verified means read in a repo or listed in the project; nothing was run. Hearth's, Role Radar's, ccwatts' and Stakeholder Twins' lists are merged (Nov 20). Other projects can't be seen from here, so the last section is a paste-in ask that gets their tools reported back._
 
 ## Top 3 to mature next
 _Each project ranked its own top 3; this is the overall pick. Votes from the projects: hero-backgrounds, Interview flashcards and Deploy live-check each came up more than once._
 1. **hero-backgrounds.** Already a public repo with a live demo, MIT, no dependencies. Smallest step to a LinkedIn post: add a short GIF to the README and one more mode or a preset gallery.
 2. **Cut-Open Palettes.** Builds an app palette from a cut fruit: editable hex, light and dark modes, readability checks, CSS and JSON export. Done with 9 presets and already reads like a post. Needs its own repo and a one-file page.
-3. **Stakeholder Twins.** The most distinctive (AI persona tester: pick a stakeholder, upload a screenshot, chat in character). Needs its own public repo and a first stage 1 run. The reviewer personas in `docs/reviewers/` are natural seed personas.
+3. **Stakeholder Twins.** The most distinctive (AI persona tester: pick a stakeholder, upload a screenshot, chat in character). Repo exists (`cohort`, rename to `stakeholder-twins` before posting); voices still being tuned. The reviewer personas in `docs/reviewers/` are natural seed personas.
 
 Next in line: **Interview flashcards** (Role Radar's top 3 too), **Job-board readers**, **Live color tester** (make it general with your own screenshot), **Deploy live-check** (Hearth and ccwatts both have one; make it one generic Action), **Interview flashcards** (lift out of `templates/`, sample deck only).
 
@@ -15,7 +15,9 @@ Next in line: **Interview flashcards** (Role Radar's top 3 too), **Job-board rea
 | Tool | What it does | Where it lives | State | Mature? |
 |---|---|---|---|---|
 | **hero-backgrounds** | Animated canvas hero backgrounds, 8 modes, one JS file, no dependencies | repo `hero-backgrounds` (+ Pages demo) | Shipped v0, MIT, README and demo | **Yes** |
-| **Stakeholder Twins** | Stakeholder persona dropdown, screenshot upload, chat in character | Claude page "Stakeholder Twin Tester" in another project (no repo yet) | Scoped and built as a page; stage 1 not run yet | **Yes** |
+| **Stakeholder Twins** | Pick a stakeholder persona, upload screenshots, ask questions, hear answers in character | Claude page, plus `web/` in repo `cohort` (to be renamed `stakeholder-twins`) | Working and tested by Chase; voices still being tuned | **Yes** (demo-able in one click, clear fork-it story) |
+| **twin CLI** | The same twin from the terminal with your own API key | `twin.ts` in repo `cohort` | Builds, never run with a real key | Maybe (the page is the better post) |
+| **Persona files** | Customer, sales and legal persona templates | `personas/` in repo `cohort` | Placeholders | Maybe (template pack once sharpened) |
 | **Cut-Open Palettes** | Builds an app palette from a cut fruit, editable hex, light and dark, readability checks, CSS and JSON export | Artifact in Hearth project | Done, 9 presets, ready to share | **Yes** |
 | **Live color tester** | Swatches plus a hex box that recolor a mock screen live (Paper Color Tester, Paper White Picker) | Artifacts in Hearth project | Works, tied to Hearth | **Yes** (make general with your own screenshot) |
 | **Deploy live-check** | Checks a live site after every deploy and fails the run if it's broken: version.txt matches the commit, for new and returning visitors | `hearth` repo demo workflow (PR 112) and `ccwatts` `.github/workflows/pages.yml` | Runs in CI on both (Hearth daily, ccwatts every deploy) | **Yes** (one generic GitHub Action many repos could use; Hearth's needs one retry added) |

@@ -28,7 +28,7 @@ Updated: 2026-11-19 (board sweep of old threads; Studio standard: ONBOARDING pas
 - Next exact step: the theme-and-skills thread adds the skills column and product theme to the product rows; each finished thread then updates its row.
 
 ## Ancillary tools list (Nov 20)
-- Chase: one list of the small side tools (not the six products) that could mature into public, literally named repos like hero-backgrounds. Done: `docs/ANCILLARY-TOOLS.md` (table, top 3, paste-in ask for other projects) and a board section. Hearth's, Role Radar's and ccwatts' lists merged Nov 20 (Cut-Open Palettes, live color tester, demo live-check and more); top 3 re-ranked. Other projects can't be seen from here, so Stakeholder Twins is listed from what Chase said.
+- Chase: one list of the small side tools (not the six products) that could mature into public, literally named repos like hero-backgrounds. Done: `docs/ANCILLARY-TOOLS.md` (table, top 3, paste-in ask for other projects) and a board section. Hearth's, Role Radar's, ccwatts' and Stakeholder Twins' lists merged Nov 20 (Cut-Open Palettes, live color tester, demo live-check and more); top 3 re-ranked. Stakeholder Twins is repo `cohort` for now (Chase renames it to `stakeholder-twins`).
 - Next exact step: Chase pastes the ask into the other projects and brings the answers back; then pick which of the top 3 to mature first.
 
 ## Skills filter and names (Nov 20)
