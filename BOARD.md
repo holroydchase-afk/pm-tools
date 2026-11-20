@@ -2,7 +2,7 @@
 
 _The one living page for "where is everything, and what's next". Chase never has to find an old plan thread: ask for a plan and the thread checks here first, then picks up the row instead of starting over. Every thread that finishes work updates its row in the same PR as its HANDOFF.md. Cross-project done and waiting-on-Chase items stay in [STUDIO-STATUS.md](STUDIO-STATUS.md); this page is the product-by-product view and the ideas list._
 
-_Last audited: 2026-11-19, from each repo's HANDOFF.md, README, open PRs and review docs. "Verified" means read in the repo; nothing was run for this audit. Stage words only, no product dates (Chase, Nov 19)._
+_Last audited: 2026-11-19 (ideas list swept against old threads 2026-11-19), from each repo's HANDOFF.md, README, open PRs and review docs. "Verified" means read in the repo; nothing was run for this audit. Stage words only, no product dates (Chase, Nov 19)._
 
 ## How to use it
 - **Chase:** ask "what's the plan for X" or "where are we on X". The answer comes from this page.
@@ -51,6 +51,16 @@ Source docs live in the project folder `pmo/` (project files) or in the repo nam
 | Run-log hook for cloud sessions (studio-agents #27) | shaping | studio-agents | studio-agents PR #27 |
 | Intake issues: demo data, MCP, TypeScript, private-data check | see source | each product | `pmo/intakes/` |
 | Burnout and focus guard (evening cutoff) | idea | Studio | `pmo/ideas/2026-10-30-burnout-tracker.md` |
+| Nudge: ADHD "keeps coming back until done" task app (one-line entry, escalating reminders, Done and Snooze). Concept page written; Chase has not answered park or build | shaping, parked until after the Hearth beta | Studio | old thread "Scope the alarm ADHD app" |
+| ADHD utility belt: Nudge, then Lessons (spaced repeat of lessons learned), then Sayings (one phrase a day), one shared reminder engine | shaping, parked, reminder Nov 23; open unknown is phone push or email | Studio | old thread "Scope ADHD utility belt app" |
+| Product names and one theme across all products (ccwatts stays) | shaping (Oct 31 "plain pairs" proposal never adopted; new theme-and-skills thread supersedes it) | Studio | `pmo/` naming doc, thread "Map product skills and theme names" |
+| Skills tags per product with a filter on the portfolio (Chase, Nov 19) | idea, being shaped in the theme-and-skills thread | Portfolio | thread "Map product skills and theme names" |
+| Umami analytics on the site through a Vercel proxy on a stats subdomain | building (draft PR #76 on the site repo; untested end to end; waits for Chase's website ID and DNS step) | Portfolio | site repo PR #76 |
+| Role-aware site first, grounded chat later (plan exists; Chase never answered which to start with) | shaping, recommended: role-aware site first | Portfolio | `pmo/site-ai/` plan |
+| "From paper to agents" career story and role-to-story matrix | idea, partly folded into v67 home; open facts: Bigfoot dates, business impacts list, "1 hr to minutes" proposal number unchecked | Portfolio | `pmo/portfolio/2026-11-14-role-to-story-matrix.md` |
+| Resume PDF and LinkedIn buttons in the hero | ready, waits for Chase's links | Portfolio | `pmo/portfolio/2026-11-13-pm-shift-research.md` |
+| "Bespoke software on demand" lesson as a LinkedIn story (describe the need, not the tool; "or something" prompts) | idea, logged in the lessons log, not yet written up | Studio | lessons log, `pmo/story/story.md` |
+| Studio opening standard (chief-of-staff intro, spec, tests, build, PR): paste block into 6 projects and file six intake issues | ready, waits for Chase's paste and "file them" (studio-agents #44, pm-tools #66 docs PRs) | Studio | studio-agents `docs/studio-standard.md` 2a |
 | GitHub settings (private vulnerability reporting, secret scanning, push protection) | ready, Chase's click path in STUDIO-STATUS | Studio | [STUDIO-STATUS.md](STUDIO-STATUS.md) |
 
 ## What needs Chase's call now
@@ -60,5 +70,7 @@ Source docs live in the project folder `pmo/` (project files) or in the repo nam
 3. **Crew Clock:** keep or tighten the geofence after PR #41; Supabase setup to start the beta.
 4. **Charlie:** earnings check or Alpaca paper; Pyodide or JS port.
 5. **Role Radar:** say "republish" for the live page.
-6. **Portfolio:** go-live for the v69 copy; a 1600px photo.
-7. **Studio:** one sweep of Dependabot PRs across repos (17 open) and the GitHub settings clicks.
+6. **Portfolio:** go-live for the v69 copy; a 1600px photo; resume PDF and LinkedIn links; Umami website ID and the DNS step; hello@ test email; is the Hearth repo public.
+7. **Site AI:** role-aware site first, or both together.
+8. **Nudge and the utility belt:** park until after the Hearth beta (recommended), or build the weekend web version.
+9. **Studio:** paste the opening block into the six product projects and say "file them" for the intakes; one sweep of Dependabot PRs across repos (17 open) and the GitHub settings clicks.
