@@ -1,11 +1,13 @@
 # Ancillary tools
 
-_Chase's small, useful side tools, as opposed to the six main products (Hearth, ccwatts, Role Radar, Energy Scanner, Charlie, Crew Clock). Model: `hero-backgrounds`, a one-file library with a literal name that Chase can post as "whipped up X. Fork it." Compiled 2026-11-20 from BOARD.md, STUDIO-STATUS.md, the studio inventory, the Product Studio artifacts and every repo this project can read. Verified means read in a repo or listed in the project; nothing was run. Other projects can't be seen from here, so the last section is a paste-in ask that gets their tools reported back._
+_Chase's small, useful side tools, as opposed to the six main products (Hearth, ccwatts, Role Radar, Energy Scanner, Charlie, Crew Clock). Model: `hero-backgrounds`, a one-file library with a literal name that Chase can post as "whipped up X. Fork it." Compiled 2026-11-20 from BOARD.md, STUDIO-STATUS.md, the studio inventory, the Product Studio artifacts and every repo this project can read. Verified means read in a repo or listed in the project; nothing was run. Hearth's list is merged (Nov 20). Other projects can't be seen from here, so the last section is a paste-in ask that gets their tools reported back._
 
 ## Top 3 to mature next
 1. **hero-backgrounds.** Already a public repo with a live demo, MIT, no dependencies. Smallest step to a LinkedIn post: add a short GIF to the README and one more mode or a preset gallery.
-2. **Stakeholder Twins.** The most distinctive of the lot (AI persona tester: pick a stakeholder, upload a screenshot, chat with it in character). It lives in another project as a Claude page, so first move is the repo (public, literal name) and a first run of stage 1. The reviewer personas in `docs/reviewers/` are natural seed personas.
-3. **Interview flashcards.** Static page, no build, deck is a JSON file, a paste prompt makes a deck for any interview. Lift it out of `templates/` into its own repo with the sample deck. Private decks stay out (`*.private.json`).
+2. **Cut-Open Palettes.** Builds an app palette from a cut fruit: editable hex, light and dark modes, readability checks, CSS and JSON export. Done with 9 presets and already reads like a post. Needs its own repo and a one-file page.
+3. **Stakeholder Twins.** The most distinctive (AI persona tester: pick a stakeholder, upload a screenshot, chat in character). Needs its own public repo and a first stage 1 run. The reviewer personas in `docs/reviewers/` are natural seed personas.
+
+Next in line: **Live color tester** (make it general with your own screenshot), **Demo live-check** (needs one retry added), **Interview flashcards** (lift out of `templates/`, sample deck only).
 
 ## The list
 
@@ -13,6 +15,14 @@ _Chase's small, useful side tools, as opposed to the six main products (Hearth, 
 |---|---|---|---|---|
 | **hero-backgrounds** | Animated canvas hero backgrounds, 8 modes, one JS file, no dependencies | repo `hero-backgrounds` (+ Pages demo) | Shipped v0, MIT, README and demo | **Yes** |
 | **Stakeholder Twins** | Stakeholder persona dropdown, screenshot upload, chat in character | Claude page in another project (no repo yet) | Built; stage 1 not run yet | **Yes** |
+| **Cut-Open Palettes** | Builds an app palette from a cut fruit, editable hex, light and dark, readability checks, CSS and JSON export | Artifact in Hearth project | Done, 9 presets, ready to share | **Yes** |
+| **Live color tester** | Swatches plus a hex box that recolor a mock screen live (Paper Color Tester, Paper White Picker) | Artifacts in Hearth project | Works, tied to Hearth | **Yes** (make general with your own screenshot) |
+| **Demo live-check** | Checks a deployed demo before and after each publish: version.txt matches the commit, for new and returning visitors | `hearth` repo, demo workflow (PR 112) | Runs in CI daily | **Yes** (needs one retry added) |
+| **Fruit theme tester** | Breaks a Hass avocado into layers, each layer a UI role (Avocado Evolved) | Artifact in Hearth project | Done | Maybe (covered by Cut-Open Palettes) |
+| **Screen option tester** | Compares 3 layout options live on one page (Share Screen Tester) | Artifact in Hearth project | Done | Maybe (could be a generic A/B/C mock page) |
+| **Font picker** | Compares fonts side by side (Hearth Font Choices) | Artifact in Hearth project | Static | Maybe (small, quick to make general) |
+| **Glass bar mock** | Tab bar that looks like iOS 26 glass, for the web | `hearth` repo, web demo | Live in the demo | Maybe (as a small CSS snippet) |
+| **Photo-app layout study** | How photo apps lay out their screens | Artifact in Hearth project | Doc | No (research, not a tool) |
 | **Interview flashcards** | Load a JSON deck, flip cards, mark Got it or Again, saved in the browser | pm-tools `templates/interview-flashcards` | Working, fictional sample deck | **Yes** |
 | **Studio agents kit** | 10 agents (staff-pm, qa-tdd, engineer, ux-reviewer and more), 9 skills, repo templates, CI checks | repo `studio-agents` | In daily use across all repos | Maybe (tied to studio conventions; needs a generic README) |
 | **ux-shots and ux-rules** | Screenshot a UI at set sizes and check it against design rules | `studio-agents/tools`, copied into Hearth | In use | Maybe (bundle with the agents kit or split out) |
@@ -27,7 +37,6 @@ _Chase's small, useful side tools, as opposed to the six main products (Hearth, 
 | **Reviewer personas** | Recruiter, hiring manager, senior engineer and least-tech-savvy user reviewer prompts | pm-tools `docs/reviewers/` | In use | No (feeds Stakeholder Twins) |
 | **Hearth Test Log** | Test cases, tickets and runs built from real test output | hearth `tracker/` | Live for Hearth | No (Hearth-specific) |
 | **LinkedIn voice guide** | Voice rules and a review gate for posts | pm-tools `docs/linkedin-voice.md` | Merged | No (a doc) |
-| **Color palette tool / color pickers** | Prototype pages from other projects, per Chase | Not visible from this project | Unknown | Unknown; ask the owning project |
 
 Personal career tools (Job Search Toolkit, Application Answer Bank, Referral Kit, resume pages, job-intake, morning and digest skills) are left off on purpose: they hold personal data and don't belong in a public repo.
 
