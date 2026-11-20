@@ -27,6 +27,10 @@ Updated: 2026-11-19 (board sweep of old threads; Studio standard: ONBOARDING pas
 - Not put in this public repo on purpose: job-search threads and anything personal. They stay in the thread replies.
 - Next exact step: the theme-and-skills thread adds the skills column and product theme to the product rows; each finished thread then updates its row.
 
+## Ancillary tools list (Nov 20)
+- Chase: one list of the small side tools (not the six products) that could mature into public, literally named repos like hero-backgrounds. Done: `docs/ANCILLARY-TOOLS.md` (table, top 3, paste-in ask for other projects) and a board section. Other projects can't be seen from here, so Stakeholder Twins and the color palette tool are listed from what Chase said.
+- Next exact step: Chase pastes the ask into the other projects and brings the answers back; then pick which of the top 3 to mature first.
+
 ## Skills filter and names (Nov 20)
 - Chase: the portfolio gets skill chips (a few on home, all on Built and building) that filter products. First round of the skills map approved; names dropped (no rename theme, Hearth and ccwatts keep theirs, new repos get literal names). Board rows added. Preview only; nothing on the live site.
 - Next exact step: Chase looks at the filter preview, then a portfolio PR builds it for review. Open: names and stages for Nudge and the prototype docs.
