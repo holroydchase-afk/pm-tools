@@ -16,6 +16,10 @@ _Read this before starting work on this repo. Update it in the same commit whene
 
 Updated: 2026-11-01 (Studio standard: ONBOARDING paste points at studio-agents docs/studio-standard.md; ONBOARDING: cloud setup-script line merged; PR queue rule: PR QUEUE block in the project-instructions paste and STUDIO-STATUS; intro by role in TONE; Studio Console PMT-M3 scoped in PLAN.md; demo banner standard DEMO-BAR: slim Demo bar with a push-down drawer; intakes as GitHub issues, docs/INTAKE.md; story-keeper agent in ONBOARDING and the project-instructions paste; STACK.md: Role Radar on TypeScript; open-PR cleanup; STUDIO-STATUS refreshed; shared messenger library STU-DEC-1, AGPL-3.0, merged; security audit and kit merged; TypeScript: scripts and tests are .ts; studio refresh: agents by default in this repo; ONBOARDING: agents forced by CI, one refresh paste for every product; studio architect agent: ONBOARDING row, STACK.md gate; STACK.md: API row with GraphQL as an option; STUDIO-STATUS: Role Radar and Hearth demos, ccwatts intake, Charlie and Crew Clock; night shift: demo bar rename, 44px back link)
 
+## Skills filter and names (Nov 20)
+- Chase: the portfolio gets skill chips (a few on home, all on Built and building) that filter products. First round of the skills map approved; names dropped (no rename theme, Hearth and ccwatts keep theirs, new repos get literal names). Board rows added. Preview only; nothing on the live site.
+- Next exact step: Chase looks at the filter preview, then a portfolio PR builds it for review. Open: names and stages for Nudge and the prototype docs.
+
 ## Studio board (Nov 19, PR open)
 - Chase (Nov 19): wants one living place for product state and ideas so he never hunts old plan threads. Added `BOARD.md` (a row per product: stage, what exists, needs work, should exist, last reviewed; plus an ideas and plans list with idea/shaping/ready/building) and linked it from STUDIO-STATUS.md.
 - Audit read each repo's HANDOFF, review docs and open PRs; nothing was run. Crew Clock's clone on main is older than its open PR (#41), flagged in its row.
