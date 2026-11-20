@@ -23,6 +23,21 @@ _Last audited: 2026-11-19 (ideas list swept against old threads 2026-11-19), fro
 | **Portfolio site** (`holroydchase-afk.github.io`, `portfolio`) | live | One-page site, v67 home with self-hosted font and share card live; product pages and demos under `/<repo>/`; Studio page hidden. | Greeting-animation fix PR awaits merge; hello@ test email unconfirmed; About and product pages not yet in the new home look; demos still load Google Fonts; Dependabot PR #64 (CodeQL 4) open. | v69 copy pass (preview ready, waiting on go-live; share card must be regenerated with it); large portrait once a 1600px photo exists; reader chooser after launch (do not build yet). | 2026-11-18 (HANDOFF) |
 | **pm-tools** (`pm-tools`) | live | Build Slate and Near-Term Roadmap app sources, sample-data demo, templates, routines, reviewer personas, STUDIO-STATUS.md, this board. Studio Console hidden. | STUDIO-STATUS.md was last checked Oct 29 and is stale; Dependabot PRs #36, #41, #60, #62 unmerged; Agent Roster empty until studio-agents #27 merges. | Weekly digest that reads this board; per-product "last reviewed" kept current by each thread. | 2026-11-19 |
 
+## Ancillary tools
+
+Small side tools, as opposed to the six products. Full list, top 3 and the paste-in ask for other projects: [docs/ANCILLARY-TOOLS.md](docs/ANCILLARY-TOOLS.md). Model: hero-backgrounds (public, literal name, shareable on LinkedIn).
+
+| Tool | Where | State | Mature? |
+|---|---|---|---|
+| hero-backgrounds | repo `hero-backgrounds` | shipped v0 | yes (top 3) |
+| Stakeholder Twins | Claude page in another project | built, stage 1 not run | yes (top 3) |
+| Interview flashcards | `templates/interview-flashcards` | working | yes (top 3) |
+| Studio agents kit, ux-shots and ux-rules | `studio-agents` | in use | maybe |
+| @holroyd/messenger | `hearth/packages/messenger` | works, no outside review | maybe |
+| Build Slate, Near-Term Roadmap, Studio Console | `pm-tools` | live, console hidden | maybe |
+| Nudge (then Lessons, Sayings) | concept page | parked until after Hearth beta | maybe |
+| Color palette tool and other prototype pages | other projects | unknown, ask | unknown |
+
 ## Ideas and plans
 
 Source docs live in the project folder `pmo/` (project files) or in the repo named. Status is the last known; a thread that moves one updates it here.
@@ -45,6 +60,7 @@ Source docs live in the project folder `pmo/` (project files) or in the repo nam
 | Move Charlie, Role Radar and Energy Scanner to a "Built" section | idea, waits for Chase's call | Portfolio | `pmo/launch/2026-11-04-launch-plan.md` |
 | Reader chooser by category on the site | idea, post-launch, do not build | Portfolio | project memory (Nov 14) |
 | Skill chips on home and Built and building page (tap a chip to filter products by skill) | shaping, first round approved, preview made, waits for Chase's look | Portfolio | skills map doc and filter preview made in the Nov 19 thread |
+| Ancillary tools: mature the top 3 (hero-backgrounds, Stakeholder Twins, interview flashcards) into public, literally named repos | ready, waits for Chase's pick of the first one | Studio | [docs/ANCILLARY-TOOLS.md](docs/ANCILLARY-TOOLS.md) |
 | Product names | decided: no rename theme; Hearth and ccwatts keep their names, new repos get literal names | Studio | Chase, Nov 20 |
 | Site AI: role-aware view and grounded "Ask about Chase" chat | shaping (plan only) | Portfolio | `pmo/site-ai/2026-11-11-harness-and-hallucination-plan.md` |
 | Studio Console (real-data dashboard) | idea, hidden until it is stronger; flag `CONSOLE_PUBLIC` | pm-tools | pm-tools HANDOFF |
