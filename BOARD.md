@@ -30,13 +30,22 @@ Small side tools, as opposed to the six products. Full list, top 3 and the paste
 | Tool | Where | State | Mature? |
 |---|---|---|---|
 | hero-backgrounds | repo `hero-backgrounds` | shipped v0 | yes (top 3) |
+| Cut-Open Palettes | artifact in Hearth project | done, 9 presets | yes (top 3) |
 | Stakeholder Twins | Claude page in another project | built, stage 1 not run | yes (top 3) |
-| Interview flashcards | `templates/interview-flashcards` | working | yes (top 3) |
+| Live color tester | artifacts in Hearth project | works, tied to Hearth | yes |
+| Deploy live-check | `hearth` (PR 112) and `ccwatts` workflows | runs in CI on both | yes, one generic Action |
+| Token-to-kWh estimator | `ccwatts estimate` (PR #101) | waits on Chase's go | yes |
+| Hunch-to-plan template | artifact in Charlie project | done v1 | yes |
+| Three-seat review prompt, cloud hook installer, cloud browser check | ccwatts project and repo | working or unproven | maybe |
+| Interview flashcards | `templates/interview-flashcards` | working | yes |
+| Job-board readers | `role-radar/fetch-boards.py` | working | yes |
+| Persona check | pm-tools `scripts/` | working | yes (feature it) |
+| Remote check, resume optimizer prompt, night shift prompt | Role Radar, shared folder, pm-tools | working | maybe |
+| Fruit theme tester, screen option tester, font picker, glass bar mock | Hearth project and repo | done | maybe |
 | Studio agents kit, ux-shots and ux-rules | `studio-agents` | in use | maybe |
 | @holroyd/messenger | `hearth/packages/messenger` | works, no outside review | maybe |
 | Build Slate, Near-Term Roadmap, Studio Console | `pm-tools` | live, console hidden | maybe |
 | Nudge (then Lessons, Sayings) | concept page | parked until after Hearth beta | maybe |
-| Color palette tool and other prototype pages | other projects | unknown, ask | unknown |
 
 ## Ideas and plans
 
@@ -60,7 +69,7 @@ Source docs live in the project folder `pmo/` (project files) or in the repo nam
 | Move Charlie, Role Radar and Energy Scanner to a "Built" section | idea, waits for Chase's call | Portfolio | `pmo/launch/2026-11-04-launch-plan.md` |
 | Reader chooser by category on the site | idea, post-launch, do not build | Portfolio | project memory (Nov 14) |
 | Skill chips on home and Built and building page (tap a chip to filter products by skill) | shaping, first round approved, preview made, waits for Chase's look | Portfolio | skills map doc and filter preview made in the Nov 19 thread |
-| Ancillary tools: mature the top 3 (hero-backgrounds, Stakeholder Twins, interview flashcards) into public, literally named repos | ready, waits for Chase's pick of the first one | Studio | [docs/ANCILLARY-TOOLS.md](docs/ANCILLARY-TOOLS.md) |
+| Ancillary tools: mature the top 3 (hero-backgrounds, Cut-Open Palettes, Stakeholder Twins) into public, literally named repos | ready, waits for Chase's pick of the first one | Studio | [docs/ANCILLARY-TOOLS.md](docs/ANCILLARY-TOOLS.md) |
 | Product names | decided: no rename theme; Hearth and ccwatts keep their names, new repos get literal names | Studio | Chase, Nov 20 |
 | Site AI: role-aware view and grounded "Ask about Chase" chat | shaping (plan only) | Portfolio | `pmo/site-ai/2026-11-11-harness-and-hallucination-plan.md` |
 | Studio Console (real-data dashboard) | idea, hidden until it is stronger; flag `CONSOLE_PUBLIC` | pm-tools | pm-tools HANDOFF |
