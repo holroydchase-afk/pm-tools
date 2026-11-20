@@ -27,6 +27,10 @@ Updated: 2026-11-19 (board sweep of old threads; Studio standard: ONBOARDING pas
 - Not put in this public repo on purpose: job-search threads and anything personal. They stay in the thread replies.
 - Next exact step: the theme-and-skills thread adds the skills column and product theme to the product rows; each finished thread then updates its row.
 
+## Skills filter and names (Nov 20)
+- Chase: the portfolio gets skill chips (a few on home, all on Built and building) that filter products. First round of the skills map approved; names dropped (no rename theme, Hearth and ccwatts keep theirs, new repos get literal names). Board rows added. Preview only; nothing on the live site.
+- Next exact step: Chase looks at the filter preview, then a portfolio PR builds it for review. Open: names and stages for Nudge and the prototype docs.
+
 ## Studio board (Nov 19, PR open)
 - Chase (Nov 19): wants one living place for product state and ideas so he never hunts old plan threads. Added `BOARD.md` (a row per product: stage, what exists, needs work, should exist, last reviewed; plus an ideas and plans list with idea/shaping/ready/building) and linked it from STUDIO-STATUS.md.
 - Audit read each repo's HANDOFF, review docs and open PRs; nothing was run. Crew Clock's clone on main is older than its open PR (#41), flagged in its row.

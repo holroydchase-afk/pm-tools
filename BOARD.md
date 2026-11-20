@@ -44,6 +44,8 @@ Source docs live in the project folder `pmo/` (project files) or in the repo nam
 | Large portrait photo | ready, waits for Chase's 1600px photo | Portfolio | `portfolio/site-v1/v68-large-portrait/` |
 | Move Charlie, Role Radar and Energy Scanner to a "Built" section | idea, waits for Chase's call | Portfolio | `pmo/launch/2026-11-04-launch-plan.md` |
 | Reader chooser by category on the site | idea, post-launch, do not build | Portfolio | project memory (Nov 14) |
+| Skill chips on home and Built and building page (tap a chip to filter products by skill) | shaping, first round approved, preview made, waits for Chase's look | Portfolio | skills map doc and filter preview made in the Nov 19 thread |
+| Product names | decided: no rename theme; Hearth and ccwatts keep their names, new repos get literal names | Studio | Chase, Nov 20 |
 | Site AI: role-aware view and grounded "Ask about Chase" chat | shaping (plan only) | Portfolio | `pmo/site-ai/2026-11-11-harness-and-hallucination-plan.md` |
 | Studio Console (real-data dashboard) | idea, hidden until it is stronger; flag `CONSOLE_PUBLIC` | pm-tools | pm-tools HANDOFF |
 | Studio OS doneness scorecard and priorities | shaping | pm-tools | `pmo/atlas/2026-11-06-os-scorecard-and-priorities.md` |
