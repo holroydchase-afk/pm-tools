@@ -9,6 +9,7 @@ Before asking Chase to do something, check this file and the repo's own `HANDOFF
 **New project?** Start with [docs/ONBOARDING.md](docs/ONBOARDING.md): the two pastes, repo setup, the studio agents and when to use them, the recruiter-ready bar, shifts and the story log.
 
 ## Done
+- Ask-less rule (Nov 23, Chase: "I never want to update your settings or environments or repos"): studio-agents `docs/studio-standard.md` section 1 and ONBOARDING block 1 (EFFORT self-check, HONESTY request-the-host-first) updated. Intake issues filed in every product repo. Chase's only step: re-paste ONBOARDING block 1 once into each project (same paste as the Studio standard one, still under Waiting).
 - Studio standard (Nov 1, Chase: "standardize ... put it in everyones intakes"): studio-agents `docs/studio-standard.md` merges Product Studio's and Hearth's rules. Intake issues filed: ccwatts #86, role-radar #69, energy-scanner #43, charlie #40, crew-clock #39, Hearth #91; each project's Intake check adopts it. ONBOARDING's project-instructions block now points at it.
 **Portfolio and domain**
 - chaseholroyd.com is live: domain (Porkbun), DNS and the Pages custom domain are set. The repo is `holroydchase-afk.github.io` (renamed from `portfolio` on Oct 21), so each repo's Pages site serves at chaseholroyd.com/<repo>/.
