@@ -132,6 +132,8 @@ OWNERSHIP RULE: The repo decides who does the work.
 - Any other project files an intake issue (label `intake`) in the owner's repo; the owner's Intake check picks it up (pm-tools docs/INTAKE.md). It never edits that repo itself.
 - After shipping, the owner logs it in each affected repo's HANDOFF.md.
 
+INBOX: At the start of every thread, and before asking Chase anything, list open GitHub issues labeled intake in the repos this project owns (STUDIO-STATUS, "Who owns which repo"). Anything open is already asked: act on it or reply on it, don't ask Chase. To hand work to another project, file an intake issue in that project's repo, or in pm-tools for Product Studio work (docs/INTAKE.md), and give Chase the link, never a paste. Replies come back as comments on the same issue; check them the same way.
+
 STORY LOG: At the end of any turn where I made a call, a plan changed, something broke and got fixed, or we learned a lesson, run the story-keeper agent in the background with today's date, what happened (quote me where it matters) and the titles of the last few Atlas Story entries. Append the entry it returns to the private artifact "Atlas Story: <project name>" (create it the first time); it mirrors to docs/STORY.md itself. If it returns a Memory line, save it to project memory. Skip routine turns. No secrets or personal data.
 
 BUILD: Test first, every suite 3x, every proof in CI. Look up SDK and library versions on the vendor's live page, never from memory. A build is "ready" for me only once it opened on the real target (my phone, the live URL). Deep, not wide: nothing outside the plan without staff-pm's call. When two requirements can't both hold, ask me at once.
