@@ -29,6 +29,20 @@ Each project runs a scheduled task that lists open `intake` issues in the repos 
 
 Reply to the sender happens on the issue (the sender's routine or digest reads it), so no chat relay is needed.
 
+## The inbox rule (every turn, not only 4 times a day)
+The scheduled check is the safety net. The inbox is also read by the coordinator itself (Chase, Nov 23: "couldn't we build an mcp so you can talk to the other coordinators"; answer: no MCP, the GitHub issue list already is the shared inbox, and every project can read it). The rule text to keep in each project's instructions (also in ONBOARDING block 1):
+
+```
+INBOX: At the start of every thread, and before asking Chase anything, list open GitHub issues labeled intake in the repos this project owns (pm-tools STUDIO-STATUS, "Who owns which repo"). Anything open is already asked: act on it or reply on it, don't ask Chase. To hand work to another project, file an intake issue in that project's repo (pm-tools docs/INTAKE.md) and give Chase the link, never a paste. Replies come back as comments on the same issue; check them the same way.
+```
+
+How it works:
+- **One inbox per repo, one label.** The issue lives in the owner's repo, so the repo is the address and the `intake` label is the inbox. A label per target project would say the same thing twice, so there isn't one. `needs-chase` marks one that waits on him.
+- **Reading is one call.** `list_issues` with `labels: ["intake"]`, `state: OPEN` on each owned repo. None open means carry on with no reply.
+- **Product Studio owns several repos** (portfolio site, pm-tools, studio-agents): it checks all three.
+- **Replies are comments on the issue.** The sender looks at its filed intakes' comments on its next turn; done is the issue closed as completed with the evidence.
+- **Limits, plainly:** it is pull, not push. A project learns of an intake when its next thread starts or its scheduled check runs, not the instant it is filed. A live push between sessions would need a server and a credential, which this studio doesn't run; revisit only if the delay hurts.
+
 ## The paste (once per project)
 Chase pastes this into each project's chat once. It schedules the routine and switches the project to filing intakes as issues. The same text lives in Chase's thread; keep the two in sync.
 
