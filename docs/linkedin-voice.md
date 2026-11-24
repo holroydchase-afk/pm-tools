@@ -6,17 +6,19 @@ The one source for Chase's LinkedIn posts and profile copy. Written Nov 20 by th
 Casual and prolific, like someone who makes things all the time and mentions them offhand. Smart and a little dry. Never pontificating, never junior.
 
 - 1 to 2 lines (up to about 50 words). Say what was made, then link. The pace of the work is the flex; never say "I build a lot".
-- Open source posts: "Whipped up X. [one line why.] Fork it. [repo]". Vary the verb (whipped up, made, put together, pulled out). Not five "whipped up" in a row.
+- Open source posts: "[teaser line.] Made X. [one line why.] [repo]". Vary the verb (made, built, put together, pulled out). "Whipped up" is retired (Chase, Nov 23).
 - Tool posts with no repo: same shape, end with "[link]".
 - One honest limit in a line when it matters (for example "No security review yet.").
 - Link goes in the first comment or at the end, never as a pitch.
 
 Never: morals, aphorisms, "what I'd tell anyone", closing questions to the reader, "thrilled", "humbled", "game-changer", hashtags, emoji bullets, "Thought it might be useful to some folks".
 
-## Teaser opener (Chase, Nov 23, proposed; confirm before it replaces the shapes above)
+## Teaser opener (Chase, Nov 23, decided)
 Each post and blog starts with a short personal-story teaser, then the work. Write it confident: plain statements, no hedging ("kind of", "I think", "just"), no apology. The teaser is a true moment from Chase's life that explains why the thing exists (for example the grandma-photo juggling behind Hearth), one line, ending before the payoff so the next line lands.
 
-Open question for Chase: this adds a line to the 1 to 2 line shape. Either posts become 2 to 3 lines, or the teaser replaces the "why" clause. Blogs follow the same opener, then run longer. Keep the no-morals and no-overclaiming rules.
+Decided: the teaser adds a line, so posts run 2 to 3 lines. Blogs follow the same opener, then run longer. Keep the no-morals and no-overclaiming rules.
+
+Chase's examples: "I was working on some themes for this project I'm working on, and...", "I was making guacamole when...", "My mom called me freaking out and...", "My kids have pink energy all the time!" Test plan: docs/linkedin-ab-test.md.
 
 ## Review gate: no draft reaches Chase until it passes
 1. A fresh-context reviewer (Fable for copy) gets only the draft, this file and the claims register. No author reasoning.
@@ -55,7 +57,7 @@ Anyway. Gonna start posting what I make here.
 ```
 Hearth (repo public, AGPL-3.0, verified Nov 20):
 ```
-Whipped up a private family photo app so I'd stop juggling group chats to send grandma a picture. Open source, fork it. [repo]
+Made a private family photo app so I'd stop juggling group chats to send grandma a picture. Open source, fork it. [repo]
 ```
 ccwatts:
 ```
@@ -71,7 +73,7 @@ Put together a project slate and a Now/Next/Later board for my side projects. De
 ```
 Interview flashcards (Chase's own wording; the folder is public, fictional demo deck):
 ```
-Whipped up these notecards for interview prep. Fork it. [repo]
+Made these notecards for interview prep. Fork it. [repo]
 ```
 
 ## Profile copy

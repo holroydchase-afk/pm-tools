@@ -14,3 +14,4 @@ Chase's running list. One line each: name, problem, who it's for. Nothing here i
 | UI options picker | Pick between UI options quickly | Chase | On hold |
 | Burnout tracker | See burnout coming before it hits; notes in pmo/ideas/2026-10-30-burnout-tracker.md | Chase, then PMs | Idea |
 | LinkedIn / blog teaser opener | Posts need a confident personal voice; open each with a short personal-story teaser (marketing, not a product). Voice guide: docs/linkedin-voice.md | Chase's LinkedIn and blog readers | Idea, Role Radar project owns LinkedIn |
+| Side income from builds | Builds could earn a little: paid templates and agent kits (Gumroad), a ccwatts pro tier, a paid newsletter tier, Claude workshops | Builders learning Claude | Idea; audience first, secondary to the job hunt |
