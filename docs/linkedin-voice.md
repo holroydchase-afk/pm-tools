@@ -13,6 +13,11 @@ Casual and prolific, like someone who makes things all the time and mentions the
 
 Never: morals, aphorisms, "what I'd tell anyone", closing questions to the reader, "thrilled", "humbled", "game-changer", hashtags, emoji bullets, "Thought it might be useful to some folks".
 
+## Teaser opener (Chase, Nov 23, proposed; confirm before it replaces the shapes above)
+Each post and blog starts with a short personal-story teaser, then the work. Write it confident: plain statements, no hedging ("kind of", "I think", "just"), no apology. The teaser is a true moment from Chase's life that explains why the thing exists (for example the grandma-photo juggling behind Hearth), one line, ending before the payoff so the next line lands.
+
+Open question for Chase: this adds a line to the 1 to 2 line shape. Either posts become 2 to 3 lines, or the teaser replaces the "why" clause. Blogs follow the same opener, then run longer. Keep the no-morals and no-overclaiming rules.
+
 ## Review gate: no draft reaches Chase until it passes
 1. A fresh-context reviewer (Fable for copy) gets only the draft, this file and the claims register. No author reasoning.
 2. Voice check against the rules above.
@@ -76,3 +81,4 @@ Headline and About are written for the roles Chase is applying to. Role Radar kn
 - Posts every other day; he writes them in one sitting and schedules them.
 - Alternate small tools and open source projects (Path A and B).
 - Spinner joke as opener ("Pontificating…").
+- Nov 23: start each post and blog with a short personal-story teaser, confident voice (see Teaser opener).

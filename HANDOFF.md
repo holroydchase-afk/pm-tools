@@ -20,6 +20,10 @@ Updated: 2026-11-19 (board sweep of old threads; Studio standard: ONBOARDING pas
 - Chase: "couldn't we build an mcp so you can talk to the other coordinators". Already existed: intakes are GitHub issues labeled `intake` in the owning repo (docs/INTAKE.md, Oct 30) plus a 4x-a-day Intake check. Added: the INBOX rule (check every thread start and before asking Chase; replies are comments on the issue) in INTAKE.md and ONBOARDING block 1, and a line in studio-standard section 6. No MCP: pull via issues is enough; push would need a server. Next: intake issue in each product repo to adopt the INBOX line; Chase's one re-paste of ONBOARDING block 1 covers the project instructions.
 - Portfolio / public presence: none. Docs only.
 
+## Choice cards first (Nov 23)
+- Chase: when he'd answer, approve or pick, post a choice card with the recommendation marked, not a copy-paste box; paste boxes only for text he must put outside the app. ONBOARDING block 1 and short form updated; studio-standard section 1 in studio-agents PR 145. Medium article idea (maximizing laziness) added to docs/IDEAS.md. Next: each product's project applies the new EFFORT text via update_project_settings (intake filed in each product repo).
+- Portfolio / public presence: none. Docs only.
+
 ## Ask-less rule (Nov 23)
 - Chase: never update settings, environments or repos by hand. ONBOARDING block 1 now has a SELF-CHECK BEFORE ANY ASK bullet and request-the-host-first honesty text; studio-standard section 1 matches. Intakes filed in every product repo. Next: product Intake checks adopt it; Chase re-pastes block 1 once per project.
 
