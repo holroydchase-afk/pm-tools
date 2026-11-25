@@ -284,3 +284,9 @@ PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's cu
 
 ## Done
 - Community files (2026-11-24, Chase: will engineers see an amateur repo): added CONTRIBUTING, CODE_OF_CONDUCT, issue templates and a PR template (plus SECURITY.md where missing), per `studio-agents` docs/repo-standards.md. Next: set the repo description and topics in GitHub settings, add a CI badge.
+
+## Repo best-practices pass (2026-11-25)
+- Done: audit pass (CODEOWNERS dropped, see studio-agents docs/repo-standards.md).
+
+## Repo best-practices pass (2026-11-25), part 2
+- Done: added SUPPORT.md and a "How this is built" AI-use line to the README (GitHub, Linux Foundation and Syracuse checklists; see studio-agents docs/repo-standards.md).
