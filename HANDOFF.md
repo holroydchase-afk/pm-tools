@@ -284,3 +284,6 @@ PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's cu
 
 ## Done
 - Community files (2026-11-24, Chase: will engineers see an amateur repo): added CONTRIBUTING, CODE_OF_CONDUCT, issue templates and a PR template (plus SECURITY.md where missing), per `studio-agents` docs/repo-standards.md. Next: set the repo description and topics in GitHub settings, add a CI badge.
+
+## Repo best-practices pass (2026-11-25)
+- Done: added `.github/CODEOWNERS`. Part of the GitHub best-practices audit; see studio-agents docs/repo-standards.md.
