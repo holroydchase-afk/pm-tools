@@ -1,5 +1,5 @@
 # Studio lint gate (seed: created once, then yours). Runs ESLint with the managed eslint.config.mjs.
-# Warnings only until the repo is clean; then set the repository variable STUDIO_LINT_STRICT to 1
+# pm-tools is clean, so this runs strict (any finding fails). Elsewhere: warnings only until the repo is clean, then set the repository variable STUDIO_LINT_STRICT to 1
 # (Settings, Secrets and variables, Variables) or call this workflow with `strict: true`.
 name: lint
 on:
@@ -23,7 +23,7 @@ jobs:
       run:
         working-directory: ${{ inputs.working-directory || '.' }}
     env:
-      STUDIO_LINT_STRICT: ${{ (inputs.strict || vars.STUDIO_LINT_STRICT == '1') && '1' || '0' }}
+      STUDIO_LINT_STRICT: '1'
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7

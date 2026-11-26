@@ -29,7 +29,6 @@ function app(): Api {
   vm.runInNewContext(readFileSync(join(ROOT, "console", "app.js"), "utf8"), ctx);
   return ctx.window.Console!;
 }
-const clone = <T>(x: T): T => JSON.parse(JSON.stringify(x)) as T;
 const live = (): Feed => buildFeed(liveInput(), LIVE_NOW);
 const sample = (): Feed => JSON.parse(readFileSync(join(ROOT, "console", "sample-studio.json"), "utf8")) as Feed;
 
