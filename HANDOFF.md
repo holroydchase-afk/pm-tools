@@ -284,6 +284,7 @@ PMT-M2.1: a drift check that compares `apps/*.html` with each live artifact's cu
 
 ## Done
 - Community files (2026-11-24, Chase: will engineers see an amateur repo): added CONTRIBUTING, CODE_OF_CONDUCT, issue templates and a PR template (plus SECURITY.md where missing), per `studio-agents` docs/repo-standards.md. Next: set the repo description and topics in GitHub settings, add a CI badge.
+- ESLint gate and repo basics (2026-11-26, Chase approved ESLint as the studio standard): `eslint.config.mjs` from studio-agents `templates/lint` (managed copy), `.github/workflows/lint.yml` (warnings only; 9 warnings today, 0 errors), `lint` script, `engines` node>=22.12, `.nvmrc` 22, `.github/CODEOWNERS`. Decision to review: TypeScript moved from 7.0.2 to ~5.9.3 and `dom.iterable` added to the tsconfig lib, because typescript-eslint supports TypeScript below 6.1 only (7.1 beta support is via an alias). `tsc` typecheck, tests and check:private all pass. Revert to TypeScript 7 once typescript-eslint supports 7.0. Next: make lint strict (repository variable STUDIO_LINT_STRICT=1) after the 9 warnings are cleaned up.
 
 ## Repo best-practices pass (2026-11-25)
 - Done: audit pass (CODEOWNERS dropped, see studio-agents docs/repo-standards.md).

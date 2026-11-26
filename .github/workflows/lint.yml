@@ -1,0 +1,33 @@
+# Studio lint gate (seed: created once, then yours). Runs ESLint with the managed eslint.config.mjs.
+# Warnings only until the repo is clean; then set the repository variable STUDIO_LINT_STRICT to 1
+# (Settings, Secrets and variables, Variables) or call this workflow with `strict: true`.
+name: lint
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_call:
+    inputs:
+      working-directory:
+        type: string
+        default: .
+      strict:
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory || '.' }}
+    env:
+      STUDIO_LINT_STRICT: ${{ (inputs.strict || vars.STUDIO_LINT_STRICT == '1') && '1' || '0' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx eslint .
