@@ -13,11 +13,21 @@
     "feed": "node scripts/build-feed.ts",
     "feed:sample": "node scripts/build-sample-feed.ts",
     "hooks": "git config core.hooksPath .githooks",
-    "test:e2e": "node --test \"tests/e2e/*.e2e.ts\""
+    "test:e2e": "node --test \"tests/e2e/*.e2e.ts\"",
+    "lint": "eslint ."
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.0",
     "@types/node": "^26.6.5",
+    "eslint": "^9.39.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-native": "^5.0.0",
+    "globals": "^17.0.0",
     "playwright": "1.65.1",
-    "typescript": "^7.0.2"
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.74.0"
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }
