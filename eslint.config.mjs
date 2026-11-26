@@ -2,6 +2,8 @@
 // ESLint 9 flat config. Warnings by default so adoption never turns CI red;
 // set STUDIO_LINT_STRICT=1 (the lint workflow's `strict` input) to make every finding an error.
 import fs from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import js from '@eslint/js';
 import globals from 'globals';
@@ -54,6 +56,14 @@ const config = [
   },
 ];
 
+// Empty catch blocks and underscore-named unused values are deliberate, so they stay quiet.
+const unused = { caughtErrors: 'none', ignoreRestSiblings: true, argsIgnorePattern: '^_', varsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' };
+config.push(
+  { rules: { 'no-empty': [level, { allowEmptyCatch: true }] } },
+  { files: ['**/*.{js,mjs,cjs,jsx}'], rules: { 'no-unused-vars': [level, unused] } },
+  { files: ['**/*.{ts,tsx,mts,cts}'], rules: { '@typescript-eslint/no-unused-vars': [level, unused] } },
+);
+
 if (usesReact) {
   config.push(...leveled([{ ...reactHooks.configs.flat.recommended, files: ['**/*.{js,jsx,ts,tsx,mjs,cjs}'] }]));
 }
@@ -73,9 +83,9 @@ if (usesNative) {
   });
 }
 
-// Optional repo-local overrides: a flat-config array or a single object, appended last.
+// Optional repo-local overrides, read from the directory eslint runs in: a flat-config array or a single object, appended last.
 try {
-  const local = (await import(new URL('./eslint.studio-local.mjs', import.meta.url))).default;
+  const local = (await import(pathToFileURL(path.resolve(process.cwd(), 'eslint.studio-local.mjs')).href)).default;
   config.push(...(Array.isArray(local) ? local : [local]));
 } catch (e) {
   if (e?.code !== 'ERR_MODULE_NOT_FOUND') throw e;
