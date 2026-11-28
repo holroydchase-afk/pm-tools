@@ -44,6 +44,13 @@ How it works:
 - **Replies are comments on the issue.** The sender looks at its filed intakes' comments on its next turn; done is the issue closed as completed with the evidence.
 - **Limits, plainly:** it is pull, not push. A project learns of an intake when its next thread starts or its scheduled check runs, not the instant it is filed. A live push between sessions would need a server and a credential, which this studio doesn't run; revisit only if the delay hurts.
 
+## Keeping the inbox from stacking up (Nov 27, Chase)
+Twenty-three intakes were open across pm-tools, studio-agents and the portfolio. Four rules stop that:
+1. **Supersede means close.** An intake that replaces an older one names it ("Supersedes #n") and the sender closes the old one as a duplicate in the same step. The Hearth page refresh went through four open intakes (#49, #51, #55, #66) before this rule.
+2. **Audits are reports, not intakes.** A one-time drift or quality check goes in the project files or a `docs/` report. Only an ask with a checkable "Done when" is an intake. Ongoing drift is caught by the `factory-check` claims gate (pm-tools intake #85, Gate 1), not by hand-filed issues.
+3. **Portfolio intakes batch into one PR per night.** Live-site changes ride the release train, so Product Studio picks up every open portfolio intake in one run and ships one PR that says `Closes #a, #b, #c`. It still waits on Chase's go before merge.
+4. **The Intake check closes what is done or moot.** Each run closes finished, superseded or moot intakes with a comment (reopenable), and labels any intake older than 7 days `stale` so the digest shows it. Hidden products (the Nov 25 prune) count as moot.
+
 ## The paste (once per project)
 Chase pastes this into each project's chat once. It schedules the routine and switches the project to filing intakes as issues. The same text lives in Chase's thread; keep the two in sync.
 
